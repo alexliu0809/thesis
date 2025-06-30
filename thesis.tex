@@ -22,7 +22,7 @@
 %commands
 
 \newcommand{\sword}{SwordBox}
-\newcommand{\thesistitle}{Disaggregated Data Structures: Sharing and Contention \\ with RDMA and Programmable Networks}
+\newcommand{\thesistitle}{Enze Liu's Thesis Title \\ Blah blah}
 
 \usepackage{multirow}
 \usepackage{tikz}
@@ -48,17 +48,18 @@
 
 % Required information
 \title{\thesistitle}
-\author{Stewart Steven Grant}
+\author{Enze Liu}
 \degree{Computer Science}{Doctor of Philosopy}
 % Each member of the committee should be listed as Professor Foo Bar.
 % If Professor is not the correct title for one, then titles should be
 % omitted entirely.
-\chair{Professor Alex C. Snoeren}
+\cochair{Professor Stefan Savage}
+\cochair{Professor Geoffrey M. Voelker}
 % Your committee members (other than the chairs) must be in alphabetical order
-\committee{Professor Amy Ousterhout}
-\committee{Professor George Papen}
-\committee{Professor Yiying Zhang}
-\degreeyear{2024}
+\committee{Professor KC Claffy}
+\committee{Doctor David D Clark}
+\committee{Professor Terrance August}
+\degreeyear{2025}
 
 % Start the document
 \begin{document}
@@ -73,7 +74,7 @@
 \raggedright % It would be better to use \RaggedRight from ragged2e
 \parindent0pt\parskip\baselineskip
 
-\textit{To my inner circle -- Family, Loved ones and Friends. And to every belayer that caught me. Thanks for the proverbial and literal support.}
+\textit{To Mom and Dad, who raised me as a human being; to Stefan and Geoff, who raised me as a researcher; and to everyone who believed in and invested in me --- you made me who I am today.}
 
 
 % In recognition of reading this manual before beginning to format the
@@ -92,26 +93,27 @@
 \vskip0pt plus.5fil
 \setsinglespacing
 \begin{flushright}
-"If this is the best of possible worlds, what then are the others?"\\
+``It takes a village to raise a child.''\\
 \vskip\baselineskip
--Voltaire \textit{Candide}\par
+% -Voltaire \textit{Candide}\par
+-African Proverb
 \end{flushright}
 
 \vfil
 \begin{center}
 
-\noindent “It must be considered that there is nothing more difficult to carry out, nor more
-doubtful of success, nor more dangerous to handle, than to initiate a new order of things.”
+% \noindent “It must be considered that there is nothing more difficult to carry out, nor more
+% doubtful of success, nor more dangerous to handle, than to initiate a new order of things.”
 
 \vskip\baselineskip
-\hskip0pt plus1fil -Niccolo Machiavelli \textit{The Prince}\hskip0pt plus4fil\null
+% \hskip0pt plus1fil -Niccolo Machiavelli \textit{The Prince}\hskip0pt plus4fil\null
 
 \end{center}
 \vfil
-"If every porkchop were perfect we wouldn't have hotdogs"\\
+``My ears had heard of you but now my eyes have seen you.''\\
 
 \vskip\baselineskip
--Greg Universe, \textit{Steven Universe}
+-Job 42:5, \textit{NIV}
 
 \vfil
 \end{epigraph}
@@ -138,37 +140,33 @@ doubtful of success, nor more dangerous to handle, than to initiate a new order 
 % be repeated at the end of the relevant chapter.
 \begin{acknowledgements}
 
-Chapter~\ref{chap:swordbox} is a partial reprint of work submitted to multiple USENIX and ACM
-conferences under the title "SwordBox: Accelerating Shared Access in RDMA-based Disaggregated
-Memory. Stewart Grant, Alex C. Snoeren. This dissertations author was the primary investigator and
-author of this paper.
-%%
-Chapter~\ref{chap:rcuckoo} is a partial reprint of work submitted to multiple USENIX conferences
-under the title "Cuckoo for Clients: Disaggregated Cuckoo Hashing. Stewart Grant, Alex C. Snoeren.
-This dissertations author was the primary investigator and author of this paper.
+% Chapter~\ref{chap:swordbox} is a partial reprint of work submitted to multiple USENIX and ACM
+% conferences under the title "SwordBox: Accelerating Shared Access in RDMA-based Disaggregated
+% Memory. Stewart Grant, Alex C. Snoeren. This dissertations author was the primary investigator and
+% author of this paper.
+% %%
+% Chapter~\ref{chap:rcuckoo} is a partial reprint of work submitted to multiple USENIX conferences
+% under the title "Cuckoo for Clients: Disaggregated Cuckoo Hashing. Stewart Grant, Alex C. Snoeren.
+% This dissertations author was the primary investigator and author of this paper.
 
-I would like to acknowledge my advisor Alex C. Snoeren for his dedication to his craft and guidance
-over the past 6 years. No piece of work within this dissertation would be possible without your
-collaboration. I would also like to thank my committee members Amy Ousterhout, Yiying Zhang, and
-George Papen for their feedback and guidance, and Srikanth Kandula for his mentorship during my time
-at MSR.
+I would like to acknowledge some people here.
 
-This dissertation has been extraordinarily influenced by Anil Yelam, my closest collaborator. Thank you
-for all the time you spent working on our collaborations, and the hours spent discussing and
-debating system designs and performance results. I'm forever grateful. To Maxwell Bland, your
-research energy is unmatched and without your help we would never have have acquired any SmartNICs.
-And Alex (Enze) Liu for his superior knowledge of Python and unmatched focus on research.  Thank you
-to all of the members of the Systems and Networking group at UCSD, especially the optical networking
-group for your feedback and guidance during the first years of my PhD.
+% This dissertation has been extraordinarily influenced by Anil Yelam, my closest collaborator. Thank you
+% for all the time you spent working on our collaborations, and the hours spent discussing and
+% debating system designs and performance results. I'm forever grateful. To Maxwell Bland, your
+% research energy is unmatched and without your help we would never have have acquired any SmartNICs.
+% And Alex (Enze) Liu for his superior knowledge of Python and unmatched focus on research.  Thank you
+% to all of the members of the Systems and Networking group at UCSD, especially the optical networking
+% group for your feedback and guidance during the first years of my PhD.
 
-Thank you to Meta for funding my research and providing me with the opportunity to work on resource
-disaggregation, Cavium for the generous donation of two SmartNICs, and to ARPAe for funding my first
-years of research.
+% Thank you to Meta for funding my research and providing me with the opportunity to work on resource
+% disaggregation, Cavium for the generous donation of two SmartNICs, and to ARPAe for funding my first
+% years of research.
 
-I'd like to thank all of the members of 3140 for their collaboration and friendship over the years.
-It's truly the best office, Chez bob volunteers for keeping me fed, and to my friends for the
-support. Camille Rubel thanks for having the best climbing schedule in the world, Phillip Arndt for
-pushing my limits, and Camille Moore for keeping me on my toes.
+% I'd like to thank all of the members of 3140 for their collaboration and friendship over the years.
+% It's truly the best office, Chez bob volunteers for keeping me fed, and to my friends for the
+% support. Camille Rubel thanks for having the best climbing schedule in the world, Phillip Arndt for
+% pushing my limits, and Camille Moore for keeping me on my toes.
 \todo{double check I thanked everyone}
 
 
@@ -179,9 +177,9 @@ pushing my limits, and Camille Moore for keeping me on my toes.
 \noindent
 \begin{cv}{}
 \begin{cvlist}{}
-\item[2012-2016] Bachelor of Science, Computer Science University of British Columbia
-\item[2016-2018] Master of Science, Computer Science University of British Columbia
-\item[2018-2024] Doctor of Philosophy, Computer Science University of California San Diego
+\item[2012-2016] Bachelor of Science, Software Engineering, Beijing Institute of Technology
+\item[2016-2018] Master of Science, Computer Science, University of Chicago
+\item[2019-2025] Doctor of Philosophy, Computer Science, University of California San Diego
 \end{cvlist}
 \end{cv}
 
