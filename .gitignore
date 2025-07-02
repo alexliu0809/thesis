@@ -9,3 +9,5 @@
 *.blg
 fig/.DS_Store
 .DS_Store
+thesis.synctex.gz
+thesis.fls
