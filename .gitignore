@@ -11,3 +11,4 @@ fig/.DS_Store
 .DS_Store
 thesis.synctex.gz
 thesis.fls
+thesis.fdb_latexmk
