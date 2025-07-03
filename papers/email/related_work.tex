@@ -1,0 +1,72 @@
+\subsection{Related Work}
+
+Email security has been a long-standing problem and a variety of prior research efforts have examined different aspects of it. One line of work focuses on understanding and defending against phishing attacks. This includes papers that design new tools for detecting both traditional phishing and sophisticated spearphishing attacks~\cite{abu2007comparison,bergholz2008improved, fette2007learning, garera2007framework, whittaker2010large, duman2016emailprofiler, khonji2011mitigation, zhao2016optimizing, stringhini2015ain, ho19, ho17, cidon19},
+study the characteristics of real-world phishing attacks~\cite{han2016phisheye,onaolapo2016happens,thomas2014consequences,bursztein2014handcrafted}, and examine the human aspect of such attacks~\cite{lastdrager2017effective, reinheimer2020investigation,abu2007comparison,
+mayer2022don,caputo2013going,
+Spero20, Sheng10, Kumaraguru10}.
+
+Another body of work investigates the security and deployment of email encryption mechanisms, such as PGP~\cite{muller2019johnny, poddebniak2018efail, schwenk2020mitigation, muller2020mailto,stransky202227}, DANE~\cite{lee2022under,lee2020longitudinal}, and STARTTLS~\cite{zakir15,Foster15,poddebniak2021tls,holz2015tls,mayer2016no}.
+
+A third research direction analyzes the security and deployment of anti-spoofing protocols such as SPF, DKIM and DMARC, with efforts from both industry and academia. The blogposts by Ullrich~\cite{Breaking12:online} and Haddouche~\cite{Mailsplo10:online} investigated approaches for bypassing DKIM and DMARC using malformed email messages.
+Other work has empirically measured the efficacy and deployment status of SPF, DKIM, and DMARC~\cite{hu_end--end_nodate, zakir15, Foster15, tatang2021evolution, deccio21, wang2022large, bennett2022spfail}, as well as qualitatively characterized the factors that drive DMARC policy decisions~\cite{hutowardsunderstanding}.
+% systematically researched the deployment of SPF, DKIM and DMARC, including
+% the empirical study by Hu \etal\ of anti-spoofing efficacy among
+% providers, a subsequent qualitative study
+% to investigate the
+% factors that
+% drive DMARC policy decisions~\cite{hutowardsunderstanding}, and empirical measurement studies of the deployment of SPF, DKIM and DMARC by Durumeric et al.~\cite{zakir15}, Foster et al.~\cite{Foster15}, Tatang et al.~\cite{tatang2021evolution}, Deccio et al.~\cite{deccio21} and Wang et al.~\cite{wang2022large}.
+
+The work most related to our own includes Chen et al.'s analysis of
+the security vulnerabilities introduced by protocol composition in
+modern email delivery~\cite{chen2020composition}, Shen et al.'s
+analysis~\cite{shen2020weak} of modern sender spoofing attacks, and Wang et al.'s~\cite{wang2022revisiting} analysis of email security under the experimental Authenticated Received Chain (ARC) protocol~\cite{rfc8617}.
+Of these, Chen et al.~\cite{chen2020composition} do not consider forwarding at all and Wang et al.~\cite{wang2022revisiting} focus on ARC and only consider one specific forwarding implementation as well (REM+MOD in Section~\ref{sec:measure_forwarding_mechs_and_arc}), leaving many other vulnerable forwarding mechanisms and features unexplored.
+
+Shen et al.'s work~\cite{shen2020weak} is the closest in that it also
+examines open forwarding, but because they only consider one
+forwarding mechanism (what we label as REM in
+Section~\ref{sec:measure_forwarding_mechs_and_arc}), they do not
+identify the significant scope of this issue.  We build on and
+generalize this work to show, among other attacks, that attackers are
+able to practically abuse open forwarding to spoof \emph{any} domain
+that includes the forwarding domain's SPF record in their own SPF record (a
+common practice when hosting email via Microsoft's Outlook service for example).
+
+% and does not illuminate many of the attacks described in our work.
+% in Section~\ref{subsec:attack_open_forwarding}
+
+%Additionally, we show how a bug they disclosed in Zoho's ARC implementation, they did not demonstrate how to use this vulnerability in practical attacks.
+% due to their limited scope
+%In contrast, we present a viable attack that allows an adversary to deliver spoofed email messages addressed from arbitrary domains to arbitrary Zoho users (Section~\ref{subsec:attack_zoho_arc}).
+% Similarly, while they were the first to disclose Zoho's buggy ARC implementation, they missed the attack we describe in Section~\ref{subsec:attack_zoho_arc} due to limited scope --- that they only examined ARC in the context of Gmail and Zoho and did not consider forwarding configurations, which are critical components that enable the attack.
+
+In summary, our paper builds on the insights of prior efforts, but focuses exclusively and deeply on the particular security challenges introduced by the design and features of common forwarding mechanisms, and their complex interactions with existing email protocols. Through systematic measurements and analysis, we not only show that prior work largely underestimates the risks of open forwarding,
+% (Section~\ref{subsec:attack_open_forwarding}),
+but also reveal new attacks not discovered in prior work.
+%(Section~\ref{sec:attacks}).
+
+
+
+%Since
+%forwarding is not the main focus of Shen et al.~\cite{shen2020weak},
+%they only present a limited set of results: (1) their forwarding
+%mechanism is limited to REM, understating many of the potential
+%security issues (2) They examine open forwarding in the context of
+%REM, (3) they do not elaborate on capacity of attacks introduced by
+%certain vulnerabilities (\eg, the Zoho bug). (4) their work is limited
+%to mail providers. In comparison, our work: (1) performs a systematic
+%and empirical analysis of forwarding mechanisms used in wild,
+%discovering three other broad types of forwarding mechanisms (2)
+%Comprehensively measures vulnerabilities exist at all parties involved
+%in the email forwarding flow \alex{we omit vulnerabilities they
+%  discovered but not used in our attacks} (3) Uncovers security issues
+%associated with certain vulnerabilities that are understated (\eg,
+%open forwarding and Zoho's ARC bug). Our work also leads to a patch of
+%the ARC bug by Zoho (\S~\ref{sec:disclosure}). (4) We also consider
+%security issues centered around another common use case of forwarding
+%--- mailing lists.
+
+%Besides~\cite{shen2020weak}, other work has talked about different
+%ways of bypassing email security protocols. For example,
+
+%\alex{Phishing citations cam be added later}

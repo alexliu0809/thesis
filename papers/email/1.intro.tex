@@ -1,0 +1,86 @@
+\section{Introduction}
+Email has long been a uniquely popular medium for social engineering
+attacks.\footnote{In the 2021 Verizon Data Breach Investigation
+  Report, phishing is implicated in 36\% of the more than 4,000 data
+  breaches investigated; and email-based attacks, including Business
+  Email Compromise (BEC), completely dominate the social engineering
+  attack vector~\cite{dbir2021}.}  While it is widely used for
+both unsolicited business correspondence as well as person-to-person
+communications, email provides no intrinsic integrity guarantees.  In
+particular, the baseline SMTP protocol provides no mechanism to
+establish if the purported sender of an email message (\eg, From:
+\dns{Anthony.Blinken@state.gov}) is in fact genuine.
+
+To help address this issue, starting in the early 2000's, the email
+operations community introduced multiple anti-spoofing protocols,
+including the Sender Policy Framework (SPF)~\cite{rfc7208}, DomainKeys
+Identified Mail
+(DKIM)~\cite{rfc6376} and Domain-based Message Authentication
+Reporting and Conformance (DMARC)~\cite{rfc7489}, each designed to
+tighten controls on which parties can successfully deliver
+mail purporting to originate from particular domain names.  However,
+these protocols had the disadvantage of being both post-hoc (needing
+to support existing email deployments and conventions) and piecemeal
+(each addressing slightly different threats in slightly different
+ways).  As a result, the composition of these protocols is complex and
+hard to reason about, leading to a structure that Chen \etal\ recently
+demonstrated can enable a range of evasion
+attacks~\cite{chen2020composition}.
+
+In this paper, we explore the unique aspects of this problem created
+as a result of \emph{email forwarding}, which is commonly used by both
+individuals (\ie, to aggregate mail from multiple accounts) and
+organizations (\ie, for mailing list distribution).  While clearly
+useful, forwarding introduces a range of new interaction
+complexities. First, forwarding involves three parties instead of two
+(the sender, the forwarder, and the receiver), where the
+``authenticity'' of an email message is commonly determined by the party with
+the weakest security settings.  Second, the intrinsic nature of email
+forwarding is to transparently send an existing message to a new
+address ``on behalf'' of its original recipient --- a goal very much
+at odds with the anti-spoofing function of protocols such as SPF and
+DMARC.  For this reason, forwarded email messages can receive special
+treatment based on various assumptions about how forwarding is used in
+practice.  Finally, there is no single standard implementation of
+email forwarding. Different providers make different choices and the
+email ecosystem is forced to accommodate them.  Unfortunately, some
+problematic implementation choices (\eg, permitting ``open
+forwarding'') incur no security impact on the implementing party but
+can jeopardize the security of downstream recipients.  This inversion of
+incentives and capabilities creates additional challenges to
+mitigating forwarding vulnerabilities.
+
+To characterize the nature of these issues, we conduct a large-scale empirical
+measurement study to infer and characterize the mail forwarding
+behaviors of 16 leading email providers and four popular mailing
+list services.  From these results, we identify a range of implicit
+assumptions and vulnerable features in the
+configuration of senders, receivers, and forwarders.  Using a
+combination of these factors, we then demonstrate a series of distinct
+evasion attacks that bypass existing anti-spoofing protocols and allow
+the successful delivery of email with spoofed sender addresses (\eg,
+From: \dns{Anthony.Blinken@state.gov}).  These attacks affect both leading
+online email service providers (\eg, Gmail, Microsoft Outlook, iCloud, and
+Zoho) and mailing list providers/software (\eg, Google Groups and
+Gaggle).  Moreover, some of these issues have extremely broad
+impact --- affecting the integrity of email sent from tens of
+thousands of domains, including those representing organizations in the
+US government (spanning the majority of US cabinet domains, such as
+\dns{state.gov} and \dns{doe.gov}, as well as the domains of security agencies
+such as \dns{odni.gov}, \dns{cisa.gov}, and \dns{secretservice.gov}), financial services
+(\eg, \dns{transunion.com}, \dns{mastercard.com}, and \dns{discover.com}), news (\eg,
+\dns{washingtonpost.com},
+\dns{latimes.com},
+\dns{apnews.com}, and \dns{afp.com}), commerce (\eg, \dns{unilever.com}, \dns{dow.com}), and law (\eg,
+\dns{perkinscoie.com}).
+Finally, in addition to disclosing these issues to their respective
+providers, we discuss the complexities involved in identifying,
+mitigating, and fixing such problems going forward.
+
+% \alex{I know this is a very lame way to write a paper. Summarizing the results again to make sure we are on the same page. Free feel to delete it.}
+% In summary, we present the following main contributions:
+% \begin{itemize}
+%   \item We conduct a large-scale empirical measurement study to infer and characterize the forwarding mechanisms and behaviors of 20 prominent email forwarding services.
+%   \item From these measurement results, we identify four different forwarding mechanisms used in the wild (Section~\ref{sec:measure_forwarding_mechs_and_arc}), two of which are overlooked in prior work~\cite{shen2020weak,wang2022revisiting}, leading them to underestimate the security issues with email forwarding.
+%   \item We present a systematic analysis of vulnerable forwarding assumptions and features (Section~\ref{sec:assumptions}), and show how an adversary can exploit them to perform a range of email spoofing attacks (Section~\ref{sec:attacks}). The attacks we uncover affect both users of leading email service providers such as Gmail, Microsoft Outlook, iCloud, and Zoho, as well as critical domains used by government organizations and financial services among others.
+% \end{itemize}

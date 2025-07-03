@@ -1,0 +1,39 @@
+\section{Ethics and Disclosure}
+\label{sec:disclosure}
+When sending spoofed email messages in our experiments,
+we took deliberate steps to avoid impacting any real users.
+First, we only sent spoofed email messages to accounts that we created ourselves.
+Second, we initially tested each attack by spoofing domains that we created and controlled for this research.
+Once we established that our attacks could succeed using these test domains,
+we ran a small set of experiments that spoofed email from real domains (to validate the absence of any unforeseen protection);
+however, these email messages were only sent to our test accounts and did not spoof existing, legitimate email addresses from these domains.
+Finally, all of our email messages contained innocuous text (e.g., ``a spoofed email'') that would not themselves cause harm.
+% even if a message had somehow been misdelivered,
+% all of our messages contained innocuous content and thus was unlikely
+% to cause harm.
+
+We have disclosed all of the vulnerabilities and attacks to the
+affected providers. As of the time of publication, we have received
+affirmative feedback from all affected providers and we summarize our
+current understanding of their present state here. Zoho has not only
+patched the issue with their ARC implementation (also confirmed by
+Wang et al.~\cite{wang2022revisiting}, who conducted their
+measurements after the patch) and awarded us a bug bounty, but is also
+further augmenting the security of its ARC implementation. Microsoft
+confirmed the vulnerabilities (with severity ``Important'', the
+highest severity assigned to email spoofing bugs) and awarded us a bug
+bounty. They have partially fixed the issues by rejecting spoofed email
+messages purporting to be from domains that have a DMARC policy of
+\textsc{Reject}~\cite{hotmailreject}.
+Gaggle confirmed the issues we flagged and stated that they would
+start enforcing DMARC. Gmail fixed the issues we reported.  iCloud
+partially fixed the issues we reported by not forwarding email
+messages that fail DMARC authentication (except for domains with DMARC
+policy \textsc{None}). Hushmail fixed the issues we reported by not
+forwarding email messages that fail DMARC authentication. Freemail
+fixed the issues we reported by not forwarding spoofed email messages
+from domains that are their customers. Mail2World attempted to fix the
+issues by using spam filters and remains vulnerable. Runbox did not
+view the issues we reported as vulnerabilities. Instead, they consider
+monitoring account activities post-complaints sufficient.
+% We will report on the full set of disclosure feedback and outcomes in the final version of this paper.

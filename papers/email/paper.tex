@@ -1,0 +1,267 @@
+\documentclass[compsoc, conference, a4paper, 10pt, times]{IEEEtran}
+% \IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+% \usepackage{cite}
+%\usepackage{amsmath,amssymb,amsfonts}
+
+% \settopmatter{printfolios=true}  % page numbers
+% \settopmatter{printacmref=false} % removes citation information below abstract
+% \renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with confe
+
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{colortbl} % using this in lieu of xcolor because xcolor was erroring
+%\usepackage{usenix}
+\usepackage{subcaption}
+\usepackage{caption}
+\captionsetup[table]{skip=10pt}
+\usepackage{xspace}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage[flushleft]{threeparttable}
+\usepackage{scalerel}
+\usepackage{tikz}
+\usetikzlibrary{svg.path}
+
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+\tikzset{
+  orcidlogo/.pic={
+    \fill[orcidlogocol] svg{M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z};
+    \fill[white] svg{M86.3,186.2H70.9V79.1h15.4v48.4V186.2z}
+                 svg{M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z}
+                 svg{M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1C84.2,46.7,88.7,51.3,88.7,56.8z};
+  }
+}
+
+\newcommand\orcidicon[1]{\href{https://orcid.org/#1}{\mbox{\scalerel*{
+\begin{tikzpicture}[yscale=-1,transform shape]
+\pic{orcidlogo};
+\end{tikzpicture}
+}{|}}}}
+
+\usepackage{hyperref}
+\newcommand{\dns}[1]{{\small \texttt{#1}}}
+\newcommand{\dnsfn}[1]{{\footnotesize \texttt{#1}}}
+\newcommand{\foo}{\dns{foo.com}\xspace}
+\newcommand{\ie}{i.e.}
+\newcommand{\eg}{e.g.}
+\newcommand{\etal}{et al.}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+
+% Change \paragraph spacing
+\renewcommand{\paragraph}[1]{\vspace{5pt}\noindent\textbf{#1:}}
+
+% \copyrightyear{2022}
+% \acmYear{2022}
+% \acmConference[IMC '22]{Internet Measurement Conference}{October 25--27, 2022}{Nice, France}
+% \acmBooktitle{Internet Measurement Conference (IMC '22), October 25--27, 2022, Nice, France}
+%\acmPrice{TBA}
+\newcommand{\ltgrey}{\rowcolor[gray]{0.95}}
+\definecolor{chicagomaroon}{rgb}{0.5, 0.0, 0.0}
+\definecolor{midgreen}{rgb}{0.0, 0.50, 0.0}
+
+\makeatletter
+% \newcommand*\titleheader[1]{\gdef\@titleheader{#1}}
+% \AtBeginDocument{%
+%   \let\st@red@title\@title
+%   \def\@title{%
+%     \bgroup\normalfont\large\centering\@titleheader\par\egroup
+%     \vskip1.5em\st@red@title}
+% }
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
+
+\title{
+  Forward Pass: On the Security Implications of\\Email Forwarding Mechanism and Policy\\
+}
+% \titleheader{This is a preprint of a paper to appear at the 8th IEEE European Symposium on Security and Privacy }
+
+\begin{document}
+
+
+
+% \iffalse
+% \newcommand{\grant}[1]{\textsf{\textcolor{teal}{[GH: #1]}}}
+% \newcommand{\gakiwate}[1]{\textcolor{violet}{\noindent[Gautam: #1]}}
+% \newcommand{\geoff}[1]{\textcolor{purple}{\noindent[GV: #1]}}
+% \newcommand{\stefan}[1]{\textcolor{green}{\noindent[SS: #1]}}
+% \newcommand{\mattijs}[1]{\textcolor{blue}{\noindent[MJ: #1]}}
+% \newcommand{\alex}[1]{\textcolor{chicagomaroon}{\noindent[AL: #1]}}
+% \else
+% \newcommand{\grant}[1]{}
+% \newcommand{\gakiwate}[1]{}
+% \newcommand{\geoff}[1]{}
+% \newcommand{\stefan}[1]{}
+% \newcommand{\mattijs}[1]{}
+% \newcommand{\alex}[1]{}
+% \fi
+
+\iffalse
+
+\newcommand{\todo}[1]{\textsf{\textcolor{red}{[TODO: #1]}}}
+\newcommand{\grant}[1]{\textsf{\textcolor{teal}{[GH: #1]}}}
+\newcommand{\amirian}[1]{\textsf{\textcolor{violet}{[AM: #1]}}}
+\newcommand{\gakiwate}[1]{\textcolor{violet}{\noindent[Gautam: #1]}}
+\newcommand{\geoff}[1]{\textcolor{purple}{\noindent[GV: #1]}}
+\newcommand{\stefan}[1]{\textcolor{green}{\noindent[SS: #1]}}
+\newcommand{\mattijs}[1]{\textcolor{blue}{\noindent[MJ: #1]}}
+\newcommand{\alex}[1]{\textcolor{chicagomaroon}{\noindent[AL: #1]}}
+\else
+\newcommand{\todo}[1]{}
+\newcommand{\amirian}[1]{}
+\newcommand{\grant}[1]{}
+\newcommand{\gakiwate}[1]{}
+\newcommand{\geoff}[1]{}
+\newcommand{\stefan}[1]{}
+\newcommand{\mattijs}[1]{}
+\newcommand{\alex}[1]{}
+\fi
+
+
+
+
+
+\author{
+\IEEEauthorblockN{Enze Liu \orcidicon{0000-0003-4288-8485}}
+  \IEEEauthorblockA{
+  \textit{UC San Diego}\\
+  La Jolla, CA, USA \\
+  e7liu@eng.ucsd.edu}
+\and
+\IEEEauthorblockN{Gautam Akiwate}
+\IEEEauthorblockA{
+\textit{Stanford University}\\
+Stanford, CA, USA \\
+gakiwate@cs.stanford.edu}
+\and
+\IEEEauthorblockN{Mattijs Jonker}
+\IEEEauthorblockA{
+\textit{University of Twente}\\
+Enschede, Netherlands \\
+m.jonker@utwente.nl}
+\and
+\IEEEauthorblockN{Ariana Mirian}
+\IEEEauthorblockA{
+\textit{UC San Diego}\\
+La Jolla, CA, USA \\
+amirian@cs.ucsd.edu}\\
+\linebreakand
+\IEEEauthorblockN{Grant Ho}
+\IEEEauthorblockA{
+\textit{UC San Diego}\\
+La Jolla, CA, USA \\
+grho@eng.ucsd.edu}
+\and
+\IEEEauthorblockN{Geoffrey M. Voelker}
+\IEEEauthorblockA{
+\textit{UC San Diego}\\
+La Jolla, CA, USA \\
+voelker@cs.ucsd.edu}
+\and
+\IEEEauthorblockN{Stefan Savage}
+\IEEEauthorblockA{
+\textit{UC San Diego}\\
+La Jolla, CA, USA \\
+savage@cs.ucsd.edu}\\
+}
+
+\maketitle
+
+\input{0.abs.tex}
+
+%\input{0.abs}
+
+
+% \begin{IEEEkeywords}
+% component, formatting, style, styling, insert
+% \end{IEEEkeywords}
+
+\input{1.intro.tex}
+
+\input{2.background.tex}
+
+\input{3.forward_in_the_wild.tex}
+
+%\input{3.indi_vulnerabilities.tex}
+
+\input{4.assumptions.tex}
+
+%\input{3.all_forwarding_mechs.tex}
+
+%\input{4.threat_model.tex}
+
+\input{5.attacks.tex}
+
+
+
+
+%\input{5.sender.tex}
+%\input{6.forwarder.tex}
+%\input{7.receiver.tex}
+%\input{deliverability_without_arc.tex}
+%\input{security_without_arc.tex}
+%\input{deliverability_with_arc.tex}
+%\input{security_with_arc.tex}
+%\input{8.ui.tex}
+%\input{ethics.tex}
+
+\input{6.disclosure.tex}
+
+%\input{mitigations.tex}
+
+\input{7.mitigation_and_discussion.tex}
+
+\input{8.conclusion.tex}
+
+
+
+% \begin{table}[htbp]
+% \caption{Table Type Styles}
+% \begin{center}
+% \begin{tabular}{|c|c|c|c|}
+% \hline
+% \textbf{Table}&\multicolumn{3}{|c|}{\textbf{Table Column Head}} \\
+% \cline{2-4}
+% \textbf{Head} & \textbf{\textit{Table column subhead}}& \textbf{\textit{Subhead}}& \textbf{\textit{Subhead}} \\
+% \hline
+% copy& More table copy$^{\mathrm{a}}$& &  \\
+% \hline
+% \multicolumn{4}{l}{$^{\mathrm{a}}$Sample of a Table footnote.}
+% \end{tabular}
+% \label{tab1}
+% \end{center}
+% \end{table}
+
+% \begin{figure}[htbp]
+% \centerline{\includegraphics[[width=\columnwidth]]{fig1.png}}
+% \caption{Example of a figure caption.}
+% \label{fig}
+% \end{figure}
+
+\input{acks.tex}
+
+% \newpage
+
+% \bibliographystyle{IEEEtran}
+% \bibliography{ref}
+
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+
+
+%\newpage
+
+\input{appendix.tex}
+
+\end{document}
