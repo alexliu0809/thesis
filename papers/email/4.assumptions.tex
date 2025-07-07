@@ -25,8 +25,9 @@
 
 \begin{table*}[t]
     \centering
+    \small
 %    \begin{tabular}{lp{17em}p{14em}p{14em}}
-    \begin{tabular}{llll}
+    \begin{tabular}{p{0.08\textwidth}p{0.32\textwidth}p{0.3\textwidth}p{0.18\textwidth}}
         \toprule
 &     \textbf{Security Assumption or Feature} & \textbf{Implementation Aspect}  & \textbf{Prevalence}    \\
     \midrule
@@ -537,13 +538,13 @@ disallow open forwarding.
 \begin{table*}[t]
   \centering
   \begin{threeparttable}
-
-  \begin{tabular}{llll}
+  \small
+  \begin{tabular}{p{0.08\textwidth}p{0.32\textwidth}p{0.3\textwidth}p{0.18\textwidth}}
     \toprule
   %  & \multicolumn{3}{c}{\textbf{Attacks}} \\
     & \textbf{Send email spoofing} & \textbf{Forward via} & \textbf{Deliver to} \\
     \midrule
-   \multirow{2}{*}{\S~\ref{subsec:attack_open_forwarding}} & Domains with the forwarding domain's SPF information & \multirow{2}{*}{Six providers including Outlook and iCloud} & \multirow{2}{*}{Any recipient} \\
+   \multirow{2}{*}{\S~\ref{subsec:attack_open_forwarding}} & Domains with the forwarding domain's SPF information & Six providers including Outlook and iCloud & \multirow{2}{*}{Any recipient} \\
     & in their SPF records & & \\[1pt]
   \ltgrey
   & Arbitrary domains with DMARC policy None or Quarantine & Outlook & Gmail \\[1pt]
