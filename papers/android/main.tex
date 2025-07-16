@@ -1,0 +1,285 @@
+\documentclass[sigconf,balance=false]{acmart}
+\usepackage{popets}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{lipsum}% http://ctan.org/pkg/lipsum
+\usepackage{multicol}% http://ctan.org/pkg/multicols
+\usepackage{graphicx}% http://ctan.org/pkg/graphicx
+\usepackage{listings,multicol}
+\usepackage{color}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[tableposition=below]{caption}\captionsetup[table]{skip=10pt}
+%\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{colortbl}
+\newcommand{\ltgrey}{\rowcolor[gray]{0.88}}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+
+% Copyright
+\setcopyright{popets}
+\copyrightyear{YYYY}
+% Issue info
+\acmYear{YYYY}
+\acmVolume{YYYY}
+\acmNumber{X}
+\acmDOI{XXXXXXX.XXXXXXX}
+\acmISBN{}
+\acmConference{Proceedings on Privacy Enhancing Technologies}
+\settopmatter{printacmref=false,printccs=false,printfolios=true}
+
+
+
+%\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\def\checkmark{{\footnotesize $\bigstar$}}
+
+\lstset{
+frame=tb,
+language=Java,
+stringstyle=\color{mauve},
+breaklines=true,
+commentstyle=\color{dkgreen},
+columns=fullyflexible,
+keywordstyle=\color{blue},
+aboveskip=0.1mm,
+belowskip=0.1mm,
+linewidth=\columnwidth
+}
+
+% inlined bib file
+\usepackage{filecontents}
+
+\definecolor{chicagomaroon}{rgb}{0.5, 0.0, 0.0}
+
+\iffalse
+\newcommand{\alex}[1]{\textcolor{chicagomaroon}{\noindent[AL: #1]}}
+\newcommand{\sumanth}[1]{\textcolor{violet}{\noindent[SR: #1]}}
+\newcommand{\damon}[1]{\textcolor{blue}{\noindent[DM: #1]}}
+\newcommand{\sam}[1]{\textcolor{orange}{\noindent[SH: #1]}}
+\newcommand{\todo}[1]{\textsf{\textcolor{red}{[TODO: #1]}}}
+\newcommand{\grant}[1]{\textsf{\textcolor{teal}{[GH: #1]}}}
+\newcommand{\geoff}[1]{\textcolor{purple}{\noindent[GV: #1]}}
+\newcommand{\stefan}[1]{\textcolor{green}{\noindent[SS: #1]}}
+\iffalse
+
+\fi
+
+\else
+\newcommand{\alex}[1]{}
+\newcommand{\sumanth}[1]{}
+\newcommand{\todo}[1]{}
+\newcommand{\grant}[1]{}
+\newcommand{\geoff}[1]{}
+\newcommand{\stefan}[1]{}
+\newcommand{\damon}[1]{}
+\newcommand{\sam}[1]{}
+
+\fi
+
+\newcommand{\rating}[1]{%
+	\begin{tikzpicture}[x=1ex,y=1ex]
+		\begin{scope}
+			\clip (0,1) circle (1);
+			\fill[lightgray] (-1,0) rectangle (1,#1/50);
+		\end{scope}
+		\draw[black, thin, radius=1] (0,1) circle;
+	\end{tikzpicture}%
+}
+
+
+%-------------------------------------------------------------------------------
+\begin{document}
+%-------------------------------------------------------------------------------
+
+%don't want date printed
+\date{}
+
+% make title bold and 14 pt font (Latex default is non-bold, 16 pt)
+\title{No Privacy Among Spies: Assessing the Functionality and Insecurity of Consumer Android Spyware Apps}
+%for single author (just remove % characters)
+% \author{
+% {\rm Enze Liu}\\
+% Meta
+% \and
+% {\rm Sumanth Rao}\\
+% % copy the following lines to add more authors
+% % \and
+% % {\rm Name}\\
+% %Name Institution
+% } % end author
+% \affiliation{UC San Diegp}
+
+\keywords{Android Spyware, Android Security, Consumer Spyware Apps, Reverse Engineering, Android API Abuse}
+
+\author{Enze Liu}
+\orcid{0000-0003-4288-8485}
+\affiliation{
+	\institution{UC San Diego}
+	\city{La Jolla}
+	\state{CA}
+	\country{USA}
+}
+%\affiliation{...}
+\email{e7liu@eng.ucsd.edu}
+\author{Sumanth Rao}
+\affiliation{
+	\institution{UC San Diego}
+	\city{La Jolla}
+	\state{CA}
+	\country{USA}
+}
+\email{svrao@ucsd.edu}
+\author{Sam Havron}
+\affiliation{
+	\institution{Cornell Tech}
+	\city{New York}
+	\state{NY}
+	\country{USA}
+}
+\authornote{Work done while this author was affiliated with Cornell Tech.}
+\email{havron@cs.cornell.edu}
+\author{Grant Ho}
+\affiliation{
+	\institution{UC San Diego}
+	\city{La Jolla}
+	\state{CA}
+	\country{USA}
+}
+\email{grho@eng.ucsd.edu}
+\author{Stefan Savage}
+\affiliation{
+	\institution{UC San Diego}
+	\city{La Jolla}
+	\state{CA}
+	\country{USA}
+}
+\email{savage@cs.ucsd.edu}
+\author{Geoffrey M. Voelker}
+\affiliation{
+	\institution{UC San Diego}
+	\city{La Jolla}
+	\state{CA}
+	\country{USA}
+}
+\email{voelker@cs.ucsd.edu}
+\author{Damon McCoy}
+\affiliation{
+	\institution{New York University}
+	\city{Brooklyn}
+	\state{NY}
+	\country{USA}
+}
+\email{mccoy@nyu.edu}
+%\affiliation{...}
+%\affiliation{...}
+
+% \and
+% {\rm Sam Havron}\\
+% Meta
+% {\rm Grant Ho}\\
+% UC San Diego
+% {\rm Stefan Savage}\\
+% UC San Diego
+% {\rm Geoffrey M. Voelker}\\
+% UC San Diego
+% {\rm Damon McCoy}\\
+% New York University
+
+\begin{abstract}
+{ Consumer mobile spyware apps covertly monitor a user's activities
+  (i.e., text messages, phone calls, e-mail, location, etc.) and
+  transmit that information over the Internet to support remote
+  surveillance.  Unlike conceptually similar apps used for state
+  espionage, so-called ``stalkerware'' apps are mass-marketed to
+  consumers on a retail basis and expose a far broader range of
+  victims to invasive monitoring.  Today the market for such apps is
+  large enough to support dozens of competitors, with individual
+  vendors reportedly monitoring hundreds of thousands of phones.
+  However, while the research community is well aware of the existence
+  of such apps, our understanding of the mechanisms they use to
+  operate remains ad hoc.  In this work, we perform an in-depth
+  technical analysis of 14 distinct leading mobile spyware apps
+  targeting Android phones. We document the range of mechanisms used
+  to monitor user activity of various kinds (e.g., photos, text
+  messages, live microphone access) --- primarily through the creative
+  abuse of Android APIs. We also discover previously undocumented
+  methods these apps use to hide from detection and to achieve
+  persistence. Additionally, we document the measures taken by each
+  app to protect the privacy of the sensitive data they collect,
+  identifying a range of failings on the part of spyware vendors
+  (including privacy-sensitive data sent in the clear or stored in the
+  cloud with little or no protection).  }
+
+
+%  Consumer mobile spyware apps have gained much popularity over the years as they
+%dramatically lower the entry barrier for ordinary people to surveil others. The
+%widespread \sam{use or availability?} of these apps also raises great concerns
+%due to their privacy-invasive nature (that they covertly collect sensitive user
+%data) and poor security hygiene (that they do not protect users' data well).
+%Thus far, the security community has a good understanding of what features
+%spyware apps offer, but lacks the knowledge of how they achieve those features
+%technically.  Similarly, while reportedly spyware apps have weak security posture
+%(e.g., some of them transfer data in plaintext), there exists only
+%cursory investigation of existing security and privacy vulnerabilities.
+%
+%In this work, we perform the first in-depth technical analysis of how spyware
+%apps achieve various features by using existing APIs in unexpected and
+%sophisticated ways, discovering a few novel venues of abusing Android APIs. Our
+%work not only sheds light on the technical capabilities of spyware apps but also
+%helps the community better appreciate the underlying technical problems and
+%gaps in existing Android privacy safeguards.
+%We also discuss potential solutions to mitigate the issues identified.
+%We also conduct a security assessment of both the client-side and the server-side
+%of consumer spyware apps. We document, ironically, how little effort they have
+%made to protect the collected user data that is often sensitive.
+
+\end{abstract}
+
+
+\maketitle
+
+\input{intro}
+
+%\input{bg}
+
+\input{meth}
+
+%\input{spyware_app_selection}
+
+%\input{spyware_api_abuse}
+
+\input{api}
+
+\input{spyware_data_protection}
+
+\input{related}
+
+\input{code}
+
+\input{discussion}
+
+\input{conclusion}
+
+\input{ack}
+
+
+%-------------------------------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
+
+%\clearpage (see appendix.tex)
+\input{appendix}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%  LocalWords:  endnotes includegraphics fread ptr nobj noindent
+%%  LocalWords:  pdflatex acks
