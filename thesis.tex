@@ -22,9 +22,19 @@
 }
 
 %commands
+\newcommand{\rating}[1]{%
+	\begin{tikzpicture}[x=1ex,y=1ex]
+		\begin{scope}
+			\clip (0,1) circle (1);
+			\fill[lightgray] (-1,0) rectangle (1,#1/50);
+		\end{scope}
+		\draw[black, thin, radius=1] (0,1) circle;
+	\end{tikzpicture}%
+}
 
-\newcommand{\sword}{SwordBox}
+\newcommand{\partrating}{\rating{50}}
 \newcommand{\thesistitle}{Enze Liu's Thesis Title \\ Blah blah}
+\newcommand{\sword}{SwordBox}
 
 \usepackage{multirow}
 \usepackage{tikz}
@@ -43,7 +53,7 @@
 \usepackage{trace}
 %\usepackage{showframe} % This package was just to see page margins
 % \usepackage[table]{xcolor}
-
+\usepackage{listings,multicol}
 \usepackage[english]{babel}
 \usepackage{blindtext}
 \input{annotations}
@@ -291,161 +301,12 @@ picked commodity hardware at a given price point would yield the best cost-perfo
 performance gains of next-generation hardware would quickly erase any benefits made by specializing
 servers due to Dennard scaling.
 
-
-
-% Since then, both Moore's law and Dennard scaling have slowed down dramatically. CPU clock speeds and
-% memory density improvements have stagnated, leaving operators to fight tooth and claw to enjoy the
-% efficiency gains of prior decades. The effect is that new technologies are being introduced to
-% achieve scaling. CPUs are now monstrously parallel. Custom accelerators are common for specialized
-% workloads like video coding and machine learning. Indeed, the modern data center is a hodgepodge of
-% heterogeneous hardware (GPUs, TPUs, DPUs, SmartNICs, and
-% FPGAs)~\cite{dsnf,azure-smartnic,tpu,nitro}, and various new memory offerings and tiers like
-% NVMe~\cite{decible}. Today, the number of server types in a data center, conservatively, is in the
-% dozens. At the time of writing, EC2 has 84 listed instance types~\cite{ec2-offer} for their
-% customers to design their services. The trend is clear: in search of efficiency, data center and
-% server design is increasingly heterogeneous, with servers being designed for specific applications
-% and workloads.
-
-% Resource disaggregation is a new architectural paradigm for data center resources aimed at improving
-% efficiency and managing increased heterogeneity. In the disaggregated model, a server's resources do
-% not monolithically reside in a 1U, 2U, or 4U server form factor. Instead, each resource (i.e.,
-% compute, memory, storage) is deployed separately to a dedicated machine and interconnected via a
-% fast network. Servers are composed dynamically from these resources, which enables them to be
-% provisioned for their exact purpose~\cite{disandapp,infiniswap,blade-server,decible,legoos}. This
-% model enables resource pooling and sharing, which in turn leads to higher
-% efficiency~\cite{regions,fastswap,dsnf,aifm,supernic,ditto}.
-
-
-% % DRAM in particular has quickly become a precious resource in the data center. Main memory capacity,
-% % while growing has not kept up with CPU core counts. The result is that per-core memory capacity is
-% % less than 10 years ago~\cite{micron-memorywall}. New memory tiers like NVMe have been introduced to
-% % help alleviate memory pressure from applications, but the composition of these memory tiers, and the
-% % software to manage them are still undecided.
-
-% DRAM, in particular, has become a precious resource in data centers and is a focused target for
-% resource pooling~\cite{micron-memorywall}. The benefits of pooling are clear when examining a simple
-% bin packing problem. Consider two servers, each provisioned with 4GB of DRAM, and three jobs, each
-% requiring 2.5GB of memory. In a monolithic design, a scheduler can only place one job per machine or
-% risk swapping to disk. In a disaggregated model, the 4GB of memory could be placed in an 8GB pool,
-% which could be easily subdivided into three 2.5GB partitions. In the monolithic case, the unused
-% memory is stranded, while pooling reclaims stranded memory. More concretely, at data center levels,
-% practitioners have to provision their servers for the sum of peak demand; when resources are pooled,
-% they can be provisioned for the peak of the sum of demand, which can be significantly
-% lower~\cite{ dsnf, supernic}.
-
-% Disaggregation, in general, is only possible because of new fast networks. Commodity NICs now offer
-% 400Gbps with expectations for continued growth to 800Gbps and above~\cite{cx8}. Network and memory
-% bandwidths are quickly approaching the same order of magnitude. At the same time, network stacks are
-% becoming lighter-weight through kernel bypass and CPU bypass technologies like DPDK~\cite{dpdk} and
-% RDMA~\cite{infiniband-spec}, enabling applications to more easily take advantage of the additional
-% bandwidth. Network devices themselves are becoming increasingly programmable, with multiple vendors
-% offering programmable SmartNICs, DPUs, and switches~\cite{tofino2,bluefield,pensando}. These two
-% trends have led to intra-rack latencies of 1-2{$\mu$}s, with the ability to inspect, cache, and
-% modify packets in flight at line rate.
-
-
-% Despite fast networks, memory disaggregation has remained elusive while storage, such as spinning
-% disks and solid-state drives, has seen widespread disaggregation. The reason for this contrast is
-% that storage device access latency is far higher than a network round trip. In the case of memory,
-% the opposite is true. Memory access latency is approximately 20 times lower than a network round
-% trip (50-100ns), effectively making it a separate tier of memory when placed across a network. While
-% there is ongoing research demonstrating the advantages of tracking cache lines over pages for remote
-% memory~\cite{kona}, the cost of fully disaggregating all memory is deemed too high~\cite{legoos}. A common
-% proposal for disaggregated memory is to have CPUs with a reasonably sized cache (e.g., 4GB) of DRAM
-% attached to them, along with software to manage and reduce the cost of remote
-% accesses~\cite{legoos}.
-
-% A large body of literature exists on disaggregated memory systems with a significant local cache.
-% Many of these systems intervene in the virtual memory system to decrease the cost of accessing
-% remote memory by employing prefetching and eviction strategies aimed at minimizing blocking remote
-% accesses~\cite{infiniswap,fastswap,leap,hydra}. Similarly, object-based disaggregated systems
-% utilize remotable objects with per-object tracking to mitigate the frequency of remote
-% accesses~\cite{aifm,carbink}. Additionally, compiler-based systems leverage static and dynamic
-% analysis to identify large, small, and hot objects for cache optimization~\cite{mira,trackfm}. These
-% systems primarily focus on analyzing memory access patterns and reducing the number of remote
-% accesses with decreasing volumes of local cache. However, they often overlook a critical aspect of
-% memory access: sharing. When memory is shared, access patterns alone are insufficient to minimize
-% round trips. Some degree of coherence must be maintained between remote caches, which is the primary
-% focus of this dissertation.
-
-
-% % %%
-% % Sharing data between multiple remote machines, where coherence between remote cores is required,
-% % leads to abysmal performance degradation (300x tail latencies in some cases)
-% % (Chapter~\ref{chap:swordbox}). Further complicating the design of shared data structures is that
-% % memory, once in a single fault domain, can fail, ripping a hole directly into a process's address
-% % space~\cite{amanda-hotnets,hydra,legoos}.
-
-% %%you have to add in a paragraph on current successful disaggregated systems
-
-% At its core, the challenge of sharing in disaggregated memory is serialization. When a data
-% structure is shared by multiple accessors, some mechanism must ensure the consistency of the data
-% structure. In a monolithic system, this is often achieved with locks or atomic operations. Across
-% machines, serialization is typically accomplished by either a centralized sequencer or a distributed
-% protocol. As a point of comparison, consider the differences between serialization in a traditional
-% RPC system and disaggregated memory. In an RPC system, requests arrive on a NIC and are delivered to
-% one or more CPU cores for processing~\cite{cuckoo-improvements,pilaf,herd,memc3,memcached}. If all
-% requests are routed through a single CPU core, it implicitly serializes operations by enqueueing the
-% RPC requests and servicing them one at a time. If the RPC service has multiple cores, any shared
-% structure can be protected via a lock or other synchronization mechanism in the RPC server's local
-% memory. In contrast, in a disaggregated system, no such server-side CPU exists. Or, if one does, it
-% is assumed to be low power and incapable of handling significant traffic. In the absence of such a
-% CPU, clients must enforce serialization amongst themselves.
-
-% In the absence of a serialization mechanism close to memory, clients must rely on the only mechanism
-% available in commodity systems: RDMA atomics. Throughout this dissertation, RDMA atomics will be
-% used as the backbone of all shared disaggregated data structures. They take the form of two
-% operations: compare-and-swap (CAS) and fetch-and-add (FAA), which execute with the same semantics as
-% their local counterparts but on the memory of a remote machine. While their semantics remain the
-% same, their performance is dramatically different. As noted before, the cost of executing a remote
-% operation is 20 times that of local memory. This latency inflates the size of critical sections
-% built with remote locks and leads to stale caches and poor performance for optimistic data
-% structures under contention~\cite{clover,sherman,fusee,race,rolex}.
-
-% \begin{center}
-% \textit{Data structures can be optimized for disaggregated memory by leveraging network programmability.} \\
-% \end{center}
-
-% This thesis statement is the core of the work presented in this dissertation. The challenges listed
-% above, while fundamental to the problem domain can be practically alleviated in a variety of ways by
-% exploiting modern network hardware. We provide evidence for the thesis statement above by addressing
-% the following two questions.
-% %%
-% \textit{Where and how should serialization occur?} The default answer to these questions is "on the
-% NIC" and "with RDMA atomic verbs." However, given the landscape of programmable in-network hardware,
-% our options are flexible. At rack-scale, both TORs and NICs offer serialization points. The
-% interface and mechanism for serialization can be customized using programmable hardware. For
-% instance, a switch could be programmed to maintain locks~\cite{netlock}, provide
-% sequencing~\cite{when-computer}, or directly implement contended functions~\cite{mind}.
-% Simultaneously, NICs, though lower bandwidth and less centralized than TORs, have the potential to
-% offer extended RDMA interfaces~\cite{prism} and implement OS functionality for remote
-% clients~\cite{clio, supernic}.
-% %%
-% \textit{What data structures should be used?} Few data structures are currently designed for remote
-% memory~\cite{clover,fusee,race,sherman,rolex,ditto}. While these systems resemble
-% RDMA~\cite{pilaf,herd,cell} and NUMA~\cite{flat-combining,hopscotch,bbn} systems of the past,
-% disaggregation requires special consideration for the network hardware it runs on. How can round
-% trips and access latencies be reduced? What data structures are easy to build, and which are hard?
-% These questions are a key focus of this dissertation.
-
-% This dissertation explores the design of shared data structures in disaggregated memory systems. I
-% introduce two systems, {\sword} and RCuckoo, which address the challenges of sharing and contending
-% access to remote memory. {\sword} (Chapter~\ref{chap:swordbox}) adopts a middlebox approach to
-% alleviate contention in shared data structures. Its key insight leverages the serialized view of
-% traffic at rack-scale TORs, caching data structure state on a programmable switch. Additionally, I
-% present RCuckoo (Chapter~\ref{chap:rcuckoo}), a fully disaggregated key-value store specifically
-% designed to enhance key-value locality. RCuckoo utilizes locality-sensitive hashing to improve
-% performance in reads, writes, locking, and fault recovery by minimizing round trips. {\sword}
-% demonstrates significant improvements in both throughput (up to 30x) and tail latency (up to 300x),
-% while RCuckoo meets or surpasses the performance of all state-of-the-art disaggregated key-value
-% stores on small key-value pairs and outperforms other systems on the most common data-center
-% workloads~\cite{ycsb,facebook-memcached}.
 \end{dissertationintroduction}
 
 
 
 \chapter{Forward Pass: On the Security Implications of Email Forwarding Mechanism and Policy}
-\label{chap:swordbox}
+\label{chap:eurosp23}
 \input{papers/email/1.intro.tex}
 \input{papers/email/2.background.tex}
 \input{papers/email/3.forward_in_the_wild.tex}
@@ -455,6 +316,16 @@ servers due to Dennard scaling.
 \input{papers/email/7.mitigation_and_discussion.tex}
 \input{papers/email/8.conclusion.tex}
 
+\chapter{No Privacy Among Spies: Assessing the Functionality and Insecurity of Consumer Android Spyware Apps}
+\label{chap:pets23}
+\input{papers/android/intro}
+\input{papers/android/meth}
+\input{papers/android/api}
+\input{papers/android/spyware_data_protection}
+\input{papers/android/related}
+\input{papers/android/code}
+\input{papers/android/discussion}
+\input{papers/android/conclusion}
 
 
 % \section{The Cost of Programmable Switches}
