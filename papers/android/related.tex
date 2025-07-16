@@ -1,0 +1,73 @@
+
+\section{Related Work}
+\label{sec:related_work}
+There exists a rich literature from both academia and industry that
+examines various aspects of spyware apps (e.g., their usage in the
+context of intimate partner violence).
+
+Most related to our work, several prior studies have examined
+the technical capabilities of spyware apps, including
+both industry reports~\cite{PowerPoi79:online, SpyvsSpy59:online,
+  ANewWave1:online, Whyyoush17:online, ReverseE12:online,
+  YourInfo19:online, Stalking85:online, FlexSpyA1:online,
+  diskurse89:online, VB2019Za6:online, SpywareP46:online, Androida91:online} and academic
+papers~\cite{parsons2019predator, harkin2019consumer,
+  harkin2020commodification, pierazzi2020data,
+  feal2020angel,harkin2021operating}. However, many of these
+efforts focus on documenting the functionalities supported by the
+spyware apps and do not shed light on the implementation used to achieve
+different functionalities (mostly because they focus on other facets instead
+of the technical implementation challenges). The ones~\cite{Whyyoush17:online,ReverseE12:online,Stalking85:online,FlexSpyA1:online,diskurse89:online,VB2019Za6:online,parsons2019predator} that do study the implementation,
+either examined only one or two apps or a small subset of the
+mechanisms employed. Our work builds on these studies by systematically and comprehensively analyzing the underlying technical methods that apps employ to acquire different spying capabilities.
+
+Also related, but orthogonal, is work focused on identifying and
+detecting spyware apps, both industrial reports listing such
+apps~\cite{Tekstalk86:online, esetandr4:online, ch33r10S37:online} and
+academic efforts to characterize and build detection algorithms for
+them~\cite{almansoori2022global,pierazzi2020data, chatterjee2018spyware, han2021towards,
+  saroiu2004measurement, egele2007dynamic, roundy2020many,
+  wang2006netspy, moshchuk2006crawler, randall2020trufflehunter}.  Yet
+another related body of work examines spyware apps' presence in
+different contexts such as intimate partner violence and
+cyberstalking~\cite{havron2019clinical,freed2019my,tseng2020tools,thomas2021sok,freed2018stalker,fraser2010new,
+  shimizu2013domestic,woodlock2017abuse,southworth2005high,southworth2006technology,dragiewicz2019domestic,mayrhofer2021android,motherboardstalkerwaremarket}.
+We believe our findings, particularly characterizing the data access
+mechanisms used by spyware, will be of use to those implementing
+detectors, but detection is not itself a goal of our work.
+
+
+Outside the context of spyware, another related research
+domain has focused on how various kinds of malware (including spyware)
+can abuse Android APIs to achieve abusive functionality.  In
+particular, several papers have also identified abuse of the Android
+Accessibility APIs, starting with Kraunelis et
+al.~\cite{kraunelis2013malware}.  Following this line of work,
+Fratantonio et al.~\cite{fratantonio2017cloak}, Kalysch et
+al.~\cite{kalysch2018android}, Diao et al.~\cite{diao2019kindness},
+and Naseri et al.~\cite{naseri2019accessileaks} have documented how
+Accessibility can be abused in various contexts.  While several of
+these papers suggest potential fixes, Huang et
+al.~\cite{huang2021a11y} is the first to describe a comprehensive
+framework for mitigating misuse in the accessibility API.  Others have
+explored other forms of API abuse, including Audio and Video
+APIs~\cite{petracca2015audroid, pan2018panoptispy}, screenshot API~\cite{sbai2022threat}, device
+administration APIs~\cite{shan2019device}, WebView-related APIs~\cite{luo2011attacks, chin2013bifocals, neugschwandtner2013view, ZhangIdentity2022}, the use of overlays in
+malware~\cite{yan2019understanding}, and mechanisms for app
+hiding, discovery~\cite{shan2018self, pham2019hidemyapp} and
+persistence~\cite{zhou2020demystifying}.  Our work builds on all of
+these efforts, but rather than exploring these issues abstractly,
+focuses specifically on how they manifest in consumer mobile spyware
+in the wild.  Our detailed analysis not only confirmed that the consumer spyware sector exploits similar techniques documented in broader mobile malware, but also uncovered two new forms of API
+abuse (invisible camera access and hiding app icons) that appears to have originated from within the spyware ecosystem.
+
+Finally, spyware companies have a long history of poor security hygiene.
+% There have been
+Numerous media reports describe data breaches at various spyware companies, including Spyhuman~\cite{HackerSt66:online}, TheTruthSpy~\cite{Companyt8:online}, mSPY~\cite{mSpybrea38:online,mSpyCybe86:online}, Cerberus~\cite{Cerberus12:online}, Flexispy~\cite{Stalkerw59:online}, Mobistealth~\cite{HackerSt50:online}, Spyfone~\cite{Spywaref13:online}, Retina-X~\cite{RetinaXa98:online, Hackercl62:online}, among others. These breaches have exposed hundreds of thousands (if not millions) of users' sensitive personal information (e.g., location, videos, etc.) to the broad public. Our work is responsive to these events and seeks to explore the nature of the security protections provided by spyware vendors and the extent to which these breaches have led to improved practices. While recent, contemporaneous report from ESET~\cite{esetandr4:online} also investigated similar issues, our work is distinct in analyzing the security of each app from the context of protecting user data and presents a detailed, documented, and reproducible methodology.
+
+% others have also investigated privacy deficiencies of Android apps, they either focus on one particular issue~\cite{santhanam2022scraping} or lack a detailed, documented, and reproducible methodology~\cite{esetandr4:online}.
+
+% \footnote{Contemporaneously with our research, a recent report from ESET~\cite{esetandr4:online} also documents a range of Android spyware service vulnerabilities.  Our work is similarly motivated but is distinct in analyzing the security of each from the context of protecting user data.}
+
+
+%While the research community has not examined the security of spyware apps to best of our knowledge, there is a large body work on the security of apps in other contexts, including those that study the (in)security of financial apps~\cite{reaves2017mo,yang2017show, kaur2018security, chen2018mobile,kim2017breaking, chothia2017banker}, TLS and SSL (in)security~\cite{oltrogge2021eve, fahl2012eve, greenwood2014smv, possemato2020towards, onwuzurike2015danger}, and misuse of cryptographic libraries~\cite{egele2013empirical}. \alex{how do we differentiate ourselves?}.
