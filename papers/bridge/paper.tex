@@ -1,0 +1,256 @@
+\documentclass[conference,compsoc]{IEEEtran}
+
+% \usepackage{usenix-2020-09}
+
+% \hypersetup{                    
+%   colorlinks,
+%   linkcolor={green!60!black},   % darker green than usenix default
+%   citecolor={red!70!black},
+%   urlcolor={blue!70!black}
+% }
+
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+
+% to be able to draw some self-contained figs
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{subfigure} % or subfigure
+% inlined bib file
+\usepackage{makecell}
+\usepackage{filecontents}
+\usepackage{adjustbox}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{siunitx}
+\usepackage{listings}
+%% need:  sudo apt -y install texlive-science 
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{courier} % Use Courier for a more compact font
+
+\definecolor{keywordcolor}{rgb}{0.5,0,0.5}
+\definecolor{stringcolor}{rgb}{0.2,0.6,0.2}
+\definecolor{commentcolor}{rgb}{0.5,0.5,0.5}
+\definecolor{backgroundcolor}{rgb}{0.95,0.95,0.92}
+
+% \lstset{
+%     backgroundcolor=\color{backgroundcolor},
+%     basicstyle=\ttfamily\footnotesize,
+%     keywordstyle=\color{keywordcolor}\bfseries,
+%     stringstyle=\color{stringcolor},
+%     commentstyle=\color{commentcolor}\itshape,
+%     numbers=left,
+%     numberstyle=\tiny\color{gray},
+%     stepnumber=1,
+%     numbersep=10pt,
+%     tabsize=4,
+%     showspaces=false,
+%     showstringspaces=false,
+%     breaklines=true,
+%     frame=single,
+%     language=Java
+% }
+
+
+\usepackage{color}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, 
+            null, catch, switch, var, if, in, while, 
+            do, else, case, break,
+            contract, uint256, require, address, external, 
+            memory, uint, for, emit, virtual, private, event,
+            uint64},
+  keywordstyle=\color{keywordcolor}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{commentcolor}\ttfamily,
+  stringstyle=\color{stringcolor}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+    % backgroundcolor=\color{backgroundcolor},
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{keywordcolor}\bfseries,
+    stringstyle=\color{stringcolor},
+    commentstyle=\color{commentcolor}\itshape,
+    % numbers=left,
+    % numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    tabsize=4,
+    showspaces=false,
+    showstringspaces=false,
+    breaklines=true,
+    frame=none,
+    % frame=single,
+    % xleftmargin=8pt,
+    % numbersep=8pt,
+    % framexleftmargin=8pt,
+    language=JavaScript
+}
+
+% \lstset{
+%    language=JavaScript,
+%    backgroundcolor=\color{lightgray},
+%    extendedchars=true,
+%    basicstyle=\footnotesize\ttfamily,
+%    showstringspaces=false,
+%    showspaces=false,
+%    numbers=left,
+%    numberstyle=\footnotesize,
+%    numbersep=9pt,
+%    tabsize=2,
+%    breaklines=true,
+%    showtabs=false,
+%    captionpos=b
+% }
+
+
+\newenvironment{CompactItemize}%
+  {\begin{list}{$\triangleright$}%
+    {\leftmargin=\parindent \itemsep=2pt \topsep=2pt
+     \parsep=0pt \partopsep=0pt}}%
+  {\end{list}}
+\renewcommand{\labelitemi}{$\triangleright$}
+
+
+
+\newcommand{\offlinetool}{CrossChecked\xspace} % xspace is double-edged...
+\newcommand{\onlinetool}{Big Bro\xspace}
+\newcommand{\newarch}{your definition here~}
+
+
+\newcommand{\bil}{\textsc{b}\xspace}
+\newcommand{\mil}{\textsc{m}\xspace}
+\newcommand{\thou}{\textsc{k}\xspace}
+
+\begin{document}
+\title{Count of Monte Crypto: Accounting-based Defenses for Cross-Chain Bridges} % TODO: replace with your title
+
+
+
+% \author{
+% {\rm Enze Liu, Elisa Luo, Jian Chen Yan, Katherine Izhikevich, Stewart Grant,\\ Deian Stefan, Geoffrey M Voelker, Stefan Savage}\\
+% UC San Diego
+% }
+
+
+\iffalse
+\newcommand{\alex}[1]{\textcolor{red}{\noindent[AL: #1]}}
+\newcommand{\elisa}[1]{\textcolor{blue}{\noindent[EL: #1]}}
+\newcommand{\geoff}[1]{\textcolor{teal}{[GV: #1]}}
+\newcommand{\deian}[1]{\textcolor{green}{[ds: #1]}}
+\else
+\newcommand{\alex}[1]{}
+\newcommand{\elisa}[1]{}
+\newcommand{\geoff}[1]{}
+\newcommand{\deian}[1]{}
+\fi
+
+\maketitle
+
+\begin{abstract}
+Between 2021 and 2023, crypto assets valued at over \$US2.6 billion
+were stolen via attacks on ``bridges'' --- decentralized services
+designed to allow inter-blockchain exchange.  While the individual
+exploits in each attack vary, a single design flaw underlies them all:
+the lack of end-to-end value accounting in cross-chain transactions.
+In this paper, we empirically analyze over 10\mil million transactions used
+by key bridges during this period.  We show that a simple invariant
+that balances cross-chain inflows and outflows is compatible with
+legitimate use, yet precisely identifies every known attack (and
+several likely attacks) in this data.  Further, we show that this
+approach is not only sufficient for post-hoc audits, but can be
+implemented in-line in existing bridge designs to provide generic
+protection against a broad array of bridge vulnerabilities.
+\end{abstract}
+
+
+\input{intro} % TODO: replace with your brilliant paper!
+
+% \input{bg}
+
+\input{bg}
+
+%\input{invariant}
+
+
+\input{meth}
+
+\input{dataset}
+
+\input{results}
+
+\input{online}
+
+\input{arch}
+
+\input{related}
+
+%\input{limitations}
+
+\input{ethics}
+
+
+\input{discussion}
+% \input{invariant}
+
+% \input{page14}
+
+% \input{meth}
+
+% \input{hacks}
+% \input{results}
+
+
+
+% \input{outline}
+
+
+\newpage
+\bibliographystyle{plain}
+\bibliography{ref}
+\clearpage
+\input{appendix}
+
+\end{document}

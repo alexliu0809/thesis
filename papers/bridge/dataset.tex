@@ -1,0 +1,349 @@
+\begin{table*}[t]
+  \small
+  \centering
+  \begin{tabular}{ll}
+  \toprule
+  \textbf{Blockchain} & \textbf{Bridges that Operate on the Chain} \\
+  \midrule
+  Arbitrum &      Anyswap, Poly Network, Wormhole \\
+  Avalanche &     Anyswap, Poly Network, Meter, Nomad, Wormhole \\
+  % Base &  \\ \hline
+  Binance Beacon & Binance Token Hub \\
+  Binance Smart  & Anyswap, Binance Token Hub, Chainswap, Harmony, Meter, Omni, Poly Network, Qubit, Wormhole \\
+  Celo &          Anyswap, Poly Network, Wormhole \\
+  ETH &           Anyswap, Chainswap, Harmony, HECO, Meter, Nomad, Omni, Poly Network, Qubit, Ronin, Wormhole \\
+  % ETHPoW &  \\ \hline
+  EVMOS &         Anyswap, Nomad, Omni \\
+  Fantom &        Anyswap, Poly Network, Wormhole\\
+  Gnosis &        Omni, Poly Network       \\
+  Harmony &       Anyswap, Harmony Bridge, Poly Network \\
+  HECO &          Anyswap, Chainswap, HECO, Poly Network \\
+  Meter &         Meter\\
+  Metis &         Anyswap, Poly Network\\
+  Milkomeda &     Nomad \\
+  Moonbeam &      Anyswap, Meter, Nomad, Wormhole\\
+  Moonriver &     Anyswap, Meter \\
+  OKT Chain &     Anyswap, Chainswap, Poly Network \\
+  Optimism &      Anyswap, Poly Network, Wormhole\\
+  Polygon &       Anyswap, Chainswap, Poly Network, Wormhole \\
+  Ronin &         Ronin\\
+  Solana &        Wormhole\\
+  % Sui &  \\ \hline
+  \bottomrule
+\end{tabular}
+  \caption{The blockchains \offlinetool supports and the cross-chain
+    bridges that operate on them.  While a particular attack on a
+    bridge involves two chains, we collect deposit and withdrawal
+    transactions for a bridge on all chains that the bridge supports. Anyswap is also known as Multichain.}
+\label{table:chain_bridge_full}
+\end{table*}
+
+
+% \begin{table*}[t]
+% \centering
+% \begin{tabular}{|p{2.8cm}|c|r|c|c|c|c|}\hline
+%     \textbf{Name} & \textbf{Date} & \makecell{\textbf{Amount} \\ (millions)} & \makecell{\textbf{TXNs}\\ \textbf{Analyzed}} & \makecell{\textbf{Reported Malilicious} \\ \textbf{TXNs Flagged}} & \makecell{\textbf{Unreported Malilicious} \\ \textbf{TXNs Flagged}} & \makecell{\textbf{Other TXNs} \\ \textbf{Flagged}} \\ \hline
+%     Ronin & 2022-03 & 624.0 & 2.8m & 2/2 & 0 & 0\\ \hline
+%     PolyNetwork 2021 & 2021-08 & 611.0 & 292k& 18/18& 0 & 1\\ \hline
+%     BNB Bridge & 2022-10 & 587.0 & 1.4m & 2/2 & 0& 0\\ \hline
+%     Wormhole & 2022-01 & 360.0 & 500k& 1/1 & 0 & 2\\ \hline
+%     Nomad & 2022-08 & 152.0 & 35k& 962/960 & 0& 0\\ \hline
+%     Harmony & 2022-06 & 100.0 & 336k& 15/15& 0& 43\\ \hline
+%     HECO & 2023-11 & 86.0 & 23k & 8/8 & 0 & 73\\ \hline
+%     Qubit & 2022-01 & 80.0 & 260 & 16/16 & 0& 114\\ \hline
+%     Anyswap & 2021-07 & 7.9 & 26k & 4/4 & 3 & 2 \\ \hline
+%     PolyNetwork 2023 & 2023-06 & 4.4 & 239k & 136/136 & 0 & 28\\ \hline
+%     Chainswap (07-12) & 2021-07 & 4.4 & 53k & 1136/?& 0 & 17\\ \hline
+%     Meter & 2022-02 & 4.3 & 14k& 5/4 (we have 1 more)& 0& 0\\ \hline
+%     % Chainswap (07-02) & 2021-07 & 4.4 & & & & \\ \hline (worth noting. still from bridge's user)
+%     % Omni\alex{will be removed} & 2022-09 & 0.5 & & & Many & \\ \hline
+% \end{tabular}
+% \caption{List of attacks on cross-chain bridges studied, sorted by amount stolen.}
+% \label{table:bridges-and-txns-flagged}
+% \end{table*}
+
+%% \begin{table*}[h]
+%% \centering
+%% \begin{tabular}{p{2.8cm}cr@{}l}
+%%     Ronin & 2022-03 & 624 & \mil \\
+%%     Ronin & 2022-03 & 4 & .4\mil \\
+%% \end{tabular}
+%% \label{table:bridges-and-txns-flagged2}
+%% \end{table*}
+
+\begin{table*}[t]
+\centering
+\begin{tabular}{p{2.8cm}rS[table-format=4.1]rrcrrr}
+  \toprule
+%  \textbf{Name} & \textbf{Date} & \makecell{\textbf{Amount} \\ (millions)} & \makecell{\textbf{TXNs}\\ \textbf{Analyzed}} & \makecell{\textbf{Reported Malilicious} \\ \textbf{TXNs Flagged}} & \makecell{\textbf{Unreported Malilicious} \\ \textbf{TXNs Flagged}} & \makecell{\textbf{Other TXNs} \\ \textbf{Flagged}} \\
+  \textbf{Name} & \multicolumn{1}{c}{\textbf{Date}} & {\textbf{Loss (USD)}} & \textbf{Analyzed} & \textbf{Reported} & \textbf{New} & \textbf{Test} & \textbf{Error} & \textbf{Suspicious} \\
+  \midrule
+    Ronin & Mar 2022 & 624.0\mil & 3.0\mil & 2                 & - &  -  & - & - \\ % 0
+    PolyNetwork/2021 & Aug 2021 & 611.0\mil & 292\thou & 18    & - &  -  & 1 & - \\ % 1
+    BSC Token Hub & Oct 2022 & 587.0\mil & 2.0\mil & 2         & - &  -  & - & - \\ % 0
+    Wormhole & Jan 2022 & 360.0\mil & 642\thou & 1             & - &  -  & 2 & - \\ % 2
+    Nomad & Aug 2022 & 152.0\mil & 37\thou & $^\dagger$962      & - &  -  & - & - \\ % 0
+    Harmony & Jun 2022 & 100.0\mil & 336\thou & 15             & - &  -  & - & 43 \\ % 43
+    HECO & Nov 2023 & 86.0\mil & 23\thou & 8                   & - &  -  & - & 73 \\ % 73
+    Qubit & Jan 2022 & 80.0\mil & 260 & 16                     & - & 114 & - & - \\ % 114
+    Anyswap & Jul 2021 & 7.9\mil & 3.4\mil & 4                & 24 &  -  & 806 & 7 \\ % 2
+    PolyNetwork/2023 & Jun 2023 & 4.4\mil & 290\thou & 136     & - &  -  & 1 & 27 \\ %28
+    Chainswap & Jul 2021 & 4.4\mil & 53\thou & $^*$1136        & - &  15 & 4 & - \\ % 17
+    Meter & Feb 2022 & 4.3\mil & 14\thou & $^\dagger$5          & - &  -  & - & - \\ \midrule % 0
+    Total  &          & 2.6\bil & 10.1\mil & 2,305             & 24 &  129 & 814 & 150 \\
+% 43+73+7+27=150
+    \bottomrule
+    % Chainswap (07-02) & 2021-07 & 4.4 & & & & \\ \hline (worth noting. still from bridge's user)
+    % Omni\alex{will be removed} & 2022-09 & 0.5 & & & Many & \\ \hline
+\end{tabular}
+% 3000+292+2000+647+35+336+23+2300+240+53+14=8940
+\caption{List of top attacks on cross-chain bridges in the retrospective
+  analysis, ordered by amount stolen.  \offlinetool analyzed over
+  10\mil bridge transactions (20\mil component deposit and withdrawal transactions)
+  %\alex{this is pairs of transactions...i.e., the total number is 2x}
+  and identified all bridge transactions previously reported as having
+  been associated with the attacks (Reported).  It also identified
+  bridge transactions that violated the invariant that were a
+  previously unidentified attack (New), test transactions (Test),
+  transactions reflecting bugs in implementations or use (Error), and
+  suspicious transactions that employ manual signing (Suspicious).
+  $^\dagger$\offlinetool identified slightly more transactions than
+  were reported by the Nomad~\cite{nomad-groundtruth-github:online}
+  and Meter~\cite{meter-groundtruth-tencent:online} bridges for their
+  attacks (+2 for Nomad, +1 for Meter).
+  %% A blog post mentioned 960 transactions involved in the Nomad
+  %% attack, while \offlinetool identified 962.
+   $^*$The Chainswap attack only has reports of the malicious deposit
+  address~\cite{chainswap-groundtruth:online}, which matches the one
+  identified by \offlinetool.
+  %% and we report the number of violating transactions
+  %% matching that address.
+  %
+  %% $^\diamondsuit$\offlinetool identified one more violating
+  %% transaction than mentioned in online posts~\cite{}, perhaps because
+  %% it involved Meter's own chain rather than \geoff{...}.
+}
+\label{table:bridges-and-txns-flagged}
+\end{table*}
+
+\section{Retrospective Analysis}
+\label{sec:retro-results}
+
+%% \geoff{somewhere we'll define terminology: ``bridge transaction'' $=$
+%%   ``deposit transaction'' $+$ ``withdraw transaction''.  and we'll
+%%   note that some malicious bridge transactions might not have a
+%%   pairing (e.g., no deposit transaction).}
+
+The basic reasoning motivating the balance invariant is simple: that
+legitimate bridge transactions should conserve value.  However, this
+assumes a particular model for how bridges are used and operated which
+may or may not hold in practice.  To validate our hypothesis, we applied
+the balance invariant analysis retrospectively across a large set of
+past transactions which, while primarily benign, contain the largest
+known bridge attacks during our period of study.  Our goal is both to
+show that all real attacks are identified (detection), but also that
+the invariant does not alert on large numbers of benign transactions
+(bridge compatibility).  Later, in Sections~\ref{sec:live-audit}
+and~\ref{sec:active-protect}, we will describe systems for live bridge
+monitoring as a third party and a new implementation for preventing
+unbalanced transactions from being committed.
+
+%In this section we demonstrate the effectiveness of using the balance
+%invariant to identify past cross-chain attacks by performing a
+%retrospective analysis of known significant cross-chain attacks.
+%Later in Sections~\ref{sec:live-audit} and~\ref{sec:active-protect},
+%we describe systems for live bridge monitoring as a third party and a
+%new implementation for protecting bridges against transactions that
+%violate the invariant.
+
+%For our retrospective analysis, we first describe how we selected the
+%bridges and blockchains for our study, and how we collect bridge
+%transaction data for the blockchains.  We then show that using the
+%invariant correctly identifies all bridge transactions that have been
+%reported for major attacks on the bridges, discuss the nature of other
+%transactions that violate the balance invariant, and overall show that using
+%the balance invariant to alert on suspicious bridge transactions is both
+%effective and extremely low overhead.
+
+\subsection{Data Set}
+\label{sec:retro-data}
+
+%% We start by discussing our bridge selection, followed by the blockchain selection. We end with an overview of the blockchain data collected and analyzed.
+
+To perform a retrospective analysis we need data for which (at
+least some) of the ground truth is known.   In this section we
+describe how we chose the bridge attacks we study, the blockchains and
+smart contracts involved, and how we collected the historical
+transaction data.
+
+%\subsubsection{Bridge Selection}
+%\paragraph{Bridge Selection.}
+\textbf{Attack Selection.}
+%
+%% To identify attacks that violate the invariant discussed in the
+%% previous section,
+We compiled a comprehensive list of attacks on cross-chain
+bridges that occurred between January 2021 and December 2023.  We used both academic papers surveying cross-chain
+bridge attacks~\cite{lee2023sok, zhang2023sok, zhao2023comprehensive} as well
+as industry blog posts that collect and characterize attacks over time~\cite{GithubBridgeBugTracker, SlowMistHackedBridges:online,
+  REKTDB:online, Web3Great:online, GithubBridgeHacks2:online}. 
+As this paper focuses on end-to-end auditing of bridge transactions, we filter out attacks
+involving blockchains lacking smart contracts such
+as Bitcoin (e.g., the pNetwork attack in 2021~\cite{pNetworkhack:online}), attacks on swap bridges (e.g., the Thor bridge attacks~\cite{Thorhack1:online,Thorhack2:online}), attacks that do not involve individual bridge transactions (e.g., the evoDefi attack~\cite{evoDefihack:online}),
+and attacks that withdraw funds through other means (e.g., direct transfer from a vault that stores assets for a bridge such as the Multichain 2023 attack~\cite{Multichainhack:online}).  Moreover, given the large number of attacks during this period, we focus on
+major attacks with claimed losses greater than \$1 million USD and
+exclude the remaining (the sum of losses from these excluded attacks are a small fraction of those in our scope).
+% where we discuss scope
+% we exclude  attacks as well as swap bridges.
+%% We then manually categorize each attack, analyzing blog posts that
+%% describe the attack and the transactions involved.
+%
+%% \alex{we should also mention swap bridge out-of-scope likely somewhere
+%%   discussing the invariants (something like we ignore them for the
+%%   rest of the paper)} \geoff{the ``on smart contract'' requirement
+%%   could also be described earlier when discussing scope}
+%
+This process yielded 12 attacks on 11 distinct bridges.
+%, as summarized in Table~\ref{table:bridges-and-txns-flagged}.
+We note that this list
+includes the top five attacks on cross-chain bridges in history, which
+collectively resulted in more than \$2.6 billion USD in claimed losses.
+
+%\subsubsection{Blockchain Selection}
+\textbf{Blockchain Selection.}
+% The bridges involved in significant attacks 
+%
+Validating bridge transactions requires access to
+transaction data from both the source and destination chains.  We
+support every blockchain involved in the bridge transactions
+associated with the 12 attacks, either as the source (or claimed
+source) or destination chain.  As a result, we support a total of 21
+blockchains that together cover a
+broad range of designs, including many of the most popular such as 
+Ethereum, Binance Smart Chain, and Solana.
+% \footnote{Details about some
+% deposit transactions on PolyNetwork (deposits that are used for
+% liquidity purposes) are only available through PolyNetwork's API.  We
+% support querying PolyNetwork's API, but do not list it as a supported
+% blockchain.}
+%
+Table~\ref{table:chain_bridge_full} lists the blockchains and the
+bridges in our retrospective study that operate on them.% \alex{cite}
+
+%% We do not support
+%% testnets, as any withdrawal transaction on mainnet that is backed by a
+%% deposit on testnet should be flagged. \deian{cut testnet sentence, most people have no clue what that is}
+
+%% \footnote{Our list of supported blockchains includes most of the
+%% widely-used and well-developed blockchains. While we could explore
+%% additional blockchains, the return on effort is diminishing as adding
+%% support for each new blockchain is labor-intensive and is unlikely to
+%% yield significant new insights.\alex{Geoff, move this paragraph
+%%   around}}
+
+
+
+%% \geoff{discuss what aspect of collecting the data requires significant
+%% effort}\alex{How about a footnote}
+
+
+% We then augmented the
+% list of supported blockchains by including those that are popular
+% among multiple bridges, have a large market cap (according to
+% CoinMarketCap), and offer good API support. In total, we support 25
+% blockchains.  
+
+
+
+%\subsubsection{Smart Contract Selection}
+\textbf{Smart Contract Selection.}
+%
+For each bridge, we comprehensively collected the results of all
+versions of its bridging smart contracts on every blockchain we
+considered.  In particular, we collected deposit and withdrawal
+transactions created by every contract the bridge deployed on
+every blockchain we support (typically many more blockchains than the
+ones involved in a bridge attack) as well as all versions of the smart
+contract implementation for the bridge (bridges evolve their
+implementations over time, such as in response to an attack).
+%
+Since the transactions we collected from this set of smart contracts
+are much broader than those just involved in the top 12 attacks we
+consider, including them further reinforces our findings that the
+alerting workload is very small (Section~\ref{sec:retro-analysis}).
+
+%\alex{chainswap}
+
+%% includes not only the smart contracts involved in the attacks, but
+%% also other versions of the smart contracts deployed by the bridges.
+
+%% \alex{make it clear that for every
+%%   bridge, we audit every contract it has deployed on every blockchain
+%%   we support, which is typically much broader than the set of the
+%%   blockchains are attacked}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{fig/sec25_plot_lifespan.pdf}
+  % \caption{Timeline of bridge attacks and data collection.}
+  \caption{The lifetime of the bridges in our retrospective study.
+    Lines start with the bridge's first valid transaction and end with the
+    last valid transaction in our data, corresponding to the bridge's
+    closure or November 2023 if the bridge was still operating at the
+    end of our data set.  Diamonds indicate the dates of attack.}
+%  First valid transaction, last valid transaction, and the reported attacks on cross-chain bridges (up to Nov '23).}
+  \label{fig:bridge-timeline}
+\end{figure}
+
+
+%\subsection{Data Collection}
+%\label{sec:data-collect}
+\textbf{Data Collection.}
+%Since the attacks we consider involve smart contracts, the smart
+%contract input and output provide verbose information for
+%understanding the nature of individual bridge transactions.
+Collecting smart contract transaction data---the verbose record of
+what each contract did---across many chains constitutes the most
+time-intensive aspect of performing a retrospective analysis.
+
+For each bridge, we collected deposit and withdrawal transactions for
+each of the blockchains it operates on (for the 21 chains we
+support) using commercial RPC services which charge for queries.  We
+primarily used five commercial services,\footnote{% These five RPC services are:
+GetBlock, QuickNode, ChainStack, GoldRush, and Ankr.} 
+as no single service supports
+all of the blockchains and functionality we need.
+For each bridge and blockchain combination, by default we
+collected all of the historical transactions generated by its smart
+contracts from the genesis of its deployment to the end of November
+2023 or the end of its life, whichever came first.
+
+The two exceptions to this rule are the Binance bridge, for which we
+limited data collection to a year (six months prior to its attack and
+six months after) because of the sheer volume of transactions over its
+lifetime (30 million transactions) and the Harmony bridge, whose
+contract was reused by another bridge (LayerZero) after its attack
+(since LayerZero was not attacked itself, we only consider transactions that were directly associated with Harmony).
+% \deian{what does repurposed mean?}\alex{reused}
+%Since that bridge was not attacked and is outside our scope, we only
+%consider transactions that are part of the Harmony bridge.
+
+
+%
+%% In addition, Binance Beacon Chain does not offer an easy to way filter
+%% transactions, and thus we focus on deposit and withdraw transactions
+%% on Binance Smart Chain.  \geoff{not sure why we're mentioning this
+%%   distinction...is this an explanation for why we do not support
+%%   Binance Beacon Chain?}
+%
+%Next, the Harmony bridge had its contract reused by another
+%bridge (LayerZero) after its attack.
+% \deian{what does repurposed mean?}\alex{reused}
+%Since that bridge was not attacked and is outside our scope, we only
+%consider transactions that are part of the Harmony bridge.
+
+Figure~\ref{fig:bridge-timeline} illustrates these bridge lifetimes
+with each line starting at a given bridge's first transaction and
+ending with its last in our data set.  Diamonds indicate the dates of
+individual attacks, emphasizing that many of the bridges closed
+shortly after their attacks.

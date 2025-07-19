@@ -47,7 +47,19 @@
   \end{tikzpicture}}
 \newcommand*\fullcirc[1][1ex]{\tikz\fill (0,0) circle (3pt);} 
 
-% OGS recommends increasing the margins slightly.
+\newcommand{\bil}{\textsc{b}\xspace}
+\newcommand{\mil}{\textsc{m}\xspace}
+\newcommand{\thou}{\textsc{k}\xspace}
+
+
+\newenvironment{CompactItemize}%
+  {\begin{list}{$\triangleright$}%
+    {\leftmargin=\parindent \itemsep=2pt \topsep=2pt
+     \parsep=0pt \partopsep=0pt}}%
+  {\end{list}}
+\renewcommand{\labelitemi}{$\triangleright$}
+\newcommand{\offlinetool}{CrossChecked\xspace} 
+
 \increasemargins{.1in}
 
 % These are just for testing/examples, delete them
@@ -170,10 +182,9 @@ In addition to my advisors, I also had the great opportunity to work with a vari
 
 I thank my committee members, who have helped me look at things from different perspectives.  Dave and KC have patiently listened to my poorly prepared presentations and gave me valuable feedback. Terrance helped me understand the economic part of cybercrime.
 
-I also thank all the residents of 3140, many of whom have played important role in my life and deeply shaped who I am. In particular, I thank Stewart Grant, with whom I share countless fond memories. Stew is my faithful guide to North American culture and has helped me become a much better person in my aspects. I also thank Miro Haller, my swiss counterpart. Miro and I have
- taken many classes together because of our shared hobbies, and I would not have been who I am without all of those hobbies. Audrey kindly took me under her wings when I did not know what I was doing. Gautam mentored me through the early days. Ariana demonstrated the definition of leadership. Anil Yelam introduced me to tennis, which became one of my favorite sports. Keegan Ryan blah...
+I also thank all the residents of 3140, many of whom have played important role in my life and deeply shaped who I am. In particular, I thank Stewart Grant, with whom I share countless fond memories. Stew is my faithful guide to North American culture and has helped me become a much better person in my aspects. I also thank Miro Haller, my swiss counterpart. Miro and I have taken many classes together because of our shared hobbies, and I would not have been who I am without all of those hobbies. Audrey kindly took me under her wings when I did not know what I was doing. Gautam mentored me through the early days. Ariana demonstrated the definition of leadership. Anil Yelam introduced me to tennis, which became one of my favorite sports. Keegan Ryan blah...
 
-I thank other students in Sysnet, many of them have also had big impact on me. Nishant acts like our old brother and is a source of infinite wisdom. Luoxi Meng a thoughful person. I have also learned a host of things by interacting with others (names).
+I thank other students in Sysnet and CSE, many of them have also had big impact on me. Nishant acts like our old brother and is a source of infinite wisdom. Luoxi Meng a thoughful person. I have also learned a host of things by interacting with others (names).
 
 I also had the great opportunity to befriend amazing people from CSE and other departments. Lu Sun, who redefines the meaning of hardworking, has taught me many important lessons of friendship. I am truly grateful to have her as a close friend. I also extend my gratitude to Hengyuan Zhang and his partner Wenqing Tang, for being great travel partners and tolerating my temper every now and then. I would not have stayed sane without the fantastic times I spent with the tennis group (big shout out to Shuheng Li, Alex Yen, Daniel Spokoyny, Nikolai Vogler, Chris Priebe, Nithin Raghavan), the running club (kudos to head coach Zac Blanco), and the recently formed surfing group, and in the dance studio (which would have been much less fun without Jennifer Chien, Ehsan, and Marcus).
 
@@ -215,7 +226,6 @@ Finally, I thank my parents, especially my mom, for their love and unwavering su
 % the vita environment. It is optional.
 \publications
 
-
 \noindent \textbf{Enze Liu}, Elisa Luo, Shawn Shan, Geoffrey M. Voelker, Ben Y. Zhao, and Stefan Savage, ``Somesite I Used To Crawl: Awareness, Agency and Efficacy in Protecting Content Creators From AI Crawlers,'' in \textit{Proceedings of the ACM Internet Measurement Conference (IMC)}, 2025.\\
 
 \noindent Alex Bellon, Miro Haller, Andrey Labunets, \textbf{Enze Liu}, and Stefan Savage, ``An Empirical Analysis on the Use and Reporting of National Security Letters,'' in \textit{Proceedings of the ACM Symposium on Computer Science and Law (CSLAW)}, 2025.\\
@@ -243,50 +253,44 @@ Workshop on Resource Disaggregation and Serverless (WORDS)}, 2023.\\
 \noindent Audrey Randall, \textbf{Enze Liu}, Gautam Akiwate, Ramakrishna Padmanabhan, Geoffrey M. Voelker, Stefan Savage, and Aaron Schzulman, ``Trufflehunter: Cache Snooping Rare Domains at Large Public DNS Resolvers,'' in \textit{Proceedings of the ACM Internet Measurement Conference (IMC)}, 2020.\\ 
 
 \noindent \textbf{Enze Liu}, Amanda Nakanishi, Maximilian Golla, David Cash, and Blase Ur, ``Reasoning Analytically about Password-Cracking Software,'' in \textit{Proceedings of the IEEE Symposium on Security and Privacy (S\&P)}, IEEE, 2019.\\
-
-% \noindent Deepak Bansal, Gerald DeGrace, Rishabh Tewari, Michal Zygmunt, and James Grantham, Silvano
-% Gai, Mario Baldi, Krishna Doddapaneni, Arun Selvarajan, Arunkumar Arumugam, Balakrishnan Raman,
-% Avijit Gupta, Sachin Jain, Deven Jagasia, Evan Langlais, Pranjal Srivastava, Rishiraj Hazarika,
-% Neeraj Motwani, Soumya Tiwari, Stewart Grant, Ranveer Chandra, and Srikanth Kandula . 2023.
-% Disaggregating Stateful Network Functions. In proceedings of 20th USENIX Symposium on Networked
-% Systems Design and Implementation (NSDI '23).  Usenix Association, Boston MA, USA, April 2018, 1469--1487. \\
-
-% \noindent Stewart Grant, Anil Yelam, Maxwell Bland, and Alex C. Snoeren. 2020. SmartNIC Performance
-% Isolation with FairNIC: Programmable Networking for the Cloud. In Proceedings of the Annual
-% conference of the ACM Special Interest Group on Data Communication on the applications,
-% technologies, architectures, and protocols for computer communication (SIGCOMM '20). Association for
-% Computing Machinery, Virtual Event, August 2020, 681–693.\\
-
-% \noindent Stewart Grant, Hendrik Cech, and Ivan Beschastnikh. 2018. Inferring and asserting
-% distributed system invariants. In Proceedings of the 40th International Conference on Software
-% Engineering (ICSE '18). Association for Computing Machinery, Gothenberg, Sweden, July 2018, 1149–1159.\\
-
-
-% This puts in the FIELDS OF STUDY. Also inside vita and also
-% optional.
-% \fieldsofstudy
-% \noindent Major Field: Computer Science
 \end{vita}
 
-% Put your maximum 350 word abstract here.
+
+
 \begin{dissertationabstract} 
 %%	
-Resource disaggregation proposes a next-generation architecture for data center resources. System
-components like compute, memory, storage, and accelerators are separated from one another by a fast
-network and composed dynamically into virtual servers when required. This paradigm promises to
-dramatically improved resource utilization, scalability, and flexibility, but introduces substantial
-challenges in terms of performance and fault tolerance. Memory is among the most difficult resources
-to disaggregate. CPUs currently expect DRAM to have ultra low latency, high bandwidth, and to share it's
-failure domain. In particular increased latency from network round trips dramatically shifts the
-performance of existing shared data structures designed for local DRAM.
+Systems today are complex than ever. This complexity not only makes it challenging to protect existing systems against known vulnerabilities, but also introduces unintended security vulnerabilities that do not fall within the purview of current threat models. In this thesis, I highlight how unintended security vulnerabilities can arise from both the complexity within a system and the complexity introduced by the interaction between already complex systems. Using Android API system as an example, I demonstrate how the complexity within this one system produces vulnerabilities that ultimately enable malicious apps to perform persistent and stealthy surveillance on a target device. I then show, through the case study of email forwarding, how the composition of email systems leads to vulnerabilities that allow an adversary to reliably evade email security protections. I conclude by discussing my ongoing work on cryptocurrency scams and hacks, which further illustrates how the complexity of various systems can enable both large-scale and targeted attacks that result in significant financial losses.
 
-In this dissertation I demonstrate the challenges of sharing disaggregated memory and show that
-programmable network devices can be used to significantly improved system performance. I present two
-systems: First {\sword} which utilizes a centralized programmable switch to cache data structure
-state and dramatically improve key-value workload performance. Second I present a new key-value
-store RCuckoo which is designed to leverage RDMA and reduce round trips when accessed by CPUs over a
-network. Both systems demonstrate significant performance improvements over the existing state of
-the art.
+Nowadays, software systems are extremely complicated that are not just a simple program running on a machine. Oftentimes, it involves dozens of different pieces of software that all are talking to each other. Each piece of software will make different assumptions about how users and other pieces of software are going to use the things they expose. In practice this creates problems because an adversary does not have to play by rules and follow the assumption. I study assumptions that made these individuals pieces of software and their security implications.
+
+My research interests are in empirically understanding and securing real-world systems, with
+a particular emphasis on complex, large-scale systems whose vulnerabilities impact a broad range of users.
+At the core of this work is identifying the range of unvalidated assumptions systems make and how those
+assumptions may be exposed to, and thus exploitable by, attackers. While fragility in low-level code is
+well-trodden ground (e.g., how invalid assumptions about array bounds can produce control flow integrity
+vulnerabilities), my work focuses on how ambiguities and assumptions in higher-level services and service
+protocols create their own unique set of challenges – particularly in the presence of composition. As I
+show, these issues emerge in diverse contexts ranging from operating system APIs, to standard e-mail
+delivery protocols, to the systems used to manage inter-blockchain financial transactions.
+A simple example of such an issue is cloud-based e-mail filtering (e.g., as provided by third-party
+companies such as Proofpoint or Barracuda). To deploy such a capability, one must compose an existing
+email delivery service (i.e., provided by the Simple Message Transport Protocol) with a separate mail
+filtering service. Thus, inbound mail must be first diverted to the filtering service which then, after
+filtering must forward the e-mail to the destination email server. However, implicit in this arrangement
+is that this composition is somehow enforced. If not, a malicious sender might bypass this filtering service
+by simply sending messages directly to the destination server.
+Thus far, it remains a challenging task to reason about service-level assumptions like this. For one,
+studying these assumptions requires reasoning about aspects that are less well-specified (e.g., the sender
+of an email follows the intended flow). Further complicating the issue is the composition of services
+— when services are combined to create new functionality, it exposes the fragility of their underlying
+assumptions, as interactions with other services can occur in unexpected ways.
+My goal is to make systems more secure, transparent, and usable at the service level, especially those
+that are user-facing and widely-deployed. Achieving this goal requires understanding how these systems
+work in practice, which in turn requires data. To this end, I have developed a variety of tools to collect
+data, such as through large-scale measurements, reverse-engineering, and user studies. I then analyze
+the collected data, understand the system and various assumptions made, identify gaps between the
+assumptions and reality (how systems are intended to work versus how they actually work), and reason
+about the security implications of these gaps. 
 
 \end{dissertationabstract}
 
@@ -329,109 +333,20 @@ servers due to Dennard scaling.
 \input{papers/android/discussion}
 \input{papers/android/conclusion}
 
-
-% \section{The Cost of Programmable Switches}
-
-% As shown throughout its evaluation, \sword\ offers significant performance improvements over
-% existing end-host solutions. The key insight behind \sword\ is that a small amount of
-% programmability in the network combined with a massive amount of bandwidth can offer
-% order-of-magnitude performance improvements for existing data structures, both lock-based and
-% optimistic. However, \sword\ comes at a non-trivial cost. Programmable switches are expensive,
-% complex, and difficult to program. While \sword\ offers a solution to the problem of contention, it
-% is likely that only the most performance-critical applications would be likely to qualify for the
-% care and attention required for crafting a \sword-like solution. Further complicating the matter is
-% the fact that the Tofino series of switches has been discontinued by Intel~\cite{tofino-cancelled}.
-
-% At a data structure level, the memory limitations of a switch pose a significant challenge for
-% generalization. In the case of append operations made to a linked list, only the final value of the
-% list needs to be cached to ensure the data structure's integrity. However, inserting into an
-% arbitrary location in the list would require the entire list to be stored in cache. Given these
-% operational complexities, high cost of development, and data structure limitations, we ask the
-% question: \textit{What other techniques can be used to improve the performance of disaggregated data
-% structures?}
-
-% \section{Acknowledgement to {\sword} Contributors}
-
-% Chapter~\ref{chap:swordbox} is a partial reprint of work submitted to multiple USENIX and ACM
-% conferences under the title "SwordBox: Accelerating Shared Access in RDMA-based Disaggregated
-% Memory. Stewart Grant, Alex C. Snoeren. This dissertations author was the primary investigator and
-% author of this paper.
-
-% Thank you to Alex C. Snoeren for his guidance and support throughout this project. Thank you to
-% Rajdeep Das for his expertise in P4 and for supplying the initial P4 code and compiler configuration
-% for our switch. Thank you to Anil Yelam for reviewing the figures and providing feedback on the
-% initial draft of this work. Thank you to the reviewers at the \textit{Workshop on Resource
-% Disaggregation and Serverless (WORDS '21)} for your feedback and revision notes on this work early
-% in its development. Thank you to Geoffrey M. Voelker and Yiying Zhang for your feedback on this
-% project.
+\chapter{Count of Monte Crypto: Accounting-based Defenses for Cross-Chain Bridges}
+\label{chap:bridge}
 
 
-
-\chapter{Disaggregated Data Structure Design}
-\label{chap:rcuckoo}
-
-
-\sword\ takes the stance that an additional piece of in-network equipment can be used to accelerate
-an existing data structure. But what if we could just make the data structure itself faster? In this
-chapter, we explore the design of a disaggregated key-value store, RCuckoo, which aims to answer
-exactly this question. Instead of adding a new piece of equipment to accelerate a data structure,
-with RCuckoo we aim to get better performance by co-designing itself with the network.
-
-There are a variety of data structure-specific optimizations that have been leveraged to improve the
-performance of disaggregated data structures.  Our position in this work is that locality-based
-optimizations can provide significant benefit due to the high cost of round trips to remote memory
-and the fact that network capacity continues to grow at an astonishing rate. In this chapter, we
-make the case for locality-optimized cuckoo hashing and show how it can be used to improve
-performance, reduce contention, and make use of the latest trends in network hardware.
-
-
-% \input{rcuckoo/intro}
-% \input{rcuckoo/background}
-% \input{rcuckoo/body}
-% \input{problems}
-% \input{rcuckoo/design}
-% \input{rcuckoo/evaluation}
-%\input{limitation}
-% \input{rcuckoo/conclusion}
-
-% \chapter{Black Box Disaggregation}
-
-% \section{Overview}
-% \todo{finish up you writeup for a fall submission of BBD and paste it her}
-
-\section{The Advantage of Locality}
-
-The key insight behind RCuckoo is that locality can be used to improve it's performance. Each aspect
-of it's design relies on it. Without locality spanning reads would span arbitrary ranges and consume
-unacceptable amounts of bandwidth. Lock acquisition, without locality, would involve random
-iterative reads throughout the table leading to many round trips and potential deadlock. Without
-locality the lock table may not easily fit into a linear block of NIC memory. And finally without
-locality the number of locks required for insertions would increase dramatically as the probability
-of a single lock spanning multiple relevant entries would significantly decrease. Locality enables
-us to take advantage of the fact that the network bandwidth is high and RDMA operations on linear
-regions of memory.
-
-In general RCuckoo is a demonstration of the power of locality in disaggregated systems, but it is
-far from the final word. While many aspects of it's design are specific to Cuckoo hashing the
-concept of reducing the number of round trips to perform an operation by increasing the likelihood
-that all relevant information lies within a given range is general property we expect would provide
-benefit many data structures.
-
-\section{Acknowledgement to RCuckoo Contributors}
-
-% Chapter~\ref{chap:rcuckoo} 
-is a partial reprint of work submitted to multiple USENIX conferences
-under the title "Cuckoo for Clients: Disaggregated Cuckoo Hashing. Stewart Grant, Alex C. Snoeren.
-This dissertations author was the primary investigator and author of this paper.
-
-% Thank you to Alex C. Snoeren for your tireless guidance and support throughout this work. Thank you
-% to Dave Andersen for supplying an open source implementation of MemC3~\cite{memc3}, which was used
-% as a reference for the search algorithm for RCuckoo. Thank you to Jiacheng Shen for our
-% conversations at SOSP '23; without your confirmation that acquiring locks for a cuckoo hash
-% \textit{was indeed hard} and that the progress we had made on the problem seemed promising, this
-% work would not have been possible. Again, thank you to Anil Yelam for always providing feedback on
-% the technical aspects of this project. Finally, thank you to Geoffrey M. Voelker for providing
-% feedback on the initial draft of this work.
+\input{papers/bridge/intro}
+\input{papers/bridge/bg}
+\input{papers/bridge/meth}
+\input{papers/bridge/dataset}
+\input{papers/bridge/results}
+\input{papers/bridge/online}
+\input{papers/bridge/arch}
+\input{papers/bridge/related}
+\input{papers/bridge/ethics}
+\input{papers/bridge/discussion}
 
 
 \chapter{Conclusion}
@@ -443,14 +358,6 @@ opportunistic data structures to fail under contention, and pointer-based data s
 additional round trips when far-memory pointers need to be resolved. Using existing techniques,
 applications can be made to work, but they simply have to incur the penalties of sharing when under
 contention.
-
-% We have presented two systems, {\sword} and RCuckoo, that present two different strategies for
-% improving the performance of disaggregated data structures. {\sword} uses a programmable
-% switch as a centralized cache to remove contention from shared data structures and to accelerate the
-% use of locks on lock-based structures. RCuckoo uses locality within a hash table to improve the
-% performance of reads and greatly reduce the cost of acquiring locks stored on a NIC. Together these
-% works provide strong evidence that:
-
 
 \begin{center}
 \textit{Data structures can be optimized for disaggregated memory by leveraging network programmability} \\
@@ -485,48 +392,6 @@ Each of the works presented in this dissertation is a step towards more efficien
 systems. In this section, we speculate on future directions for this area of research based on the
 limitations of the work presented here.
 
-Many off-the-shelf ARM-based or FPGA-based SmartNICs could be used to implement {\sword} as well as
-more complex data structures. While SmartNICs lack a global view of a rack, they have a global view
-of the machine they are attached to and could be used to implement similar caching strategies.
-SmartNICs typically have much more available memory than programmable switches and could likely
-handle much larger data structures than {\sword}. For example, inserting into a linked list (because
-the entire linked list needs to be stored in memory) is a \textit{difficult} data structure for
-{\sword} to handle. This is unlikely to be the same on a SmartNIC with a few GB of memory. SmartNICs
-could be used to cache index structures for large structures like B-Trees and use their limited
-compute power to steer read and write requests similar to {\sword}. More generically, they could be
-used for simple functions that are difficult to implement in remote memory, such as an allocator or
-scheduler that needs to maintain centralized state.
-
-% A further and more generic option for NIC designers is to extend the interface for RDMA to better
-% accommodate complex one-sided data structures. While calls for pointer chasing are common, calls for
-% more complex atomic operations are less so~\cite{prism, clio}. The algorithms community has designed
-% many wait-free and lockless data structures such as binary trees and heaps that make use of
-% multi-CAS. The ability to CAS multiple addresses simultaneously could open up disaggregation to many
-% pointer-based data structures that would currently be difficult to implement with a single CAS, such
-% as any structure which requires multiple pointers to be updated atomically, like a doubly linked
-% list. Simultaneously CAS and FAA are of limited width. Extensions for larger CAS sizes would enable
-% more efficient data structures, such as in the case of RACE and FUSEE, which must limit the size of
-% their key-value pairs due to the lack of space in the 64-bit RDMA CAS.
-
-% Network-data structure co-design is a powerful but underexplored area. In the case of
-% {\sword}, Clover was a good fit for the system as only the tail pointer of linked lists needed
-% to be stored on the switch. Other data structures do not always exhibit this property. Log-based or
-% append-only data structures have promise here, as the point of contention (the end of the log) can
-% be managed with relatively little state. Future work could enable \textit{append-mostly} data
-% structures. Sherman, for instance, enjoys a degree of associativity at its leaf nodes by having
-% associative leaves. Other data structures may be able to take advantage of similar properties, like
-% appending updates to a shared log and eventually combining them into a consolidated data structure.
-
-% Most proposals for disaggregated systems are focused on rack-scale deployments. As intra-rack
-% latencies get lower and lower, and disaggregated technology gets better, intra-rack solutions will
-% become more tenable. An early example is \textit{Disaggregating Stateful Network
-% Functions}~\cite{dsnf} and \textit{SuperNIC}~\cite{supernic}, which take the stance that a large
-% pool of dedicated accelerators can provide a significant portion of the network functions for a data
-% center. In this line of work, routing is paramount and underexplored. {\sword} assumes a
-% centralized model as it needs to track an entire data structure. However, a future distributed model
-% could potentially scale to multiple racks if the data-dependent operations were routed through the
-% correct network components.
-
 The future for disaggregated systems is bright. This work has demonstrated that shared remote memory
 can be made efficient with programmable networking hardware and that, through careful design, data
 structures can be adapted to disaggregated memory. Hopefully, future work will build on these
@@ -534,158 +399,6 @@ techniques and enable a shift towards mainstream disaggregated computing.
 
 
 
-
-% \chapter{ Example Figures and such for formatting reference}
-% This demonstrates how OGS wants figures and tables formatted. For
-% figures, the caption goes below the figure and ``Figure'' is in bold.
-% See Figure~\ref{fig:zen}. Tables are formatted with the caption above
-% the table. See Table~\ref{tab:bad}.
-
-% Of course, Table~\ref{tab:bad} looks horrible. It should probably be
-% formatted like Table~\ref{tab:good} instead.
-
-% For facing caption pages, see Table~\ref{tab:facing}. Of course,
-% facing caption pages are vaguely ridiculous and my implementation of
-% them in the class file is by far the most brittle part of the
-% implementation. It's entirely possible that something has changed and
-% these don't work at all. I implemented it merely for the challenge.
-
-% \begin{figure}
-% \centering
-% \fbox{\parbox{.9\linewidth}{%
-% 	\noindent
-% 	{\Huge PHD ZEN}\par
-% 	\vskip.5in
-% 	\centerline{comic here}
-% 	\vskip.5in
-% }}
-% \caption[``Ph.D. Zen'']{Comic entitled ``Ph.D. Zen'' by Jorge Cham, 2005. Copyright
-% has not been obtained and so it isn't displayed.}
-% \label{fig:zen}
-% \end{figure}
-
-% \begin{table}
-% \centering
-% \caption[Electronic Dissertation Submission Rates]{Electronic
-% Dissertation Submission Rates at UCSD, Fall 2005 and Winter 2006.
-% (First two quarters that the program was available to all Ph.D.
-% candidates not in a Joint Doctoral Program with SDSU.)}
-% \label{tab:bad}
-% \begin{tabular}{|*{5}{>{\centering\arraybackslash}m{.15\linewidth}|}}
-% \hline
-% &Ph.D.s awarded (Including Joint degrees) & Electronic submission of
-% Dissertation & Paper Submission of Dissertation & Percentage of
-% Electronic Submission\\
-% \hline
-% Fall\par 2005 & 84 & 37 & 47 & 44.05\%\\
-% \hline
-% Winter\par 2006 & 64 & 42 & 22 & 65.63\%\\
-% \hline
-% \end{tabular}
-% \end{table}
-
-% \begin{table}
-% \centering
-% \caption[Electronic Dissertation Submission Rates]{Electronic
-% Dissertation Submission Rates at UCSD, Fall 2005 and Winter 2006.
-% (First two quarters that the program was available to all Ph.D.
-% candidates not in a Joint Doctoral Program with SDSU.)}
-% \label{tab:good}
-% \renewcommand\tabularxcolumn[1]{>{\RaggedRight\arraybackslash}p{#1}}
-% \begin{tabularx}{.9\linewidth}{lcccc}
-% \toprule
-% &\multicolumn{1}{X}{Ph.D.s awarded (Including Joint degrees)}
-% &\multicolumn{1}{X}{Electronic submission of Dissertation}
-% &\multicolumn{1}{X}{Paper Submission of Dissertation}
-% &\multicolumn{1}{X}{Percentage of Electronic Submission}\\
-% \midrule
-% Fall 2005 & 84 & 37 & 47 & 44.05\%\\
-% Winter 2006 & 64 & 42 & 22 & 65.63\%\\
-% \bottomrule
-% \end{tabularx}
-% \end{table}
-
-% \begin{facingcaption}{table}
-% \caption[UCSD Gender Distribution]{University of
-% California, San Diego Gender Distribution for the Campus Population,
-% October~2005\\
-% (http://assp.ucsd.edu/analytical/Campus\%20Population.shtml)\\
-% \emph{(This is an example of a facing caption page, the next page is
-% the example of the table/figure/etc.\ that corresponds to this
-% caption. It is also an example of table/figure that is rotated 90
-% degrees to fit the page.)}}
-% \label{tab:facing}
-% \renewcommand\tabularxcolumn[1
-% \setbox0=\vbox{%
-% \vsize\textwidth
-% \hsize\textheight
-% \linewidth\hsize
-% \columnwidth\hsize
-% \textwidth\hsize
-% \textheight\vsize
-% \begin{tabularx}{\linewidth}{lXXXXXX}
-% \toprule
-% & \multicolumn{2}{c}{\textbf{Women}}
-% & \multicolumn{2}{c}{\textbf{Men}}
-% & \multicolumn{2}{c}{\textbf{Total}}\\
-% \cmidrule(l){2-3}\cmidrule(l){4-5}\cmidrule(l){6-7}
-% \textbf{Population Segment}
-% & \multicolumn{1}{c}{\textbf{N}} & \multicolumn{1}{c}{\textbf{\%}}
-% & \multicolumn{1}{c}{\textbf{N}} & \multicolumn{1}{c}{\textbf{\%}}
-% & \multicolumn{1}{c}{\textbf{N}} & \multicolumn{1}{c}{\textbf{\%}}\\
-% \midrule
-% Students & 12,987 & 51\% & 12,686 & 49\% & 25,673 & 100\%\\
-% Employees & 9,943 & 56\% &  7,671 & 44\% & 17,614 & 100\%\\
-% \addlinespace
-% \hfill\textbf{Total} & \textbf{22,930} & \textbf{53\%} &
-% \textbf{20,357} & \textbf{47\%} & \textbf{43,287} & \textbf{100\%}\\
-% \bottomrule
-% \end{tabularx}
-% \singlespacing
-
-% \emph{Notes}:
-% \begin{enumerate}
-% \item The counts shown below will differ from the official quarterly
-% Registrar's registration report because 1) data for residents in the
-% Schools of Medicine and Pharmacy and Pharmaceutical Science are
-% excluded, and 2) registered, non-matriculated, visiting students are
-% included.
-% \item Student workers are excluded from employees; however emeritus
-% faculty and others on recall status are included.
-% \end{enumerate}
-
-% Campus Planning. Analytical Studies and Space Planning\\
-% 31 January 2006
-% }
-% \centerline{\rotatebox{90}{\box0}}
-% \end{facingcaption}
-
-% % This will give us some more text
-% % \Blinddocument
-
-% % Skipping a bunch of chapters
-% \begin{figure}
-% \centering
-% \fbox{\hbox to.8\linewidth{\hss Another figure\hss}}
-% \caption{Another figure caption}
-% \end{figure}
-% \begin{table}
-% \centering
-% \caption{Another table caption}
-% \begin{tabular}{ccc}
-% \toprule
-% X&Y&Z\\
-% \midrule
-% a&b&c\\
-% \bottomrule
-% \end{tabular}
-% \end{table}
-% \begin{figure}
-% \caption{ASDF fig}
-% \end{figure}
-% \begin{table}
-% \caption{ASDF tab}
-% \end{table}
 
 \appendix
 % \Blinddocument
@@ -697,109 +410,3 @@ techniques and enable a shift towards mainstream disaggregated computing.
 \backmatter
 
 \end{document}
-
-
-%%% Catch place for programmable switch use cases -- do not use
-% \subsection{Programmable Switch Use (and Misuse) Cases}
-% %%
-% \todo{I have received a lot of push back on this section probably just cut it, I tried to put it in
-% for alex but that was a bad idea.}
-
-% Memory constraints on programmable network devices, as well as their programming model and
-% architecture have a large impact on what kinds of systems can and should be built upon
-% them~\cite{when-computer}. Cache size and pipeline depth have a large impact on what can be
-% effectively stored on a programable switch. As part of our exploration of {\sword}
-% (Chapter~\ref{chap:swordbox}) we examined the use of a programmable switch as a cache for the
-% replicated log, and found that the switch for a variety of subtle reasons was not a good fit for our
-% cache despite many prior works on in-network caching and key-value
-% stores~\cite{netcache,netchain,netkv,netlock}.
-
-% In the log system all clients must read all log entries for consistency. This read patten leads to a
-% bandwidth bottleneck on the server hosting the log as the number of clients increases and the size
-% of the log entry increases.  Figure~\ref{fig:bandwidth-model} Illustrates how as the number of
-% clients and the size of individual log entries increases performance falls over. In our initial
-% design we debated how to deal with the bottleneck. On one hand we could replicate the log across
-% multiple memory servers and alleviate the broadcast bottleneck by spreading it across replicas.
-% Alternatively we could cache the most recent writes on a programmable switch.  Initially we thought
-% that the switch would be an excellent place for the log cache because we could easily reason about
-% the access pattern of the log, and each client's link bandwidth would be proportional to how much
-% they read. But the devil is in the details. Due to RDMA and switch pipeline constraints as described
-% in the following section we found that the switch was an untenable solution.
-
-% \begin{figure}
-% \centering
-% \includegraphics[width=0.99\linewidth]{fig/bandwidth-model.pdf}
-% \caption{Bandwidth model for memory replication. 1MS is a single memory node, while 3MS is 3.}
-% \label{fig:bandwidth-model}
-% \end{figure}
-
-% \begin{figure}
-%     \centering
-%     \includegraphics[width=0.99\textwidth]{fig/switch-cache-model.pdf}
-%     \caption{Performance improvement of caching on a programable switch as a function of hit rate and object cache size}
-%     \label{fig:switch-cache-model}
-% \end{figure}
-
-% The values in Figure~\ref{fig:switch-cache-model} assume 64 clients and a single memory server and a
-% log entry size of 8 bytes. The 0\% hit rate on cache sizes of 1024 is almost identical to the
-% furthest left point in Figure~\ref{fig:bandwidth-model} with 64 clients and a single memory node.
-% Note that with this cache size and a hit rate of 95\% which may be attainable considering the log
-% access patterns are extremely predictable we are able to handle around 200 Million ops per second.
-
-% Unfortunately current programmable switch hardware does not allow for cashable objects over 192
-% bytes. Our Tofino 2 switch has a fixed sized 64 bit maximum storage capacity at each stage of it's
-% pipeline, with a total of 24 stages counting both ingress and egress~\cite{tofino2}. Given a maximum
-% cache size of 192 we can again calculate our maximum performance improvement. Using max sized RDMA
-% reads of 192 bytes we significantly drop performance without the use of a switch, and in the common
-% case get around 68 MOPS, our model without a switch striping across 3 memory servers yields a
-% maximum of 57 MOPS. While still a theoretical advantage we consider the complexity of adding a
-% programmable switch and caching for and 18\% benefits to be not worth it, especially considering
-% that next generation NICs are slated for bandwidths of 800GBPS+. If future switch technology were to
-% allow for larger object caches we believe this direction may be fruitful.
-
-% \todo{Alex - put this insite somewhere in the intro}
-% Given these kinds of subtle constraints the use of programmable network hardware must be carefully
-% considered. In the case of {\sword} we explore the use of a programmable switch for caching parts of a
-% shared data structure including locks, and parts of index structures. We found that some data
-% structures, specifically those that require very little state in their index for a read or a write
-% to succeed are well suited for caching. An example of this is appending to a linked list where only
-% the last element of the list needs to be cached in order for an append to succeed. Alternatively
-% inserting into an arbitrary location in a linked list is hard as all the nodes in the linked list
-% need to be cached.
-
-
-
-% \section{CXL}
-
-% RDMA is not the only proposal for disaggregated memory. The Compute Express Link (CXL) is a new
-% interconnect and standard supported by chip manufacturers and hyperscalers~\cite{cxl}. CXL is built on PCIe and
-% aims to expand CPU memory capacity by allowing for the attachment of remote memory devices. Despite
-% only a few CXL devices being available at the time of writing the technology is promising. Initial
-% work has shown that CXL latencies for remote memory devices are between 2-5x the latency of local
-% memory demonstrating that CXL devices can provide lower latency and higher throughput than
-% RDMA~\cite{cxl-demyst,tpp,pond}. Given these promising results we expect that CXL will be a strong
-% contender for remote memory pools.
-
-% CXL has limitations that are not present in RDMA, specifically surrounding how memory is shared. CXL
-% provides cache coherent memory semantics, however the expected cost of coherence similar to NUMA
-% coherence will be high. Second CLX does not currently support a routing layer which limits it to the
-% scalability of a CXL switch (likely rack scale). Finally CXL does not, at the time of writing,
-% support in-network programmability. As we will show in our work in Chapter~\ref{chap:swordbox}
-% in-network programmability is a powerful tool for reducing contention in shared data structures, the
-% lack of any programmable devices in network may limit the ability to effectively share CXL devices.
-
-% \todo{Alex - non sequitur}
-% Prior work on remote memory data structures indicated that allowing CPU cores to subscribe to
-% \textit{notify} groups could reduce the price of coherence while enabling fast shared
-% structures~\cite{aguilera2019designing}. While notifications are not natively supported by CXL, CXL
-% devices could be designed to support them without the need to build CXL programmable network
-% devices. 
-
-% \todo{Alex - Move this elsewhere}
-% Alternatively techniques for NUMA scalability may also apply to remote memory such as black box
-% approaches for NUMA data structures~\cite{bbn,nros,ironsync}. These techniques are powerful and
-% enable general data structures to be built on NUMA architectures with low latency. While powerful
-% these systems require each NUMA domain to synchronize its log with a singular log master, it also
-% requires efficient support for atomic operations like CAS. It's unclear at this point in time if
-% these approaches will scale up to the expected number of NUMA domains in a disaggregated deployment
-% due to the fact that their bandwidth requirements grow linearly with the number of domains.

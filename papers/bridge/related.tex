@@ -1,0 +1,144 @@
+\section{Related Work}
+% * Bridge specific\\
+% * Cross-Chain Security\\
+% * Transaction-based Analysis\\
+% * Industry Efforts\\
+
+%% Start with the most relevant ones, and other ones can be added later
+
+% \alex{this needs to be written.}
+% Focus: Transaction-based Analysis
+Blockchains are, by their nature, public and thus support direct
+empirical analysis of past transactions.  This property has engendered a rich
+literature quantifying and characterizing a range of quasi-adversarial
+activities on \emph{individual} blockchains including
+arbitrage~\cite{mclaughlin2023large, qin2022quantifying}, sandwich
+attacks~\cite{qin2022quantifying, zhou2021high},
+frontrunning~\cite{daian2020flash}, transaction
+replays~\cite{qin2022quantifying}, and a range of smart contract
+vulnerabilities and attacks~\cite{perez2021smart,grossman2017online,
+  rodler2018sereum, zhang2020txspector, wu2021defiranger,
+  ferreira2021eye}.  While our work focuses on the cross-chain
+context, a number of the vulnerability classes
+identified in such work are directly implicated in the attacks we analyze.%\alex{additional related work}
+
+%and counter-attacks~\cite{zhang2023your}. Unlike this line of work, we employ a% similar method but focus exclusive on cross-chain bridges.
+
+
+% Another domain of research explorer the possibility of monitoring blockchains live. probably not necessary
+
+% Another domain of research studies cross-chain bridges, but not the security aspect. 
+
+In the cross-chain context, there are several different streams of
+related work.  First are the efforts to improve the security and
+performance of cross-chain bridge designs --- particularly in managing
+cross-chain consensus concerning state changes --- using
+zero-knowledge~\cite{xie2022zkbridge} or committees of
+validators\cite{lan2021horizon,li2022polybridge}.
+Some many-chain blockchain ecosystems (e.g., Avalanche) are extending
+their chains with built-in bridges (across different chains). We consider our
+work orthogonal to these efforts as we focus on unbalanced bridge transactions, independent of the particular
+security violation that allowed such an outcome to take place.
+Indeed, some of the compromised bridges did use sets of validators.
+
+Another line of work has reviewed real-world attacks on
+cross chain
+bridges\cite{lee2023sok,zhang2023sok,notland2024sok,zhao2023comprehensive}
+--- ranging from just a few such events to an analysis of over 30
+attacks.  Our work has directly benefited from the insight and
+documentation these authors provide, but our respective focus is
+distinct.  While these efforts have concentrated on identifying
+the vulnerabilities and mechanisms of attack, our work is
+agnostic to these details and focuses on the financial
+side-effects those actions.
+
+Yet a third research direction seeks to automatically discover new
+vulnerabilities in cross-chain bridges.  Some examples of this work
+use machine learning such as ChainSniper~\cite{tran2024chainsniper},
+which trains models to identify vulnerable smart contracts, and Lin et
+al.~\cite{lin2024detecting}, who train models to detect fake deposit
+events.  Other examples use static analysis such as
+XGuard~\cite{wang2024xguard}, which statically analyzes bridge
+contracts for inconsistent behaviors, and
+SmartAxe~\cite{liao2024smartaxe}, which analyzes the control-flow
+graph of smart contracts and identifies access control and semantic
+vulnerabilities.
+
+The papers philosophically closest to ours are those that consider the
+security properties of cross-chain bridges at a higher-level of
+abstraction.  For example, Belichior et
+al.~\cite{belchior2023hephaestus} build and evaluate a synthetic
+bridge designed to allow high-level monitoring of bridge behavior --- including variations in financial state.  In
+a more empirical context, Huang et al.~\cite{huang2024seamlessly}
+characterize the transactions of the Stargate bridge, and highlight
+the correlation between large or unusual trades and individual attacks.  Finally, perhaps the closest work to our own is Zhang et
+al.'s XScope~\cite{zhang2022xscope} which models real-world bridge bugs using a set of
+pre-defined rules and applies these empirically to identify several attacks retrospectively. Like our work, they focused on invariant patterns rather than the low-level details of
+smart contract bugs. 
+%
+That said, the rules considered by XScope are still considerably lower-level and more granular than our balance invariant as they are seeking to identify the cause of the detected attacks that have taken place.
+% \footnote{There are still many benefits to this approach.  For example, they are able to identify transactions that are out-of-scope for our approach. Notably, they identified
+% four deposit transactions that were previously unreported. These four deposit transactions did not have corresponding withdrawal transactions and therefore considered out-of-scope.}  
+While the two efforts are complementary, we believe
+our work is simpler to understand and implement, more clearly robust
+(we have tested against a far wider range of bridges and blockchains),
+and, as a result, is likely more attractive for inline deployment.
+
+
+% The rules considered by XScope are considerably lower-level and more granular than our balance invariant as they are seeking to identify the cause of the detected attacks that have taken place but, like us, they are
+% more focused on invariant patterns than the low-level details of
+% % smart contract bugs.  While two efforts are complementary, we believe
+% our work is simpler to understand and implement, more clearly robust
+% (we have tested against a far wider range of bridges and blockchains)
+% And, as a result, is likely more attractive for inline deployment.
+
+
+
+
+ % Another thread of research has focused on statically analyzing the smart contracts of cross-chain bridges. This includes . % Both papers rely exclusively on static techniques and do not consider any actual transactions. 
+
+Finally, a range of blockchain companies advertise tools that actively
+monitor cross-chain bridge transactions for anomalies.  These include
+Hexagate~\cite{Hexagate75:online}, Hypernative~\cite{Hypernative:online}, PeckShield~\cite{PeckShie48:online}, Slowmist~\cite{SlowMist92:online}, Certik~\cite{CertiKWh86:online} and ChainAegis~\cite{ChainAeg18:online} (among
+others), all of which claim various levels of automated alerting for
+suspicious transactions.  However, without clear information on how
+these systems operate, or empirical results on their efficacy, it is hard to relate our work to those tools beyond our shared goals.
+
+%Beyond various academic efforts, industry has also developed web3 tools that actively monitor ongoing transactions on cross-chain bridges. An example is Hypernative, which provides real-time monitoring and protection for bridges.\alex{mostly for deian} Without any public information on how Hypernative works, it is unclear how it compares to our work. Other platforms, such as PeckShield, SlowMist, CertiK and ChainAegis, have offered generic alerts for suspicious transactions. Given the volume of alerts generated, it is unclear how many of them are false positives.
+
+% Other cross chain solutions. Also, limitations 
+
+% This include hypernative, which monitors transactions on Ethereum and Binance Smart Chain, and Chainalysis, which provides a wide range of tools for monitoring transactions on various blockchains.
+
+
+% Huang et al. analyzed the transactions of Stargate, but did not examine the security aspect of these transactions.
+
+% and XScope, which models pre-defined bugs. Both papers rely exclusively on static analysis and do not consider the actual transactions. Huang et al. analyzed the transactions of Stargate, but did not examine the security aspect of these transactions.
+% Other papers have tried to statically analyze cross-chain bridges. This includes XGuard, which statically analyzes bridge contracts and identifies inconsistency behaviors, SmartAxe, which identifies access control vulnerabilities and semantic inconsistency. Both papers rely exclusively on static analysis and do not consider the actual transactions. 
+% XScope, which models a pre-defined bugs, is the most closest to us in that it also involves examining real-world transactions. Another line of work uses machine learning to detect vulnerabilities, such as ChainSniper and Lin et al.
+% Huang et al. analyzed the transaction of stargate, but does not examine the security aspect of these transactions.
+
+% Of particular note, the first two papers do not investigate any transactions, while the last one analyzed two million transactions on Ethereum. These papers can effectively find previously 
+
+% The stream of research most relevant to our work focuses on the security of cross-chain bridges. Concretely, Lee et al., Zhang et al., Notland et at., and Zhao et al., have all systematically analyzed real-world attacks against cross-chain bridges. 
+% While the number of examples and bridges studied varies (from a few to over 30), they all take the perspective of \textit{individual vulnerabilities}. Our work builds on top of this line of research by providing a simple variant that captures a large portion of these vulnerabilities.
+ 
+% , on the other hand, unifies a large portion (but not all) these vulnerabilities into a single invariant that captures the security of cross-chain bridges.
+
+% including understanding various phenomenons, detecting attacks, and validating academic tools. As an example, Daian et al.~\cite{} quantified the prevalence of front-running attacks on Ethereum by studying transactions of a selected set of exchanges.
+
+
+% transactions to quantify the prevalence of  on Ethereum. Similarly, Tran et al.~\cite{} used transactions to understand the behavior of smart contracts.
+
+% A rich literature has utilized Ethereum transactions for a variety of tasks, including understanding the runtime behavior of smart contracts, vulnerability detection, and validation of academic research.
+
+% tapped into the rich resource of Ethereum transactions for understanding the runtime behavior of smart contracts, vulnerability detection, and validation of academic research.
+
+% Transactions provide a rich source of information 
+% for understanding the runtime behavior of smart contracts, vulnerability detection, and validation of academic research. Unsurprisingly, a rich literature has tapped into this resource.
+
+% . Tools that detect specific vulnerabilities.
+% ECFChecker~\cite{grossman2017online} is one of the first tool that analyzes Ethereum transactions and determines if an execution is Effectively Callback Free. Sereum~\cite{Sereum} detect re-entrancy attacks. TxSpector~\cite{TxSpector} detect user-supplied rules. Others have used it for price manipulation~\cite{DEFIRANGER} and exploitation~\cite{Smart Contract Vulnerabilities}
+
+% security of cross-chain bridges. In this section, we review related work on cross-chain bridges, cross-chain security, transaction-based analysis, and industry efforts.
+

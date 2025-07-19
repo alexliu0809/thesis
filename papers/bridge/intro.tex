@@ -1,0 +1,155 @@
+\section{Introduction}
+
+Careful accounting is key to the correct management of assets in
+virtually all financial systems.  Indeed, since Paciloli popularized
+double-entry bookkeeping in the 14th century, it has been standard
+practice to separately track inflows (credits) and outflows (debits)
+to establish a net position --- a balance sheet.
+
+Such accounting is implicit in blockchains as each and every
+transaction is recorded, immutable and in possession of implicit
+integrity.  Any change in ownership for a given token is explicitly
+recorded via some past transaction and thus the net position for
+assets in a blockchain is generally consistent and
+well-known. However, these integral properties only hold within a
+single blockchain.  As soon as one wishes to engage in transactions
+\emph{between} chains (e.g., trading Ethereum on Solana), it
+requires building a system that steps outside these isolated
+environments and implements its own financial calculus between them,
+including its own accounting.
+
+Today, one of the principal mechanisms for such transactions is the
+cross-chain bridge --- a service using a pair of ``smart contracts''
+(immutable programs stored on a blockchain) to synthesize inter-chain
+transactions that are not possible to express natively on a single
+chain.\footnote{Some newer blockchain ecosystems, such as Cosmos and
+  Avalanche, are themselves composed of multiple blockchains and offer
+  some support for bridging across their \emph{own} chains, but not with external chains.}  Such bridges are an extremely popular component of what is
+commonly referred to as ``decentralized finance'' (DeFi), and they
+routinely manage transaction volumes with value equivalent to \$US8--10
+billion per month~\cite{defillama-volume}.
+%\deian{I would add a footnote to the first sentence:
+%Some blockchains like Cosmos and Avalanche are actually composed of multiple
+%blockchains and started introducing native (but limited) support for bridging
+%across their blockchains.}
+
+However, bridges are just code.  They can have bugs in their
+implementations, in the other services they depend upon, or in the
+mechanisms used to guard the integrity of their cryptographic secrets.
+As a result, attackers can, and do, exploit such vulnerabilities to
+extract significant value from such systems.  For example, between
+2021 and 2023, crypto assets valued at over \$US2.6 billion were
+stolen in an array of attacks on bridges. 
+
+The scale of these hacks have motivated a range of research
+focused on automating the detection of such vulnerabilities and
+attacks, through the analysis of low-level implementation details
+(e.g., using static analysis of smart
+contracts~\cite{wang2024xguard,liao2024smartaxe}, predefined anomaly
+rules~\cite{zhang2022xscope}, or the features of specific
+attacks~\cite{lin2024detecting}).  However, virtually all of these
+efforts either require detailed modeling of each contract and bridge infrastructure (e.g.,
+the complex protocol bridges run off-chain to relay messages between on-chain contracts),
+or are specialized to particular sets of vulnerabilities (e.g., fake deposit events~\cite{lin2024detecting}); they require
+continual updating, tuning and re-evaluation as they are tied to
+specific implementation artifacts.
+
+In this work, we propose a complementary approach for detecting bridge
+attacks, by monitoring violations of the \emph{balance invariant}
+--- a measure of the difference between value inflows and value
+outflows at a bridge. Unlike prior work, this approach is extremely
+simple to reason about because it focuses purely on detecting
+potential negative \emph{financial outcomes} instead of focusing on
+the precise mechanism of attack that would lead to those outcomes.
+Indeed, the power of the approach arises from its technical
+simplicity.  Because it abstracts away the complicated implementation
+details of bridge contacts (and the off-chain code interfacing with these contracts), the bridge invariant naturally captures 
+attacks independent of the details of the vulnerabilities
+they target.  We demonstrate this effectiveness by comprehensively
+surveying the twelve largest attacks (each \$US1\mil or more) between
+2021 and 2023, and showing that while the details of their
+vulnerabilities vary considerably, all of them share the property that
+transactions are allowed to be ``unbalanced'' (i.e., that outflow can
+exceed inflow, less costs).
+% We identify the lack of explicit accounting as the shared and signal failure
+% across virtually all of these attacks. 
+% Considering the twelve largest
+% attacks (each \$US1\mil or more) during this period, the details of their
+% vulnerabilities vary considerably, but all share the property that
+% transactions are allowed to be ``unbalanced'' (i.e., that outflow can
+% exceed inflow, less costs).  
+We then empirically demonstrate, by auditing over 10\mil transactions from 11 different bridges on across 21 blockchains, that auditing transactions for this
+property is sufficient to retrospectively and automatically identify
+each of these past attacks.  
+
+We further show that such audits can be performed in \emph{real-time}
+--- either to alert bridge operators about potential fraud, or prevent
+such unbalanced transactions from completing altogether (i.e., thus
+preventing any such loss).
+
+% show that auditing transactions for this
+% property is sufficient to retrospectively and automatically identify
+% each of these past attacks.  Moreover, such audits can be performed in
+% real-time --- either to alert bridge operators about potential fraud,
+% or prevent such unbalanced transactions from completing altogether.
+
+Concretely, our paper makes three main contributions:
+\begin{itemize}
+\item\emph{Balance Invariant}.  We introduce the notion of a simple
+  balance invariant, \emph{outflow = inflow - costs}, which can be
+  calculated automatically from the transaction formats used by
+  current bridges.  We hypothesize that this invariant should naturally hold for benign
+  transactions, but not for those exploiting bridge vulnerabilities.
+
+\item\emph{Retrospective validation}.  We validate our hypothesis by
+  empirically auditing over 20 million past transactions (across more
+  than 20 blockchains, between 11 different bridges) and show that the
+  balance invariant is sufficient to identify each and every attack
+  for which we have collected ground truth (and additional transactions that should have been flagged).  Moreover, we identify
+  vanishingly few other transactions that violate this invariant,
+  virtually all of which deserve further scrutiny. Some are clearly new, unreported thefts (separate from the 12 attacks we study), and others capture bridge behaviors that are deserving of considerably more transparency (e.g., unilateral issuance of millions of dollars worth of uncollateralized tokens).
+  
+  % Some are clear
+  % contract implementation errors, others are likely new, unreported
+  % thefts, and yet others capture bridge behaviors that are deserving
+  % of considerably more transparency (e.g., unilateral issuance of
+  % millions of dollars worth of uncollateralized tokens).
+
+\item\emph{Real-time auditing}.  We show our approach is not only
+  useful for retrospective analysis, but can be used to audit bridge
+  transactions and detect new attacks in real-time. We implement and
+  demonstrate an online audit of the Wormhole bridge and show that it
+  automatically detects every attack we inject.  Further, we introduce
+  and implement a proof-of-concept for a new bridge architecture,
+  called \emph{announce-then-execute}, that incorporates such auditing
+  into the transaction flow itself --- thereby preventing unbalanced
+  malicious bridge transactions from ever completing.  Our approach
+  treats the most complicated components of bridges (e.g., verifying
+  relayed messages) as black boxes, adds no new attack surface for
+  theft, and requires minimal changes to existing codebases --- a benefit
+  which we demonstrate by implementing a modified version of the
+  Wormhole bridge.
+\end{itemize}
+
+We argue that this approach is powerful both due to its simplicity (in a
+legitimate financial transaction, the value paid should be equivalent
+to the value received, less costs) and its independence from the
+vagaries of smart contract details.  Moreover, it represents a
+straightforward mechanism that can prevent an entire class of
+existing attacks on crypto bridges.
+
+Our work directly inspirited the design and implementation of the Bascule
+drawbridge security system, which has been used by Lombard---the largest
+Bitcoin
+ liquid staking protocol---over the last three months to secure the
+bridging of
+ (over \$1B as of today) BTC deposited on Bitcoin to LBTC on
+Ethereum~\cite{bascule}.
+
+% We make three contributions in this paper:
+% \begin{itemize}
+%     \item We conduct the first large-scale empirical study of cross-chain bridge transactions. Our system, which we call \textit{\offlinetool}, analyzed millions of transactions spanning over 20 blockchains. We showed that one could effectively identify all exploit transactions involved in 13 unique attacks on 12 bridges with minimum false alarm rate.
+%     \item We present \textit{Big Bro}, a system that monitors 99\% of withdraw transactions on 12 blockchains for Wormhole. Our system augments Wormholescan, the existing monitoring system, by taking a withdraw-centric approach, and uncovers blind spots of Wormholescan.
+%     \item We propose \textit{something}, an improved architecture that enables monitoring of cross-chain bridge transactions and adds reversibility to cross-chain bridge transactions. 
+% \end{itemize}
+

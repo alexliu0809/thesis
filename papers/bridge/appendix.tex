@@ -1,0 +1,244 @@
+\appendix
+
+\newcommand{\bridgehash}[1]{\texttt{\zz#1\zz}}%In a perfect world, this would be changed to allow linebreaks anywhere in #1
+\def\zz#1{%
+ \ifx\zz#1\else
+   #1\linebreak[1]\expandafter\zz
+ \fi}
+
+%% \section{Blockchains Supported}
+
+%% In this section, we provide a list of blockchains we support and bridges that operate on them.
+
+\section{Attack Descriptions and Additional Details}
+\label{sec:attack-summaries}
+
+In this section we provide a descriptive account of each of the
+attacks listed in Table~\ref{table:bridges-and-txns-flagged} in
+Section~\ref{sec:retro-results}, giving additional background on the
+bridge, how the attack transpired, and more details on our results
+using \offlinetool.
+
+\subsection{Ronin Bridge}
+\textbf{Background.} Ronin bridge operates between Ethereum and the Ronin chain. It was hacked in March 2022. The attacker compromised the bridge's private keys, allowing them to mint arbitrary amounts of assets. The attacker carried out two transactions, minting around \$624 million USD worth of assets on Ethereum.
+
+\pgraph{Results.} \offlinetool~analyzed over 3 million bridge transactions and alerted on both attack transactions.
+
+\subsection{Poly Network Bridge (2021)}
+\textbf{Background.} PolyNetwork is a cross-chain bridge that supports asset transfers between multiple blockchains (e.g., BSC, ETH, and Polygon). It was hacked on August 10th, 2021. The attacker exploited a bug in the bridge's verification code, allowing them to insert their own keys and verify any malicious payload. Overall, the attacker stole around \$600 million USD worth of assets on BSC, ETH, and Polygon.
+
+\pgraph{Results.} In total, \offlinetool~analyzed over 292\thou bridge transactions between ETH, BSC, Polygon and Poly Network's liquidity pool. \offlinetool~alerted on all 18 bridge transactions in the attack. In addition, \offlinetool~also flagged one withdrawal that seemingly was relayed to the wrong destination chain.
+% \alex{unclear if its API error or program error} \elisa{unclear if this transaction was related to the 2021 hack}
+
+\subsection{Binance Token Hub}
+\textbf{Background.} Binance Token Hub
+facilitates asset transfers between Binance Beacon Chain and Binance Smart Chain. It was hacked on
+October 7th, 2022. The attacker exploited a bug in Binance Bridge's verification code, allowing them to verify carefully crafted malicious payloads. The attacker carried out the attack in two transactions, each minting 1,000,000 BNB on Binance Smart Chain (approximately \$580 million USD in total).
+
+\pgraph{Results.} \offlinetool~analyzed over 2M bridge transactions between 
+Binance Beacon Chain and Binance Smart Chain. 
+\offlinetool~only alerted on the two attack transactions, citing the discrepancy between the amount given out and the amount received by the bridge. We end by noting that the partner deposit transactions returned by the Binance Token Hub's API for two attack transactions are different than the ones suggested in some blogposts~\cite{binanceproof:online}. However, the attack transactions will be flagged regardless of which partner deposit transactions is used.
+
+
+\subsection{Wormhole}
+\textbf{Background.} 
+Wormhole is a general-purpose cross-chain bridge that 
+currently supports around 35 blockchains. It was hacked on February 2nd, 2022. Specifically, the attacker exploited a bug in Wormhole's smart contract on Solana that allowed them to verify arbitrary unauthorized payload. The attacker executed one transaction and minted 120,000 wETH (around \$350 million) on Solana.
+
+
+\pgraph{Results.} 
+In total, \offlinetool~analyzed over 642k transactions across ten blockchains. It alerted on three transactions, one of which was the attack transaction. 
+
+
+\subsection{Nomad Bridge}
+\textbf{Background.} Nomad bridge support asset transfers across six blockchains. It was hacked on August 1st, 2022. The attacker exploited a bug in the bridge's verification code, allowing them to verified any payload that had not been verified before. Shortly after the first a few attack transactions, a group of copycats joined the crusade of draining the bridge. In total, the reported loss was around \$190 million.
+
+\pgraph{Results.} \offlinetool~analyzed over 37k transactions, and alerted on 962 transactions that transferred assets to 561 unique addresses. We found one dataset that reported 561 addresses, which matched exactly with the addresses we identified. We also found one Github repository that mentioned identifying 960 transactions~\cite{nomad-groundtruth-github:online}. As mentioned earlier, we identified two more transactions. Upon manually inspection, we confirm that the two transactions were indeed malicious.
+
+\subsection{Harmony Bridge}
+\textbf{Background.} Harmony bridge operates between ETH, BSC and Harmony. It was hacked on June 24, 2022. The attacker compromised two of the signing keys of the bridge, allowing them to mint arbitrary amounts of assets. In total, the attacker minted around \$100 million worth of assets on BSC and ETH in 15 transactions.
+
+\pgraph{Results.} \offlinetool~analyzed over 336k transactions and alerted on 58 transactions, including all 15 attack transactions. 
+
+
+\subsection{HECO Bridge}
+\textbf{Background.} HECO bridge allows users to transfer assets between Huobi ECO Chain (HECO) and Ethereum. It was hacked on November 11th, 2023. The attacker compromised the bridge's private keys, allowing them to sign arbitrary transactions. The attacker carried out eight transactions, minting around \$86 million worth of assets on Ethereum.
+
+\pgraph{Results.} \offlinetool~analyzed over 23k transactions. All eight attack transactions were flagged by \offlinetool.
+
+\subsection{Qubit Bridge}
+\textbf{Background.} Qubit bridge allows users to transfer assets between ETH and BSC. It was hacked on January 27th, 2022. The attacker exploited a bug in the deposit function, which allowed them to trick the bridge into believing that a deposit had been made when it had not. The attacker carried out 16 transactions, stealing around \$80 million worth of assets.
+
+\pgraph{Results.} \offlinetool~analyzed over 260 transactions and alerted on all 16 transactions. 
+
+% In addition, prior work [1] noted four deposit transactions that shared similar characteristics with the attack transactions. However, \offlinetool~did not alert on any of the four, as all four transactions were deposit transactions and had no corresponding withdrawal transactions. 
+% . \offlinetool~was unable to find the corresponding withdrawal transactions for any of them. Upon manual investigation, three of the four reported transactions happened after the bridge was drained, thus no withdrawal effort was successful. The last transaction occurred before the attack in December 2021, which surprisingly did not have a matching withdrawal transaction. After examining this particular transaction, we note that this transaction had a slightly different payload than those used in the attack transactions. We refrain from drawing any conclusions about the maliciousness of this transaction. Lastly, \offlinetool~also flagged 114 testing transactions by the bridge that withdrew money without backing deposits.
+
+
+\subsection{Anyswap Bridge}
+\textbf{Background.} Anyswap bridge supported moving assets across many blockchains at the time of the attack. It was hacked on July 10, 2021. The attacker exploited a bug in the bridge's verification code, allowing them to verify any malicious payload. The attacker carried out three transactions, minting around \$7.9\mil worth of assets on Ethereum.
+
+%% \pgraph{Results.} \offlinetool~analyzed over 26k
+%% transactions. \offlinetool~alerted on all three attack
+%% transactions. In addition, \offlinetool~also flagged five
+%% transactions, three of which are attack transactions that happened
+%% after the bridge was reopened but before the patch was applied,
+%% resulting in an additional \$150k in losses. The remaining two
+%% transactions were withdraw transactions that were not backed by any
+%% deposit transactions (>\$650k worth of tokens). We do not have enough
+%% information to determine if these two transactions were malicious or
+%% not.\alex{also searched other blockchains}
+
+\pgraph{Results.}
+%
+In addition to the previously reported transactions from the July 10, 2021,
+attack, Anyswap had more than 800 additional transactions that violated the
+balance invariant.
+
+%\alex{maybe new}
+% First, we identified two separate groups of bridge transactions that are
+% likely unreported new attacks. The first group had three transactions
+% on July 13, 2021 (three days after the reported July 10, 2021,
+% attack). Notably, these three transactions minted unbacked tokens
+% using the same compromised key as in the reported attack. This new
+% attack happened before the compromised key was replaced (which took
+% place on July 14, 2021).  The second group had 21 transactions on
+% November 18, 2021, and all were on Avalanche. \geoff{Avalance src or
+% dest?}  The first four transactions in this group referenced deposits
+% that had already been redeemed months ago using a privileged key.  The
+% remaining 17 transactions were initiated a few hours after, also
+% linking to non-existing deposits.  Upon manual inspection, it is clear
+% that the attackers were exploiting a bug in Anyswap's smart contract
+% (the access control code was commented out and thus ineffective),
+% allowing anyone to rewrite \geoff{rewrite?  or use an arbitrary key?}
+% the privileged key. Moreover, one of the addresses involved in these
+% transactions was labeled as ``KyberSwap Exploiter'', which exploited
+% KyberSwap four days after.
+
+%% Both observations
+%% provide confirmative evidence that these transactions were likely part
+%% of a new attack.
+
+% \alex{maybe unbacked.} \offlinetool also flagged 11 unbacked bridge
+% transactions. Four double-spend (referencing the same deposit) and are
+% likely program errors: the deposit and withdrawal amounts are the
+% same, and the withdrawals occurred within a few hours of each other.
+% The remaining seven transactions are likely malicious. More
+% specifically, six of them point to non-existing deposits and one of
+% them points to a deposit that was redeemed and designated for a
+% different recipient.
+
+% \alex{maybe errors.} Next, we observe 800 transactions that point to
+% just a few deposits (raising potential double-spending concerns).
+% \geoff{total amount?  clustered in time, or spaced out?}  We are
+% unable to systematically investigate these transactions, as they were
+% from blockchains that we do not support (and all of them are from
+% non-EVM blockchains such as XRP). Sampling a few
+% transactions and manually inspecting them, we found that the
+% corresponding deposit did exist and the withdrawal was valid. The
+% deposit transaction hash was not set correctly in the withdrawal
+% transaction, suggesting program errors.
+% % but the deposit transaction hash was wrong in the withdraw transaction, suggesting likely errors.
+
+% \alex{maybe errors / undocumented.} Lastly, we observed two
+% transactions that linked to potential deposits that were in an
+% uncommon format (no recipient was specified). However, in both cases,
+% the deposited amount was enough to cover the withdrawal amount. Thus,
+% we suspect that these transactions were likely undocumented
+% behaviors.\alex{we also see this for harmony. maybe try creating a
+%   category?}
+
+
+
+\subsection{Poly Network Bridge (2023)}
+\textbf{Background.} Shortly after the hack in 2021,
+PolyNetwork switched to a new set of smart contracts.  It was,
+however, hacked again in August 10th, 2021. The attacker exploited a
+bug in the bridge's verification code, allowing them to verify
+arbitrary payload. Overall, there were 136 reported transactions.
+
+\pgraph{Results.} \offlinetool~analyzed over 290k transactions and flagged all 136 transactions. \offlinetool~also flagged 27 transactions that pointed to the same non-existent deposit transaction hash (\bridgehash{0x0101...} with 01 repeated 32 times).
+All of these transactions occurred on Aug 22, 2023 and withdrew funds from the bridges without backing deposits. In total, over \$20 million worth of assets were withdrawn in these transactions.
+
+
+\subsection{Chainswap Bridge}
+\textbf{Background.} Chainswap bridge support token transfers between five bridges and 
+was hacked on July 10, 2021. The attacker exploited a bug in the bridge's verification code, allowing them to verify any malicious payload. The attacker stole \$4.4 million worth of assets on Ethereum and BSC using one address. Of particular note, unlike other bridges, Chainswap did not publicly disclose the list of bridge contract addresses. 
+As such, we programmatically identified all potential bridge contract addresses by searching for the specific event signatures that known Chainswap bridge contracts emit.
+
+\pgraph{Results.} \offlinetool~analyzed over 53k transactions. \offlinetool~alerted on 1136 transactions, all of which were executed by the single malicious address. We note that we are unable to find any public information on the list of transactions that were part of the attack, preventing us from verifying individual transactions.
+
+\subsection{Meter Bridge}
+\textbf{Background.} Meter bridge allows users to transfer between Meter's own chain and a few EVM-based chains. It was hacked on February 5, 2022. The attacker exploited a bug in the bridge's deposit function, where the attacker tricked the bridge into believing that a deposit had been made. In total, the attacker carried out 5 transactions, stealing around \$4.3 million worth of assets.
+
+\pgraph{Results.} \offlinetool~analyzed over 14k transactions, alerting on all five attack transactions.
+
+% \subsection{Omni Bridge}
+% pass
+
+\begin{table*}[t!]
+\centering
+\footnotesize
+\begin{tabular}{p{1.5cm}p{5.8cm}cp{5.8cm}p{1.5cm}}
+\toprule
+\textbf{Bridge} & \textbf{(Claimed) Deposit Transaction Hash} & \textbf{\makecell{Chain \&\\Token}} & \textbf{Withdraw Transaction Hash} & \textbf{\makecell{Chain \\\& Token}} \\
+\midrule
+Wormhole \#1 & \bridgehash{0x8bbb7befd198a5e90297f451fc43a9e90de083289a041c8af94116c785cf496d} &\makecell{Polygon\\0.5\\WSOL}  & \bridgehash{5AiesW9pKrZvCCJM8QPWmqx...dkadV1waPVLWfsnCMVQmyYaciLxEo} &\makecell{SOL\\650\\USDC}\\[0.2in]
+% \hline
+Wormhole \#2 & \bridgehash{0x55d1e486a8e2102e07fd6270a03f05bbee7b43bf27ebac97b95b98e068f6740e} &\makecell{Polygon\\4.3k\\MATIC}  & \bridgehash{0xbe81895b1c3172fd69b8d4d9bf726edfdc17083876c440f9414ff316999237d7} &\makecell{AVAX\\2.3k\\WMATIC}\\
+
+% \cline{2-5}
+%  & \bridgehash{0x542efe5a7f965b927a294bce7f3a30492d0e2ca60da2e2d6cdfaf523a28a2a9c} & \makecell{Polygon\\0.5 SOL}  &\\ 
+\hline
+
+Anyswap \#1 & \bridgehash{0x01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b} & N/A &  \bridgehash{0xf015a6b06a13a08d3499ece17504d14a95d6af3e04ae11f291dca22dbbf6c991}  & \makecell{BSC\\$5*10^{-8}$\\USDC}\\[0.2in]
+% \cline{2-5}
+% \cline{2-5}
+Anyswap \#2 & \bridgehash{0x01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b} & N/A &  \bridgehash{0x9e55b7295880dce76aa8af0f3e3f9e36499ae0bdb28088a5924daf29c6132ceb}  & \makecell{BSC\\55k\\USDC} \\[0.2in]
+
+% \cline{2-5}
+Anyswap \#3 & \bridgehash{0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855} & N/A &  \bridgehash{0x4f038804d0622d2eab15d21d902a3fdd3bdfb5427bb5fd65b9eb0a41169534be}  & \makecell{Polygon\\100k\\USDC}\\[0.2in]
+
+Anyswap \#4 & \bridgehash{0x0x0000000000000000000000000000000000000000000000000000000000000000} & N/A &  \bridgehash{0x98aa9e94d4fd0a05c27eb13ac2e699e4426c8dd9d57d04c0fa09cf4951eb2f94}  & \makecell{BSC\\650k\\USDC}\\[0.2in]
+
+Anyswap \#5 & \bridgehash{0x0x0000000000000000000000000000000000000000000000000000000000000000} & N/A &  \bridgehash{0xa67ac5dc308142f89409df89dc85e8fab88c575b3adef77fbc8f51858b7bf7cb}  & \makecell{Polygon\\50k\\USDC}\\[0.2in]
+
+Anyswap \#6 & \bridgehash{0x28b233a4dbda8b4dfae7245b8fff434de95f6dbd101e1a9cb22a95ded1315a16} & \makecell{Fantom\\6.4k\\POPS} & \bridgehash{0x76bdcfd5ddfa358bf4181556e3b4f1fdd2d648a246bfab91386bdfbd7b76d01f} & \makecell{Avalanche\\6.4k\\POPS}\\[0.2in]
+
+
+& \bridgehash{0xf0b5568dfd8a4559d30adc9dfc881875210a3b9dfa680d392b33eb1d2cc86cfa} & \makecell{Fantom\\6.4k\\POPS} & \bridgehash{0xc86297f14f32a33232149025d4e8f8e50985d76ac1b7ccaf181501820c0b1cf7} & \makecell{Avalanche\\6.4k\\(any)POPS}\\[0.2in]
+
+
+Anyswap \#7 & \bridgehash{0x0x0000000000000000000000000000000000000000000000000000000000000000} & N/A &  \bridgehash{0xde790e8dc59d8bae7ebdf89c4b75267a6e0783219b32aebe83e112aac6c299f5}  & \makecell{Avalanche\\54k\\USDC}\\ 
+
+
+
+\hline
+HECO \#1 & \bridgehash{0x6f9d2e82aef87fc649198976974c05d4c540dacca5043ffee619cc33f3ba4cf5} & \makecell{ETH\\5m\\USDT} & \bridgehash{0x628e878fb723cf0dd838eb956ce78d23b45b130876a625fd4d283e62ac2289f0}  & \makecell{HECO\\5m\\USDT}\\[0.2in]
+
+& \bridgehash{0x6f9d2e82aef87fc649198976974c05d4c540dacca5043ffee619cc33f3ba4cf5} & \makecell{ETH\\5m\\USDT} & \bridgehash{0x27a1e6a66b6e0fc5fa805f7400dd07397bb92226926868a82afb44154a32128b} & \makecell{HECO\\5m\\USDT}\\
+
+
+\hline
+Harmony \#1 & \bridgehash{0x559bc92656a6956a5ffe9eea6f14a5d5993520e31a1a08551d5171ad8f658886} & \makecell{BSC\\5.3k\\BUSD} & \bridgehash{0xdf3bf1a8227ede87d7905c026c3b6a3504cc81399ebd08e1273e1a9dd2c748a9}  & \makecell{Harmony\\5.3k\\BUSD}\\[0.2in]
+
+& \bridgehash{0x559bc92656a6956a5ffe9eea6f14a5d5993520e31a1a08551d5171ad8f658886} & \makecell{BSC\\5.3k\\BUSD} & \bridgehash{0x304801a2b33585e6867de0c403535588979ce4d2cf41c6922223d3203589c39d} & \makecell{ETH\\$5*10^{-18}$\\BUSD}\\ 
+
+\hline
+PolyNet. \#1 & \bridgehash{0x0101010101010101010101010101010101010101010101010101010101010101} & N/A &  \bridgehash{0xd6b7f50e974311082eb4b413219f7198cbf897af4e0f2e9202b10c6afe8fa0a2}  & \makecell{ETH\\491\mil\\PLT}\\ 
+
+\bottomrule
+\end{tabular}
+\caption{Other flagged transactions. PolyNet stands for Poly Network 2023. Full transaction hash for Solana: \protect\bridgehash{5AiesW9pKrZvCCJM8QPWmqxsnRoQwHaQmX8NR9a8BFz3pmt2ypW67zgqeRWdkadV1waPVLWfsnCMVQmyYaciLxEo}.}
+\label{tab:xaction-hashes}
+\end{table*}
+
+\section{Additional Transactions Identified}
+
+Table~\ref{tab:xaction-hashes} provides additional details on specific
+example bridge transactions that violate the balance invariant and
+have otherwise not been previously reported.  For each example, the
+table lists the hashes of the paired deposit and withdrawal
+transactions, the blockchain, and the number of tokens transferred. If
+a deposit transaction does not exist or is otherwise invalid, we mark
+its chain and token as N/A.

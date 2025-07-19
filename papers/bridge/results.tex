@@ -1,0 +1,306 @@
+\subsection{Analysis}
+\label{sec:retro-analysis}
+
+%% In this section we demonstrate the effectiveness of using the
+%% invariant to identify cross-chain attacks by performing a
+%% retrospective analysis of known significant cross-chain attacks.
+
+We developed a tool called \offlinetool that pairs deposit and
+withdrawal transactions from blockchains into bridge transactions, and
+applies the balance invariant and consistency checks on them.  Using
+the transactions we collected for the 12 attacks across 11 bridges and
+21 chains, \offlinetool analyzed over 10\mil bridge transactions (20\mil individual deposit and withdrawal transactions),
+identifying more than 2.3\thou bridge transactions associated with the
+attacks and 1.1\thou more that violated the balance invariant.
+
+% 624+611+587+360+152+100+86+80+7.9+4.4+4.4+4.3=2621
+% 3000+292+2000+642+37+336+23+3400+290+53+14=8940
+% 2+18+2+1+962+15+8+16+4+136+1136+5=2305
+% 3+114+15+1+2+72+2+27+15+43+1+1+2=298
+
+Table~\ref{table:bridges-and-txns-flagged} summarizes our results.
+For each attack, it shows the bridge involved, the date of the attack,
+the claimed loss in USD, the number of transactions \offlinetool
+analyzed, and the number and kinds of transactions that violated the
+balance invariant.
+%
+Below we discuss these two categories of transactions in more detail.
+For further context on each of the attacks,
+Appendix~\ref{sec:attack-summaries} provides a descriptive account
+summarizing how the attacks transpired.
+
+Looking forward to Sections~\ref{sec:live-audit}
+and~\ref{sec:active-protect}, altogether \offlinetool identified 3,423
+bridge transactions (0.03\%) that violated the balance invariant out
+of more than 10\mil bridge transactions analyzed.  If the invariant is used by a
+third-party auditing or protection system, we note that such an alert
+workload has a negligible overhead for manual inspection, typically
+raising no more than one alert (or one batch of alerts) every few
+weeks.
+
+\subsubsection{Reported}
+
+For each of the 12 significant cross-chain attacks,
+Section~\ref{sec:retro-data} describes how we gathered the historical
+transactions that correspond to the attacks using external sources.
+We use these identified transactions as ground truth for evaluating
+the ability of \offlinetool to identify attack transactions.  As shown
+in Table~\ref{table:bridges-and-txns-flagged}, when processing the
+transaction histories of the chains involved, \offlinetool
+successfully identified all 2,305 bridge transactions on the source
+and destination chains associated with the attacks (including a few extra ones that are missed by the public reports).
+
+Since we designed \offlinetool to specifically identify such attacks,
+these results may not be surprising.  However, they are useful for
+confirming that the approach of checking a simple, well-defined
+invariant works well.  Moreover, the approach works well across a
+variety of models, including bridges that specify fees in a fiat
+currency, tokens that use a reflection mechanism, etc.
+
+
+\subsubsection{Other Violating Transactions}
+
+%% \alex{Two questions:
+%% * where do we put the comparison with prior work ()? in discussion, we can say the set of problems are broader\\
+%% * cases where we are able to not alert depite the invariant being violated? in discussion, reimbursement transactions.\\
+%% }
+
+%The more compelling question
+Equally compelling
+is the extent to which other, non-attack
+transactions violate the balance invariants.  If the
+attack transactions are dominated by many false positives, then the
+approach becomes less effective.
+%
+As shown in Table~\ref{table:bridges-and-txns-flagged}, \offlinetool
+finds significantly fewer (1,117 compared to 2,305) bridge transactions that were
+not previously identified as attacks.  Given the nature of these
+additional transactions, though, they do not undermine the
+effectiveness of the invariant approach.  By violating the invariant
+something highly unusual is taking place.  As a result, we argue that
+such transactions should be flagged for further scrutiny and perhaps
+even blocked from executing (particularly transactions in the New category and the large transactions in
+the Suspicious category below).
+
+To ensure that we have not missed benign explanations for a violation,
+we manually inspected violating bridge transactions in at least of one
+of the following ways: (1) using blockchain explorers to verify that
+the funds have been created by the withdrawal (and if so, whether they
+have been moved); (2) searching online for any additional information
+about the transaction and addresses involved; (3) checking that if
+claimed deposit exists; and (4) examining unredeemed
+deposits on the source chain that potentially could have been used to
+back the withdrawal (e.g., because the smart contract implementation
+changed between the deposit and withdrawal).  If we can manually
+reconcile a bridge transaction, we consider it benign
+% do not consider it an invariant violation
+and do not consider it further.
+
+We group the remaining bridge transactions that violate the invariant
+into four categories, which we describe below.  For reference, we also
+list some of these bridge transactions in
+Table~\ref{tab:xaction-hashes} in the appendix to provide specific
+examples with more detail.
+
+%% \alex{* our due diligence in verifying the unbacked transations (6.2).}
+
+% \paragraph has a bit too much space
+\newcommand{\pgraph}[1]{\vspace*{0.1in}\noindent\textbf{#1}}
+
+\pgraph{New.}  We believe that we have identified
+previously unreported bridge transactions involved in two new,
+unreported attacks on Anyswap.
+%% In addition to the previously reported transactions from the July 10,
+%% 2021, attack on Anyswap,
+The first group of three transactions executed once Anyswap reopened
+after the attack but before Anyswap patched its smart contract
+(Anyswap transactions \#1--3 in Table~\ref{tab:xaction-hashes} in the
+appendix).  These transactions were three days later and involved
+different deposit and withdrawal addresses than the July 10, 2021
+attack (yet utilizing the same compromised key).  The second group of 21 transactions on November 18, 2021,
+were all withdrawing on Avalanche.  These
+transactions either referenced deposits that had already been redeemed
+months previously (Anyswap \#6 in Table~\ref{tab:xaction-hashes}) or referenced non-existing deposits (Anyswap \#7 in Table~\ref{tab:xaction-hashes}).  Manually
+inspecting the smart contract used, the attackers were exploiting a
+bug in Anyswap's implementation (the access control code was commented
+out and thus ineffective) and one of the addresses was labeled as ``KyberSwap Exploiter''. 
+
+
+\pgraph{Tests.}  Two bridges had test transactions that violated the
+invariant.
+%
+Chainswap had 15 transactions that withdrew tokens labeled as test
+tokens (e.g., tokens labelled as ``testtoken'' or ``startertoken''). Similarly, Qubit had 114 transactions that minted test tokens (e.g., ``xTST'') without backing deposits.
+While all these transactions did not have corresponding deposits, we surmise that they were likely benign given the tokens involved (tokens that have no real value).
+
+
+
+
+\pgraph{Error.} Four bridges had transactions that suggest bugs in
+either their implementation or their invocation.
+
+PolyNetwork/2021 had one bridge transaction where the withdrawal
+amount matched the deposit amount, but the withdrawal moved the funds
+to the wrong destination chain (\offlinetool flagged the mismatch in
+destination chain specified in the deposit and withdrawal
+transactions).
+%
+Anyswap had two groups of bridge transactions in this category.  The
+first consists of 800 withdrawal transactions that pointed to just a
+few deposits. Manually sampling a few, the deposit transaction hash
+was not set correctly in the withdrawal transactions (we found their
+matching deposits), suggesting a program error.  The second Anyswap
+group had four double-spend transactions (referencing the same
+deposit) that are also likely program errors: the deposit and
+withdrawal amounts are the same, and the withdrawals occurred within a
+few hours of each other.
+% the deposit did exist and the withdrawal was
+% valid.  However, the deposit transaction hash was not set correctly in
+% the withdrawal, suggesting a program error.
+%
+Wormhole had two bridge transactions that violated the invariant: 0.5
+wrapped Solana on Polygon $\rightarrow$ 650 USDC on Solana, and
+4.3\thou MATIC on Polygon $\rightarrow$ 2.3\thou on Avalanche.  The
+small amounts and close proximity of the dates of the transactions
+suggest they are also likely errors.
+
+Finally, three bridges had transactions that had no apparent effect,
+suggesting invocation errors or undocumented behaviors.
+PolyNetwork/2023 had one bridge transaction, and Chainswap had four,
+where the deposits were non-zero but the withdrawal amount was zero. And Anyswap had two withdrawals
+referencing deposits that did not specify a recipient, yet the deposit
+amounts covered the withdrawals.  While technically not balance
+invariant violations, \offlinetool flagged them because of their
+unusual circumstances.
+
+%% These transactions effectively
+%% had no effect and suggest errors by whatever invoked them or
+%% undocumented fees.\alex{note they might not be considered as break the
+%%   invariant (depending on our def). I also dont want to be too strong
+%%   on the error part.}.
+
+
+
+%\textbf{Harmony.}
+%\geoff{thinking of  category name: sloppy, clumsy, careless, backdoor, manual}
+
+
+\pgraph{Suspicious.}
+%
+% The nature of
+The final category of bridge transactions suggests the manual,
+intentional use of private keys in signing transactions that
+effectively bypass verification --- precisely the kind of transactions
+that warrant auditing.
+
+%% human agency was involved in manually signing transactions that
+%% otherwise would not verify.
+
+Many of these cases involved highly suspicious unbacked bridge
+transactions involving very large withdrawals without corresponding
+deposits.  For example, Anyswap had seven transactions totaling more than
+\$1.5\mil pointing to non-existent or already-redeemed deposits (e.g., Anyswap \#4 and \#5 in
+Table~\ref{tab:xaction-hashes} in the appendix).
+%
+PolyNetwork/2023 had 27 withdrawals referencing a non-existent
+deposit address totaling more than \$20\mil (PolyNetwork/2023 \#1 in Table~\ref{tab:xaction-hashes}).
+
+The HECO bridge had 73 unusual transactions.  One was a very
+suspicious unbacked bridge transaction minting \$5\mil of USDT on the
+HECO chain (HECO \#1 in Table~\ref{tab:xaction-hashes}).  The
+remaining 72, totaling over \$36\mil, involved withdrawals to an
+address labeled ``HECO recovery''.  The label suggests benign intent
+such as rescuing funds trapped in the bridge, but the activity is also
+consistent with a rug pull.
+
+%% These
+%% withdrawals are very likely recovery actions where the bridge is
+%% reimbursing customers who lost funds from the attack.
+
+Other cases suggest seemingly careless operational practices.  In particular,
+%
+Harmony had 43 bridge transactions that violated the invariant in a
+variety of different ways.
+%that make it a category unto itself.
+Eight double-spending bridge transactions (e.g., Harmony \#1 in Table~\ref{tab:xaction-hashes}) used the same deposit to
+release tokens twice (though only resulting in a profit of a few
+hundred USD).  
+Thirty-two
+% bridge transactions
+had indecipherable data:
+it was not possible to decode the deposit function name, function
+input, and some events (thus preventing verification of the deposit).
+One bridge transaction minted piggybankone tokens on Harmony
+chain referencing a non-existing deposit.  And two
+% bridge transactions
+had withdrawal amounts that were smaller than the deposits, perhaps
+caused by undocumented fees or errors.
+%
+Considering the specific mechanism used by the Harmony bridge, where a privileged submitter key
+% private key
+was submitting transactions that it should not have, 
+and the fact that some double-spending transactions had amounts 
+different than what was deposited,
+these
+incidents suggest that Harmony had issues operating securely and
+correctly.
+
+
+%% \textbf{Anyswap.}
+
+
+%% \textbf{Unbacked.}  Three bridges had unbacked bridge transactions
+%% where there were withdrawals with no corresponding valid associated
+%% deposits.  Some of these withdrawals are quite large, making the lack
+%% of deposits suspicious.  For example,
+%% %% Such transactions are highly suspicious and likely represent either
+%% %% payouts or additional thefts.
+%% %
+%% Anyswap had two withdrawals totaling more than \$650\thou pointing to
+%% non-existent deposits (Anyswap \#4 and \#5 in
+%% Table~\ref{tab:xaction-hashes} in the appendix).
+%% %
+%% PolyNetwork had 27 withdrawals in 2023 referencing a non-existant
+%% deposit address, which together totaled more than \$20\mil (Poly
+%% Network/2023 \#1 and \#2 in Table~\ref{tab:xaction-hashes} are two
+%% examples).
+
+%% HECO bridge had 73 unbacked bridge transactions that fall into two
+%% groups.  Most of the bridge transactions (72), totaling \geoff{\$$N$},
+%% involved withdrawals to an address labeled ``HECO recovery''.  These
+%% withdrawals are very likely recovery actions where the bridge is
+%% reimbursing customers who lost funds from the attack.  HECO had one
+%% more \geoff{much earlier?} unbacked bridge transaction minting \$5\mil
+%% of USDT on the HECO chain (HECO \#1 in Table~\ref{tab:xaction-hashes})
+%% \geoff{and this one is suspicious?}
+
+
+
+% Chains Necessary for the Analysis:
+% Arbitrum (poly)
+% Avalanche (poly)
+% missing: base
+% BNB
+% BSC
+% ETH
+% ETHPoW
+% EVMOS (nomad)
+% Fantom (poly)
+% Gnosis (poly)
+% Harmony
+% HECO
+% Meter
+% Metis (aka Andromeda)
+% Milkomeda
+% missing: Moonbeam (nomad)
+% Moonriver (meter)
+% OKTC
+% Optimism (poly)
+% Polygon
+% Ronin
+% Solana
+
+
+ 
+
+
