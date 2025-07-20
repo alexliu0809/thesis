@@ -22,6 +22,10 @@
 	\settowidth\cvlabelwidth{\cvlabelfont 0000--0000}%
 }
 
+% \usepackage[T2A]{fontenc}      % Cyrillic font encoding
+\usepackage[utf8]{inputenc}    % Input encoding (UTF-8)
+\usepackage[russian, french, english]{babel}  % Language support
+
 %commands
 \newcommand{\rating}[1]{%
 	\begin{tikzpicture}[x=1ex,y=1ex]
@@ -124,17 +128,20 @@
 ``It takes a village to raise a child.''\\
 \vskip\baselineskip
 % -Voltaire \textit{Candide}\par
+
 - African proverb
 \end{flushright}
 
 \vfil
 \begin{center}
 
-% \noindent ``It must be considered that there is nothing more difficult to carry out, nor more
-% doubtful of success, nor more dangerous to handle, than to initiate a new order of things.''
 
-\vskip\baselineskip
-% \hskip0pt plus1fil -Niccolo Machiavelli \textit{The Prince}\hskip0pt plus4fil\null
+
+% \vskip\baselineskip
+% ``I owe the victories in my life to all the investments my friends, family, teachers, and communities have made in me.\\
+% If you're reading this, you might be one of those people; thank you!''
+% \hskip0pt plus1fil -Kentrell Owens
+% \textit{The Prince}\hskip0pt plus4fil\null
 
 \end{center}
 \vfil
@@ -166,41 +173,38 @@
 % use. See the examples here. In addition, each chapter ack needs to
 % be repeated at the end of the relevant chapter.
 \begin{acknowledgements}
-Graduate school is full of challenges and uncertainty. In retrospect, I would have not been able to finish it without the help and support from the amazing people that surround me, both past and present.
-% Chapter~\ref{chap:swordbox} is a partial reprint of work submitted to multiple USENIX and ACM
-% conferences under the title "SwordBox: Accelerating Shared Access in RDMA-based Disaggregated
-% Memory. Stewart Grant, Alex C. Snoeren. This dissertations author was the primary investigator and
-% author of this paper.
-% %%
-% Chapter~\ref{chap:rcuckoo} is a partial reprint of work submitted to multiple USENIX conferences
-% under the title "Cuckoo for Clients: Disaggregated Cuckoo Hashing. Stewart Grant, Alex C. Snoeren.
-% This dissertations author was the primary investigator and author of this paper.
+In retrospect, this dissertation would not have been possible without the love, help,  and support of the wonderful people who surround me. And if you're reading this, you might be one of them --- thank you!
+While I could never hope to enumerate everyone who has helped me during my time at UCSD, I would be remiss if I did not at least attempt to acknowledge them. 
 
-First and foremost, I would like to thank my academic parents (or formally, my advisors) Stefan Savage and Geoff Voelker. They are a pair of advisors that are unmatchable. They have been incredibly supportive of my career and personal decisions. I am truly grateful for their guidance and support throughout my PhD journey. I would not have made it this far without their help. I am also grateful for the opportunity to work with them on various projects, which has been an invaluable learning experience. % shielded me under while letting make mistakes safely.
+
+First and foremost, I would like to thank my academic parents (or more formally, my advisors) Stefan Savage and Geoff Voelker.
+They demonstrate the highest standards of mentorship and research excellence --- qualities that everyone seeks but so rarely finds.
+Over the years, they have been a constant source of support, guidance, and inspiration, despite the tremendous amount of turbulence and uncertainty in the world. They gave me the freedom to explore my research interests, supported every research agenda I pursued, and provided a safe environment for me to make mistakes and learn from them. I could not have asked for better advisors and would not be who I am today without them.
+
 
 I also thank my committee members KC, David, and Terrance for their time. KC and David patiently listen to my (sometimes poorly prepared) presentations, provide invaluable feedback, and help me realize that there is still much room for improvement. Terrance is very supportive and helps me see things from an economic perspective --- a viewpoint that is truly captivating and inspiring.
 
 Besides the faculty on my committee, I want to thank other amazing faculty members in the CSE  department. I had the privilege to work with Deian Stefan, Aaron Schulman, Kristen Vacarro, and Imani Munyaka, who 
 guided me through various projects and generously shared their expertise with me. I am also grateful to have received incredibly career and life advice from Deepak Kumar, Earlence Fernandes, Alex C. Snoeren, Amy Ousterhout, and Lawrence Saul.
 
-I thank all the occupants of 3140: Gautam Akiwate, Audrey Ariniello (nee Randall), Liam Arzola, Ani Canumalla, Ben Du, Stewart Grant, Miro Haller, Katherine Izhikevich, Andrey Labunets, Elisa Luo, Ariana Mirian, Keegan Ryan, George Sullivan, Alisha Ukani, Shu-Ting Wang, Anil Yelam, and Wenyi Zhang.
-Many of you have played instrumental roles in my life and deeply shaped who I am. In particular, Stewart Grant faithfully served as my guide to North American culture and introduced many wonderful things to me (climbing, camping, running, vegetarian food, just to name a few). I am grateful for the countless fond moments we have experienced together and the many more to come. Without him, I would not have been who I am today. Miro Haller is my Swiss counterpart with whom I share many common interests and hobbies. I am grateful for the classes we took together and the hours we spent together in the lab, in the climbing gym, in the ocean, or on the running track. Audrey Ariniello let me work with her when I first arrived and was scrambling to find a research project. Our first paper together ended up winning the applied research prize and being my most cited paper. How lucky was I! Gautam Akiwate mentored me through the early days and continues to support me throughout my PhD journey. Anil Yelam introduced tennis to me and had me over many times for delicious home-made Indian food and inspiring conversions. Keegan Ryan redefines the ceiling of intelligence and grit in a lab full of high-achieving students. Elisa Luo is a wonderful collaborator and great person to bounce ideas off of. Liam Arzola's dedication to surfing motivates me to do better every time. Ariana Mirian and Alisha Ukani demonstrate great leadership and human skills in the lab and the department, and I have learned a lot from them. Katherine Izhikevich and Ben Du organized various fun events while keeping 3140 a quiet, fun place to work.
+I thank all the occupants of 3140: Gautam Akiwate, Audrey Ariniello (née Randall), Liam Arzola, Ani Canumalla, Ben ``Chongyang'' Du, Stewart Grant, Miro Haller, Katherine Izhikevich, Andrey Labunets, Elisa Luo, Ariana Mirian, Keegan Ryan, George Sullivan, Alisha Ukani, Shu-Ting Wang, Anil Yelam, and Wenyi Zhang.
+Many of you have played instrumental roles in my life and deeply shaped who I am. In particular, Stewart faithfully served as my guide to North American culture and introduced many wonderful things to me (climbing, camping, running, vegetarian food, just to name a few). I am grateful for the countless fond moments we have experienced together and look forward to the many more to come. Miro is my Swiss counterpart with whom I share many common interests and personalities. I am thankful for the classes we took together and the hours we spent together in the lab, in the climbing gym, in the ocean, or on the running track. Audrey let me work with her when I first arrived and was scrambling to find a research project. Our first paper together ended up winning the applied research prize and being my most cited paper. How lucky was I! Gautam mentored me through the early days and continues to support me throughout my PhD journey. Anil introduced tennis to me and had me over many times for delicious home-made Indian food and inspiring conversions (thank you to his partner Spandana too). Keegan redefines the ceiling of intelligence and grit in a lab full of high-achieving students. Elisa is a wonderful collaborator and great person to bounce ideas off of. Liam's dedication to surfing motivates me to do better every time. Ariana and Alisha demonstrate great leadership and human skills in the lab and the department, and I have learned a lot from them. Katherine and Ben organized various events while keeping 3140 a quiet, fun place to work ({\selectlanguage{russian}Спасибо}!).
 
-I also thank my fellow students in Sysnet and CryptoSec:   Reyna Abhyankar, Lixiang Ao, Alex Bellon, Nishant Bhaskar, Zachary Blanco, Sunjay Cauligi, Junda Chen, Paul Chung, Zhiyuan Guo, Yibo Guo, Linsong Guo, Zijian He, Haochen Huang, Yutong Huang, Evan Johnson, Ryan Kosta, Seoyoung Kweon, Guo Li, William Lin, Luoxi Meng, Daniel Moghimi, Eric Mugnier, Shravan Narayan, Nishit Pandya, Tyler Potyondy, Sumanth Rao, Yizhou Shan, Tianyi Shan, Bingyu Shen, Ye Shu, Vikranth Srivatsa, Adam Suhl, David Thien, Amanda Tomlinson, Yibo Wei, Chengcheng Xiang, Zesen Zhang, Li Zhong. Thank you for making CSE a fun place to work and teaching me many things over the years. Special thanks to Nishant Bhaskar, the OG of Sysnet, who acts like the old brother of junior students like me and is a constant source of wisdom. Thank you to our senior students who passed their graduate school wisdom to me: Guo Li, Chengcheng Xiang, Bingyu Shen. Thank you to Sumanth Rao, for delivering high-quality work on my behalf (because I am lazy) and being a collaborator I can count on, Eric Mugnier, for being a great partner for practicing pool, 
-Luoxi Meng, for showcasing how to be a thoughtful and kind person, and Paul Chung, Ye Shu, and Nishit Pandya, for being great collaborators and driving my projects forward (yes I am lazy I know).
+I also thank my fellow students in Sysnet and CryptoSec: Reyna Abhyankar, Lixiang Ao,  Arshia Arya, Alex Bellon, Nishant Bhaskar, Zachary Blanco, Sunjay Cauligi, Junda Chen, Paul Chung, Zhiyuan Guo, Yibo Guo, Linsong Guo, Zijian He, Haochen Huang, Yutong Huang, Evan Johnson, Ryan Kosta, Seoyoung Kweon, Guo ``Vector'' Li, William Lin, Luoxi ``Rosie'' Meng, Daniel Moghimi, Eric Mugnier, Shravan Narayan, Nishit Pandya, Tyler Potyondy, Sumanth Rao, Yizhou Shan, Tianyi Shan, Bingyu Shen, Ye Shu, Vikranth Srivatsa, Adam Suhl, David Thien, Amanda Tomlinson, Chengcheng Xiang, Zesen Zhang, and Li Zhong. Thank you for making CSE a fun place and teaching me many things over the years. Special thanks to Nishant, the OG of Sysnet, who acts like the old brother of junior students like me and is a constant source of wisdom. Thank you to our senior students who passed their graduate school wisdom to me: Vector, Chengcheng, and Bingyu. Thank you to Sumanth, for delivering high-quality work on my behalf (because I am lazy) and being a collaborator I can count on, Eric, for being a great partner for practicing pool, 
+Rosie, for showcasing how to be a thoughtful and kind person, and Paul, Ye, and Nishit, for being great collaborators and driving my projects forward (yes I am lazy I know).
 
-I also had the great opportunity to get to know and befriend many amazing people from CSE and other departments. I am particularly in debt to Lu Sun, who has unmatchable work ethics and is incredibly reliable, considerate and attentive. She has taught me many important life lessons. Thank you for being a close friend and letting me be a close friend. I thank Hengyuan Zhang and Wenqing Tang, for being great partners for all kinds of activities and tolerating my weird tempers every now and then during our travels. I would also like to thank those in the tennis group (big shout out to Alex Yen, Shuheng Li, Nikolai Vogler, Chris Priebe, Chester Holtz, Daniel Spokoyny, and Nithin Raghavan), the climbing group (Stewart Grant, Miro Haller, Keegan Ryan, Anil Yelam, Luoxi Meng, Pengrun Huang, and David Thien), the recently formed surfing group (special thanks to Seoyoung Kweon for being participant \#1 and advertising the group, and Liam Arzola, Luoxi Meng, Miro Haller, and Max Gao for participating), and the running club (kudos to Zac Blanco for starting the club). I would not have stayed sane without the fantastic times I spent with you all. In addition, without Jennifer Chien, Ehsan Hajyasini, and Marcus Fedarko,
+I also had the great opportunity to get to know and befriend many amazing people from CSE and other departments. I am particularly indebted to Lu Sun, who has unmatchable work ethics and is incredibly reliable, considerate and attentive. Lu has taught me many important life lessons. Thank you for being a close friend and letting me be a close friend. I thank Hengyuan Zhang and Wenqing Tang, for being great partners for all kinds of activities and tolerating my weird tempers every now and then during our travels. I would also like to thank those in the tennis group (big shout out to Alex Yen, Shuheng Li, Nikolai Vogler, Chris Priebe, Chester Holtz, Daniel Spokoyny, and Nithin Raghavan), the climbing group (Stewart, Miro, Keegan, Anil, Rosie, Pengrun Huang, and David Thien), the recently formed surfing group (special thanks to Seoyoung for being participant \#1 and advertising the group, and Liam, Rosie, Miro, and Max for participating), and the running club (kudos to Zac for starting the club). I would not have stayed sane without the fantastic times I spent with you all. In addition, without Jennifer Chien, Ehsan Hajyasini, and Marcus Fedarko,
 my times in the dance studios would have been much less fun.
-I also thank Danlu Chen for feeding me for free many times when we were in grad housing. Last but not least, I thank Cheng Fu, Xiaohan Fu, Hanxian Huang, Minghua Liu, Rohan Mahapatra, Mingyao Shen, and Yanbo Zhou for the times we spent together and the fun conversions we had.
+I also thank Danlu Chen for feeding me for free many times when we were in grad housing. Last but not least, I thank Cheng Fu, Xiaohan Fu, Hanxian Huang, Minghua Liu, Rohan Mahapatra, Mingyao Shen, and Yanbo Zhou for the fun times and conversations we had.
 
-I thank CSE staff members (Julie, Jarwyn, Tina, Tierra, Alice, and Valerie) for their help with various administrative tasks. I also thank Jennifer Folkestad and Cindy Moore for their dedication to their job, which makes the graduate students' life much easier. I thank all the visit day volunteers whom I had the privilege to work with, especially Miro Haller and Zachary Novack, who dedicated their time to make our visit day possible. I thank the generations of volunteers who took care of Chez Bob.
+I thank CSE staff members (Julie, Jarwyn, Tina, Tierra, Alice, and Valerie) for their help with various administrative tasks. I also thank Jennifer Folkestad and Cindy Moore for their dedication to their job, which makes the graduate students' life much easier. I thank all the visit day volunteers whom I had the privilege to work with, especially Miro Haller and Zachary Novack, for dedicating their time to make our visit day possible. I thank the generations of volunteers who took care of Chez Bob.
 
-I would have much less fun had my life not extend beyond the boarders of UCSD. I thank Camille Rubel for having my interests at heart, Alexendra ``Ally'' Nisenoff for throwing her CMU friends at me (now I have friends at CMU before even starting), and friends I made at or through the living water bible church in San Diego. I thank Warner Iveries, my knowledgeable and patient guitar teacher. I thank my landlord at Verano (Wendy and Jack), for being understanding and flexible, and my awesome roommates (Yagen Jin, Junda Chen, Cheng Li, and Laura Odongo) who made my times at home a joy. I thank the life guards (especially the person who rescued me when I was caught in the rip current without a surfboard) on various beaches who allow us surf with a peace of mind. 
+I would have much less fun had my life not extend beyond the boarders of UCSD. I thank Camille Rubel for having my interests at heart, Alexendra ``Ally'' Nisenoff for throwing her CMU friends at me (now I have friends at CMU before even starting), and friends I made at or through the living water bible church in San Diego. I thank Warner Iveries, my knowledgeable and patient guitar teacher. I thank my landlord at Verano (Wendy and Jack), for being understanding and flexible, and my awesome roommates (Yagen Jin, Junda Chen, Cheng Li, and Laura Odongo) who made my times at home a joy. I thank my PT Catherine ``Cathy'' Burgess for helping me fix my knee (twice!) and making every session enjoyable (you are the best!). I thank the life guards on various beaches who allow us surf with a peace of mind, especially the person who rescued me when I was caught in the rip current without a surfboard.
 
 
-I also thank the many people who have helped me professionally, including Liz Izhikevich from UCLA, Shravan Narayan from UT Austin, David Kohlbrenner from UW, Weitong Li from Virginia Tech, Brad Chen, Weihaw Chuang, Kurt Thomas, and Sarah Meiklejohn from Google, Blase Ur (who introduced me to the research world), David Cash, Grant Ho, and Ben Zhao from UChicago, the wonderful UCSD people I collaborated with (e.g., Ramakrishna Padmanabhan and Jian Chen Yan), and my collaborators from all over the world (notably Mattijs Jonker from UTwente, George Kappos from Chainalysis, Shawn Shan from Dartmouth, Emily Wenger from Duke, and Elijah Bouma-sims from CMU).
+I also thank the many people who have helped me professionally, including Liz Izhikevich from UCLA, Shravan Narayan from UT Austin, David Kohlbrenner from UW, Weijia He from University of South Hampton, Weitong Li from Virginia Tech, Brad Chen, Weihaw Chuang, Kurt Thomas, and Sarah Meiklejohn from Google, Blase Ur (who introduced me to the research world), David Cash, Grant Ho, and Ben Zhao from UChicago, the wonderful UCSD people I collaborated with (e.g., Ramakrishna Padmanabhan and Jian Chen Yan), and my collaborators from all over the world (notably Mattijs Jonker from UTwente, George Kappos from Chainalysis, Shawn Shan from Dartmouth, Emily Wenger from Duke, and Elijah Bouma-sims from CMU).
 
-I thank all of the friends I made throughout my life. Many of you are like my brothers and sisters, who have been there for me through thick and thin. You have witnessed the worst part of me, yet you still have chosen to stay with me. I would not have been able to make it this far without your love and support. 
+I thank all of the friends I made throughout my life. Many of you are like my brothers and sisters (to be fair I have no idea what it feels like to have a sibling), who have been there for me through all the ups and downs. You have witnessed the worst part of me, yet you still choose to stay with me. I would not have been able to come this far without you. 
 
 I thank Anhua Chen and Yuancheng Zhu for keeping me sane during the insane days of graduate school.
 
