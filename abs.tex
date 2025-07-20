@@ -1,0 +1,37 @@
+
+\begin{dissertationabstract} 
+%%	
+Systems today are complex than ever. This complexity not only makes it challenging to protect existing systems against known vulnerabilities, but also introduces unintended security vulnerabilities that do not fall within the purview of current threat models. In this thesis, I highlight how unintended security vulnerabilities can arise from both the complexity within a system and the complexity introduced by the interaction between already complex systems. Using Android API system as an example, I demonstrate how the complexity within this one system produces vulnerabilities that ultimately enable malicious apps to perform persistent and stealthy surveillance on a target device. I then show, through the case study of email forwarding, how the composition of email systems leads to vulnerabilities that allow an adversary to reliably evade email security protections. I conclude by discussing my ongoing work on cryptocurrency scams and hacks, which further illustrates how the complexity of various systems can enable both large-scale and targeted attacks that result in significant financial losses.
+
+Nowadays, software systems are extremely complicated that are not just a simple program running on a machine. Oftentimes, it involves dozens of different pieces of software that all are talking to each other. Each piece of software will make different assumptions about how users and other pieces of software are going to use the things they expose. In practice this creates problems because an adversary does not have to play by rules and follow the assumption. I study assumptions that made these individuals pieces of software and their security implications.
+
+My research interests are in empirically understanding and securing real-world systems, with
+a particular emphasis on complex, large-scale systems whose vulnerabilities impact a broad range of users.
+At the core of this work is identifying the range of unvalidated assumptions systems make and how those
+assumptions may be exposed to, and thus exploitable by, attackers. While fragility in low-level code is
+well-trodden ground (e.g., how invalid assumptions about array bounds can produce control flow integrity
+vulnerabilities), my work focuses on how ambiguities and assumptions in higher-level services and service
+protocols create their own unique set of challenges – particularly in the presence of composition. As I
+show, these issues emerge in diverse contexts ranging from operating system APIs, to standard e-mail
+delivery protocols, to the systems used to manage inter-blockchain financial transactions.
+A simple example of such an issue is cloud-based e-mail filtering (e.g., as provided by third-party
+companies such as Proofpoint or Barracuda). To deploy such a capability, one must compose an existing
+email delivery service (i.e., provided by the Simple Message Transport Protocol) with a separate mail
+filtering service. Thus, inbound mail must be first diverted to the filtering service which then, after
+filtering must forward the e-mail to the destination email server. However, implicit in this arrangement
+is that this composition is somehow enforced. If not, a malicious sender might bypass this filtering service
+by simply sending messages directly to the destination server.
+Thus far, it remains a challenging task to reason about service-level assumptions like this. For one,
+studying these assumptions requires reasoning about aspects that are less well-specified (e.g., the sender
+of an email follows the intended flow). Further complicating the issue is the composition of services
+— when services are combined to create new functionality, it exposes the fragility of their underlying
+assumptions, as interactions with other services can occur in unexpected ways.
+My goal is to make systems more secure, transparent, and usable at the service level, especially those
+that are user-facing and widely-deployed. Achieving this goal requires understanding how these systems
+work in practice, which in turn requires data. To this end, I have developed a variety of tools to collect
+data, such as through large-scale measurements, reverse-engineering, and user studies. I then analyze
+the collected data, understand the system and various assumptions made, identify gaps between the
+assumptions and reality (how systems are intended to work versus how they actually work), and reason
+about the security implications of these gaps. 
+
+\end{dissertationabstract}

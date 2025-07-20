@@ -147,7 +147,7 @@
 \vfil
 ``My ears had heard of you but now my eyes have seen you.''\\
 \vskip\baselineskip
-- Job 42:5 (\textit{NIV})
+- Job 42:5 (\textit{NIV}) \todo{format fix}
 
 \vfil
 \end{epigraph}
@@ -160,160 +160,17 @@
 \listoffigures
 \listoftables
 
-% Preface
-% \begin{preface}
-% \todo{Write a preface - take a look at some examples because it seems rather free form}
-% Almost nothing is said in the manual about the preface. There is no
-% indication about how it is to be typeset. Given that, one is forced to
-% simply typeset it and hope it is accepted. It is, however, optional
-% and may be omitted.
-% \end{preface}
-
-% Your fancy acks here. Keep in mind you need to ack each paper you
-% use. See the examples here. In addition, each chapter ack needs to
-% be repeated at the end of the relevant chapter.
-\begin{acknowledgements}
-In retrospect, this dissertation would not have been possible without the love, help,  and support of the wonderful people who surround me. And if you're reading this, you might be one of them --- thank you!
-While I could never hope to enumerate everyone who has helped me during my time at UCSD, I would be remiss if I did not at least attempt to acknowledge them. 
+\include{ack}
+\include{vita}
+\include{abs}
 
 
-First and foremost, I would like to thank my academic parents (or more formally, my advisors) Stefan Savage and Geoff Voelker,
-to whom I owe the most gratitude. They demonstrate the highest standards of mentorship and research excellence --- qualities that everyone seeks but so rarely finds.
-Over the years, they have been a constant source of support, guidance, and inspiration, despite the tremendous amount of turbulence and uncertainty in the world. They gave me the freedom to explore my research interests, supported every research agenda I pursued, and provided a safe environment for me to make mistakes and learn from them. I could not have asked for better advisors and would not be who I am today without them.
-
-
-I also thank my committee members KC, David, and Terrance for their time. KC and David patiently listen to my (sometimes poorly prepared) presentations, provide invaluable feedback, and help me realize that there is still much room for improvement. Terrance is very supportive and helps me see things from an economic perspective --- a viewpoint that is truly captivating and inspiring.
-
-Besides the faculty on my committee, I want to thank other amazing faculty members in the CSE  department. I had the privilege to work with Deian Stefan, Aaron Schulman, Kristen Vacarro, and Imani Munyaka, who 
-guided me through various projects and generously shared their expertise with me. I am also grateful to have received incredibly career and life advice from Deepak Kumar, Earlence Fernandes, Alex C. Snoeren, Amy Ousterhout, and Lawrence Saul.
-
-Next, I thank all the occupants of 3140: Gautam Akiwate, Audrey Ariniello (née Randall), Liam Arzola, Ani Canumalla, Ben ``Chongyang'' Du, Stewart Grant, Miro Haller, Katherine Izhikevich, Andrey Labunets, Elisa Luo, Ariana Mirian, Keegan Ryan, George Sullivan, Alisha Ukani, Shu-Ting Wang, Anil Yelam, and Wenyi Zhang.
-Many of you have played instrumental roles in my life and deeply shaped who I am. In particular, Stewart faithfully served as my guide to North American culture and introduced many wonderful things to me (climbing, camping, running, vegetarian food, just to name a few). I am grateful for the countless fond moments we have experienced together and look forward to the many more to come. Miro is my Swiss counterpart with whom I share many common interests and personalities. I am thankful for the classes we took together and the hours we spent together in the lab, in the climbing gym, in the ocean, or on the running track. Audrey let me work with her when I first arrived and was scrambling to find a research project. Our first paper together ended up winning the applied research prize and being my most cited paper. How lucky was I! Gautam mentored me through the early days and continues to support me throughout my PhD journey. Anil introduced tennis to me and had me over many times for delicious home-made Indian food and inspiring conversions (thank you to his partner Spandana too). Keegan redefines the ceiling of intelligence and grit in a lab full of high-achieving students. Elisa is a wonderful collaborator and great person to bounce ideas off of. Liam's dedication to surfing motivates me to do better every time. Ariana and Alisha demonstrate great leadership and human skills in the lab and the department, and I have learned a lot from them. Katherine and Ben organized various events while keeping 3140 a quiet, fun place to work ({\selectlanguage{russian}Спасибо}!).
-
-I also thank my fellow students in Sysnet and CryptoSec: Reyna Abhyankar, Lixiang Ao,  Arshia Arya, Alex Bellon, Nishant Bhaskar, Zachary Blanco, Sunjay Cauligi, Junda Chen, Paul Chung, Zhiyuan Guo, Yibo Guo, Linsong Guo, Zijian He, Haochen Huang, Yutong Huang, Evan Johnson, Ryan Kosta, Seoyoung Kweon, Guo ``Vector'' Li, William Lin, Luoxi ``Rosie'' Meng, Daniel Moghimi, Eric Mugnier, Shravan Narayan, Nishit Pandya, Tyler Potyondy, Sumanth Rao, Yizhou Shan, Tianyi Shan, Bingyu Shen, Ye Shu, Vikranth Srivatsa, Adam Suhl, David Thien, Amanda Tomlinson, Chengcheng Xiang, Zesen Zhang, and Li Zhong. Thank you for making CSE a fun place and teaching me many things over the years. Special thanks to Nishant, the OG of Sysnet, who acts like the old brother of junior students like me and is a constant source of wisdom. Thank you to our senior students who passed their graduate school wisdom to me: Vector, Chengcheng, and Bingyu. Thank you to Sumanth, for delivering high-quality work on my behalf (because I am lazy) and being a collaborator I can count on, Eric, for being a great partner for practicing pool, 
-Rosie, for showcasing how to be a thoughtful and kind person, and Paul, Ye, and Nishit, for being great collaborators and driving my projects forward (yes I am lazy I know).
-
-I also had the great opportunity to get to know and befriend many amazing people from CSE and other departments. I am particularly indebted to Lu Sun, who has unmatchable work ethics and is incredibly reliable, considerate and attentive. Lu has taught me many important life lessons. Thank you for being a close friend and letting me be a close friend. I thank Hengyuan Zhang and Wenqing Tang, for being great partners for all kinds of activities and tolerating my weird tempers every now and then during our travels. I would also like to thank those in the tennis group (big shout out to Alex Yen, Shuheng Li, Nikolai Vogler, Chris Priebe, Chester Holtz, Daniel Spokoyny, and Nithin Raghavan), the climbing group (Stewart, Miro, Keegan, Anil, Rosie, Pengrun Huang, and David Thien), the recently formed surfing group (special thanks to Seoyoung for being participant \#1 and advertising the group, and Liam, Rosie, Miro, and Max for participating), and the running club (kudos to Zac for starting the club). I would not have stayed sane without the fantastic times I spent with you all. In addition, without Jennifer Chien, Ehsan Hajyasini, and Marcus Fedarko,
-my times in the dance studios would have been much less fun.
-I also thank Danlu Chen for feeding me for free many times when we were in grad housing. Last but not least, I thank Cheng Fu, Xiaohan Fu, Hanxian Huang, Minghua Liu, Rohan Mahapatra, Mingyao Shen, and Yanbo Zhou for the fun times and conversations we had.
-
-I thank CSE staff members (Julie, Jarwyn, Tina, Tierra, Alice, and Valerie) for their help with various administrative tasks. I also thank Jennifer Folkestad and Cindy Moore for their dedication to their job, which makes the graduate students' life much easier. I thank all the visit day volunteers whom I had the privilege to work with, especially Miro Haller and Zachary Novack, for dedicating their time to make our visit day possible. I thank the generations of volunteers who took care of Chez Bob.
-
-I would have much less fun had my life not extend beyond the boarders of UCSD. I thank Camille Rubel for having my interests at heart, Alexendra ``Ally'' Nisenoff for throwing her CMU friends at me (now I have friends at CMU before even starting), and friends I made at or through the living water bible church in San Diego. I thank Warner Iveries, my knowledgeable and patient guitar teacher. I thank my landlord at Verano (Wendy and Jack), for being understanding and flexible, and my awesome roommates (Yage Jin, Junda Chen, Cheng Li, and Laura Odongo) who made my times at home a joy. I thank my PT Catherine ``Cathy'' Burgess for helping me fix my knee (twice!) and making every session enjoyable (you are the best!). I thank the life guards on various beaches who allow us surf with a peace of mind, especially the person who rescued me when I was caught in the rip current without a surfboard.
-
-
-I also thank the many people who have helped me professionally, including Liz Izhikevich from UCLA, Shravan Narayan from UT Austin, David Kohlbrenner from UW, Weijia He from University of South Hampton, Weitong Li from Virginia Tech, Brad Chen, Weihaw Chuang, Kurt Thomas, and Sarah Meiklejohn from Google, Blase Ur (who introduced me to the research world), David Cash, Grant Ho, and Ben Zhao from UChicago, the wonderful UCSD people I collaborated with (e.g., Ramakrishna Padmanabhan and Jian Chen Yan), and my collaborators from all over the world (notably Mattijs Jonker from UTwente, George Kappos from Chainalysis, Shawn Shan from Dartmouth, Emily Wenger from Duke, and Elijah Bouma-sims from CMU).
-
-I thank all of the friends I made throughout my life. Many of you are like my brothers and sisters (to be fair I have no idea what it feels like to have a sibling), who have been there for me through the ups and downs. You have witnessed the worst part of me, yet you still choose to stay besides me for years and decades. I would not have been able to come this far without you. 
-
-I thank Anhua Chen and Yuancheng Zhu for keeping me sane during the insane days of graduate school.
-
-Finally, I thank my parents for their love and unwavering support that powered me through this journey.
-
-% Finally, I would like to thank you for reading this far and perhaps reading the rest of the dissertation. I hope you can learn something useful and share it with others. To you all, and thy happy children of tomorrow, I send my greetings.
-\todo{double check I thanked everyone}
-
-
-\end{acknowledgements}
-
-% Stupid vita goes next
-\begin{vita}
-\noindent
-\begin{cv}{}
-\begin{cvlist}{}
-\item[2012-2016] Bachelor of Science, Software Engineering, Beijing Institute of Technology
-\item[2016-2018] Master of Science, Computer Science, University of Chicago
-\item[2019-2025] Doctor of Philosophy, Computer Science, University of California San Diego
-
-\end{cvlist}
-\end{cv}
-
-% This puts in the PUBLICATIONS header. Note that it appears inside
-% the vita environment. It is optional.
-\publications
-
-\noindent \textbf{Enze Liu}, Elisa Luo, Shawn Shan, Geoffrey M. Voelker, Ben Y. Zhao, and Stefan Savage, ``Somesite I Used To Crawl: Awareness, Agency and Efficacy in Protecting Content Creators From AI Crawlers,'' in \textit{Proceedings of the ACM Internet Measurement Conference (IMC)}, 2025.\\
-
-\noindent Alex Bellon, Miro Haller, Andrey Labunets, \textbf{Enze Liu}, and Stefan Savage, ``An Empirical Analysis on the Use and Reporting of National Security Letters,'' in \textit{Proceedings of the ACM Symposium on Computer Science and Law (CSLAW)}, 2025.\\
-
-
-\noindent \textbf{Enze Liu}, George Kappos, Eric Mugnier, Luca Invernizzi, Stefan Savage, David Tao, Kurt Thomas, Geoffrey M. Voelker, and Sarah Meiklejohn, ``Give and Take: An End-To-End Investigation of Giveaway Scam Conversion Rates,'' in \textit{Proceedings of the ACM Internet Measurement Conference (IMC)}, 2024.\\
-
-\noindent Lu Sun, Hengyuan Zhang, \textbf{Enze Liu}, Mingyang Liu, and Kristen Vaccaro, ``NewsGuesser: Using Curiosity to Reduce Selective Exposure,'' \textit{Proceedings of the ACM on Human-Computer Interaction (CSCW)}, 2024.\\
-
-\noindent Sumanth Rao, \textbf{Enze Liu}, Grant Ho, Geoffrey M. Voelker, and Stefan Savage, ``Unfiltered: Measuring Cloud-based Email Filtering Bypasses,'' in \textit{Proceedings of the ACM Web Conference (WWW)}, 2024.\\
-
-\noindent \textbf{Enze Liu}, Gautam Akiwate, Mattijs Jonker, Ariana Mirian, Grant Ho, Geoffrey M. Voelker, and Stefan Savage, ``Forward Pass: On the Security Implications of Email Forwarding Mechanism and Policy,'' in \textit{Proceedings of the IEEE European Symposium on Security and Privacy} (EuroS\&P), 2023.\\
-
-\noindent \textbf{Enze Liu}, Lu Sun, Alex Bellon, Grant Ho, Geoffrey M. Voelker, Stefan Savage, and Imani N.S. Munyaka, ``Understanding the Viability of Gmail's Origin Indicator for Identifying the Sender,'' in \textit{Proceedings of the Symposium on Usable Privacy and Security (SOUPS)}, 2023.\\
-
-\noindent \textbf{Enze Liu}, Sumanth Rao, Sam Havron, Grant Ho, Stefan Savage, Geoffrey M. Voelker, and Damon McCoy, ``No Privacy Among Spies: Assessing the Functionality and Insecurity of Consumer Android Spyware Apps,'' \textit{Proceedings on Privacy Enhancing Technologies (PoPETS)}, 2023.\\
-
-\noindent Anil Yelam, Stewart Grant, \textbf{Enze Liu}, Radhika Niranjan Mysore, Marcos K Aguilera, Amy Ousterhout, and Alex C. Snoeren, ``Limited Access: The Truth Behind Far Memory,'' in \textit{Proceedings of the
-Workshop on Resource Disaggregation and Serverless (WORDS)}, 2023.\\
-
-\noindent Audrey Randall, \textbf{Enze Liu}, Ramakrishna Padmanabhan, Gautam Akiwate, Geoffrey M. Voelker, Stefan Savage, and Aaron Schulman, ``Home is Where the Hijacking is: Understanding DNS Interception by Residential Routers,'' in \textit{Proceedings of the ACM Internet Measurement Conference (IMC)}, 2021.\\
-
-\noindent \textbf{Enze Liu}, Gautam Akiwate, Mattijs Jonker, Ariana Mirian, Stefan Savage, and Geoffrey M. Voelker, ``Who's Got Your Mail? Characterizing Mail Service Provider Usage,'' in \textit{Proceedings of the ACM Internet Measurement Conference (IMC)}, 2021.\\
-
-\noindent Audrey Randall, \textbf{Enze Liu}, Gautam Akiwate, Ramakrishna Padmanabhan, Geoffrey M. Voelker, Stefan Savage, and Aaron Schzulman, ``Trufflehunter: Cache Snooping Rare Domains at Large Public DNS Resolvers,'' in \textit{Proceedings of the ACM Internet Measurement Conference (IMC)}, 2020.\\ 
-
-\noindent \textbf{Enze Liu}, Amanda Nakanishi, Maximilian Golla, David Cash, and Blase Ur, ``Reasoning Analytically about Password-Cracking Software,'' in \textit{Proceedings of the IEEE Symposium on Security and Privacy (S\&P)}, IEEE, 2019.\\
-\end{vita}
-
-
-
-\begin{dissertationabstract} 
-%%	
-Systems today are complex than ever. This complexity not only makes it challenging to protect existing systems against known vulnerabilities, but also introduces unintended security vulnerabilities that do not fall within the purview of current threat models. In this thesis, I highlight how unintended security vulnerabilities can arise from both the complexity within a system and the complexity introduced by the interaction between already complex systems. Using Android API system as an example, I demonstrate how the complexity within this one system produces vulnerabilities that ultimately enable malicious apps to perform persistent and stealthy surveillance on a target device. I then show, through the case study of email forwarding, how the composition of email systems leads to vulnerabilities that allow an adversary to reliably evade email security protections. I conclude by discussing my ongoing work on cryptocurrency scams and hacks, which further illustrates how the complexity of various systems can enable both large-scale and targeted attacks that result in significant financial losses.
-
-Nowadays, software systems are extremely complicated that are not just a simple program running on a machine. Oftentimes, it involves dozens of different pieces of software that all are talking to each other. Each piece of software will make different assumptions about how users and other pieces of software are going to use the things they expose. In practice this creates problems because an adversary does not have to play by rules and follow the assumption. I study assumptions that made these individuals pieces of software and their security implications.
-
-My research interests are in empirically understanding and securing real-world systems, with
-a particular emphasis on complex, large-scale systems whose vulnerabilities impact a broad range of users.
-At the core of this work is identifying the range of unvalidated assumptions systems make and how those
-assumptions may be exposed to, and thus exploitable by, attackers. While fragility in low-level code is
-well-trodden ground (e.g., how invalid assumptions about array bounds can produce control flow integrity
-vulnerabilities), my work focuses on how ambiguities and assumptions in higher-level services and service
-protocols create their own unique set of challenges – particularly in the presence of composition. As I
-show, these issues emerge in diverse contexts ranging from operating system APIs, to standard e-mail
-delivery protocols, to the systems used to manage inter-blockchain financial transactions.
-A simple example of such an issue is cloud-based e-mail filtering (e.g., as provided by third-party
-companies such as Proofpoint or Barracuda). To deploy such a capability, one must compose an existing
-email delivery service (i.e., provided by the Simple Message Transport Protocol) with a separate mail
-filtering service. Thus, inbound mail must be first diverted to the filtering service which then, after
-filtering must forward the e-mail to the destination email server. However, implicit in this arrangement
-is that this composition is somehow enforced. If not, a malicious sender might bypass this filtering service
-by simply sending messages directly to the destination server.
-Thus far, it remains a challenging task to reason about service-level assumptions like this. For one,
-studying these assumptions requires reasoning about aspects that are less well-specified (e.g., the sender
-of an email follows the intended flow). Further complicating the issue is the composition of services
-— when services are combined to create new functionality, it exposes the fragility of their underlying
-assumptions, as interactions with other services can occur in unexpected ways.
-My goal is to make systems more secure, transparent, and usable at the service level, especially those
-that are user-facing and widely-deployed. Achieving this goal requires understanding how these systems
-work in practice, which in turn requires data. To this end, I have developed a variety of tools to collect
-data, such as through large-scale measurements, reverse-engineering, and user studies. I then analyze
-the collected data, understand the system and various assumptions made, identify gaps between the
-assumptions and reality (how systems are intended to work versus how they actually work), and reason
-about the security implications of these gaps. 
-
-\end{dissertationabstract}
 
 % This is where the main body of your dissertation goes!
 \mainmatter
 
 % Optional Introduction
-\begin{dissertationintroduction}
-
-
-\textit{What should a data center server look like?} Twenty years ago, a data center operator may
-have argued for the simplicity of homogeneity over optimal performance, reasoning that carefully
-picked commodity hardware at a given price point would yield the best cost-performance tradeoffs and that the
-performance gains of next-generation hardware would quickly erase any benefits made by specializing
-servers due to Dennard scaling.
-
-\end{dissertationintroduction}
+\include{intro}
 
 
 
@@ -355,54 +212,7 @@ servers due to Dennard scaling.
 \input{papers/bridge/discussion}
 
 
-\chapter{Conclusion}
-
-This dissertation explores the problems and solutions for sharing disaggregated memory. The high
-access latency and extreme cost of contention in far-memory over RDMA cause many data structures,
-which would otherwise be efficient, to experience performance collapse. Stale caches cause
-opportunistic data structures to fail under contention, and pointer-based data structures incur
-additional round trips when far-memory pointers need to be resolved. Using existing techniques,
-applications can be made to work, but they simply have to incur the penalties of sharing when under
-contention.
-
-\begin{center}
-\textit{Data structures can be optimized for disaggregated memory by leveraging network programmability} \\
-\end{center}
-
-
-In this chapter we begin by summarizing the contributions of this dissertation and their
-relationship to our thesis claim, and we conclude with a discussion of this works limitations paired
-with future work directions in this area of research.
-
-\section{Contributions}
-
-In this dissertation, we have contributed to the state of the art in disaggregated memory systems by:
-
-\begin{itemize}
-    \item Demonstrating the significant performance gains achievable by using a programmable switch to cache the contended state of a data structure and resolve the conflicts in the network.
-    \item Showing that a programmable switch can reduce the instruction-level bottlenecks of RDMA atomic operations.
-    \item Demonstrating that through locality optimizations locks can be fit into a small amount of NIC memory.
-    \item Showing that RDMA-verbs are well suited for locality optimized data structures.
-\end{itemize}
-
-We believe that these contributions are significant stepping stones towards the design of future
-efficient disaggregated systems. In the case of {\sword}, which demonstrated acceleration on
-list appends, it could be adapted to other data structures with similar properties, for example,
-log-structured systems. We believe that the insight behind RCuckoo's locality-based optimizations is
-general and that many data structures could benefit from localizing their data in a similar fashion.
-
-\section{Future Work}
-
-
-Each of the works presented in this dissertation is a step towards more efficient disaggregated
-systems. In this section, we speculate on future directions for this area of research based on the
-limitations of the work presented here.
-
-The future for disaggregated systems is bright. This work has demonstrated that shared remote memory
-can be made efficient with programmable networking hardware and that, through careful design, data
-structures can be adapted to disaggregated memory. Hopefully, future work will build on these
-techniques and enable a shift towards mainstream disaggregated computing.
-
+\input{conclusion}
 
 
 
