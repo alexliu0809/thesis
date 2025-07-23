@@ -1,48 +1,11 @@
 
 \chapter{Conclusion}
+This dissertation explores assumptions in service composition and their security implications. Reasoning about assumptions can be difficult, as they are often abstract, poorly defined, and require a holistic understanding of the system. These properties render traditional security techniques (e.g., static analysis and machine learning) ineffective, since they typically focus on low-level code and individual components.
 
-This dissertation explores the problems and solutions for sharing disaggregated memory. The high
-access latency and extreme cost of contention in far-memory over RDMA cause many data structures,
-which would otherwise be efficient, to experience performance collapse. Stale caches cause
-opportunistic data structures to fail under contention, and pointer-based data structures incur
-additional round trips when far-memory pointers need to be resolved. Using existing techniques,
-applications can be made to work, but they simply have to incur the penalties of sharing when under
-contention.
+In this thesis, I propose an end-to-end approach to identifying and understanding assumptions in service composition and their security implications. I highlight the effectiveness of this approach through a case study of three systems: email (Chapter~\ref{chap:eurosp23}), Android (Chapter~\ref{chap:pets23}), and cross-chain bridges (Chapter~\ref{chap:bridge}). In Chapter~\ref{chap:eurosp23}, I show how actions taken by forwarders can create unintended security implications, such as allowing attackers to bypass email authentication at downstream recipients. In Chapter~\ref{chap:pets23}, I demonstrate how Android spyware apps repurpose existing APIs to perform persistent and stealthy surveillance on a target device, use cases that were not intended by the API designers. In Chapter~\ref{chap:bridge}, I start by highlighting the strict security assumptions made by cross-chain bridges --- for a bridge to be secure, all of its components must be secure. I then design and implement a simple and effective mitigation strategy that can be applied to stop a wide range of, which would not have been possible without a holistic understanding of the system.
 
-\begin{center}
-\textit{Data structures can be optimized for disaggregated memory by leveraging network programmability} \\
-\end{center}
-
-
-In this chapter we begin by summarizing the contributions of this dissertation and their
-relationship to our thesis claim, and we conclude with a discussion of this works limitations paired
-with future work directions in this area of research.
-
-\section{Contributions}
-
-In this dissertation, we have contributed to the state of the art in disaggregated memory systems by:
-
-\begin{itemize}
-    \item Demonstrating the significant performance gains achievable by using a programmable switch to cache the contended state of a data structure and resolve the conflicts in the network.
-    \item Showing that a programmable switch can reduce the instruction-level bottlenecks of RDMA atomic operations.
-    \item Demonstrating that through locality optimizations locks can be fit into a small amount of NIC memory.
-    \item Showing that RDMA-verbs are well suited for locality optimized data structures.
-\end{itemize}
-
-We believe that these contributions are significant stepping stones towards the design of future
-efficient disaggregated systems. In the case of {\sword}, which demonstrated acceleration on
-list appends, it could be adapted to other data structures with similar properties, for example,
-log-structured systems. We believe that the insight behind RCuckoo's locality-based optimizations is
-general and that many data structures could benefit from localizing their data in a similar fashion.
 
 \section{Future Work}
+This dissertation studies assumptions in service composition and their security implications. While the case studies presented in this thesis demonstrate the effectiveness of the proposed approach, there are several areas for future work. One area of research can explore better ways to identify and analyze assumptions in service composition. In all three cases, assumptions were identified through manual analysis, which was time-consuming and required deep domain knowledge. Future work could consider automating the process of identifying assumptions. Similarly, crafting attacks based on individual assumptions is also a manual process. A possible solution is using fuzzing techniques to automatically generate inputs that violate assumptions.
 
-
-Each of the works presented in this dissertation is a step towards more efficient disaggregated
-systems. In this section, we speculate on future directions for this area of research based on the
-limitations of the work presented here.
-
-The future for disaggregated systems is bright. This work has demonstrated that shared remote memory
-can be made efficient with programmable networking hardware and that, through careful design, data
-structures can be adapted to disaggregated memory. Hopefully, future work will build on these
-techniques and enable a shift towards mainstream disaggregated computing.
+% Another area of future work 
