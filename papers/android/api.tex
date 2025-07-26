@@ -44,7 +44,7 @@ the category by discussing potential mitigations.
 
 
 
-\begin{table*}[h]
+\begin{table*}[t]
   \centering
     \begin{tabular}{p{3.0cm}p{4.7cm}llllllllllllll}
        Category                                                &Capabilities                          &\rotatebox{90}{mSPY}  &\rotatebox{90}{Mobile-tracker-free}  &\rotatebox{90}{Clevguard}  &\rotatebox{90}{HoverWatch}  &\rotatebox{90}{Flexispy}  &\rotatebox{90}{Spyic}  &\rotatebox{90}{Spyhuman}  &\rotatebox{90}{TheTruthSpy}  &\rotatebox{90}{iKeyMonitor}  &\rotatebox{90}{Cerberus}  &\rotatebox{90}{Spy24}  &\rotatebox{90}{Spapp}  &\rotatebox{90}{Meuspy}  &\rotatebox{90}{Highstermobile}  \\
@@ -77,7 +77,7 @@ the category by discussing potential mitigations.
                                                                                                      &Creating "diehard" services           &\checkmark            &\checkmark                           &\checkmark                 &\checkmark                  &\checkmark                &\checkmark             &\checkmark                &\checkmark                   &\checkmark                   &\checkmark                &\checkmark             &\checkmark             &\checkmark              &\checkmark                      \\
     \hline
     \end{tabular}
-    \caption{Summary of capabilities studied. A star denotes that an app implements a particular capability.
+    \caption{Summary of capabilities studied. A star denotes that an app implements a particular capability.\todo{format}
       %, otherwise we leave the corresponding cell in the table blank.
       \label{tab:feature_summary}}
   \end{table*}
@@ -269,7 +269,7 @@ agent.
 %\vspace{0.5cm}
 %\hspace{-0.1\linewidth}
 %\begin{minipage}{0.5\textwidth}
-\begin{lstlisting}[basicstyle=\small\ttfamily,caption={Code snippet that demonstrates how Spy24 streams live video.},label={lst:invisible_browser_code},captionpos=b,float=t]
+\begin{lstlisting}[basicstyle=\small\ttfamily,caption={Code snippet that demonstrates how Spy24 streams live video.\todo{format}},label={lst:invisible_browser_code},captionpos=b,float=t]
 // xml layout for the webview
 <WebView id="@+id/wv" layout_width="1dp" layout_height="1dp"/>
 // Java code that configures the webview
@@ -436,7 +436,7 @@ false also reduces the usability of benign apps such as screen readers.
 \label{subsubsec:screenshot}
 Spyware apps can also extract sensitive information by taking screenshots. We
 observe two ways the apps in our set take screenshots: via
-\texttt{MediaProjection} and \texttt{AccessibilityService}. For MediaProjection
+\texttt{MediaProjection} and \texttt{AccessibilityService}.\todo{format} For MediaProjection
 to work, an activity is required~\cite{androidH20:online}. This approach is
 nominally a challenge for spyware apps since they generally run as services and
 do not have an activity. As a result, some spyware apps create temporary
@@ -671,7 +671,7 @@ hidden app, and hiding from the Recent screen.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.95\columnwidth]{fig/app_launcher_wifi.pdf}
+\includegraphics[width=0.6\columnwidth]{fig/app_launcher_wifi.pdf}
 \caption{App launcher that displays app icons.
 The Spyhuman app installed itself as the innocuous ``Wi-Fi'' icon.}
 \label{fig:app_launcher}
@@ -805,7 +805,7 @@ activity.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.8\columnwidth]{fig/recents-screen.pdf}
+\includegraphics[width=0.3\columnwidth]{fig/recents-screen.pdf}
 \caption{A screenshot of Recents screen showing that Chrome is recently accessed. However, a spyware app will not appear in the recent screen (if it chooses to hide from the recent screen), despite that one of its Activities is recently created and displayed.}
 \label{fig:recents_screen}
 \end{figure}
@@ -848,7 +848,7 @@ device by obscuring the uninstallation process and creating ``diehard'' services
 \subsubsection*{Capability \#7: Obscuring the Uninstallation Process}
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.8\columnwidth]{fig/DA_pdf.pdf}
+\includegraphics[width=0.6\columnwidth]{fig/DA_pdf.pdf}
 \caption{An example of an app disabling both the
 Force Stop and Uninstall buttons on Android 6.}
 \label{fig:da}
@@ -964,7 +964,7 @@ turned off by Android for battery saving reasons~\cite{AndroidA0:online,Accessib
 %		\bottomrule
 	\end{tabular}
 	\caption{Systematization of commodity spyware vulnerabilities. Circles denote the severity level of the insecurity. \protect \partrating\ indicates at least one instance of the insecurity; \protect \rating{100} indicates all app functionality is insecure; * indicates URLs are temporary and expire.
-          Shading added to improve readability.
+          Shading added to improve readability.\todo{format}
 		%\sumanth{Should we move None's and No's to an empty circle? or leave that field blank? Also do we want to move the unauthenticated access column to circle's? If so we might lose information (e.g if just audio vs audio and images are affected. Suggestions?)} \geoff{(1) can you reorder the columns to match the order discussed in the section? (2) no column for SMS commands? (3) my preference is for blank cells over ``None''; (4) unauthenticated: as is conveys the info better than circles}
 	}
 

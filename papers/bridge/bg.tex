@@ -73,7 +73,7 @@ contract bytecode---and any smart contracts the contract itself calls.
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=\columnwidth]{fig/usdc-contract-2sp.pdf}
+    \includegraphics[width=0.7\columnwidth]{fig/usdc-contract-2sp.pdf}
     \caption{Simplified USDC ERC-20 Token Contract.}
     \label{fig:erc20}
 \end{figure}
@@ -201,7 +201,7 @@ contracts.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{fig/token.png}
+\includegraphics[width=0.7\columnwidth]{fig/token.png}
 \caption{Event Emitted by an ERC-20 Token (USDC).}
 \label{fig:erc20-event}
 \end{figure}
@@ -245,7 +245,7 @@ submit the receipt to the withdrawal contract to complete the transfer.
 \textbf{3. Withdraw (on destination chain).}
 The withdrawal contract on the destination chain first processes the withdraw
 request by verifying the receipt and transferring the tokens to the recipient
-(step 8). In (the simplified) Chainswap's withdraw case, for example, users call:
+(step 8). In (the simplified) Chainswap's withdraw case, for example, users call\todo{format}:
 \begin{lstlisting}
 withdraw(uint256 id, address token, address to, uint256 val, Signature[] sigs) {
   _chargeFee();
