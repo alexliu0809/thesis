@@ -65,7 +65,7 @@ email to the list's members (\eg, \dns{user@univ.edu}).
 \begin{figure}[t]
   \centering
 %  \vspace*{-0.1in}
-    \includegraphics[width=\columnwidth]{fig/table_forwarding_mechanisms_combined.pdf}
+    \includegraphics[width=0.7\columnwidth]{fig/table_forwarding_mechanisms_combined.pdf}
     \caption{Four prevalent approaches to email forwarding.  Addresses
       in blue correspond to header values rewritten during the
       forwarding process.
@@ -77,8 +77,7 @@ email to the list's members (\eg, \dns{user@univ.edu}).
 % \grant{In MFEF, is there a reason why the MAILFROM is acm instead of hotcrp? If it's to illustrate a change, I suggest we use noreply@hotcrp.com for the sender MAIL FROM addresses.}\alex{fixed}
 
 % \noindent{\bf Plain Message-Forwarding (PMF)}.
-\paragraph{Plain Message-Forwarding (PMF)}
-Initially designed for
+\textbf{Plain Message-Forwarding (PMF)}. Initially designed for
 the purpose of ``source-routing''~\cite{Emailfor45:online}, PMF was
 one of the first forwarding mechanisms in wide use.
 Forwarders that use PMF only change
@@ -95,7 +94,7 @@ rather than presenting \dns{alice@univ.edu} as the sender.
 
 
 % \noindent{\bf MAIL FROM Equals From (MFEF)}.
-\paragraph{MAIL FROM Equals FROM (MFEF)}
+\textbf{MAIL FROM Equals FROM (MFEF)}.
 Similar to PMF, MFEF (Figure~\ref{fig:forwarding_mechs_combined}b) aims to achieve transparent forwarding by preserving the original sender's identity in the \textsc{FROM} header.
 Unlike the other forwarding approaches described in this section, MFEF is a custom forwarding implementation that appears to be used only by Outlook and Freemail.
 % \footnote{We are not
@@ -125,8 +124,7 @@ leading to provider-specific defenses and new anti-spoofing protocols that we de
 % PMF in practice, which can result in security issues.
 
 % {\bf Remailing (REM)}.
-\paragraph{Remailing (REM)}
-Unlike PMF and MFEF, remailing (aka redistribution)
+\textbf{Remailing (REM)}. Unlike PMF and MFEF, remailing (aka redistribution)
 works well with SPF because this approach alters the headers in a way that resembles the action of the forwarder submitting a new message~\cite{SenderRe69:online}.
 % It refers to re-sending a message and also
 % rewriting the \textsc{MAIL FROM} field. It is commonly named remailing
@@ -165,7 +163,7 @@ such as \textsc{None} and \textsc{Quarantine} instead of
 % domain has strict DMARC policies like quarantine or reject.
 
 % \noindent{\bf Remailing with Modification (REM + MOD)}.
-\paragraph{Remailing with Modification (REM + MOD)}
+\textbf{Remailing with Modification (REM + MOD)}.
 The final forwarding approach, Remailing with Modification (REM + MOD)~\cite{rfc6783},
 resolves these compatibility issues by sacrificing the goal of transparent forwarding.
 Email forwarded using REM + MOD will pass both SPF and DMARC.
