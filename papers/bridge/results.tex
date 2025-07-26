@@ -25,9 +25,6 @@ analyzed, and the number and kinds of transactions that violated the
 balance invariant.
 %
 Below we discuss these two categories of transactions in more detail.
-For further context on each of the attacks,
-Appendix~\ref{sec:attack-summaries} provides a descriptive account
-summarizing how the attacks transpired.
 
 Looking forward to Sections~\ref{sec:live-audit}
 and~\ref{sec:active-protect}, altogether \offlinetool identified 3,423
@@ -99,9 +96,10 @@ and do not consider it further.
 We group the remaining bridge transactions that violate the invariant
 into four categories, which we describe below.  For reference, we also
 list some of these bridge transactions in
-Table~\ref{tab:xaction-hashes} in the appendix to provide specific
+Table~\ref{tab:xaction-hashes} to provide specific
 examples with more detail.
 
+\input{papers/bridge/tab-flagged-transations.tex}
 %% \alex{* our due diligence in verifying the unbacked transations (6.2).}
 
 % \paragraph has a bit too much space
@@ -114,8 +112,7 @@ unreported attacks on Anyswap.
 %% 2021, attack on Anyswap,
 The first group of three transactions executed once Anyswap reopened
 after the attack but before Anyswap patched its smart contract
-(Anyswap transactions \#1--3 in Table~\ref{tab:xaction-hashes} in the
-appendix).  These transactions were three days later and involved
+(Anyswap transactions \#1--3 in Table~\ref{tab:xaction-hashes}).  These transactions were three days later and involved
 different deposit and withdrawal addresses than the July 10, 2021
 attack (yet utilizing the same compromised key).  The second group of 21 transactions on November 18, 2021,
 were all withdrawing on Avalanche.  These
@@ -200,7 +197,7 @@ Many of these cases involved highly suspicious unbacked bridge
 transactions involving very large withdrawals without corresponding
 deposits.  For example, Anyswap had seven transactions totaling more than
 \$1.5\mil pointing to non-existent or already-redeemed deposits (e.g., Anyswap \#4 and \#5 in
-Table~\ref{tab:xaction-hashes} in the appendix).
+Table~\ref{tab:xaction-hashes}).
 %
 PolyNetwork/2023 had 27 withdrawals referencing a non-existent
 deposit address totaling more than \$20\mil (PolyNetwork/2023 \#1 in Table~\ref{tab:xaction-hashes}).

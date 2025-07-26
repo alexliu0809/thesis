@@ -104,8 +104,7 @@ Table~\ref{tab:feature_summary} summarizes the capabilities we study
 and shows which spyware apps implement them.
 To understand how the spyware apps implement their nefarious capabilities, we reverse engineered and analyzed each app. Our approach consists of three steps.
 
-\textbf{Preparation.} We acquire the latest APKs of spyware apps by directly downloading them from their websites. We use \texttt{APKTOOL}~\cite{ApktoolA72:online} to disassemble the APKs and obtain the corresponding manifest and smali code.\footnote{Smali is a human-readable represenation of the Dalvik bytecode used by Android apps.} We also decompile the APK to Java source using \texttt{JADX}~\cite{skylotja9:online}. Identifiers and even strings in the Java code are often obfuscated, and Appendix~\ref{sec:apk_obfuscation} provides more details about the obfuscation used
-by various apps.
+\textbf{Preparation.} We acquire the latest APKs of spyware apps by directly downloading them from their websites. We use \texttt{APKTOOL}~\cite{ApktoolA72:online} to disassemble the APKs and obtain the corresponding manifest and smali code.\footnote{Smali is a human-readable represenation of the Dalvik bytecode used by Android apps.} We also decompile the APK to Java source using \texttt{JADX}~\cite{skylotja9:online}.
 
 \textbf{Manual Investigation.}
 For each capability, we manually analyzed the app manifest and the decompiled Java code to determine how
@@ -535,7 +534,7 @@ The most straightforward example is the deployment of Google Play Protect, which
 turned off after acquiring permissions to manipulate audio
 settings\footnote{One exception is Japan, where muting the shutter sound when
 taking pictures or videos is not possible due to legal
-requirements~\cite{HowcanIt38:online}.}) or by a malicious user (e.g., as mentioned in Appendix~\ref{subsubsec:install_configure}, spyware apps require that their notification be disabled by the abuser upon installation).
+requirements~\cite{HowcanIt38:online}.}) or by a malicious user (e.g., spyware apps can require that their notification be disabled by the abuser upon installation).
 
 
 The research community has also proposed various defense mechanisms when
@@ -739,8 +738,7 @@ the \texttt{ACTION\_MAIN} action.
 Since both apps do not have an icon displayed in the app launcher,
 % and can be installed and run properly on an Android phone,
 they cannot easily be started by a normal user.  As a result, both
-Spy24 and Meuspy use a loader to start the app (as described in
-Appendix~\ref{subsubsec:install_configure}).
+Spy24 and Meuspy use a loader to start the app.
 
 We have disclosed the abuse of the \texttt{LEANBACK\_LAUNCHER} intent
 on phone apps to Google, and Google determined that
@@ -848,10 +846,16 @@ device by obscuring the uninstallation process and creating ``diehard'' services
 %\subsubsection{Capabilities}
 
 \subsubsection*{Capability \#7: Obscuring the Uninstallation Process}
-
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\columnwidth]{fig/DA_pdf.pdf}
+\caption{An example of an app disabling both the
+Force Stop and Uninstall buttons on Android 6.}
+\label{fig:da}
+\end{figure}
 One way to prevent users from stopping and uninstalling an app is by
 disabling the Force Stop and Uninstall buttons (see
-Figure~\ref{fig:da} in the appendix).  For Android versions below 7.1,
+Figure~\ref{fig:da}).  For Android versions below 7.1,
 these buttons can be disabled simply by registering the app with
 \texttt{Device Administrator} (DA) privileges (as detailed in prior
 work~\cite{shan2019device}). To enable these two buttons, the user

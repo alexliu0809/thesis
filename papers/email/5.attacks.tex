@@ -317,7 +317,7 @@ When the final recipient's mail server receives
 the email, the server will observe that the email comes from a
 ``well-known'' provider, apply its relaxed validation checks, and
 successfully deliver the email to the recipient's inbox (even though
-the spoofed email fails normal SPF and DMARC checks).\footnote{Additionally, we note that Gmail would usually display a UI warning for forwarded email messages. However, no UI warning is displayed for this email due to a bug detailed in Appendix~\ref{subsec:ui_bug}.}
+the spoofed email fails normal SPF and DMARC checks).
 %\alex{The part that talks about the UI bug}
 %We verified this attack, and Figure~\ref{fig:ss_gmail_via_outlook} in the Appendix shows one such spoofed message delivered to GMail without security warnings.
 
@@ -335,8 +335,7 @@ messages with ARC headers added by providers such as Gmail and
 Fastmail to the recipient's inbox without any warning.  However, we
 show that this issue is not limited to interactions between Gmail and
 Zoho customers.  We demonstrate how further issues, including the fact that
-Zoho trusts and (incorrectly) reads ARC headers added by Fastmail
-(Appendix~\ref{sec:arc_adoption_and_trust}), open forwarding
+Zoho trusts and (incorrectly) reads ARC headers added by Fastmail, open forwarding
 (\S~\ref{subsubsec:open_forwarding}), and several forwarding
 assumptions (\S~\ref{subsubsec:quarantine_instead_of_reject},
 \S~\ref{subsubsec:whitelist}), can be combined with the underlying ARC
@@ -427,7 +426,7 @@ spoofed email.
 Finally, upon receiving the forwarded email, Zoho's mail server will perform DMARC validation.
 Although the spoofed email will fail SPF and DMARC checks,
 Zoho's vulnerable ARC implementation
-will misinterpret the ARC headers that Fastmail attached (Appendix~\ref{sec:arc_adoption_and_trust}).
+will misinterpret the ARC headers that Fastmail attached.
 As a result, Zoho will treat the email as passing
 DMARC and deliver the spoofed message to the victim's inbox. We end by noting that this attack would not have worked for domains with DMARC policy \textsc{Reject} had Fastmail rejected spoofed email messages addressed from such domains (\S~\ref{subsubsec:quarantine_instead_of_reject}).
 %Figure~\ref{fig:ss_zoho_arc} in the Appendix illustrates that this attack succeeds without any security warnings, even though the spoofed domain in our experiment, facebook.com, has a DMARC policy of \textsc{reject}. 
@@ -496,16 +495,6 @@ Indeed, in querying \dns{.edu} and
 \dns{.gov} domains, roughly 10\% of all \dns{.edu}
 domains and 5\% of all \dns{.gov} domains are potentially susceptible to this attack.\footnote{As examples, Yale University operates \dnsfn{yale.edu} with a DMARC policy of \textsc{None} and hosts multiple mailing lists using Mailman, and the State of Washington operates a range of mailing lists using Listserv and whose \dnsfn{wa.gov} domain also has a DMARC policy of \textsc{None}.}
 
-Additionally, for mailing lists like Gaggle that do not enforce DMARC
-checks before forwarding (Appendix~\ref{subsec:no_dmarc}), this attack affects every organization using their services,
-even when the domain has adopted stronger DMARC policies.
-
-% We contribute to the security analysis of mailing lists by
-% identifying three possible attacks against all four mailing lists.
-% In all three attacks, a spoofed email would be properly forwarded by a mailing list and pass DMARC checks after being forwarded, which makes it very trustworthy. The attacks in this section exploit forwarding mechanisms used by mailing lists and the known weak DMARC policy none.
-%
-% \alex{HELP NEEDED: I don't how to summarize the three attacks in
-% one sentence. See the details below}
 
 
 
@@ -547,10 +536,8 @@ any of the organization's subdomains (if the subdomains also have
 DMARC policy \textsc{None}) due to DMARC's inherent relaxed alignment policy.}
 
 During our experiments, we also observed that some mailing list
-services, such as Gaggle, do not enforce DMARC policies at all
-(Appendix~\ref{subsec:no_dmarc}).
+services, such as Gaggle, do not enforce DMARC policies at all.
 This lack of enforcement allows the attack to succeed regardless of the spoofed domain's DMARC policy.
-We provide more details in Appendix~\ref{sec:append_mailing_list_details}.
 
 
 

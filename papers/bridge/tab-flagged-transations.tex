@@ -1,0 +1,62 @@
+\newcommand{\bridgehash}[1]{\texttt{\zz#1\zz}}%In a perfect world, this would be changed to allow linebreaks anywhere in #1
+\def\zz#1{%
+ \ifx\zz#1\else
+   #1\linebreak[1]\expandafter\zz
+ \fi}
+
+\begin{table*}[t!]
+\centering
+\footnotesize
+\begin{tabular}{p{1.5cm}p{5.8cm}cp{5.8cm}p{1.5cm}}
+\toprule
+\textbf{Bridge} & \textbf{(Claimed) Deposit Transaction Hash} & \textbf{\makecell{Chain \&\\Token}} & \textbf{Withdraw Transaction Hash} & \textbf{\makecell{Chain \\\& Token}} \\
+\midrule
+Wormhole \#1 & \bridgehash{0x8bbb7befd198a5e90297f451fc43a9e90de083289a041c8af94116c785cf496d} &\makecell{Polygon\\0.5\\WSOL}  & \bridgehash{5AiesW9pKrZvCCJM8QPWmqx...dkadV1waPVLWfsnCMVQmyYaciLxEo} &\makecell{SOL\\650\\USDC}\\[0.2in]
+% \hline
+Wormhole \#2 & \bridgehash{0x55d1e486a8e2102e07fd6270a03f05bbee7b43bf27ebac97b95b98e068f6740e} &\makecell{Polygon\\4.3k\\MATIC}  & \bridgehash{0xbe81895b1c3172fd69b8d4d9bf726edfdc17083876c440f9414ff316999237d7} &\makecell{AVAX\\2.3k\\WMATIC}\\
+
+% \cline{2-5}
+%  & \bridgehash{0x542efe5a7f965b927a294bce7f3a30492d0e2ca60da2e2d6cdfaf523a28a2a9c} & \makecell{Polygon\\0.5 SOL}  &\\ 
+\hline
+
+Anyswap \#1 & \bridgehash{0x01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b} & N/A &  \bridgehash{0xf015a6b06a13a08d3499ece17504d14a95d6af3e04ae11f291dca22dbbf6c991}  & \makecell{BSC\\$5*10^{-8}$\\USDC}\\[0.2in]
+% \cline{2-5}
+% \cline{2-5}
+Anyswap \#2 & \bridgehash{0x01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b} & N/A &  \bridgehash{0x9e55b7295880dce76aa8af0f3e3f9e36499ae0bdb28088a5924daf29c6132ceb}  & \makecell{BSC\\55k\\USDC} \\[0.2in]
+
+% \cline{2-5}
+Anyswap \#3 & \bridgehash{0xe3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855} & N/A &  \bridgehash{0x4f038804d0622d2eab15d21d902a3fdd3bdfb5427bb5fd65b9eb0a41169534be}  & \makecell{Polygon\\100k\\USDC}\\[0.2in]
+
+Anyswap \#4 & \bridgehash{0x0x0000000000000000000000000000000000000000000000000000000000000000} & N/A &  \bridgehash{0x98aa9e94d4fd0a05c27eb13ac2e699e4426c8dd9d57d04c0fa09cf4951eb2f94}  & \makecell{BSC\\650k\\USDC}\\[0.2in]
+
+Anyswap \#5 & \bridgehash{0x0x0000000000000000000000000000000000000000000000000000000000000000} & N/A &  \bridgehash{0xa67ac5dc308142f89409df89dc85e8fab88c575b3adef77fbc8f51858b7bf7cb}  & \makecell{Polygon\\50k\\USDC}\\[0.2in]
+
+Anyswap \#6 & \bridgehash{0x28b233a4dbda8b4dfae7245b8fff434de95f6dbd101e1a9cb22a95ded1315a16} & \makecell{Fantom\\6.4k\\POPS} & \bridgehash{0x76bdcfd5ddfa358bf4181556e3b4f1fdd2d648a246bfab91386bdfbd7b76d01f} & \makecell{Avalanche\\6.4k\\POPS}\\[0.2in]
+
+
+& \bridgehash{0xf0b5568dfd8a4559d30adc9dfc881875210a3b9dfa680d392b33eb1d2cc86cfa} & \makecell{Fantom\\6.4k\\POPS} & \bridgehash{0xc86297f14f32a33232149025d4e8f8e50985d76ac1b7ccaf181501820c0b1cf7} & \makecell{Avalanche\\6.4k\\(any)POPS}\\[0.2in]
+
+
+Anyswap \#7 & \bridgehash{0x0x0000000000000000000000000000000000000000000000000000000000000000} & N/A &  \bridgehash{0xde790e8dc59d8bae7ebdf89c4b75267a6e0783219b32aebe83e112aac6c299f5}  & \makecell{Avalanche\\54k\\USDC}\\ 
+
+
+
+\hline
+HECO \#1 & \bridgehash{0x6f9d2e82aef87fc649198976974c05d4c540dacca5043ffee619cc33f3ba4cf5} & \makecell{ETH\\5m\\USDT} & \bridgehash{0x628e878fb723cf0dd838eb956ce78d23b45b130876a625fd4d283e62ac2289f0}  & \makecell{HECO\\5m\\USDT}\\[0.2in]
+
+& \bridgehash{0x6f9d2e82aef87fc649198976974c05d4c540dacca5043ffee619cc33f3ba4cf5} & \makecell{ETH\\5m\\USDT} & \bridgehash{0x27a1e6a66b6e0fc5fa805f7400dd07397bb92226926868a82afb44154a32128b} & \makecell{HECO\\5m\\USDT}\\
+
+
+\hline
+Harmony \#1 & \bridgehash{0x559bc92656a6956a5ffe9eea6f14a5d5993520e31a1a08551d5171ad8f658886} & \makecell{BSC\\5.3k\\BUSD} & \bridgehash{0xdf3bf1a8227ede87d7905c026c3b6a3504cc81399ebd08e1273e1a9dd2c748a9}  & \makecell{Harmony\\5.3k\\BUSD}\\[0.2in]
+
+& \bridgehash{0x559bc92656a6956a5ffe9eea6f14a5d5993520e31a1a08551d5171ad8f658886} & \makecell{BSC\\5.3k\\BUSD} & \bridgehash{0x304801a2b33585e6867de0c403535588979ce4d2cf41c6922223d3203589c39d} & \makecell{ETH\\$5*10^{-18}$\\BUSD}\\ 
+
+\hline
+PolyNet. \#1 & \bridgehash{0x0101010101010101010101010101010101010101010101010101010101010101} & N/A &  \bridgehash{0xd6b7f50e974311082eb4b413219f7198cbf897af4e0f2e9202b10c6afe8fa0a2}  & \makecell{ETH\\491\mil\\PLT}\\ 
+
+\bottomrule
+\end{tabular}
+\caption{Other flagged transactions. PolyNet stands for Poly Network 2023. Full transaction hash for Solana: 5AiesW9pKrZvCCJM8QPWmqxsnRoQwHaQmX8NR9a8BFz3pmt2ypW67zgqeRWdkadV1waPVLWfsnCMVQmyYaciLxEo.}
+\label{tab:xaction-hashes}
+\end{table*}

@@ -520,7 +520,7 @@ Our measurements show that open forwarding is still prevalent among providers.
 Specifically, ten email providers (Outlook, Fastmail, iCloud, Freemail, GoDaddy, Hushmail,
 Mail2World, Onet, Pobox, and Runbox) allow open
 forwarding.\footnote{Mail2World and Pobox do notify the destination account
-via email about the forwarding setup.}  Moreover, as we demonstrate in three
+via email about the forwarding setup.}\todo{format}  Moreover, as we demonstrate in three
 attacks described in
 Sections~\ref{subsec:attack_open_forwarding}--\ref{subsec:attack_zoho_arc},
 %,~\ref{subsec:attack_relaxed_forwarding_validation},
@@ -592,7 +592,7 @@ First, for email messages forwarded via Gmail or Outlook, Gmail delivers them re
 Second, for messages forwarded via
 % other “well-known” providers (e.g., other providers in our experiments),
 the other providers in our experiments,
-Gmail delivers the email if it meets specific conditions (more details in Appendix~\ref{sec:append_change_behavior_details}).
+Gmail delivers the email if it meets specific conditions.
 % In both scenarios, besides delivering the email, Gmail would normally display a UI indicator to show that the email is forwarded. However, we observe a bug in the UI implementation --- sometimes a UI indicator is not displayed (Section~\ref{subsubsec:ui_bug}).
 
 Similarly, our experiments found that Outlook applies relaxed validation for email messages from domains with a DMARC policy of \textsc{None}

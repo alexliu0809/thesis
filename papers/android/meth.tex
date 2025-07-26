@@ -56,8 +56,7 @@ data at risk to a third-party attacker.
 
 For our analysis, we chose 14 distinct leading consumer Android spyware
 apps.\footnote{Often the same spyware app is available under multiple
-  names.  Appendix~\ref{subsubsec:app_family} describes how we
-  identify and avoid choosing duplicate apps.}  We focus on
+  names. We identify and avoid choosing duplicate apps.}  We focus on
 Android-based spyware because most of the mobile spyware market
 appears to be focused there. Since curated app stores like Google Play do not permit
 the sale of such apps, in practice they must be side-loaded off-store, a process
@@ -72,13 +71,12 @@ the store, they do not have compelling spyware capabilities)
 %% apps distributed via Google Play have very limited capabilities
 or broken (e.g., not reachable or no longer accepting payments).
 %% \alex{One way to avoid mentioning off-store is exlaining why we ignored apps distributed via google store (which is my current version); another option is to squeez in the off-store part somewhere in the intro; }
-For apps that are rebranded versions of other apps, we consider them duplicates and did not examine them separately (Appendix~\ref{subsubsec:app_family} details how we detect duplicate apps).
+For apps that are rebranded versions of other apps, we consider them duplicates and did not examine them separately.
 
 From the top 25 most popular apps, we identified 14 distinct apps which we used in our study. The apps in this set are produced by a wide spectrum of vendors, with a broad array of capabilities, and cover the majority of apps identified in prior work~\cite{chatterjee2018spyware} (10 out of the 14 apps that are still alive). Moreover, we find significant overlap in the low-level technical implementation of spyware capabilities:  all but three techniques described in Section~\ref{sec:api-abuse} are discovered after reverse engineering the top five most popular apps (in terms of website domain ranking), and no new techniques are found after the 11th ranked app (Spy24).\footnote{While we do continue to find different variants or implementation of the same technique, we view these as minor details.}
 % \alex{added a few words that talks about these apps being sorted}
 The lack of new techniques discovered among less popular apps in our set suggests that the apps we study capture a representative set of techniques used in practice.
 
 
-Table~\ref{tab:apps_selected} shows the list of spyware apps we chose, their website domain and its corresponding Tranco ranking, their web portal domain and its corresponding Tranco ranking, and their APK's target SDK version and package name. Table~\ref{tab:add_app_info} in Appendix~\ref{sec:additional_figures} provides additional information (version code and SHA-1 hash) about their APK files.
-
+Table~\ref{tab:apps_selected} shows the list of spyware apps we chose, their website domain and its corresponding Tranco ranking, their web portal domain and its corresponding Tranco ranking, and their APK's target SDK version and package name.
 
