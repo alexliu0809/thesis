@@ -245,18 +245,19 @@ submit the receipt to the withdrawal contract to complete the transfer.
 \textbf{3. Withdraw (on destination chain).}
 The withdrawal contract on the destination chain first processes the withdraw
 request by verifying the receipt and transferring the tokens to the recipient
-(step 8). In (the simplified) Chainswap's withdraw case, for example, users call\todo{format}:
+(step 8). In (the simplified) Chainswap's withdraw case, for example, users call:
 \begin{lstlisting}
-withdraw(uint256 id, address token, address to, uint256 val, Signature[] sigs) {
-  _chargeFee();
-  // verify receipt
-  require(received[id][to] == 0, 'withdrawn');
-  for(uint i=0; i < sigs.length; i++) {
-    verify_receipt(sigs[i], id, token, to, val);
-  }
-  received[id][to] = val; // mark as withdrawn
-  token.safeTransferFrom(address(this), to, val);
-  emit Withdraw(id, token, to, val);
+withdraw(uint256 id, address token, address to, 
+  uint256 val, Signature[] sigs) {
+    _chargeFee();
+    // verify receipt
+    require(received[id][to] == 0, 'withdrawn');
+    for(uint i=0; i < sigs.length; i++) {
+      verify_receipt(sigs[i], id, token, to, val);
+    }
+    received[id][to] = val; // mark as withdrawn
+    token.safeTransferFrom(address(this), to, val);
+    emit Withdraw(id, token, to, val);
 }
 \end{lstlisting}
 This contract function first charges the caller a fee, then verifies the

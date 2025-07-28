@@ -43,7 +43,7 @@ the category by discussing potential mitigations.
 % \end{figure*}
 
 
-
+\todo{rotate the table}
 \begin{table*}[t]
   \centering
     \begin{tabular}{p{3.0cm}p{4.7cm}llllllllllllll}
@@ -269,13 +269,14 @@ agent.
 %\vspace{0.5cm}
 %\hspace{-0.1\linewidth}
 %\begin{minipage}{0.5\textwidth}
-\begin{lstlisting}[basicstyle=\small\ttfamily,caption={Code snippet that demonstrates how Spy24 streams live video.\todo{format}},label={lst:invisible_browser_code},captionpos=b,float=t]
+\begin{lstlisting}[basicstyle=\small\ttfamily,caption={Code snippet that demonstrates how Spy24 streams live video.},label={lst:invisible_browser_code},captionpos=b,float=t]
 // xml layout for the webview
 <WebView id="@+id/wv" layout_width="1dp" layout_height="1dp"/>
 // Java code that configures the webview
 WebView webView = findViewById(R.id.wv);
 webView.getSettings().setUserAgentString("some_user_agent");
-// Javascript code that activates the camera when loaded by the webview
+// Javascript code that activates the camera 
+// when loaded by the webview
 userAgent.includes('some_user_agent'){
   camera.start()
 }
@@ -435,8 +436,8 @@ false also reduces the usability of benign apps such as screen readers.
 \subsubsection*{Capability \#4: Taking Screenshots}
 \label{subsubsec:screenshot}
 Spyware apps can also extract sensitive information by taking screenshots. We
-observe two ways the apps in our set take screenshots: via
-\texttt{MediaProjection} and \texttt{AccessibilityService}.\todo{format} For MediaProjection
+observe two ways the apps in our data set take screenshots: via
+\texttt{AccessibilityService} and \texttt{MediaProjection}. For MediaProjection
 to work, an activity is required~\cite{androidH20:online}. This approach is
 nominally a challenge for spyware apps since they generally run as services and
 do not have an activity. As a result, some spyware apps create temporary
@@ -894,7 +895,7 @@ main ways used by spyware apps to create diehard services. We also note
 a third approach that appears to originate from the spyware ecosystem
 and be a byproduct of other capabilities.
 
-\textbf{Leveraging Scheduling Frameworks.} Scheduling frameworks such as
+\textbf{Leveraging Scheduling Frameworks.} Scheduling frameworks such as Android's
 \texttt{JobScheduler}~\cite{JobSched94:online} and
 \texttt{AlarmManager}~\cite{AlarmMan39:online} enable apps to repeatedly
 restart. Apps can schedule to be restarted either when they are
