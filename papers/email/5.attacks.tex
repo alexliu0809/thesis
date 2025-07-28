@@ -42,7 +42,7 @@ forwarder.
     \fbox{\includegraphics[trim=2 2 2 47,clip,width=0.7\columnwidth]{fig/ss_outlook_open_forwarding.png}}
 }
 %  \vspace*{-0.2in}
-  \caption{Example of a successful attack. A spoofed email purporting to be \dns{bush@state.gov} is delivered to a Gmail user's inbox with no warning indicators.
+  \caption[Example of a Successful Attack]{Example of a successful attack. A spoofed email purporting to be \dns{bush@state.gov} is delivered to a Gmail user's inbox with no warning indicators.
 }
 %\vspace*{-0.1in}
 \label{fig:open_forwarding_attack_screenshot}
@@ -52,7 +52,7 @@ forwarder.
 \begin{figure*}[t]
   \centerline{\includegraphics[width=\textwidth]{fig/mech_outlook_open_forwarding.pdf}}
   \centering
-  \caption{Example of an SPF Incorporation Attack (\S~\ref{subsec:attack_open_forwarding}) exploiting Outlook's open forwarding to spoof email from domains incorporating Outlook's SPF records (e.g., \dns{state.gov}) to arbitrary recipients.}
+  \caption[Example of an SPF Incorporation Attack]{Example of an SPF Incorporation Attack (\S~\ref{subsec:attack_open_forwarding}) exploiting Outlook's open forwarding to spoof email from domains incorporating Outlook's SPF records (e.g., \dns{state.gov}) to arbitrary recipients.}
   \label{fig:open_forwarding_attack_mechanism}
   %    \vspace*{-0.1in}
 \end{figure*}
@@ -111,7 +111,7 @@ permission to send to the mailing list.
 \begin{figure*}[t]
   \centerline{\includegraphics[width=\textwidth]{fig/mech_gmail_via_outlook.pdf}}
   \centering
-  \caption{Example of a spoofed email attack exploiting open forwarding and relaxed validation for forwarded email from well-known providers (\S~\ref{subsec:attack_relaxed_forwarding_validation}).
+  \caption[Example of a Spoofed Email Attack Exploiting Open Forwarding]{Example of a spoofed email attack exploiting open forwarding and relaxed validation for forwarded email from well-known providers (\S~\ref{subsec:attack_relaxed_forwarding_validation}).
     Note that the spoofed domain, \dns{alipay.com}, has a DMARC policy of Quarantine and thus
     % its traffic
     should not be delivered.}
@@ -280,7 +280,7 @@ Provider-specific defenses, such as when Outlook quarantines any email that fail
 \begin{figure*}[t]
 \centerline{\includegraphics[width=\textwidth]{fig/mech_zoho_arc.pdf}}
 \centering
-\caption{Example attack that exploits Zoho's
+\caption[Example Attack Exploiting Zoho's Vulnerable ARC Implementation]{Example attack that exploits Zoho's
 vulnerable ARC implementation and  open forwarding to
   spoof email from arbitrary domains to any Zoho recipient (\S~\ref{subsec:attack_zoho_arc}).}
 \label{fig:mech_zoho_arc}
@@ -394,7 +394,7 @@ Our experiments show that this attack can target arbitrary users of Zoho, which 
 \centering
 \includegraphics[width=\textwidth]{fig/mech_google_groups.pdf}
 \centering
-\caption{Spoofed email attack that abuses mailing lists like Google Groups (\S~\ref{subsec:attack_none_mailing_list}).}
+\caption[Spoofed Email Attack Abusing Google Groups]{Spoofed email attack that abuses mailing lists like Google Groups (\S~\ref{subsec:attack_none_mailing_list}).}
 \label{fig:google_groups_mech}
 %\vspace*{-0.1in}
 \end{figure*}

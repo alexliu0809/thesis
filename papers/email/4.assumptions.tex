@@ -50,7 +50,7 @@
 %    & Every email is legitimate & Not enforcing DMARC & Gaggle.email and Mail2world.com\\
     \bottomrule
     \end{tabular}
-    \captionof{table}{Summary of vulnerable security assumptions and forwarding features, the aspect of their implementation that leads to the vulnerability, and the prevalence of the vulnerability.
+    \captionof{table}[Summary of Vulnerable Security Assumptions and Forwarding Features]{Summary of vulnerable security assumptions and forwarding features, the aspect of their implementation that leads to the vulnerability, and the prevalence of the vulnerability.
     }
     \label{tab:assumptions_and_prevalence}
 %    \vspace*{-0.2in}
@@ -404,7 +404,7 @@ as ``spam''.
     \fbox{\includegraphics[clip,width=0.7\columnwidth]{fig/ss_outlook_not_rejecting.png}}
 }
     %\caption{Example message that has a spoofed FROM header using a domain with DMARC policy reject.  It is delivered to an Outlook user's spam folder instead of being rejected.}
-    \caption{Example message with a FROM header spoofing a domain with DMARC policy \textsc{Reject}.  Outlook delivers it to the spam folder instead of rejecting it.
+    \caption[Example of a Spoofed Message]{Example message with a FROM header spoofing a domain with DMARC policy \textsc{Reject}.  Outlook delivers it to the spam folder instead of rejecting it.
     }
     \label{fig:example_ms_not_rejecting}
     \end{figure}
@@ -520,7 +520,7 @@ Our measurements show that open forwarding is still prevalent among providers.
 Specifically, ten email providers (Outlook, Fastmail, iCloud, Freemail, GoDaddy, Hushmail,
 Onet, Mail2World, Pobox, and Runbox) allow open
 forwarding.\footnote{Mail2World and Pobox do notify the destination account
-via email about the forwarding setup.}\todo{format}  Moreover, as we demonstrate in three
+via email about the forwarding setup.}  Moreover, as we demonstrate in three
 attacks described in
 Sections~\ref{subsec:attack_open_forwarding}--\ref{subsec:attack_zoho_arc},
 %,~\ref{subsec:attack_relaxed_forwarding_validation},
@@ -566,7 +566,7 @@ disallow open forwarding.
 
 
   \end{threeparttable}
-  \caption{Summary of email forwarding attacks (\S~\ref{sec:attacks}).
+  \caption[Summary of Email Forwarding Attacks]{Summary of email forwarding attacks (\S~\ref{sec:attacks}).
     \label{tab:summary_attacks}} 
 %  \vspace*{-0.2in}
 
