@@ -57,29 +57,44 @@ Specifically, we seek to answer two key questions:
     \item What are the measures taken by spyware apps to protect the data they collect?
 \end{itemize}
 
-\begin{table*}[t]
-  \begin{tabular}{@{}llrlrll@{\hskip 5pt}l}
-    App Name             & \multicolumn{2}{c}{Website Domain \hspace*{0.2in}\hfill\hspace*{0.1in} Ranking}  & \multicolumn{2}{c}{Portal Domain \hspace*{0.25in}\hfill\hspace*{0.1in} Ranking} & Target SDK &Package Name                                    \\
-    \midrule
-    mSPY                 &mspy.com                 &46k             & mspyonline.com  &220k                          &25               &core.update.framework                           \\
-    Mobile-tracker-free  &mobile-tracker-free.com  &54k             &mobile-tracker-free.com  &54k                   &28                      &mobile.monitor.child2021                        \\
-    Clevguard            &clevguard.com            &69k             & clevguard.com  &69k                            &28             &com.kids.pro                                    \\
-    \ltgrey HoverWatch   &hoverwatch.com           &87k             &hoverwatch.com  &87k                            &28          &com.android.core.mntw                           \\
-    \ltgrey Flexispy     &flexispy.com             &107k            &flexispy.com &107k                              &22          &com.fp.backup                                   \\
-    \ltgrey Spyic        &spyic.com                &152k            &spyic.com  &152k                                &22         &com.sc.spyic.v3                                 \\
-    Spyhuman             &spyhuman.com             &179k            & spyhuman.com  &179k                            &22              &m.mobile.control                                \\
-    TheTruthSpy          &thetruthspy.com          &214k            & thetruthspy.com &214k                          &28               &com.systemservice                               \\
-    iKeyMonitor          &ikeymonitor.com          &230k            &emcpanel.com  &1.1m                             &23        &com.sec...im20190419$^{*}$  \\
-    \ltgrey Cerberus     &cerberusapp.com          &251k            & cerberusapp.com  &251k                         &23             &com.lsdroid.cerberus                            \\
-    \ltgrey Spy24        &spy24.app                &284k            & spy24.net  &2.4m                               &29          &net.spy24.wifi                                  \\
-    \ltgrey Spapp        &spappmonitoring.com      &421k            &spappmonitoring.com  &421k                      &26                  &com.monspap.alarm                               \\
-    Meuspy               &meuspy.com               &485k            & meuspy.com  &485k                              &32        &br.com.sistema.aplicativo                       \\
-    Highstermobile       &highstermobile.com       &590k            &evt17.com  &1.5m                                &30       &org.secure.smsgps                               \\
-  \end{tabular}
-  \caption{The 14 spyware apps we study, their website domain and its corresponding Tranco ranking, their portal domain and its corresponding Tranco ranking, and their APK's target SDK version and package name. Tranco rankings taken on May 5th, 2022.  Shading added to improve readability.
-    \hspace*{0.05in} $^{*}$iKeyMonitor's full package name is `com.sec.android.internet.im.service.im20190419'. \todo{format}
-  \label{tab:apps_selected}}
-\end{table*}
+
+\begin{facingcaption}{table}
+\label{tab:facing}
+\renewcommand\tabularxcolumn[1]{>{\RaggedLeft\arraybackslash}p{#1}}
+\parindent=0pt
+\setbox0=\vbox{%
+\vsize\textwidth
+\hsize\textheight
+\linewidth\hsize
+\columnwidth\hsize
+\textwidth\hsize
+\textheight\vsize
+
+\caption[List of 14 Spyware Apps We Study]{The 14 spyware apps we study, their website domain and its corresponding Tranco ranking, \\their portal domain and its corresponding Tranco ranking, and their APK's target SDK version and \\package name. Tranco rankings taken on May 5th, 2022. \hspace*{0.05in}\\ $^{*}$iKeyMonitor's full package name is `com.sec.android.internet.im.service.im20190419'.}
+    
+\begin{tabular}{@{}llrlrll@{\hskip 5pt}l}
+  App Name             & \multicolumn{2}{c}{Website Domain \hspace*{0.2in}\hfill\hspace*{0.1in} Ranking}  & \multicolumn{2}{c}{Portal Domain \hspace*{0.25in}\hfill\hspace*{0.1in} Ranking} & Target SDK &Package Name                                    \\
+  \midrule
+  mSPY                 &mspy.com                 &46k             & mspyonline.com  &220k                          &25               &core.update.framework                           \\
+  Mobile-tracker-free  &mobile-tracker-free.com  &54k             &mobile-tracker-free.com  &54k                   &28                      &mobile.monitor.child2021                        \\
+  Clevguard            &clevguard.com            &69k             & clevguard.com  &69k                            &28             &com.kids.pro                                    \\
+  \ltgrey HoverWatch   &hoverwatch.com           &87k             &hoverwatch.com  &87k                            &28          &com.android.core.mntw                           \\
+  \ltgrey Flexispy     &flexispy.com             &107k            &flexispy.com &107k                              &22          &com.fp.backup                                   \\
+  \ltgrey Spyic        &spyic.com                &152k            &spyic.com  &152k                                &22         &com.sc.spyic.v3                                 \\
+  Spyhuman             &spyhuman.com             &179k            & spyhuman.com  &179k                            &22              &m.mobile.control                                \\
+  TheTruthSpy          &thetruthspy.com          &214k            & thetruthspy.com &214k                          &28               &com.systemservice                               \\
+  iKeyMonitor          &ikeymonitor.com          &230k            &emcpanel.com  &1.1m                             &23        &com.sec...im20190419$^{*}$  \\
+  \ltgrey Cerberus     &cerberusapp.com          &251k            & cerberusapp.com  &251k                         &23             &com.lsdroid.cerberus                            \\
+  \ltgrey Spy24        &spy24.app                &284k            & spy24.net  &2.4m                               &29          &net.spy24.wifi                                  \\
+  \ltgrey Spapp        &spappmonitoring.com      &421k            &spappmonitoring.com  &421k                      &26                  &com.monspap.alarm                               \\
+  Meuspy               &meuspy.com               &485k            & meuspy.com  &485k                              &32        &br.com.sistema.aplicativo                       \\
+  Highstermobile       &highstermobile.com       &590k            &evt17.com  &1.5m                                &30       &org.secure.smsgps                               \\
+\end{tabular}
+\singlespacing
+}
+\centerline{\rotatebox{90}{\box0}}
+\end{facingcaption}
+
 
 
 To address these questions empirically, we reverse engineered 14 of
