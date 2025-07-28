@@ -101,7 +101,7 @@ the category by discussing potential mitigations.
 \begin{tabular}{p{5.0cm}p{4.7cm}llllllllllllll}
     Category                                                &Capabilities                          &\rotatebox{90}{mSPY}  &\rotatebox{90}{Mobile-tracker-free}  &\rotatebox{90}{Clevguard}  &\rotatebox{90}{HoverWatch}  &\rotatebox{90}{Flexispy}  &\rotatebox{90}{Spyic}  &\rotatebox{90}{Spyhuman}  &\rotatebox{90}{TheTruthSpy}  &\rotatebox{90}{iKeyMonitor}  &\rotatebox{90}{Cerberus}  &\rotatebox{90}{Spy24}  &\rotatebox{90}{Spapp}  &\rotatebox{90}{Meuspy}  &\rotatebox{90}{Highstermobile}  \\
     \midrule
-    \multirow{11}{*}{\shortstack[l]{Basic Capabilities (\S~\ref{subsec:features_enabled_by_permission})}}   &Ambient Recording                     &                      &\checkmark                           &                 &                            &\checkmark                &                       &\checkmark                &\checkmark                   &\checkmark                   &\checkmark                &\checkmark             &\checkmark             &\checkmark              &                                \\
+    \multirow{3}{*}{\shortstack[l]{Basic Capabilities (\S~\ref{subsec:features_enabled_by_permission})}}   &Ambient Recording                     &                      &\checkmark                           &                 &                            &\checkmark                &                       &\checkmark                &\checkmark                   &\checkmark                   &\checkmark                &\checkmark             &\checkmark             &\checkmark              &                                \\
                                                                                        &SMS or MMS                            &\checkmark            &\checkmark                           &\checkmark                 &\checkmark                  &\checkmark                &\checkmark             &\checkmark                &\checkmark                   &\checkmark                   &\checkmark                &\checkmark             &\checkmark             &\checkmark              &\checkmark                      \\
                                                                                                      &Shared Media Files                    &\checkmark            &\checkmark                           &\checkmark                 &\checkmark                  &\checkmark                &\checkmark             &\checkmark                &\checkmark                   &\checkmark                   &\checkmark                &\checkmark             &\checkmark             &\checkmark              &\checkmark                      \\
     \hline
@@ -384,9 +384,8 @@ recording.
 Prior to Android~6, apps could easily use \texttt{MediaRecorder} to
 record phone calls~\cite{MediaRec53:online}.
 % \geoff{parameter to what?}\alex{to voice call?} to \texttt{VOICE\_CALL}.
-Specifying \texttt{MediaRecorder.AudioSource.VOICE\_CALL},
-an app can receive both uplink and downlink audio
-for a call. Since Android~6, \texttt{VOICE\_CALL} is protected by a permission
+An app can receive both uplink and downlink audio
+for a call by specifying \texttt{MediaRecorder.AudioSource.VOICE\_CALL}. Since Android~6, \texttt{VOICE\_CALL} is protected by a permission
 reserved for system apps and cannot be requested by third-party
 apps~\cite{VOICECAL55:online}. Spyware apps (and other recording apps) use
 native code via the Android NDK to circumvent this limitation, specifying
@@ -736,9 +735,8 @@ app icons from the app launcher using two methods:
 %% \damon{again people likely do not know this terminology, such as app
 %% drawer.}\alex{fixed}
 
-\textbf{Hiding the app icon at runtime} can be implemented by invoking
-the method \texttt{setComponentEnabledSetting()} and disabling the
-launcher activity.  Previous work~\cite{shan2018self} examined hiding
+\textbf{Hiding the app icon at runtime} can be implemented by disabling the
+launcher activity and invoking the method \texttt{setComponentEnabledSetting()}.  Previous work~\cite{shan2018self} examined hiding
 app icons in this way, and this approach works on devices that run
 Android 9 or below. An activity of category \texttt{LAUNCHER}
 indicates that it should be displayed in the app
@@ -840,13 +838,13 @@ enter the correct code, it launches itself.
 Android lists recently accessed activities and tasks in the Recents
 screen~\cite{Recentss9:online} (see Figure~\ref{fig:recents_screen} for an
 example). Past literature~\cite{shan2018self, zhou2020demystifying} has
-documented that the \texttt{android:excludeFromRecents} attribute can be abused
+documented abuses that exploit \texttt{android:excludeFromRecents}
 to hide app activity, and this abuse is trivial to implement. It can be done via
 setting the \texttt{android:excludeFromRecents} attribute to true for relevant
-activities in their manifest~\cite{activity72:online} or programmatically adding
-the flag
-\texttt{FLAG\_ACTIVITY\_EXCLUDE\_FROM\_RECENTS}~\cite{IntentAn90:online} to an
-activity.
+activities in their manifest~\cite{activity72:online} or programmatically adding to an
+activity
+the flag that hides it from the Recents screen, i.e.,
+\texttt{FLAG\_ACTIVITY\_EXCLUDE\_FROM\_RECENTS}~\cite{IntentAn90:online}.
 
 \begin{figure}[t]
 \centering
@@ -954,7 +952,7 @@ after the device reboots: the Android system will send a
 \texttt{BOOT\_COMPLETED} system broadcast upon reboot, and spyware apps that listen
 for this broadcast will automatically restart themselves. While \texttt{NEW\_OUTGOING\_CALL} and \texttt{SMS\_RECEIVED} are also popular, we note that they serve dual purposes (\texttt{NEW\_OUTGOING\_CALL} can be used to launch a hidden app and \texttt{SMS\_RECEIVED} can be used to monitor SMS messages).
 
-\textbf{Listening for Accessibility or Notification Events.} Apps that register as an
+\textbf{Listening for Accessibility or Notification Events.} Apps that choose to register as an
 \texttt{AccessibilityService} or
 \texttt{NotificationListener- Service}
 can also survive device
