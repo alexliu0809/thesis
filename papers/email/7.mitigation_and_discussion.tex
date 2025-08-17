@@ -4,7 +4,7 @@ We end by summarizing the root causes of the issues we discovered, and discuss p
 \subsection{Discussion}
 In this work, we examine the complexities introduced by email forwarding to email security. We identify a diverse set of email forwarding mechanisms, assumptions, and features, and demonstrate how they can be combined together to perform evasion attacks. These attacks highlight four fundamental issues.
 
-First, as already demonstrated in prior work and further highlighted in our paper, email security involves distributed, optional, and independently-configured components implemented by different parties. In such an architecture, the
+First, as already demonstrated in prior work and further highlighted in this chapter, email security involves distributed, optional, and independently-configured components implemented by different parties. In such an architecture, the
 ``authenticity'' of an email is commonly determined by the party with the weakest security settings. While traditionally email is sent directly from sender to receiver, forwarding involves three parties instead of two and introduces an extra layer of complexity. As we have shown, a vulnerable forwarder can jeopardize the security of downstream recipients that do not have problematic configurations or implementations. This inversion of
 incentives and capabilities naturally complicates
 mitigating forwarding vulnerabilities.
@@ -37,7 +37,7 @@ The attacks we demonstrate highlight the complicated interactions
 between email forwarding and existing anti-spoofing mechanisms. We start by reviewing short-term mitigations that could reduce some of the most significant risks we have uncovered. We then discuss challenges in developing more comprehensive solutions, which would require significant changes in either
 protocol or operational practices.
 
-A core issue we highlight in this paper is the ability to forward spoofed email messages to arbitrary recipients, a critical element in each
+A core issue we highlight in this chapter is the ability to forward spoofed email messages to arbitrary recipients, a critical element in each
 of the first three attacks in Section~\ref{sec:attacks}. To mitigate this issue, providers could either block spoofed email messages from being forwarded, or enforce that a forwarder can only forward to accounts under their control by requiring explicit confirmation (similar to
 the online domain validation used by modern certificate authorities). However, we note that either approach comes with a usability tradeoff, and different providers make choices based on their considerations. Indeed, providers like Gmail and Mail.ru opted for the former option, while others like iCloud and Hushmail opted for the latter.
 

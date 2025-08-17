@@ -387,7 +387,7 @@ requests with valid deposit receipts that have already been withdrawn.
 
 %\textbf{Buggy Withdraw Verification.} In step 9, the bridge contract verifies that the messages are signed by the relaying component and have not been replayed. Bugs in this verification logic could allow an attacker to verify payloads that are not signed by the relaying component or to replay a message that has already been processed.
 
-In this paper, we assume an attacker can exploit any of the aforementioned
+In this chapter, we assume an attacker can exploit any of the aforementioned
 components or otherwise control the relayer (or submitter) keys.
 In the next section, we show that this attacker model and our simple
 \emph{balance invariant checking} captures the largest attacks on cross-chain
