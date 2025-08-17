@@ -306,7 +306,7 @@ presence of email forwarding.
 % Here, we focus on vulnerabilities that are difficult to fix without altering standard email practices or requiring additional action from users and organizations.
 % cover harder-to-fix assumptions, why they can be problematic, and real-world implementations associated with each assumption.
 
-\subsubsection{Domains use actionable DMARC policies}
+\subsubsection{Domains Use Actionable DMARC Policies}
 \label{subsubsec:dmarc_none}
 DMARC enables recipients to authenticate whether an email truly
 originates from its purported sending domain.  However, when a
@@ -356,7 +356,7 @@ email forwarding introduces new complexity that enables attackers to bypass thes
 % (Section~\ref{subsec:attack_relaxed_forwarding_validation}). We also demonstrate that when combined with certain forwarding mechanism, an adversary can launder their spoofed email messages from domains with DMARC none through mailing lists such that they look no different than legitimate ones after being forwarded (Section~\ref{subsec:attack_none_mailing_list}).
 
 
-\subsubsection{Each domain uses its own infrastructure}
+\subsubsection{Each Domain Uses Its Own Infrastructure}
 \label{subsubsec:spf_incorporation}
 The SPF protocol predates the emergence of large third-party email providers.
 As a result, SPF implicitly assumes that each organization (domain) maintains its own mailing infrastructure: that the set of authentic server IP addresses specified by a domain's SPF record is not also used by other domains or external users to send email.
@@ -388,7 +388,7 @@ use---ultimately allowing unrestricted email spoofing.
 %attackers can overcome these mitigations by employing forwarding to conduct successful spoofing attacks.
 
 
-\subsubsection{Quarantining is sufficient}
+\subsubsection{Quarantining Is Sufficient}
 \label{subsubsec:quarantine_instead_of_reject}
 RFC 7489~\cite{rfc5231} suggests that if an email message falls under the scope of a DMARC reject policy, then the receiving server should reject and drop it entirely. However, some providers deviate from this advice by marking it as spam and delivering it to a spam folder, assuming that quarantining a malicious email neutralizes its threat.
 Our experiments found that five email providers (Outlook, Fastmail, GMX, Inbox.lv and Pobox) adopt this approach.
@@ -433,7 +433,7 @@ DMARC \textsc{Reject} policy.
 % Even worse, as we detail below in Section~\ref{subsubsec:whitelist}, the quarantine decision can be overridden by a malicious user and thus creates a new threat to the downstream providers, potentially allowing an adversary to forward spoofed email messages even if the spoofed FROM domain has DMARC policy reject, endangering downstream providers. Indeed,
 % we show in Section~\ref{subsec:attack_open_forwarding} that when an adversary combines such policies with email forwarding and other issues described in this section, they can often spoof email messages from a wide range of domains (even if these domains have DMARC policy reject) that correctly pass both SPF and DMARC validation at the recipient's mail server.
 
-\subsubsection{Per-user DMARC overrides are fate-sharing}
+\subsubsection{Per-user DMARC Overrides Are Fate-sharing}
 \label{subsubsec:whitelist}
 Many email providers allow users to override DMARC decisions: users can whitelist domains, and as a result they will still deliver or forward email even if it fails DMARC.
 % \geoff{by ``upon a user's request'', do we just mean that users can whitelist domains to override DMARC?}\alex{yes, updated the text.}
