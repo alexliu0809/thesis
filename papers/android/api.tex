@@ -1,13 +1,13 @@
 \section{Spyware Abuse of Android APIs}
 \label{sec:api-abuse}
 
-In this section, we explain how spyware apps implement various privacy invasive
+In this section, I explain how spyware apps implement various privacy invasive
 capabilities using existing APIs supported by the Android OS.
 %These different capabilities enable attackers to achieve various goals: monitor a user's online activities (e.g., the messages they send, the photos they take, etc.), abuse the device to spy on the user's activity in the physical world (e.g., using the victim's phone to silently record audio and video or track their location), stealthily spy on their victim without their knowledge or consent, and persistently conduct their spying over a long period of time.
 We start by discussing our methodology for identifying these capabilities and uncovering their associated implementations.
 We then summarize the set of basic capabilities (\S~\ref{subsec:features_enabled_by_permission}) that either do not require any permissions or are enabled just by acquiring permissions,
 and group
-all of the other capabilities that we study into three categories based on their goals: stealthily
+all of the other capabilities that I study into three categories based on their goals: stealthily
 collecting a victim's information (\S~\ref{subsec:data_gathering}), hiding the app's presence on the phone (\S~\ref{subsec:hiding_the_app}), and persistently
 spying over a long period of time (\S~\ref{subsec:persistence}).
 For each category, we
@@ -30,9 +30,9 @@ the category by discussing potential mitigations.
 %victim for long periods of time) and present an overview of this framing
 %upfront.}
 
-%We start by describing how we select the features and our methodology for
+%We start by describing how I select the features and our methodology for
 %uncovering implementations associated with each feature
-%(Section~\ref{subsec:misuse_discovery}). Next, we present X features and their
+%(Section~\ref{subsec:misuse_discovery}). Next, I present X features and their
 %implementations, and discuss potential mitigation solutions
 %(Section~\ref{subsec:api_abuse_results}).
 
@@ -78,7 +78,7 @@ the category by discussing potential mitigations.
 %     \hline
 % %     \end{tabular}
 %     \caption{\todo{format}
-%       %, otherwise we leave the corresponding cell in the table blank.
+%       %, otherwise I leave the corresponding cell in the table blank.
 %       }
 %   \end{table*}
 
@@ -132,7 +132,7 @@ the category by discussing potential mitigations.
 \label{subsec:misuse_discovery}
 
 
-%% \geoff{I'm now thinking that we can use Section 2 to set the context:
+%% \geoff{I'm now thinking that I can use Section 2 to set the context:
 %%   how spyware is used + our app selection process.  we'll then put the
 %%   methodologies back into Sections 3 and 4.}
 
@@ -144,23 +144,23 @@ We gather a list of privacy invasive capabilities from two sources: (1)
 capabilities advertised and offered by spyware apps; and (2) prior
 academic papers and industry reports described in Section~\ref{sec:related_work} that look at how the Android API
 can be used to achieve such unintended functionality.
-Table~\ref{tab:feature_summary} summarizes the capabilities we study
+Table~\ref{tab:feature_summary} summarizes the capabilities I study
 and shows which spyware apps implement them.
-To understand how the spyware apps implement their nefarious capabilities, we reverse engineered and analyzed each app. Our approach consists of three steps.
+To understand how the spyware apps implement their nefarious capabilities, I reverse engineered and analyzed each app. Our approach consists of three steps.
 
 \textbf{Preparation.} We acquire the latest APKs of spyware apps by directly downloading them from their websites. We use \texttt{APKTOOL}~\cite{ApktoolA72:online} to disassemble the APKs and obtain the corresponding manifest and smali code.\footnote{Smali is a human-readable represenation of the Dalvik bytecode used by Android apps.} We also decompile the APK to Java source using \texttt{JADX}~\cite{skylotja9:online}.
 
 \textbf{Manual Investigation.}
-For each capability, we manually analyzed the app manifest and the decompiled Java code to determine how
-each capability was implemented using the standard Android API: we manually located the API primitives associated with each capability, examined the relevant control flow, and confirmed that the primitives we identified were reachable. While we primarily used the decompiled Java code for
-analysis, we reviewed the smali code when necessary (e.g., when a function fails
-to decompile). Since the variable and method names were often obfuscated, we renamed them to human-readable ones as we examined the decompiled Java code (our naming annotations are available upon request).
+For each capability, I manually analyzed the app manifest and the decompiled Java code to determine how
+each capability was implemented using the standard Android API: I manually located the API primitives associated with each capability, examined the relevant control flow, and confirmed that the primitives I identified were reachable. While I primarily used the decompiled Java code for
+analysis, I reviewed the smali code when necessary (e.g., when a function fails
+to decompile). Since the variable and method names were often obfuscated, I renamed them to human-readable ones as I examined the decompiled Java code (our naming annotations are available upon request).
 
-Once we discovered an implementation for a particular capability and
-the API primitives one app used, we expedited our search process
+Once I discovered an implementation for a particular capability and
+the API primitives one app used, I expedited our search process
 for other apps by searching for use of the same API primitives, and manually
 reviewed the results to remove false positives. If this API similarity
-approach did not yield results, we reverted back to manually
+approach did not yield results, I reverted back to manually
 inspecting the code.
 
 We use two heuristics to guide our manual investigation process.
@@ -176,18 +176,18 @@ leads. Second, for any capability, there are limited ways to implement
 it using Android API primitives, and many of them are publicly
 documented (e.g., capturing audio through \texttt{MediaRecorder}). Searching for these API primitives in the code helps to
 quickly locate methods associated with a capability. Additionally,
-once we identified an implementation of a capability, we examined its
+once I identified an implementation of a capability, I examined its
 control flow in a bottom-up fashion to identify the operation that
 would trigger its execution (typically leading back to dispatch
 methods).
 
 \textbf{Confirmation.} For each implementation of a capability (and
-related API primitives) we discover, we verified our analysis conclusions
+related API primitives) I discover, I verified our analysis conclusions
 by developing an app using the same API primitives and
-testing it on a Pixel 4 phone running Android 11. We also installed and ran each spyware app to ensure the capabilities we observed were indeed enabled.
+testing it on a Pixel 4 phone running Android 11. We also installed and ran each spyware app to ensure the capabilities I observed were indeed enabled.
 Since the majority of the apps we
 study have been implemented using Android APIs up to Android 11, we
-discuss their implementations in that context. However, we also
+discuss their implementations in that context. However, I also
 discuss the impact changes in Android 12 can have on the spyware apps.
 
 %\subsubsection{Code Release}
@@ -196,7 +196,7 @@ discuss the impact changes in Android 12 can have on the spyware apps.
 % request. Similarly, the annotated class and variable names are
 % available upon request (which can be used to reproduce our results
 % after independently acquiring the corresponding APK files). To avoid
-% potential copyright infringement risks, we do not provide the
+% potential copyright infringement risks, I do not provide the
 % decompiled and annotated source code itself.
 
 %% We focus our discussion on Android 11 and earlier, and discuss the
@@ -210,7 +210,7 @@ discuss the impact changes in Android 12 can have on the spyware apps.
 %We define Android API misuse as: any functionality that relies on using the
 %Android platform API in ways that violate either Play Store policies or the
 %clearly intended usage of the platform per the Android developer documentation.
-%Broadly speaking, we focus on abusing API to: covertly collect private user or
+%Broadly speaking, I focus on abusing API to: covertly collect private user or
 %app data, hide app traces, and survive across reboots and kills.
 
 
@@ -218,7 +218,7 @@ discuss the impact changes in Android 12 can have on the spyware apps.
 % \label{subsec:api_abuse_results}
 % We start by briefly discussing a set of features that are enabled after
 % acquiring certain permissions. These features are only protected by
-% permissions and many are not noticeable by users. Next, we detail how spyware
+% permissions and many are not noticeable by users. Next, I detail how spyware
 % apps implement features that allow them to exfiltrate data covertly, stay
 % stealthy, and persist on the target device.
 
@@ -234,13 +234,13 @@ the user and are straightforward to implement.
 
 \subsection{Data Gathering}
 \label{subsec:data_gathering}
-Spyware apps seek to stealthily collect a victim's information without being noticed. In this section, we describe how they covertly access the camera, the microphone, and protected data of other apps, as well as how they take screenshots all without the victim's knowledge.
+Spyware apps seek to stealthily collect a victim's information without being noticed. In this section, I describe how they covertly access the camera, the microphone, and protected data of other apps, as well as how they take screenshots all without the victim's knowledge.
 
 \subsubsection*{Capability \#1: Invisible Camera Access}
 \label{subsubsec:invisible_cam}
 Spyware apps use a device's camera to take pictures, record videos, and stream live
 videos. To remain hidden from the victim, spyware apps need to access the camera
-without being noticed. The apps we studied use three methods to achieve
+without being noticed. The apps I studied use three methods to achieve
 surreptitious camera access: (1) using an invisible preview; (2) intercepting raw
 frames without a preview; and (3) using an invisible browser.
 % \alex{added a novelty statement}
@@ -282,7 +282,7 @@ apps, on the other hand, use these features to capture raw frames, either saving
 the frames locally or streaming the frames to a remote server, all without the
 victim noticing. While the expectation for such advanced features is that the
 processed frames will be displayed to users eventually (which is normally the
-case for benign apps), this by no means is enforced. Finally, we note that four
+case for benign apps), this by no means is enforced. Finally, I note that four
 apps rely on the third-party library WebRTC (or its variants) to achieve this functionality (WebRTC uses both \texttt{ImageReader} and \texttt{SurfaceTexture}).
 
 %\geoff{does webrtc then use an ImageReader or SurfaceTexture?}\alex{fixed}
@@ -349,8 +349,8 @@ userAgent.includes('some_user_agent'){
 %\texttt{SYSTEM\_OVERLAY} before Android 6), which is protected by the
 %permission \texttt{SYSTEM\_ALERT\_WINDOW}~\cite{WindowMa73:online}.
 %Additionally, Flexispy will try muting the shutter sound when taking pictures
-%or videos). However, we note that this is not possible in some countries (e.g.,
-%Japan) due to legal concerns~\cite{HowcanIt38:online}. Finally, we observe that
+%or videos). However, I note that this is not possible in some countries (e.g.,
+%Japan) due to legal concerns~\cite{HowcanIt38:online}. Finally, I observe that
 %Flexispy attempts a series of different ways to access the camera if preceding
 %methods fail.
 
@@ -369,7 +369,7 @@ Spyware apps use the microphone to covertly record
 ambient sound, phone calls,
 and voice calls (calls made in third-party apps like WhatsApp).
 Ambient recording is enabled after acquiring the Android permission
-to record; below we focus on how apps achieve phone call recording and voice call
+to record; below I focus on how apps achieve phone call recording and voice call
 recording.
 
 \textbf{Phone call recording} on Android has evolved over time.
@@ -391,7 +391,7 @@ apps~\cite{VOICECAL55:online}. Spyware apps (and other recording apps) use
 native code via the Android NDK to circumvent this limitation, specifying
 \texttt{VOICE\_CALL} by calling functions defined in
 \texttt{libmedia.so}~\cite{ViktorDe77:online}.
-%% ~\alex{Note, we studied the cited
+%% ~\alex{Note, I studied the cited
 %%   open-source implementation on Github instead of reverse engineering the native
 %% code}.
 Android~9 subsequently prevented this workaround by filtering out
@@ -451,7 +451,7 @@ and extract sensitive information when an app (e.g., WhatsApp) is used.
 Notification, on the other hand, allows spyware apps to read sensitive
 information even if the spyware app is not active. While reading from a notification has
 limitations (e.g., a spyware app cannot read images), nine spyware apps abuse it.
-Finally, we note that, like accessibility, both benign apps and malicious apps
+Finally, I note that, like accessibility, both benign apps and malicious apps
 make use of notifications as a side-channel for accessing information: benign
 apps (an example is~\cite{ReadUnre55:online}) do so to avoid triggering the ``Read Receipt'' feature, which notifies the
 sender if the recipient has read the message,
@@ -511,7 +511,7 @@ that iKeyMonitor
 attempted to evade this restriction by trying to acquire focus with an
 invisible \texttt{EditText} of size 1x1. However, this attempt appears to be
 unsuccessful: both iKeyMonitor and our cloned implementation fail to
-read the clipboard.}. Another type of restriction is to require apps to possess additional permissions: besides requiring the permission to record audio, Android~10 further demands an app to be an accessibility service to capture audio input during phone calls. However, we note that permission-based restrictions are unlikely to be successful, as the abuser has physical access to the device and can grant arbitrary permissions.
+read the clipboard.}. Another type of restriction is to require apps to possess additional permissions: besides requiring the permission to record audio, Android~10 further demands an app to be an accessibility service to capture audio input during phone calls. However, I note that permission-based restrictions are unlikely to be successful, as the abuser has physical access to the device and can grant arbitrary permissions.
 
 %reduce the scope of granted permissions. 
 % For example,
@@ -574,7 +574,7 @@ recommend that all actions to access sensitive data should be added to the
 privacy dashboard and users should be periodically notified of the existence of apps with excessive number of permissions.
 
 Lastly, Android also employs various mechanisms that alert users of sensitive actions or potentially malicious activities. 
-The most straightforward example is the deployment of Google Play Protect, which warns users when a potentially malicious app is being installed. As well, Android~9 requires a persistent notification for background apps that seek to access the camera and microphone: these apps need to run as a foreground service, which triggers a persistent notification that cannot be dismissed by the apps themselves. Finally, Android uses audio cues (e.g., a shutter sound) to notify users of operations such as audio and video recording. Sadly, we note that all these mechanisms can fail, as they can be turned off either programmatically (e.g., audio cues normally can be
+The most straightforward example is the deployment of Google Play Protect, which warns users when a potentially malicious app is being installed. As well, Android~9 requires a persistent notification for background apps that seek to access the camera and microphone: these apps need to run as a foreground service, which triggers a persistent notification that cannot be dismissed by the apps themselves. Finally, Android uses audio cues (e.g., a shutter sound) to notify users of operations such as audio and video recording. Sadly, I note that all these mechanisms can fail, as they can be turned off either programmatically (e.g., audio cues normally can be
 turned off after acquiring permissions to manipulate audio
 settings\footnote{One exception is Japan, where muting the shutter sound when
 taking pictures or videos is not possible due to legal
@@ -590,7 +590,7 @@ in the context of spyware apps.
 %%   solution in the citation.} \alex{fixed}
 Another example is Petracca et
 al.~\cite{petracca2015audroid}, who proposed requiring user approval before an
-app can record to stop malicious apps from eavesdropping. However, we note that
+app can record to stop malicious apps from eavesdropping. However, I note that
 this defense is unlikely to be successful as the adversary generally has physical access to the target device. On the one
 hand, this defense will only work if user approval is requested every time,
 which leads to significant usability issues. On the other hand, if user approval is
@@ -614,7 +614,7 @@ as the abuser will have physical access to the phone and can grant the consent. 
 %example is restricting access to sensitive information such as location and
 %clipboard data.
 
-%\grant{I suggest that we change the term ``data exfilitration'' to something
+%\grant{I suggest that I change the term ``data exfilitration'' to something
 %like ``data capture''.  I think exfiltration will typically be interpreted as
 %the process of siphoning the data off of the device and to an external source,
 %but the features/capabilities below seem to be just about capturing/recording
@@ -639,7 +639,7 @@ as the abuser will have physical access to the phone and can grant the consent. 
 %in order to collect this kind of sensitive information, an application
 %typically needs to require consent either by the user (to use physical sensors
 %like camera/microphone or to allow access to other applications/phone data).
-%Here we analyze how attackers are able to get this data without any explicit
+%Here I analyze how attackers are able to get this data without any explicit
 %consent by the users (we can still keep most of the content the same, with some
 %small wording tweaks to make the stealthy spying features about bypassing
 %consent for physical sensor access and the private data/screenshot features
@@ -670,7 +670,7 @@ as the abuser will have physical access to the phone and can grant the consent. 
 %\textbf{Mitigation.} Mitigating the abuse of accessibility or notification is
 %challenging as there is no automated way to differentiate the intention of an
 %app that is reading data. Huang et al.~\cite{huang2021a11y} proposes a
-%framework for restricting accessibility services, but we note that this
+%framework for restricting accessibility services, but I note that this
 %approach is unlikely to be successful in the context of spyware apps as they
 %assume the user is benign. One potential solution is to show a persistent
 %indicator for accessibility services when they are actively reading data and
@@ -684,7 +684,7 @@ as the abuser will have physical access to the phone and can grant the consent. 
 %recorded. Due to Android's use of an indicator, most spyware apps only use
 %MediaProjection to take screenshots (instead of live streaming the screen).
 %Since taking a screenshot is a sub-second operation, it is unlikely that users
-%will notice the indicator. Instead, we recommend that Android display the
+%will notice the indicator. Instead, I recommend that Android display the
 %indicator for a few seconds regardless of the duration of the action. We also
 %recommend adding the screen capture permission to the new privacy
 %dashboard\alex{i dont know what is in there}.
@@ -706,7 +706,7 @@ hidden app, and hiding from the Recent screen.
 %% some of this terminology since people might not know what the app launcher or
 %% app list are conceptually. We might want to include a figure with examples of
 %% these terms?} \grant{I made a slight tweak to the wording here, because I was
-%% initially confused by why we have a separate stealthiness section when all of
+%% initially confused by why I have a separate stealthiness section when all of
 %% the features in the previous section discuss how they steathily capture user
 %% data. What this section really is about is making it so that the user cannot
 %% find the app itself (rather than about having the app's functionality run
@@ -729,7 +729,7 @@ spyware apps hide their app icons from the app launcher that lists the available
 apps~\cite{whataret1:online}. Figure~\ref{fig:app_launcher} shows an example of
 the app launcher, and 13 of the 14 spyware apps in our study include code to hide their
 app icons from the app launcher using two methods:
-% Specifically, we observe two ways to hide app icon from the app launcher:
+% Specifically, I observe two ways to hide app icon from the app launcher:
 (1) hiding the app icon at runtime, and (2) specifying no launcher activity.
 % LEANBACK\_LAUNCHER~\cite{IntentAn39:online} instead of LAUNCHER.
 %% \damon{again people likely do not know this terminology, such as app
@@ -777,7 +777,7 @@ technique: Spy24 only has an activity with an intent containing action
 \texttt{ACTION\_MAIN} and \texttt{LEANBACK\_LAUNCHER} (used by TV
 apps); Meuspy only has an activity with an intent containing
 the \texttt{ACTION\_MAIN} action.
-% \alex{maybe we dont need the technical details here?}
+% \alex{maybe I dont need the technical details here?}
 Since both apps do not have an icon displayed in the app launcher,
 % and can be installed and run properly on an Android phone,
 they cannot easily be started by a normal user.  As a result, both
@@ -785,7 +785,7 @@ Spy24 and Meuspy use a loader to start the app.
 
 We have disclosed the abuse of the \texttt{LEANBACK\_LAUNCHER} intent
 on phone apps to Google, and Google determined that
-this abuse was not a security vulnerability.\footnote{They note that such ``icon hiding'' is against Google Play \emph{policy}, but since none of the apps we studied are deployed via Google Play this restriction has no impact.}
+this abuse was not a security vulnerability.\footnote{They note that such ``icon hiding'' is against Google Play \emph{policy}, but since none of the apps I studied are deployed via Google Play this restriction has no impact.}
 
 \subsubsection*{Capability \#6: Launching a Hidden App}
 \label{subsubsec:launch_hidden_app}
@@ -908,7 +908,7 @@ app.
 Since Android 7.1, while the Force Stop button is disabled for DA
 apps, the Uninstall button will remain enabled even if the app
 registers as DA.  As a result, users can uninstall DA apps
-directly~\cite{shan2019device}. Overall, we observe 11 apps that
+directly~\cite{shan2019device}. Overall, I observe 11 apps that
 register as DA.
 %% \damon{this is really cryptic and difficult to
 %% understand.}\alex{fixed}
@@ -932,7 +932,7 @@ that they can collect as much information as possible.  We focus on
 the ``diehard'' mechanisms that apps use to automatically restart
 themselves after being stopped by the Android system (e.g., due to low memory) or after device
 reboots. Echoing the diehard implementations discovered in prior
-work~\cite{shao2019lightweight,zhou2020demystifying}, we observe two
+work~\cite{shao2019lightweight,zhou2020demystifying}, I observe two
 main ways used by spyware apps to create diehard services. We also note
 a third approach that appears to originate from the spyware ecosystem
 and be a byproduct of other capabilities.
@@ -950,7 +950,7 @@ system.
 \texttt{BOOT\_COMPLETED} allows spyware apps to restart themselves
 after the device reboots: the Android system will send a
 \texttt{BOOT\_COMPLETED} system broadcast upon reboot, and spyware apps that listen
-for this broadcast will automatically restart themselves. While \texttt{NEW\_OUTGOING\_CALL} and \texttt{SMS\_RECEIVED} are also popular, we note that they serve dual purposes (\texttt{NEW\_OUTGOING\_CALL} can be used to launch a hidden app and \texttt{SMS\_RECEIVED} can be used to monitor SMS messages).
+for this broadcast will automatically restart themselves. While \texttt{NEW\_OUTGOING\_CALL} and \texttt{SMS\_RECEIVED} are also popular, I note that they serve dual purposes (\texttt{NEW\_OUTGOING\_CALL} can be used to launch a hidden app and \texttt{SMS\_RECEIVED} can be used to monitor SMS messages).
 
 \textbf{Listening for Accessibility or Notification Events.} Apps that choose to register as an
 \texttt{AccessibilityService} or
@@ -1026,7 +1026,7 @@ turned off by Android for battery saving reasons~\cite{AndroidA0:online,Accessib
 
 
 %% \geoff{so ``waking
-%% up apps'' is just for surviving reboots?  we might want to rename}\alex{fixed.
+%% up apps'' is just for surviving reboots?  I might want to rename}\alex{fixed.
 %% techinically apps can be woken up in many ways...after being stopped. by
 %% \texttt{BOOT\_COMPLETED} seems to solely used for waking up purposes}
 
@@ -1050,7 +1050,7 @@ an app window is covered.
 
 Prior work~\cite{zhou2020demystifying} has investigated various ways
 of creating diehard apps. According to the authors, the diehard
-mechanisms we observe are very resilient and can only be effectively
+mechanisms I observe are very resilient and can only be effectively
 stopped via a force stop.
 %% \geoff{``the above abuses can only be effectively stopped'' --- by abuse do you
 %% mean spyware activities in general, or just the methods for keeping apps
@@ -1076,7 +1076,7 @@ themselves~\cite{HowtoDis42:online}.}
 % TBD
 
 
-% Before diving into the actual implementation, we first detail the general
+% Before diving into the actual implementation, I first detail the general
 % process of building customized camera implementations. Each camera is in
 % Android is a \texttt{CameraDevice} and is responsible for producing raw data
 % frames~\cite{Cameraca74:online}. Apps receive these raw data frames by
@@ -1084,7 +1084,7 @@ themselves~\cite{HowtoDis42:online}.}
 % \texttt{SurfaceView}, \texttt{ImageReader}, \texttt{RenderScript.Allocation},
 % or \texttt{TextureView}~\cite{Cameraca74:online}.
 
-% In practice, we observed X different customized camera implementations: (1)
+% In practice, I observed X different customized camera implementations: (1)
 % through creating 1x1 pixel SurfaceView.
 
 % To create a camera session, provide it with one or more output target buffers

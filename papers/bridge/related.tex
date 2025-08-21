@@ -20,9 +20,9 @@ vulnerabilities and attacks~\cite{perez2021smart,grossman2017online,
   rodler2018sereum, zhang2020txspector, wu2021defiranger,
   ferreira2021eye}.  While our work focuses on the cross-chain
 context, a number of the vulnerability classes
-identified in such work are directly implicated in the attacks we analyze.%\alex{additional related work}
+identified in such work are directly implicated in the attacks I analyze.%\alex{additional related work}
 
-%and counter-attacks~\cite{zhang2023your}. Unlike this line of work, we employ a% similar method but focus exclusive on cross-chain bridges.
+%and counter-attacks~\cite{zhang2023your}. Unlike this line of work, I employ a% similar method but focus exclusive on cross-chain bridges.
 
 
 % Another domain of research explorer the possibility of monitoring blockchains live. probably not necessary
@@ -37,7 +37,7 @@ zero-knowledge~\cite{xie2022zkbridge} or committees of
 validators\cite{lan2021horizon,li2022polybridge}.
 Some many-chain blockchain ecosystems (e.g., Avalanche) are extending
 their chains with built-in bridges (across different chains). We consider our
-work orthogonal to these efforts as we focus on unbalanced bridge transactions, independent of the particular
+work orthogonal to these efforts as I focus on unbalanced bridge transactions, independent of the particular
 security violation that allowed such an outcome to take place.
 Indeed, some of the compromised bridges did use sets of validators.
 
@@ -79,7 +79,7 @@ smart contract bugs.
 That said, the rules considered by XScope are still considerably lower-level and more granular than our balance invariant as they are seeking to identify the cause of the detected attacks that have taken place.
 % \footnote{There are still many benefits to this approach.  For example, they are able to identify transactions that are out-of-scope for our approach. Notably, they identified
 % four deposit transactions that were previously unreported. These four deposit transactions did not have corresponding withdrawal transactions and therefore considered out-of-scope.}  
-While the two efforts are complementary, we believe
+While the two efforts are complementary, I believe
 our work is simpler to understand and implement, more clearly robust
 (we have tested against a far wider range of bridges and blockchains),
 and, as a result, is likely more attractive for inline deployment.
@@ -87,7 +87,7 @@ and, as a result, is likely more attractive for inline deployment.
 
 % The rules considered by XScope are considerably lower-level and more granular than our balance invariant as they are seeking to identify the cause of the detected attacks that have taken place but, like us, they are
 % more focused on invariant patterns than the low-level details of
-% % smart contract bugs.  While two efforts are complementary, we believe
+% % smart contract bugs.  While two efforts are complementary, I believe
 % our work is simpler to understand and implement, more clearly robust
 % (we have tested against a far wider range of bridges and blockchains)
 % And, as a result, is likely more attractive for inline deployment.
@@ -140,5 +140,5 @@ these systems operate, or empirical results on their efficacy, it is hard to rel
 % . Tools that detect specific vulnerabilities.
 % ECFChecker~\cite{grossman2017online} is one of the first tool that analyzes Ethereum transactions and determines if an execution is Effectively Callback Free. Sereum~\cite{Sereum} detect re-entrancy attacks. TxSpector~\cite{TxSpector} detect user-supplied rules. Others have used it for price manipulation~\cite{DEFIRANGER} and exploitation~\cite{Smart Contract Vulnerabilities}
 
-% security of cross-chain bridges. In this section, we review related work on cross-chain bridges, cross-chain security, transaction-based analysis, and industry efforts.
+% security of cross-chain bridges. In this section, I review related work on cross-chain bridges, cross-chain security, transaction-based analysis, and industry efforts.
 

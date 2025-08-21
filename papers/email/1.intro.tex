@@ -33,7 +33,7 @@ hard to reason about, leading to a structure that Chen \etal\ recently
 demonstrated can enable a range of evasion
 attacks~\cite{chen2020composition}.
 
-In this Chapter, we explore the unique aspects of this problem created
+In this Chapter, I explore the unique aspects of this problem created
 as a result of \emph{email forwarding}, which is commonly used by both
 individuals (\ie, to aggregate mail from multiple accounts) and
 organizations (\ie, for mailing list distribution).  While clearly
@@ -56,13 +56,13 @@ can jeopardize the security of downstream recipients.  This inversion of
 incentives and capabilities creates additional challenges to
 mitigating forwarding vulnerabilities.
 
-To characterize the nature of these issues, we conduct a large-scale empirical
+To characterize the nature of these issues, I conduct a large-scale empirical
 measurement study to infer and characterize the mail forwarding
 behaviors of 16 leading email providers and four popular mailing
-list services.  From these results, we identify a range of implicit
+list services.  From these results, I identify a range of implicit
 assumptions and vulnerable features in the
 configuration of senders, receivers, and forwarders.  Using a
-combination of these factors, we then demonstrate a series of distinct
+combination of these factors, I then demonstrate a series of distinct
 evasion attacks that bypass existing anti-spoofing protocols and allow
 the successful delivery of email with spoofed sender addresses (\eg,
 From: \dns{Anthony.Blinken@state.gov}).  These attacks affect both leading
@@ -80,13 +80,13 @@ such as \dns{odni.gov}, \dns{cisa.gov}, and \dns{secretservice.gov}), financial 
 \dns{apnews.com}, and \dns{afp.com}), commerce (\eg, \dns{unilever.com}, \dns{dow.com}), and law (\eg,
 \dns{perkinscoie.com}).
 Finally, in addition to disclosing these issues to their respective
-providers, we discuss the complexities involved in identifying,
+providers, I discuss the complexities involved in identifying,
 mitigating, and fixing such problems going forward.
 
-% \alex{I know this is a very lame way to write a paper. Summarizing the results again to make sure we are on the same page. Free feel to delete it.}
-% In summary, we present the following main contributions:
+% \alex{I know this is a very lame way to write a paper. Summarizing the results again to make sure I are on the same page. Free feel to delete it.}
+% In summary, I present the following main contributions:
 % \begin{itemize}
 %   \item We conduct a large-scale empirical measurement study to infer and characterize the forwarding mechanisms and behaviors of 20 prominent email forwarding services.
-%   \item From these measurement results, we identify four different forwarding mechanisms used in the wild (Section~\ref{sec:measure_forwarding_mechs_and_arc}), two of which are overlooked in prior work~\cite{shen2020weak,wang2022revisiting}, leading them to underestimate the security issues with email forwarding.
-%   \item We present a systematic analysis of vulnerable forwarding assumptions and features (Section~\ref{sec:assumptions}), and show how an adversary can exploit them to perform a range of email spoofing attacks (Section~\ref{sec:attacks}). The attacks we uncover affect both users of leading email service providers such as Gmail, Microsoft Outlook, iCloud, and Zoho, as well as critical domains used by government organizations and financial services among others.
+%   \item From these measurement results, I identify four different forwarding mechanisms used in the wild (Section~\ref{sec:measure_forwarding_mechs_and_arc}), two of which are overlooked in prior work~\cite{shen2020weak,wang2022revisiting}, leading them to underestimate the security issues with email forwarding.
+%   \item We present a systematic analysis of vulnerable forwarding assumptions and features (Section~\ref{sec:assumptions}), and show how an adversary can exploit them to perform a range of email spoofing attacks (Section~\ref{sec:attacks}). The attacks I uncover affect both users of leading email service providers such as Gmail, Microsoft Outlook, iCloud, and Zoho, as well as critical domains used by government organizations and financial services among others.
 % \end{itemize}

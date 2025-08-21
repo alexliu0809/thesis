@@ -11,10 +11,10 @@
 
 \section{Background}
 \label{sec:background}
-% In this section, we start by providing an overview of blockchain technology. We then describe how cross-chain bridges work followed by the threat model we consider in this paper.
+% In this section, I start by providing an overview of blockchain technology. We then describe how cross-chain bridges work followed by the threat model I consider in this paper.
 % In this section
-We first give a brief introduction to smart contract blockchains
-and cross-chain bridges. We then describe how bridges, under attack, collapse in
+I first give a brief introduction to smart contract blockchains
+and cross-chain bridges. I then describe how bridges, under attack, collapse in
 practice.
 
 \subsection{Smart-contract Blockchains} Modern DeFi protocols (e.g.,
@@ -143,7 +143,7 @@ emits an event (Figure~\ref{fig:erc20-event}) that Circle's off-chain code looks
 a user to withdraw the corresponding USD fiat off-chain.
 
 % \subsection{Blockchain Basics}
-% In this section, we cover the basic concepts of blockchain technology, including blockchains, smart contracts, transactions, accounts, and tokens.
+% In this section, I cover the basic concepts of blockchain technology, including blockchains, smart contracts, transactions, accounts, and tokens.
 
 % \textbf{Blockchains.} A blockchain is a distributed ledger that stores data (e.g., account balance) in a transparent and tamper-proof manner. It consists of a chain of blocks, where each block contains a certain amount of data, a reference to the previous block (thus forming a chain), and other information such as timestamp. Blockchains are maintained by a network of nodes that validate data in the blocks and reach consensus on the state of the ledger.\alex{somehow have to mention Solana and Ethereum and others?}
 % % It consists of a series of blocks that are linked together via cryptography (thus forming a chain) [65]. These blocks are immutable and can be used to store data (e.g., transactions). They are also maintained by a distributed network of nodes, removing the need of a central server. 
@@ -190,7 +190,7 @@ transferred tokens on the destination chain (e.g., on a Solana exchange trading
 USDC and Dogwifhat).\footnote{While some cross-chain bridges \emph{do} let users
 transfer one kind of token (e.g., USDC on Ethereum) for a completely different
 kind of token on the destination chain (e.g., Dogwifhat on Solana), these bridges
-essentially fuse the cross-chain token bridge with an exchange (or swap). We
+essentially fuse the cross-chain token bridge with an exchange (or swap). I
 focus on token bridges not only because they are fundamental to other kinds of
 bridges, but also because they have higher volume, more liquidity, and more
 attacks.} Since smart contracts cannot make network requests or otherwise
@@ -263,10 +263,10 @@ withdraw(uint256 id, address token, address to,
 This contract function first charges the caller a fee, then verifies the
 deposit details against receipt---both that the deposit was not already
 withdrawn and that the receipt signatures are valid---and finally transfers the
-tokens to the intended recipient.  We consider a cross-chain transaction
+tokens to the intended recipient.  I consider a cross-chain transaction
 complete when the asset is released to the recipient (step~9).
 
-We expect every cross-chain bridge transaction to uphold the balance invariant:
+I expect every cross-chain bridge transaction to uphold the balance invariant:
 the value (and kind) of the tokens withdrawn---the outflow---should equal the
 value (and kind) of the tokens deposited---the inflow---minus the charged fees.
 In practice, they do not.
@@ -274,11 +274,11 @@ In practice, they do not.
 
 
 % \subsection{Cross-Chain Bridges}
-% In this section, we begin by providing an example of how a typical cross-chain transaction works. We then discuss the different variants of cross-chain bridges. 
+% In this section, I begin by providing an example of how a typical cross-chain transaction works. We then discuss the different variants of cross-chain bridges. 
 % \subsubsection{A Typical Cross-Chain Transaction}
 % Figure~\ref{fig:cross-chain} depicts a typical cross-chain transaction. Starting with the source blockchain, the sender (represented by their EOA) initiates a transaction to transfer assets to the bridge's deposit contract (step 1). The bridge contract then verifies that it has received the assets (step 2). Upon verification, the bridge contract emits an event to record the transfer (step 3). This event is observed by the relaying component (step 4), which typically resides outside and constantly monitors the source blockchain. The relaying component then verifies the authenticity of the event (step 5). If the event is authentic, the relaying component signs the message and stores the signature in a queryable database (step 6). A submitter on the destination blockchain then fetches the signed message from the database (step 7) and sends it to the bridge's withdrawal contract on the destination blockchain (step 8). The bridge contract then verifies the signature (step 9) and transfers the assets to the recipient (step 10). A cross-chain transaction is considered complete when the asset is released to the recipient (step 11).
 
-% % Important things we need in this figure:
+% % Important things I need in this figure:
 %     % source and dst amount
 %     % how different vulnerabilities manifest
 %         % source
@@ -365,7 +365,7 @@ unbacked deposits.
 
 \item \textbf{Bugs in the withdraw verification.} In step 8, the bridge contract
 verifies that the messages are signed by the relayer and have not
-been replayed. Bugs in this verification logic (e.g., as we saw with
+been replayed. Bugs in this verification logic (e.g., as seen with
 Wormhole~\cite{wormholeattack}) have allowed attackers to supply ``valid''
 payloads that were not signed by the relayer and replay withdrawal
 requests with valid deposit receipts that have already been withdrawn.
@@ -375,7 +375,7 @@ requests with valid deposit receipts that have already been withdrawn.
 % Liquidity Pool vs Mint-and-Burn. Example USDC on ETH and Polygon
 % Verification Modes
 % \subsection{Threat Model}
-% In this section, we describe the attack surfaces that are in scope for this paper. Importantly, we assume that deposits and withdrawals are made through designated functions and that funds cannot be withdrawn through functions other than the designated withdrawal function(s). Given this setup, we consider the following attack surfaces:
+% In this section, I describe the attack surfaces that are in scope for this paper. Importantly, I assume that deposits and withdrawals are made through designated functions and that funds cannot be withdrawn through functions other than the designated withdrawal function(s). Given this setup, I consider the following attack surfaces:
 
 % \textbf{Buggy Deposit Verification.} In step 2, the bridge contract verifies that it has received the correct amount of assets before emitting an event. Bugs in this verification logic could allow an attacker to deposit a smaller amount of assets than what is recorded by the bridge in the event (step 3).
 
@@ -387,30 +387,30 @@ requests with valid deposit receipts that have already been withdrawn.
 
 %\textbf{Buggy Withdraw Verification.} In step 9, the bridge contract verifies that the messages are signed by the relaying component and have not been replayed. Bugs in this verification logic could allow an attacker to verify payloads that are not signed by the relaying component or to replay a message that has already been processed.
 
-In this chapter, we assume an attacker can exploit any of the aforementioned
+In this chapter, I assume an attacker can exploit any of the aforementioned
 components or otherwise control the relayer (or submitter) keys.
-In the next section, we show that this attacker model and our simple
+In the next section, I show that this attacker model and our simple
 \emph{balance invariant checking} captures the largest attacks on cross-chain
-bridges that have happened in the past.  In Sections~\ref{sec:live-audit} we show
+bridges that have happened in the past.  In Sections~\ref{sec:live-audit} I show
 that monitoring withdrawals and deposits on the source and destination chains
 can be used to detect similar attacks in the future.  Finally, in
-Section~\ref{sec:active-protect} we describe an \emph{announce-then-execute} bridge
+Section~\ref{sec:active-protect} I describe an \emph{announce-then-execute} bridge
 design that enforces this invariant to prevent attacks before they happen.
 
-We note that while our threat model captures a wide variety of vulnerabilities,
+I note that while our threat model captures a wide variety of vulnerabilities,
 it is not exhaustive.  As with any detection system, an attack that violates one
 of our assumptions (e.g., avoids violating the balance invariant by transferring
 funds off-bridge or not having a withdrawal, subverts the transaction data used to validate the invariant,
-etc.) might succeed.  
-We similarly consider other smart contract bugs (beyond bugs in deposit and withdrawal functions) and account key compromises out of scope---and instead focus
+etc.) might succeed.
+I similarly consider other smart contract bugs (beyond bugs in deposit and withdrawal functions) and account key compromises out of scope---and instead focus
 on the cross-chain bridging aspects which are relatively less well understood.
-As we show later, our model captures the largest attacks on
+As I show later, our model captures the largest attacks on
 cross-chain bridges that have happened in the past and systems can use
 it to prevent similar attacks in the future.
 
 
 %% While our approach captures a variety of vulnerabilities, it is by no
-%% means exhaustive. For example, a key assumption we make is that
+%% means exhaustive. For example, a key assumption I make is that
 %% withdrawal are done through designated withdraw functions. However, if
 %% an adversary is able to compromise the key to account that holds the
 %% funds for the bridge, they could simply transfer the funds to another

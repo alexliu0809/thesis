@@ -2,9 +2,9 @@
 
 \section{Spyware}
 
-To provide context for our study, we first describe how spyware is
-used in general and then describe how we selected the specific spyware
-apps we investigate.
+To provide context for our study, I first describe how spyware is
+used in general and then describe how I selected the specific spyware
+apps I investigate.
 
 \subsection{Spyware Use}
 
@@ -54,7 +54,7 @@ data at risk to a third-party attacker.
 %% accessibility~\cite{feal2020angel}.
 
 
-For our analysis, we chose 14 distinct leading consumer Android spyware
+For our analysis, I chose 14 distinct leading consumer Android spyware
 apps.\footnote{Often the same spyware app is available under multiple
   names. We identify and avoid choosing duplicate apps.}  We focus on
 Android-based spyware because most of the mobile spyware market
@@ -66,17 +66,17 @@ iPhone involves 41 distinct steps \cite{howToJailbreakIphone:online}) and one th
 time to complete --- both requirements at odds with the broad,
 non-technical customer base such apps are marketed to. We also focus on leading spyware apps as they are the apps that more people are exposed to and they are more likely to be innovative (new features could potentially bring them more customers).
 
-In our selection process, we started with the 18 off-store spyware apps identified by Chatterjee et al.~\cite{chatterjee2018spyware}. We augmented our set of apps by taking the intersection of two major industry reports (\cite{esetandr4:online} and~\cite{Tekstalk86:online}) that listed spyware apps.\footnote{We take the intersection of both reports because (a) the definition of consumer spyware is vague; and (b) the collection process is ad-hoc and differs for each report. Apps in the intersection represent consensus among these disparate classifications.} Next, we sorted all the apps based on the Tranco ranking~\cite{pochat2018tranco} of their website domain (snapshot taken on May 5th, 2022).  We filtered out apps that were distributed via Google Play (since, to appear in
+In our selection process, I started with the 18 off-store spyware apps identified by Chatterjee et al.~\cite{chatterjee2018spyware}. We augmented our set of apps by taking the intersection of two major industry reports (\cite{esetandr4:online} and~\cite{Tekstalk86:online}) that listed spyware apps.\footnote{We take the intersection of both reports because (a) the definition of consumer spyware is vague; and (b) the collection process is ad-hoc and differs for each report. Apps in the intersection represent consensus among these disparate classifications.} Next, I sorted all the apps based on the Tranco ranking~\cite{pochat2018tranco} of their website domain (snapshot taken on May 5th, 2022).  We filtered out apps that were distributed via Google Play (since, to appear in
 the store, they do not have compelling spyware capabilities)
 %% apps distributed via Google Play have very limited capabilities
 or broken (e.g., not reachable or no longer accepting payments).
-%% \alex{One way to avoid mentioning off-store is exlaining why we ignored apps distributed via google store (which is my current version); another option is to squeez in the off-store part somewhere in the intro; }
-For apps that are rebranded versions of other apps, we consider them duplicates and did not examine them separately.
+%% \alex{One way to avoid mentioning off-store is exlaining why I ignored apps distributed via google store (which is my current version); another option is to squeez in the off-store part somewhere in the intro; }
+For apps that are rebranded versions of other apps, I consider them duplicates and did not examine them separately.
 
-From the top 25 most popular apps, we identified 14 distinct apps which we used in our study. The apps in this set are produced by a wide spectrum of vendors, with a broad array of capabilities, and cover the majority of apps identified in prior work~\cite{chatterjee2018spyware} (10 out of the 14 apps that are still alive). Moreover, we find significant overlap in the low-level technical implementation of spyware capabilities:  all but three techniques described in Section~\ref{sec:api-abuse} are discovered after reverse engineering the top five most popular apps (in terms of website domain ranking), and no new techniques are found after the 11th ranked app (Spy24).\footnote{While we do continue to find different variants or implementation of the same technique, we view these as minor details.}
+From the top 25 most popular apps, I identified 14 distinct apps which I used in our study. The apps in this set are produced by a wide spectrum of vendors, with a broad array of capabilities, and cover the majority of apps identified in prior work~\cite{chatterjee2018spyware} (10 out of the 14 apps that are still alive). Moreover, I find significant overlap in the low-level technical implementation of spyware capabilities:  all but three techniques described in Section~\ref{sec:api-abuse} are discovered after reverse engineering the top five most popular apps (in terms of website domain ranking), and no new techniques are found after the 11th ranked app (Spy24).\footnote{While I do continue to find different variants or implementation of the same technique, I view these as minor details.}
 % \alex{added a few words that talks about these apps being sorted}
-The lack of new techniques discovered among less popular apps in our set suggests that the apps we study capture a representative set of techniques used in practice.
+The lack of new techniques discovered among less popular apps in our set suggests that the apps I study capture a representative set of techniques used in practice.
 
 
-Table~\ref{tab:apps_selected} shows the list of spyware apps we chose, their website domain and its corresponding Tranco ranking, their web portal domain and its corresponding Tranco ranking, and their APK's target SDK version and package name.
+Table~\ref{tab:apps_selected} shows the list of spyware apps I chose, their website domain and its corresponding Tranco ranking, their web portal domain and its corresponding Tranco ranking, and their APK's target SDK version and package name.
 

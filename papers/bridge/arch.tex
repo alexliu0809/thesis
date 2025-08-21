@@ -9,7 +9,7 @@ changes to existing bridge infrastructure.  However, the live
 monitoring system only alerts on violations of the invariant and does
 not prevent violating bridge transactions from being processed.
 
-In this section, we describe an approach for extending an existing
+In this section, I describe an approach for extending an existing
 bridge implementation to prevent malicious transactions from
 executing.  Our goal is to present a proof-of-concept implementation
 to demonstrate the feasibility of applying the balance invariant in the
@@ -24,17 +24,17 @@ interesting future work.
 
 % how hard it would be to modify the Wormhole bridge to prevent transactions that violate the invariant from being processed. We propose an improved architecture that treats the bridge relaying infrastructure as a black box and can effective stop any malicious transactions that break the invariant and caused by code bugs.
 
-% Below, we start by answering the question of where to introduce the mechanism. Then, using Wormhole as an example, we show how we can modify the bridge to prevent malicious transactions from being processed with fewer than 30 lines of code changes. Finally, we evaluate the security and performance of the improved architecture.
+% Below, I start by answering the question of where to introduce the mechanism. Then, using Wormhole as an example, I show how I can modify the bridge to prevent malicious transactions from being processed with fewer than 30 lines of code changes. Finally, I evaluate the security and performance of the improved architecture.
 
 We start by proposing a new model for the workflow of bridge
-transactions.  Then, using Wormhole as an example, we show how to
+transactions.  Then, using Wormhole as an example, I show how to
 modify an existing bridge implementation to prevent malicious transactions from
 being processed with fewer than 30 lines of code changes.  Finally, we
 evaluate the correctness and overhead of this initial implementation.
 
 \subsection{The Announce-then-Execute Model}
 
-To guide the design of a new model, we first highlight where the
+To guide the design of a new model, I first highlight where the
 attack surfaces exist. As shown in Figure~\ref{fig:cross-chain}, a
 vulnerability can exist in as early as the second step (verify lock
 amount) to as late as the next-to-last step (verify relayed
@@ -42,7 +42,7 @@ transaction). Thus, a natural place to introduce a protection
 mechanism is just before the final step, which executes the relayed
 transaction.
 
-Using this insight we propose an announce-then-execute model.
+Using this insight I propose an announce-then-execute model.
 Figure~\ref{fig:improved-arch} depicts the entities and steps involved
 in the new model, focusing on the destination chain (replacing the
 right-most box of Figure~\ref{fig:cross-chain}).  The new model
@@ -62,7 +62,7 @@ monitoring system (Section~\ref{sec:live-audit}).  If the relayed
 transaction violates the invariant, the Approver can reject the
 transaction to prevent it from being executed.
 
-% In addition, we observe that many bridges (e.g., Wormhole) couple the last two steps tightly --- the verification and execution of the relayed transaction are done in the same function call. While being gas efficient, this implementation has a critical drawback. Namely, if the verification function has a bug, it would be impossible to stop the malicious transaction from being executed.
+% In addition, I observe that many bridges (e.g., Wormhole) couple the last two steps tightly --- the verification and execution of the relayed transaction are done in the same function call. While being gas efficient, this implementation has a critical drawback. Namely, if the verification function has a bug, it would be impossible to stop the malicious transaction from being executed.
 
 % This means that the verification of a relayed transaction is done at the same time as the execution of the relayed transaction. 
 
@@ -131,11 +131,11 @@ while the \texttt{approveWithdraw} function executes the withdrawal
 transaction. This modification required fewer than 30 lines of code
 changes.
 
-For simplicity, we opted for a single approver with one key in our implementation. However, our implementation can be easily extended (e.g., to use multisig). In addition, while our implementation has not been adopted by the Wormhole team (as we are a research group not affiliated with Wormhole), our solution has inspired other industry projects to adopt a similar approach~\cite{bascule}.
+For simplicity, I opted for a single approver with one key in our implementation. However, our implementation can be easily extended (e.g., to use multisig). In addition, while our implementation has not been adopted by the Wormhole team (as I are a research group not affiliated with Wormhole), our solution has inspired other industry projects to adopt a similar approach~\cite{bascule}.
 
 \subsection{Evaluation}
 
-As a final step we performed a high-level evaluation of the
+As a final step I performed a high-level evaluation of the
 correctness and overhead (in terms of gas usage) of the
 announce-then-execute implementation.  We deployed our bridge
 implementation on the Binance and Fantom testnets due to the
@@ -154,7 +154,7 @@ Binance as the source chain and Fantom as the destination chain.
 %% improved architecture incurs only a moderate overhead of 50\% more gas
 %% usage without any optimization.
 
-\textbf{Correctness.}  For evaluating correctness we disabled the
+\textbf{Correctness.}  For evaluating correctness I disabled the
 security checks in the original implementation (e.g., signature
 verification) to allow malicious transactions to flow through the
 contract implementation (e.g., simulating key compromise).  We then
@@ -180,7 +180,7 @@ results are the same independent of where the malicious transactions
 randomly appear in the sequence.
 
 \textbf{Overhead.}  The additional steps add overhead to implementing
-bridges.  For this experiment, we measured the gas usage for executing
+bridges.  For this experiment, I measured the gas usage for executing
 Wormhole's original implementation (with its security checks) and the
 gas usage of the announce-then-execute implementation (also with the
 original security checks plus our added code).  On average, our

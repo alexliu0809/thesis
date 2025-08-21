@@ -59,7 +59,7 @@ or are specialized to particular sets of vulnerabilities (e.g., fake deposit eve
 continual updating, tuning and re-evaluation as they are tied to
 specific implementation artifacts.
 
-In this work, we propose a complementary approach for detecting bridge
+In this work, I propose a complementary approach for detecting bridge
 attacks, by monitoring violations of the \emph{balance invariant}
 --- a measure of the difference between value inflows and value
 outflows at a bridge. Unlike prior work, this approach is extremely
@@ -70,7 +70,7 @@ Indeed, the power of the approach arises from its technical
 simplicity.  Because it abstracts away the complicated implementation
 details of bridge contacts (and the off-chain code interfacing with these contracts), the bridge invariant naturally captures 
 attacks independent of the details of the vulnerabilities
-they target.  We demonstrate this effectiveness by comprehensively
+they target.  I demonstrate this effectiveness by comprehensively
 surveying the twelve largest attacks (each \$US1\mil or more) between
 2021 and 2023, and showing that while the details of their
 vulnerabilities vary considerably, all of them share the property that
@@ -83,11 +83,11 @@ exceed inflow, less costs).
 % vulnerabilities vary considerably, but all share the property that
 % transactions are allowed to be ``unbalanced'' (i.e., that outflow can
 % exceed inflow, less costs).  
-We then empirically demonstrate, by auditing over 10\mil transactions from 11 different bridges on across 21 blockchains, that auditing transactions for this
+I then empirically demonstrate, by auditing over 10\mil transactions from 11 different bridges on across 21 blockchains, that auditing transactions for this
 property is sufficient to retrospectively and automatically identify
 each of these past attacks.  
 
-We further show that such audits can be performed in \emph{real-time}
+I further show that such audits can be performed in \emph{real-time}
 --- either to alert bridge operators about potential fraud, or prevent
 such unbalanced transactions from completing altogether (i.e., thus
 preventing any such loss).
@@ -98,33 +98,33 @@ preventing any such loss).
 % real-time --- either to alert bridge operators about potential fraud,
 % or prevent such unbalanced transactions from completing altogether.
 
-Concretely, we makes three main contributions:
+Concretely, I make three main contributions:
 \begin{itemize}
-\item\emph{Balance Invariant}.  We introduce the notion of a simple
+\item\emph{Balance Invariant}.  I introduce the notion of a simple
   balance invariant, \emph{outflow = inflow - costs}, which can be
   calculated automatically from the transaction formats used by
-  current bridges.  We hypothesize that this invariant should naturally hold for benign
+  current bridges.  I hypothesize that this invariant should naturally hold for benign
   transactions, but not for those exploiting bridge vulnerabilities.
 
-\item\emph{Retrospective validation}.  We validate our hypothesis by
+\item\emph{Retrospective validation}.  I validate my hypothesis by
   empirically auditing over 20 million past transactions (across more
   than 20 blockchains, between 11 different bridges) and show that the
   balance invariant is sufficient to identify each and every attack
-  for which we have collected ground truth (and additional transactions that should have been flagged).  Moreover, we identify
+  for which I have collected ground truth (and additional transactions that should have been flagged).  Moreover, I identify
   vanishingly few other transactions that violate this invariant,
-  virtually all of which deserve further scrutiny. Some are clearly new, unreported thefts (separate from the 12 attacks we study), and others capture bridge behaviors that are deserving of considerably more transparency (e.g., unilateral issuance of millions of dollars worth of uncollateralized tokens).
-  
+  virtually all of which deserve further scrutiny. Some are clearly new, unreported thefts (separate from the 12 attacks I study), and others capture bridge behaviors that are deserving of considerably more transparency (e.g., unilateral issuance of millions of dollars worth of uncollateralized tokens).
+
   % Some are clear
   % contract implementation errors, others are likely new, unreported
   % thefts, and yet others capture bridge behaviors that are deserving
   % of considerably more transparency (e.g., unilateral issuance of
   % millions of dollars worth of uncollateralized tokens).
 
-\item\emph{Real-time auditing}.  We show our approach is not only
+\item\emph{Real-time auditing}.  I show my approach is not only
   useful for retrospective analysis, but can be used to audit bridge
-  transactions and detect new attacks in real-time. We implement and
+  transactions and detect new attacks in real-time. I implement and
   demonstrate an online audit of the Wormhole bridge and show that it
-  automatically detects every attack we inject.  Further, we introduce
+  automatically detects every attack I inject.  Further, I introduce
   and implement a proof-of-concept for a new bridge architecture,
   called \emph{announce-then-execute}, that incorporates such auditing
   into the transaction flow itself --- thereby preventing unbalanced
@@ -132,11 +132,11 @@ Concretely, we makes three main contributions:
   treats the most complicated components of bridges (e.g., verifying
   relayed messages) as black boxes, adds no new attack surface for
   theft, and requires minimal changes to existing codebases --- a benefit
-  which we demonstrate by implementing a modified version of the
+  which I demonstrate by implementing a modified version of the
   Wormhole bridge.
 \end{itemize}
 
-We argue that this approach is powerful both due to its simplicity (in a
+I argue that this approach is powerful both due to its simplicity (in a
 legitimate financial transaction, the value paid should be equivalent
 to the value received, less costs) and its independence from the
 vagaries of smart contract details.  Moreover, it represents a
@@ -153,7 +153,7 @@ Ethereum~\cite{bascule}.
 
 % We make three contributions in this paper:
 % \begin{itemize}
-%     \item We conduct the first large-scale empirical study of cross-chain bridge transactions. Our system, which we call \textit{\offlinetool}, analyzed millions of transactions spanning over 20 blockchains. We showed that one could effectively identify all exploit transactions involved in 13 unique attacks on 12 bridges with minimum false alarm rate.
+%     \item We conduct the first large-scale empirical study of cross-chain bridge transactions. Our system, which I call \textit{\offlinetool}, analyzed millions of transactions spanning over 20 blockchains. We showed that one could effectively identify all exploit transactions involved in 13 unique attacks on 12 bridges with minimum false alarm rate.
 %     \item We present \textit{Big Bro}, a system that monitors 99\% of withdraw transactions on 12 blockchains for Wormhole. Our system augments Wormholescan, the existing monitoring system, by taking a withdraw-centric approach, and uncovers blind spots of Wormholescan.
 %     \item We propose \textit{something}, an improved architecture that enables monitoring of cross-chain bridge transactions and adds reversibility to cross-chain bridge transactions. 
 % \end{itemize}

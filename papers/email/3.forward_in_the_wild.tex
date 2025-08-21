@@ -11,30 +11,30 @@ many forwarding use cases: to transparently hide the intermediate
 forwarder and present the illusion that the recipient receives the
 email directly from its original sender.
 
-Absent a clear standard to depend on, we have used empirical
+Absent a clear standard to depend on, I have used empirical
 measurements to \emph{infer} the forwarding behavior deployed by
 prominent email providers and mailing list services.  For each
-service, we created multiple test accounts, used them to forward email
-to recipient accounts we controlled, and then analyzed the resulting
+service, I created multiple test accounts, used them to forward email
+to recipient accounts I controlled, and then analyzed the resulting
 email headers to identify the forwarding mechanism employed.
 (Section~\ref{sec:methodology} has a more detailed description of our
 methodology.)
 
 We constructed a comprehensive and representative set of forwarding services by building on top of prior literature.
-In total, we studied 20 distinct, leading email forwarding services.
+In total, I studied 20 distinct, leading email forwarding services.
 We started by collecting all email providers studied in prior literature~\cite{chen2020composition,shen2020weak,hu_end--end_nodate,wang2022revisiting}.
 We considered an email provider \emph{out of scope} if it meets any of these four criteria: (a) it is no longer active (e.g., excite.com); (b) it does not accept US customers (e.g., all Chinese providers studied in prior work);  (c) it is not open to public registration (e.g., cock.li); or (d) it does not support forwarding (e.g., Protonmail).
-Using these criteria, we identified 23 email providers.
-Next, we excluded five email providers that prohibited bulk registration (which prevents us from running large-scale measurements), leaving us with 18 email providers.
+Using these criteria, I identified 23 email providers.
+Next, I excluded five email providers that prohibited bulk registration (which prevents us from running large-scale measurements), leaving us with 18 email providers.
 We then identified and removed duplicate providers that are operated by the same vendor under different names, leading to a total of 14 distinct email providers.
-Finally, we augmented this set of forwarding services by searching for popular email providers that supported forwarding and widely-used mailing list services (a common use case overlooked in prior literature), adding two additional email providers (Mail2World and GoDaddy) and four mailing lists.
+Finally, I augmented this set of forwarding services by searching for popular email providers that supported forwarding and widely-used mailing list services (a common use case overlooked in prior literature), adding two additional email providers (Mail2World and GoDaddy) and four mailing lists.
 
 Our selection of email forwarding services covers a diverse set of countries and real-world use cases (personal and business email), and represents services used by the general public (used by over 46\% of popular Alexa domains and government domains according to Liu et al.~\cite{liu2021s} ignoring email filtering services).
 %\alex{42.7\% considering email filtering}. 
 We list all email providers and mailing lists in Table~\ref{tab:forwarding_mechs_in_the_wild}.
 
 
-Through our measurements, we confirmed the use of three common
+Through our measurements, I confirmed the use of three common
 approaches that are generally known through public documentation, and
 identified a fourth uncommon implementation used by
 Microsoft Outlook (hence referred to as Outlook) and Freemail.hu (hence referred to as Freemail).
@@ -46,7 +46,7 @@ recipient.
 
 
 
-% By analyzing public documentation and empirically testing popular email services (\S~\ref{sec:fwd_adoption_measurement}), we identified four major approaches to implementing email forwarding.
+% By analyzing public documentation and empirically testing popular email services (\S~\ref{sec:fwd_adoption_measurement}), I identified four major approaches to implementing email forwarding.
 % \geoff{is this a ``result'' because Microsoft's implementation has to be experimentally discovered?}\alex{it is technically discovered through experiments}
 
 We now describe each of these approaches in detail using two running
@@ -74,7 +74,7 @@ email to the list's members (\eg, \dns{user@univ.edu}).
 \end{figure}
 
 
-% \grant{In MFEF, is there a reason why the MAILFROM is acm instead of hotcrp? If it's to illustrate a change, I suggest we use noreply@hotcrp.com for the sender MAIL FROM addresses.}\alex{fixed}
+% \grant{In MFEF, is there a reason why the MAILFROM is acm instead of hotcrp? If it's to illustrate a change, I suggest I use noreply@hotcrp.com for the sender MAIL FROM addresses.}\alex{fixed}
 
 % \noindent{\bf Plain Message-Forwarding (PMF)}.
 \textbf{Plain Message-Forwarding (PMF)}. Initially designed for
@@ -98,7 +98,7 @@ rather than presenting \dns{alice@univ.edu} as the sender.
 Similar to PMF, MFEF (Figure~\ref{fig:forwarding_mechs_combined}b) aims to achieve transparent forwarding by preserving the original sender's identity in the \textsc{FROM} header.
 Unlike the other forwarding approaches described in this section, MFEF is a custom forwarding implementation that appears to be used only by Outlook and Freemail.
 % \footnote{We are not
-%   entirely clear what function MFEF serves but we hope, as part of our
+%   entirely clear what function MFEF serves but I hope, as part of our
 %   disclosure interactions with Microsoft, to gain a better
 %   understanding of this design's motivation for a future version of
 %   this paper.}
@@ -108,9 +108,9 @@ header to be the same as the \textsc{FROM} header (from \dns{noreply@hotcrp.com}
 Email forwarded using PMF and MFEF often break SPF validation because the \textsc{MAIL FROM} domain typically does not list the forwarding server's IP address in its SPF allowlist;
 in our example, \dns{hotcrp.com} does not list the email servers for \dns{univ.edu} in its SPF allowlist.
 This incompatibility has hindered the adoption of SPF and DMARC~\cite{hutowardsunderstanding},
-leading to provider-specific defenses and new anti-spoofing protocols that we describe in Section~\ref{sec:assumptions}.
+leading to provider-specific defenses and new anti-spoofing protocols that I describe in Section~\ref{sec:assumptions}.
 
-%Despite these defenses, we show how attackers can abuse forwarding to nonetheless successfully spoof email from hundreds of thousands of popular domains in
+%Despite these defenses, I show how attackers can abuse forwarding to nonetheless successfully spoof email from hundreds of thousands of popular domains in
 %Section~\ref{sec:attacks}.
 
 % Figure~\ref{fig:forwarding_mechs_combined}a depicts the actions of
@@ -225,7 +225,7 @@ At a high-level, because REM + MOD rewrites a forwarded email's headers to alway
 % Mailman       & REM                & \checkmark \\
 % \bottomrule
 % \end{tabular}
-% \caption{Default forwarding mechanisms and ARC support of the providers and mailing list services we tested.
+% \caption{Default forwarding mechanisms and ARC support of the providers and mailing list services I tested.
 % \grant{Let's remove the ARC column?}\alex{ok}
 %   \label{tab:forwarding_mechs_in_the_wild}}
 % \end{table}
@@ -253,7 +253,7 @@ At a high-level, because REM + MOD rewrites a forwarded email's headers to alway
 %%   Mailman       & REM       \\
 %%   \bottomrule
 %%   \end{tabular}
-%%   \caption{Default forwarding mechanisms and ARC support of the providers and mailing list services we tested.
+%%   \caption{Default forwarding mechanisms and ARC support of the providers and mailing list services I tested.
 %%     \grant{The other/alternate version looks great (and uses less room than this)!}
 %%     \geoff{I'll experiment with alternate formats}
 %%     \label{tab:forwarding_mechs_in_the_wild}}
@@ -284,7 +284,7 @@ At a high-level, because REM + MOD rewrites a forwarded email's headers to alway
   Zoho            & REM  & & \\
   \bottomrule
   \end{tabular}
-  \caption[The Providers and Mailing List Services Tested]{The providers and mailing list services we tested and the forwarding mechanisms they use. For providers that are operated by the same vendor under different names (e.g., GMX and Mail.com), we merge them into one row. O365 stands for Office 365.
+  \caption[The Providers and Mailing List Services Tested]{The providers and mailing list services I tested and the forwarding mechanisms they use. For providers that are operated by the same vendor under different names (e.g., GMX and Mail.com), I merge them into one row. O365 stands for Office 365.
     \label{tab:forwarding_mechs_in_the_wild}}
   %\vspace*{-0.2in}
   \end{table}
@@ -301,15 +301,15 @@ At a high-level, because REM + MOD rewrites a forwarded email's headers to alway
 % in prior
 % work~\cite{chen2020composition,shen2020weak,hu_end--end_nodate}, while
 % filtering out providers that do not support forwarding.  We also skipped
-% providers for which we had trouble registering accounts due to
+% providers for which I had trouble registering accounts due to
 % specific registration requirements (\eg,
-% all Chinese providers), for which we could not bypass bot detection
+% all Chinese providers), for which I could not bypass bot detection
 % (\eg, Yandex), and those that make bulk registration challenging (\eg,
-% iCloud). Notably, we study Google and Microsoft, which are prominent
+% iCloud). Notably, I study Google and Microsoft, which are prominent
 % among popular domains according to Liu \etal~\cite{liu2021s}.
 % \geoff{the current description is subtractive; another approach
 %   is to have it be additive (cover prominent according to Liu +
-%   mailing lists), and then describe that there are others we tried
+%   mailing lists), and then describe that there are others I tried
 %   for additional coverage but had the issues listed}\alex{I kinda like the additive one. See below}
 
 % \alex{Additive version}
@@ -327,5 +327,5 @@ plain-message forwarding (PMF).
 Outlook and Freemail use their own custom
 forwarding mechanism (MFEF) and, as described, Gaggle uses remailing with modification (REM+MOD)
 forwarding.
-% \geoff{would ``Gaggle Mail'' be more consistent with how we name providers?}
+% \geoff{would ``Gaggle Mail'' be more consistent with how I name providers?}
 % described in Section~\ref{sec:background:fwdingmechanisms}.

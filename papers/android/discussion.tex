@@ -38,7 +38,7 @@ unfettered capabilities that the true user may never be aware of.  The
 Accessibility API offers a particularly large consent loophole, as its
 intended function necessitates almost complete mediation of I/O
 activities.  Moreover, even when the API itself has been changed to
-restrict certain capabilities we have repeatedly found spyware authors
+restrict certain capabilities I have repeatedly found spyware authors
 creatively abusing APIs or their implementations to gain capabilities
 that were not meant to be available to third-party apps
 (e.g., the range of mechanisms described in
@@ -49,12 +49,12 @@ with our discovery of their unwillingness to fix what
 we consider to be a vulnerability in their API that allows spyware apps to
 hide their icon.
 
-The privacy deficiencies we uncover in Section~\ref{sec:data-leak}, on
+The privacy deficiencies I uncover in Section~\ref{sec:data-leak}, on
 the other hand, demonstrated the unfortunate truth about consumer
 mobile spyware apps: that they prioritize covert collection over
 protecting user data.  As an example, Spapp shows signs of
 significant developer effort: it implements most of the technical
-collection capabilities we have described and carefully obfuscates its
+collection capabilities I have described and carefully obfuscates its
 code to hinder reverse engineering efforts. However, the same app
 places little investment in protecting the data it has collected,
 incorrectly handling data retention after deletion and executing
@@ -81,7 +81,7 @@ Chapter~\ref{chap:pets23}, in part, is a reprint of the material as it appears i
 Damon McCoy. The dissertation author was the primary investigator and author of this paper.
 
 
-%In this work, we perform an in-depth technical analysis of fifteen consumer spyware apps targeting Android phones. We document how spyware apps abuse of Android APIs to achieve a wide range of capabilities --- ranging from surreptitiously collecting users data to persisting on the target device. Our technical analysis not only sharpens the understanding of consumer mobile spyware, but also sheds light on the challenges of defending against spyware apps and the need for more creative defense mechanisms from both Google and the research community.
+%In this work, I perform an in-depth technical analysis of fifteen consumer spyware apps targeting Android phones. We document how spyware apps abuse of Android APIs to achieve a wide range of capabilities --- ranging from surreptitiously collecting users data to persisting on the target device. Our technical analysis not only sharpens the understanding of consumer mobile spyware, but also sheds light on the challenges of defending against spyware apps and the need for more creative defense mechanisms from both Google and the research community.
 
 %Defending against spyware apps is challenging due to the unique threat model they pose. First, the adversary has physical access and perform various actions such as granting permissions. Many existing defense mechanisms appear unsuccessful against spyware apps as they assume the user is benign and will grant permissions consciously.
 %For instance, Android~10 limited when apps can start Activities to a few scenarios~\cite{Restrict50:online}
@@ -89,14 +89,14 @@ Damon McCoy. The dissertation author was the primary investigator and author of 
 %While this restriction should hinder any abuse that relies on Activities, it is insufficient against spyware apps because the apps can register themselves an accessibility service and request \texttt{SYSTEM\_ALERT\_WINDOW} permission,
 %which the stalker (abuser) can grant upon installation given their physical device access.
 %This also applies to several academic papers~\cite{huang2021a11y,pan2018panoptispy} that assume the user is benign.
-%Next, the fact that many spyware apps are sideloaded renders defense systems that are deployed on app markets (e.g., Google Play Policies and Yan et al.~\cite{yan2019understanding}) unusable. Furthermore, while the apps that we study are dedicated for spying on users, past literature~\cite{chatterjee2018spyware,havron2019clinical,roundy2020many} has shown that benign apps that can be repurposed for spying, which further blurs the lines between benign and malicious apps. Lastly, there exists a natural tension between some functionalities (e.g., accessibility) and enabling spyware. As we have shown, while the introduction of some accessibility APIs (e.g., taking screenshots and audio recording) certain benefits the disabled users, it also makes it easy for spyware apps to perform certain actions.
+%Next, the fact that many spyware apps are sideloaded renders defense systems that are deployed on app markets (e.g., Google Play Policies and Yan et al.~\cite{yan2019understanding}) unusable. Furthermore, while the apps that I study are dedicated for spying on users, past literature~\cite{chatterjee2018spyware,havron2019clinical,roundy2020many} has shown that benign apps that can be repurposed for spying, which further blurs the lines between benign and malicious apps. Lastly, there exists a natural tension between some functionalities (e.g., accessibility) and enabling spyware. As I have shown, while the introduction of some accessibility APIs (e.g., taking screenshots and audio recording) certain benefits the disabled users, it also makes it easy for spyware apps to perform certain actions.
 
 
 
 
 
 
-%In summary, we perform the first technical analysis of fifteen Android spyware apps targeting as well as
+%In summary, I perform the first technical analysis of fifteen Android spyware apps targeting as well as
 %document the measures taken by
 %each app to protect the privacy of the sensitive data they collect. We work not only sheds light on the technical capabilities and insecurity of spyware apps but also provides guidance both for phone OS vendors and regulators in their efforts to undermine the use and availability of such software.
 
@@ -116,7 +116,7 @@ Damon McCoy. The dissertation author was the primary investigator and author of 
 %Similarly, with respect to screenshots, Android~10 restricted the ability to take screenshots via \texttt{MediaProjection};
 %in response, several spyware apps evolved by abusing the takeScreenshot API of AccessibilityService introduced in Android~11.
 
-%Next, we observe two classes of spyware apps: those that are innovative and drive the evolution of spying techniques, and those that use standard techniques. For example, \textsc{spy24} has two novel ways of abusing the Android system that are not observed in any other apps (using an invisible browser to stream videos and exploiting TV app features to hide its icons).
+%Next, I observe two classes of spyware apps: those that are innovative and drive the evolution of spying techniques, and those that use standard techniques. For example, \textsc{spy24} has two novel ways of abusing the Android system that are not observed in any other apps (using an invisible browser to stream videos and exploiting TV app features to hide its icons).
 %Notably, \textsc{spy24} can successful hide its icon even in the latest Android~12.
 
 % Given the amount of sensitive user data these apps collects, one would expect more safeguards to have been in place to better protect user data.

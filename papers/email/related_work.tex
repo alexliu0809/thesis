@@ -24,7 +24,7 @@ Of these, Chen et al.~\cite{chen2020composition} do not consider forwarding at a
 
 Shen et al.'s work~\cite{shen2020weak} is the closest in that it also
 examines open forwarding, but because they only consider one
-forwarding mechanism (what we label as REM in
+forwarding mechanism (what I label as REM in
 Section~\ref{sec:measure_forwarding_mechs_and_arc}), they do not
 identify the significant scope of this issue.  We build on and
 generalize this work to show, among other attacks, that attackers are
@@ -35,12 +35,12 @@ common practice when hosting email via Microsoft's Outlook service for example).
 % and does not illuminate many of the attacks described in our work.
 % in Section~\ref{subsec:attack_open_forwarding}
 
-%Additionally, we show how a bug they disclosed in Zoho's ARC implementation, they did not demonstrate how to use this vulnerability in practical attacks.
+%Additionally, I show how a bug they disclosed in Zoho's ARC implementation, they did not demonstrate how to use this vulnerability in practical attacks.
 % due to their limited scope
-%In contrast, we present a viable attack that allows an adversary to deliver spoofed email messages addressed from arbitrary domains to arbitrary Zoho users (Section~\ref{subsec:attack_zoho_arc}).
-% Similarly, while they were the first to disclose Zoho's buggy ARC implementation, they missed the attack we describe in Section~\ref{subsec:attack_zoho_arc} due to limited scope --- that they only examined ARC in the context of Gmail and Zoho and did not consider forwarding configurations, which are critical components that enable the attack.
+%In contrast, I present a viable attack that allows an adversary to deliver spoofed email messages addressed from arbitrary domains to arbitrary Zoho users (Section~\ref{subsec:attack_zoho_arc}).
+% Similarly, while they were the first to disclose Zoho's buggy ARC implementation, they missed the attack I describe in Section~\ref{subsec:attack_zoho_arc} due to limited scope --- that they only examined ARC in the context of Gmail and Zoho and did not consider forwarding configurations, which are critical components that enable the attack.
 
-In summary, our work builds on the insights of prior efforts, but focuses exclusively and deeply on the particular security challenges introduced by the design and features of common forwarding mechanisms, and their complex interactions with existing email protocols. Through systematic measurements and analysis, we not only show that prior work largely underestimates the risks of open forwarding,
+In summary, our work builds on the insights of prior efforts, but focuses exclusively and deeply on the particular security challenges introduced by the design and features of common forwarding mechanisms, and their complex interactions with existing email protocols. Through systematic measurements and analysis, I not only show that prior work largely underestimates the risks of open forwarding,
 % (Section~\ref{subsec:attack_open_forwarding}),
 but also reveal new attacks not discovered in prior work.
 %(Section~\ref{sec:attacks}).

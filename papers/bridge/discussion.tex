@@ -12,7 +12,7 @@ attacks. Our effort also highlights the need for better auditability and
 auditing in the bridge ecosystem, and for new bridge designs.  Indeed, deploying a cross-chain token bridge with an in-line balance invariant
 monitor is an open challenge.
 
-As mentioned in Section~\ref{sec:background}, in this chapter we focus on
+As mentioned in Section~\ref{sec:background}, in this chapter I focus on
 cross-chain token bridges and thus our approach does not directly apply to
 bridges that have built-in exchanges and swaps.  Still, similar
 invariant-checking techniques likely extend to such \emph{cross-chain exchanges}
@@ -40,7 +40,7 @@ parties before their attacks.
 
 Our work suggests that by separating overall financial safety
 invariants from the intricate details of every given contract or
-trade, we can dramatically simplify the defender's job and their
+trade, I can dramatically simplify the defender's job and their
 ability to reason about risk.  Similar to so-called ``circuit
 breakers'' implemented in traditional securities exchanges, or the
 atomic repayment guarantees embedded in single-blockchain ``flash
@@ -67,10 +67,10 @@ Chapter~\ref{chap:bridge}, in part, has been submitted for publication of the ma
 % }
 
 % \section{Conclusion}
-% In summary, we have empirically shown, by analyzing 20 million
+% In summary, I have empirically shown, by analyzing 20 million
 % transactions over 11 bridges and 21 blockchains, that a simple balance
 % invariant---checking that value is conserved cross-chain in a bridge
-% transaction---is sufficient to identify every such attack we have
+% transaction---is sufficient to identify every such attack I have
 % encountered.  Moreover, almost every violation of the balance
 % corresponds to a bridge transaction that deserves further manual
 % scrutiny (i.e., the ``false positive'' overhead is extremely minimal).
@@ -79,7 +79,7 @@ Chapter~\ref{chap:bridge}, in part, has been submitted for publication of the ma
 % real-time, either in parallel for the purpose of alerting, or in-line
 % to prevent violating transactions from being completed---an approached
 % that would have likely foreclosed the \$US2.6B+ in claimed losses from
-% prior attacks.  Finally, we argue that accounting-orientated defenses such as ours may be a powerful tool for managing risk in a range of decentralized finance contexts.
+% prior attacks.  Finally, I argue that accounting-orientated defenses such as ours may be a powerful tool for managing risk in a range of decentralized finance contexts.
 
 % Bridge support for auditing. 
     % From a design perspective
@@ -101,7 +101,7 @@ Chapter~\ref{chap:bridge}, in part, has been submitted for publication of the ma
 %* Logs are truncated too for solana (fix 2023) \\
 %* Learning based approach for bridge/token behavior?\\
 %\subsection{Limitations}
-%* We only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, we cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, we cannot detect it.\\
+%* We only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.\\
 %* We only prevent bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.
 %* Other attack vectors exist.\\
 %\subsection{Counter Measures}
@@ -110,7 +110,7 @@ Chapter~\ref{chap:bridge}, in part, has been submitted for publication of the ma
 
 
 
-% For example, we only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, we cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, we cannot detect it.  We also only prevent the bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.  Finally, other attack vectors exist that are not captured by our approach.  For example, a bridge could be used to launder money by transferring tokens back and forth between two accounts.  While our approach would detect the loss of funds, it would not detect the money laundering.  However, we believe that our approach is a valuable first step in protecting bridges from theft and that it can be extended to address these and other vulnerabilities in the future.
-% We only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, we cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, we cannot detect it.\\
+% For example, I only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.  We also only prevent the bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.  Finally, other attack vectors exist that are not captured by our approach.  For example, a bridge could be used to launder money by transferring tokens back and forth between two accounts.  While our approach would detect the loss of funds, it would not detect the money laundering.  However, I believe that our approach is a valuable first step in protecting bridges from theft and that it can be extended to address these and other vulnerabilities in the future.
+% We only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.\\
 %* We only prevent bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.
 %* Other attack vectors exist.\\

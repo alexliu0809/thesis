@@ -2,14 +2,14 @@
 \input{papers/bridge/tab-flagged-transations.tex}
 \label{sec:retro-analysis}
 
-%% In this section we demonstrate the effectiveness of using the
+%% In this section I demonstrate the effectiveness of using the
 %% invariant to identify cross-chain attacks by performing a
 %% retrospective analysis of known significant cross-chain attacks.
 
 We developed a tool called \offlinetool that pairs deposit and
 withdrawal transactions from blockchains into bridge transactions, and
 applies the balance invariant and consistency checks on them.  Using
-the transactions we collected for the 12 attacks across 11 bridges and
+the transactions I collected for the 12 attacks across 11 bridges and
 21 chains, \offlinetool analyzed over 10\mil bridge transactions (20\mil individual deposit and withdrawal transactions),
 identifying more than 2.3\thou bridge transactions associated with the
 attacks and 1.1\thou more that violated the balance invariant.
@@ -25,13 +25,13 @@ the claimed loss in USD, the number of transactions \offlinetool
 analyzed, and the number and kinds of transactions that violated the
 balance invariant.
 %
-Below we discuss these two categories of transactions in more detail.
+Below I discuss these two categories of transactions in more detail.
 
 Looking forward to Sections~\ref{sec:live-audit}
 and~\ref{sec:active-protect}, altogether \offlinetool identified 3,423
 bridge transactions (0.03\%) that violated the balance invariant out
 of more than 10\mil bridge transactions analyzed.  If the invariant is used by a
-third-party auditing or protection system, we note that such an alert
+third-party auditing or protection system, I note that such an alert
 workload has a negligible overhead for manual inspection, typically
 raising no more than one alert (or one batch of alerts) every few
 weeks.
@@ -39,7 +39,7 @@ weeks.
 \subsubsection{Reported}
 
 For each of the 12 significant cross-chain attacks,
-Section~\ref{sec:retro-data} describes how we gathered the historical
+Section~\ref{sec:retro-data} describes how I gathered the historical
 transactions that correspond to the attacks using external sources.
 We use these identified transactions as ground truth for evaluating
 the ability of \offlinetool to identify attack transactions.  As shown
@@ -48,7 +48,7 @@ transaction histories of the chains involved, \offlinetool
 successfully identified all 2,305 bridge transactions on the source
 and destination chains associated with the attacks (including a few extra ones that are missed by the public reports).
 
-Since we designed \offlinetool to specifically identify such attacks,
+Since I designed \offlinetool to specifically identify such attacks,
 these results may not be surprising.  However, they are useful for
 confirming that the approach of checking a simple, well-defined
 invariant works well.  Moreover, the approach works well across a
@@ -59,8 +59,8 @@ currency, tokens that use a reflection mechanism, etc.
 \subsubsection{Other Violating Transactions}
 
 %% \alex{Two questions:
-%% * where do we put the comparison with prior work ()? in discussion, we can say the set of problems are broader\\
-%% * cases where we are able to not alert depite the invariant being violated? in discussion, reimbursement transactions.\\
+%% * where do I put the comparison with prior work ()? in discussion, I can say the set of problems are broader\\
+%% * cases where I are able to not alert depite the invariant being violated? in discussion, reimbursement transactions.\\
 %% }
 
 %The more compelling question
@@ -75,12 +75,12 @@ finds significantly fewer (1,117 compared to 2,305) bridge transactions that wer
 not previously identified as attacks.  Given the nature of these
 additional transactions, though, they do not undermine the
 effectiveness of the invariant approach.  By violating the invariant
-something highly unusual is taking place.  As a result, we argue that
+something highly unusual is taking place.  As a result, I argue that
 such transactions should be flagged for further scrutiny and perhaps
 even blocked from executing (particularly transactions in the New category and the large transactions in
 the Suspicious category below).
 
-To ensure that we have not missed benign explanations for a violation,
+To ensure that I have not missed benign explanations for a violation,
 we manually inspected violating bridge transactions in at least of one
 of the following ways: (1) using blockchain explorers to verify that
 the funds have been created by the withdrawal (and if so, whether they
@@ -89,13 +89,13 @@ about the transaction and addresses involved; (3) checking that if
 claimed deposit exists; and (4) examining unredeemed
 deposits on the source chain that potentially could have been used to
 back the withdrawal (e.g., because the smart contract implementation
-changed between the deposit and withdrawal).  If we can manually
-reconcile a bridge transaction, we consider it benign
+changed between the deposit and withdrawal).  If I can manually
+reconcile a bridge transaction, I consider it benign
 % do not consider it an invariant violation
 and do not consider it further.
 
 We group the remaining bridge transactions that violate the invariant
-into four categories, which we describe below.  For reference, we also
+into four categories, which I describe below.  For reference, I also
 list some of these bridge transactions in
 Table~\ref{tab:xaction-hashes} to provide specific
 examples with more detail.
@@ -106,7 +106,7 @@ examples with more detail.
 % \paragraph has a bit too much space
 \newcommand{\pgraph}[1]{\vspace*{0.1in}\noindent\textbf{#1}}
 
-\pgraph{New.}  We believe that we have identified
+\pgraph{New.}  We believe that I have identified
 previously unreported bridge transactions involved in two new,
 unreported attacks on Anyswap.
 %% In addition to the previously reported transactions from the July 10,
@@ -129,7 +129,7 @@ invariant.
 %
 Chainswap had 15 transactions that withdrew tokens labeled as test
 tokens (e.g., tokens labelled as ``testtoken'' or ``startertoken''). Similarly, Qubit had 114 transactions that minted test tokens (e.g., ``xTST'') without backing deposits.
-While all these transactions did not have corresponding deposits, we surmise that they were likely benign given the tokens involved (tokens that have no real value).
+While all these transactions did not have corresponding deposits, I surmise that they were likely benign given the tokens involved (tokens that have no real value).
 
 
 

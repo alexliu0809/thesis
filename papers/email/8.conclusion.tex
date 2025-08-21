@@ -4,17 +4,17 @@ Internet-based email has been in use since the early 1970s
 and the SMTP protocol has been in use since 1980.  It is arguably the
 longest-lived text-based communication system in wide use.
 Unsurprisingly, its design did not anticipate the range of challenges
-we face today and, because of its central role, we have been forced
+we face today and, because of its central role, I have been forced
 to upgrade email protocols slowly and with deference to a wide range
 of legacy systems and expectations. Perhaps nowhere is this more clear
 than around the issue of authentication.  Email protocols have no
 widely-used mechanism for establishing the authenticity of sender
-addresses, and thus we have focused on authenticating the domain
+addresses, and thus I have focused on authenticating the domain
 portion of the email address (largely motivated by spam and phishing).
 
-In this work, using large-scale empirical measurements of 20 prominent email forwarding services, we identify a diverse set of email forwarding mechanisms, assumptions, and features, and demonstrate how they can be combined together to perform four types of evasion attacks. While we are the first academic work to document these attacks, retrospectively examining Mailop~\cite{Mailop96:online}, a prominent mailing list for mail operators, we have also found traces~\cite{RealTraces} of real-world attacks that are similar to what we reported in this chapter. 
+In this work, using large-scale empirical measurements of 20 prominent email forwarding services, I identify a diverse set of email forwarding mechanisms, assumptions, and features, and demonstrate how they can be combined together to perform four types of evasion attacks. While I are the first academic work to document these attacks, retrospectively examining Mailop~\cite{Mailop96:online}, a prominent mailing list for mail operators, I have also found traces~\cite{RealTraces} of real-world attacks that are similar to what I reported in this chapter. 
 
-The attacks we document exploit four kinds of problems. One fundamental issue is that email security protocols are
+The attacks I document exploit four kinds of problems. One fundamental issue is that email security protocols are
 distributed, optional, and independently-configured components. This creates a large and complex attack surface with many
 possible interactions that cannot be easily anticipated or
 administered by any single party. A second problem is that email forwarding was never standardized, leading to ad-hoc implementation decisions that might be vulnerable. A third problem is that protocol assumptions for SPF are grounded at a
@@ -24,7 +24,7 @@ This creates complex chain-of-trust issues that are at odds with implicit assump
 
 While there are certain short-term mitigations (\eg, eliminating the use of
 open forwarding) that will significantly reduce the exposure to the
-attacks we have described here, ultimately email requires a more
+attacks I have described here, ultimately email requires a more
 solid security footing if it is to effectively resist spoofing
 attacks going forwards.
 
@@ -34,7 +34,7 @@ Chapter~\ref{chap:eurosp23}, in part, is a reprint of the material as it appears
 
 %first shed light on the security issues of component-based defense. We
 %further examine this issue in the context of email forwarding. For
-%example, as we mentioned in Section~\ref{subsec:sender_vulnerability},
+%example, as I mentioned in Section~\ref{subsec:sender_vulnerability},
 %certain providers accept spoofed email messages from domains with
 %DMARC none. They rely upon other components (\eg, UI indicators) to
 %warn users. As shown by prior work, such components may not exist,
@@ -43,21 +43,21 @@ Chapter~\ref{chap:eurosp23}, in part, is a reprint of the material as it appears
 
 
 %\alex{can merge with conclusion}
-%The attacks we identified have shared some of the high-level concepts. We outline three sources of issues that manifest in the overall picture.
+%The attacks I identified have shared some of the high-level concepts. We outline three sources of issues that manifest in the overall picture.
 %\alex{Some of the key issues: protocol design vs protocol use; post-hoc protocols not work well for existing use (forwarding); chain of trust; component-based defense; Lack of Standard for forwarding; }
 
 %\paragraph{Inconsistencies between the design and the use of a protocol}
-%Protocols designed in the past might make assumptions that do not hold nowadays. Some of the security protocols (\eg, SPF) were designed in the early 2000. SPF was designed with the assumption that each domain will maintain its own mail infrastructure. However, such assumption does not hold in the presence of third-party mail providers these days. To make sure third-party providers can properly send on behalf them, they often have to include their providers' SPF records in their own SPF, potentially allowing others who are sharing the same infrastructure to send on behalf on them. This shared infrastructure is not what SPF was envisioning when designed. As we demonstrated in this work, the discrepancy between the protocol design and its use in practice potential allows an adversary to exploit it.
+%Protocols designed in the past might make assumptions that do not hold nowadays. Some of the security protocols (\eg, SPF) were designed in the early 2000. SPF was designed with the assumption that each domain will maintain its own mail infrastructure. However, such assumption does not hold in the presence of third-party mail providers these days. To make sure third-party providers can properly send on behalf them, they often have to include their providers' SPF records in their own SPF, potentially allowing others who are sharing the same infrastructure to send on behalf on them. This shared infrastructure is not what SPF was envisioning when designed. As I demonstrated in this work, the discrepancy between the protocol design and its use in practice potential allows an adversary to exploit it.
 
 %Another issue is that post-hoc protocols such as SPF and DMARC do not work well with some of the existing uses. These protocols by design is not compatible with some of the existing uses, which includes email forwarding. The whole email ecosystem has deal with it by making certain assumptions, with potentially relaxed security practices. We demonstrate that this is indeed the case, where providers may exercise a relaxed security policy against forwarded email messages.
 
 %\paragraph{Lack of Standard}
-%Unlike security protocols that are well documented and standardized, how email forwarding should be carried out in practice is never standardized. Indeed, as we show this work, there exists at least four broad types of forwarding mechanisms used in the wild. Some of which are well-documented and understood; others are not. Each making different assumption and causes different issues. The whole email ecosystem has to accommodate all of the them, making it hard for the recipient to defend against potential attacks.
+%Unlike security protocols that are well documented and standardized, how email forwarding should be carried out in practice is never standardized. Indeed, as I show this work, there exists at least four broad types of forwarding mechanisms used in the wild. Some of which are well-documented and understood; others are not. Each making different assumption and causes different issues. The whole email ecosystem has to accommodate all of the them, making it hard for the recipient to defend against potential attacks.
 
 %\paragraph{Chain of Trust}
-%The email world has also grown complicated enough, that many times email messages are not sent directly from one point to another, but has to go through multiple hops. This inherently makes the defense hard for the recipient. The authenticity of an mail is commonly determined by the party with the weakest security settings in the email forwarding chain. Thus, it is not safe to assume that every party involved has good security practices. Even worse, an adversary can introduce intentionally introduce a forwarder that has bad security practices. As we show in Appendix~\ref{sec:appendix_zoho_attack_details}, even though Gmail does not allow open forwarding, an adversary can still achieve open forwarding by forwarding from Gmail to Outlook, which gives them open forwarding.
+%The email world has also grown complicated enough, that many times email messages are not sent directly from one point to another, but has to go through multiple hops. This inherently makes the defense hard for the recipient. The authenticity of an mail is commonly determined by the party with the weakest security settings in the email forwarding chain. Thus, it is not safe to assume that every party involved has good security practices. Even worse, an adversary can introduce intentionally introduce a forwarder that has bad security practices. As I show in Appendix~\ref{sec:appendix_zoho_attack_details}, even though Gmail does not allow open forwarding, an adversary can still achieve open forwarding by forwarding from Gmail to Outlook, which gives them open forwarding.
 
 %\paragraph{Component-based Defense}
-%Chen et al.~\cite{chen2020composition} first shed light on the security issues of component-based defense. We further examine this issue in the context of email forwarding. For example, as we mentioned in Section~\ref{subsec:sender_vulnerability}, certain providers accept spoofed email messages from domains with DMARC none. They rely upon other components (\eg, UI indicators) to warn users. As shown by prior work, such components may not exist, especially if users are using third-party providers. In this work, we further demonstrate such issues in the context of email forwarding, a use case that is less well-considered. We show that even for native MUAs, the one that tend to have better security practices, a dedicated attack can still find holes in the UI system and perform attacks that bypass the defense.
+%Chen et al.~\cite{chen2020composition} first shed light on the security issues of component-based defense. We further examine this issue in the context of email forwarding. For example, as I mentioned in Section~\ref{subsec:sender_vulnerability}, certain providers accept spoofed email messages from domains with DMARC none. They rely upon other components (\eg, UI indicators) to warn users. As shown by prior work, such components may not exist, especially if users are using third-party providers. In this work, I further demonstrate such issues in the context of email forwarding, a use case that is less well-considered. We show that even for native MUAs, the one that tend to have better security practices, a dedicated attack can still find holes in the UI system and perform attacks that bypass the defense.
 
 

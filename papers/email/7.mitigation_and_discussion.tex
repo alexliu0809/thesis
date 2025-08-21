@@ -1,16 +1,16 @@
 \section{Discussion and Mitigation}
-We end by summarizing the root causes of the issues we discovered, and discuss potential mitigation strategies.
+We end by summarizing the root causes of the issues I discovered, and discuss potential mitigation strategies.
 
 \subsection{Discussion}
-In this work, we examine the complexities introduced by email forwarding to email security. We identify a diverse set of email forwarding mechanisms, assumptions, and features, and demonstrate how they can be combined together to perform evasion attacks. These attacks highlight four fundamental issues.
+In this work, I examine the complexities introduced by email forwarding to email security. We identify a diverse set of email forwarding mechanisms, assumptions, and features, and demonstrate how they can be combined together to perform evasion attacks. These attacks highlight four fundamental issues.
 
 First, as already demonstrated in prior work and further highlighted in this chapter, email security involves distributed, optional, and independently-configured components implemented by different parties. In such an architecture, the
-``authenticity'' of an email is commonly determined by the party with the weakest security settings. While traditionally email is sent directly from sender to receiver, forwarding involves three parties instead of two and introduces an extra layer of complexity. As we have shown, a vulnerable forwarder can jeopardize the security of downstream recipients that do not have problematic configurations or implementations. This inversion of
+``authenticity'' of an email is commonly determined by the party with the weakest security settings. While traditionally email is sent directly from sender to receiver, forwarding involves three parties instead of two and introduces an extra layer of complexity. As I have shown, a vulnerable forwarder can jeopardize the security of downstream recipients that do not have problematic configurations or implementations. This inversion of
 incentives and capabilities naturally complicates
 mitigating forwarding vulnerabilities.
 
 A second problem is that email forwarding has never been fully standardized, despite the longevity and popularity of its use. A lack of standardization has led to ad-hoc implementation decisions, each making different assumptions.
-% Indeed, through our large-scale measurements, we identify a diverse set of email forwarding mechanisms, assumptions and features.
+% Indeed, through our large-scale measurements, I identify a diverse set of email forwarding mechanisms, assumptions and features.
 This ad-hoc nature of implementations makes it challenging to perform both manual security analysis (analyzing individual implementation decisions is a non-trivial task even for experts) and automated testing (any such tool needs to account for the specific implementations of each provider).
 % reasoning about them challenging
 % This is in addition to the challenge that there exists no universal dataset of all implementation choices.
@@ -25,28 +25,28 @@ implementing email forwarding.
 
 
 A third issue is that email is a large, slowly-evolving ecosystem with a wide range of legacy systems and protocols that need to be accommodated.
-One example we highlight is the ``outdated'' assumption made by SPF (\S~\ref{subsubsec:spf_incorporation}). When SPF was first designed in the early 2000s, it was common practice for each domain owner to maintain their own mail infrastructure. However, this assumption is obsolete in the modern era, as many domains outsource their email services to third-party providers such as Outlook and Google~\cite{liu2021s}. These large providers often share the same email infrastructure across all customers (both business and personal accounts), violating the assumptions made by SPF. 
+One example I highlight is the ``outdated'' assumption made by SPF (\S~\ref{subsubsec:spf_incorporation}). When SPF was first designed in the early 2000s, it was common practice for each domain owner to maintain their own mail infrastructure. However, this assumption is obsolete in the modern era, as many domains outsource their email services to third-party providers such as Outlook and Google~\cite{liu2021s}. These large providers often share the same email infrastructure across all customers (both business and personal accounts), violating the assumptions made by SPF. 
 To mitigate the risks this reality poses to SPF, providers 
 usually prevent users from setting arbitrary values in their FROM header. However, past literature has shown that this defense is not always implemented correctly~\cite{chen2020composition}. We build on top of this prior work by identifying a new attack that can circumvent existing defenses through forwarding (\S~\ref{subsec:attack_open_forwarding}).
 
-Last but not least, the intrinsic nature of email forwarding is to transparently send an existing message to a new address ``on behalf'' of its original recipient --- a goal very much at odds with the anti-spoofing function of protocols such as SPF and DMARC. As such, a range of ad-hoc decisions have been made to increase the deliverability of forwarded email messages, such as using the REM+MOD forwarding mechanism (\S~\ref{sec:measure_forwarding_mechs_and_arc}), treating forwarded messages specially (\S~\ref{subsubsec:relaxed_validation}), and adding DKIM signatures to forwarded messages (\S~\ref{subsubsec:unsolicited_dkim}). As we have demonstrated, 
+Last but not least, the intrinsic nature of email forwarding is to transparently send an existing message to a new address ``on behalf'' of its original recipient --- a goal very much at odds with the anti-spoofing function of protocols such as SPF and DMARC. As such, a range of ad-hoc decisions have been made to increase the deliverability of forwarded email messages, such as using the REM+MOD forwarding mechanism (\S~\ref{sec:measure_forwarding_mechs_and_arc}), treating forwarded messages specially (\S~\ref{subsubsec:relaxed_validation}), and adding DKIM signatures to forwarded messages (\S~\ref{subsubsec:unsolicited_dkim}). As I have demonstrated, 
 these decisions can fail to foresee unexpected interactions that lead to vulnerabilities, even with a lot of deliberation.
 
 \subsection{Mitigation}
-The attacks we demonstrate highlight the complicated interactions
-between email forwarding and existing anti-spoofing mechanisms. We start by reviewing short-term mitigations that could reduce some of the most significant risks we have uncovered. We then discuss challenges in developing more comprehensive solutions, which would require significant changes in either
+The attacks I demonstrate highlight the complicated interactions
+between email forwarding and existing anti-spoofing mechanisms. We start by reviewing short-term mitigations that could reduce some of the most significant risks I have uncovered. We then discuss challenges in developing more comprehensive solutions, which would require significant changes in either
 protocol or operational practices.
 
-A core issue we highlight in this chapter is the ability to forward spoofed email messages to arbitrary recipients, a critical element in each
+A core issue I highlight in this chapter is the ability to forward spoofed email messages to arbitrary recipients, a critical element in each
 of the first three attacks in Section~\ref{sec:attacks}. To mitigate this issue, providers could either block spoofed email messages from being forwarded, or enforce that a forwarder can only forward to accounts under their control by requiring explicit confirmation (similar to
-the online domain validation used by modern certificate authorities). However, we note that either approach comes with a usability tradeoff, and different providers make choices based on their considerations. Indeed, providers like Gmail and Mail.ru opted for the former option, while others like iCloud and Hushmail opted for the latter.
+the online domain validation used by modern certificate authorities). However, I note that either approach comes with a usability tradeoff, and different providers make choices based on their considerations. Indeed, providers like Gmail and Mail.ru opted for the former option, while others like iCloud and Hushmail opted for the latter.
 
 
 
 % allows users to forward spoofed email messages to arbitrary recipients, while Outlook blocks such forwarding~\cite{hotmailreject}.  We also note that while blocking spoofed email messages from being forwarded would protect downstream recipients, it would also break benign forwarding.  For example, a user forwarding a message from a friend to a colleague would be blocked by such a defense. 
 
 
-% First, we recommend that all mail service providers disable \emph{open
+% First, I recommend that all mail service providers disable \emph{open
 %   forwarding}, and instead require explicit confirmation that the
 % forwarding recipient is under the control of the forwarder (similar to
 % the online domain validation used by modern certificate authorities). 
@@ -55,7 +55,7 @@ the online domain validation used by modern certificate authorities). However, w
 
 % Next, a core assumption made by downstream providers is that upstream providers do not forward spoofed email messages. Blocking spoofed email messages from being forwarded is .
 
-As well, we advocate that providers
+As well, I advocate that providers
 should enforce a domain's DMARC \textsc{Reject} policy when specified, rather
 than substituting a weaker policy.  If Outlook rejected spoofed
 email messages from such domains, the impact of the first attack
@@ -80,7 +80,7 @@ validation (which in turn places ARC implementation requirements on
 external forwarders).
 
  % Finally, while relaxed validation certainly helps increase the
-%deliverability of forwarded email messages, we recommend implementing
+%deliverability of forwarded email messages, I recommend implementing
 %ARC and stick with DMARC policy when possible.
 
 For the final attack (\S~\ref{subsec:attack_none_mailing_list}) that exploits mailing lists, potential mitigations trade usability for security.
@@ -96,13 +96,13 @@ specific to forwarding, others~\cite{chen2020composition,shen2020weak}
 have proposed solutions such as improving UI notification, building
 better testing tools, and revising RFC standards, which are also
 important to consider. Additionally, the newly proposed ARC protocol
-may also help mitigate some of the issues we have uncovered. However,
+may also help mitigate some of the issues I have uncovered. However,
 ARC is still in the early stages of development and deployment, 
 its details are yet to be fleshed out and its effectiveness in
 practice remains to be seen.
 % \alex{and it may introduce other unexpected issues.} \grant{I think this last bit is a little speculative and there are enough caveats without it.}
 
-Lastly, we note that comprehensively fixing email forwarding would
+Lastly, I note that comprehensively fixing email forwarding would
 require a more fundamental set of changes (e.g., redesigning the
 entire suite of email security protocols), which will face significant
 deployment challenges given the current state of the email ecosystem.

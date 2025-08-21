@@ -2,15 +2,15 @@
 \section{Background}
 \label{sec:background}
 
-In this section, we describe the anatomy of a simple email
+In this section, I describe the anatomy of a simple email
 transmission and the protocols used to authenticate such an email.
 We also present a high-level overview of how forwarding modifies the
 email delivery flow as a basis for a detailed description of
 different forwarding approaches and implementations in
 Section~\ref{sec:measure_forwarding_mechs_and_arc}.  Finally, we
 briefly survey related work on email security, particularly
-those whose insights we have built upon.
-% In the remainder of the paper, we explore email forwarding in more depth and show how the inherent conflict between the functional goals of forwarding and anti-spoofing mechanisms enable a wide range of spoofing attacks.
+those whose insights I have built upon.
+% In the remainder of the paper, I explore email forwarding in more depth and show how the inherent conflict between the functional goals of forwarding and anti-spoofing mechanisms enable a wide range of spoofing attacks.
 % We then describe the range of forwarding mechanisms in use and how
 % these create challenges for existing authentication protocols.
 
@@ -64,7 +64,7 @@ address does not match the \textsc{FROM} address).
 %to the recipient) while the latter is part of the email message header
 %and \emph{is} displayed to the recipient.\footnote{SMTP itself also
 %  manages additional sending party identities, such as the HELO in
-%  Figure~\ref{fig:mech_smtp_headers}, but we consider them
+%  Figure~\ref{fig:mech_smtp_headers}, but I consider them
 %  out-of-scope.} Similarly, both \texttt{RCPT TO} and \texttt{TO}
 %headers identify the recipient --- respectively capturing the
 %recipient identified in an SMTP transaction and the recipient
@@ -76,7 +76,7 @@ address does not match the \textsc{FROM} address).
 
 % \gakiwate{I nuked the discussion of the simple email transmission since we
 % repeat it again in the email forwarding scenario. The discussion around POP/IMAP
-% is not needed since we do not ever discuss it later.}
+% is not needed since I do not ever discuss it later.}
 
 \begin{figure}[t]
     \centerline{\includegraphics[width=\columnwidth]{fig/mech_smtp_headers.pdf}}
@@ -92,9 +92,9 @@ purported sender.\footnote{True per-sender authentication has long floundered
   due to the lack of effective mechanisms for binding user identities
   with cryptographic credentials at scale.  The best known protocol in
   this space, PGP, has been riddled with security and usability issues
-  and remains, at best, a niche protocol.  In this chapter, we focus
+  and remains, at best, a niche protocol.  In this chapter, I focus
   exclusively on domain-level sender authentication.} Of these
-mechanisms, we focus on SPF~\cite{rfc7208}, DKIM~\cite{rfc6376}, and DMARC~\cite{rfc7489} given their wide adoption.
+mechanisms, I focus on SPF~\cite{rfc7208}, DKIM~\cite{rfc6376}, and DMARC~\cite{rfc7489} given their wide adoption.
 
 %\subsubsection{SPF}
 \medskip
@@ -170,7 +170,7 @@ in a designated spam folder)~\cite{rfc7489}.
 %% However, currently there is no standard for how and when such
 %% UI indicators should be implemented, and different providers favor
 %% different approaches.
-%% \grant{I think we can completely cut this paragraph if we need space (IV.D.2 gives enough context about UI defenses without this.)}
+%% \grant{I think I can completely cut this paragraph if I need space (IV.D.2 gives enough context about UI defenses without this.)}
 %% \geoff{looking at IV.D.2, agreed}
 % \grant{This part is a little thin, and might be worth folding into the
 % vulnerability/attack section where relevant.}\amirian{agreed; it seems out of
@@ -201,7 +201,7 @@ in a designated spam folder)~\cite{rfc7489}.
 
 % Together these mechanisms can help authenticate emails and thus prevent the
 % email spoofing.
-%Next, we consider email forwarding and how it complicates these
+%Next, I consider email forwarding and how it complicates these
 %email authentication mechanisms.
 
 \begin{figure}[t]
@@ -229,7 +229,7 @@ transmission from the sender to the recipient, forwarding relays an
 email from the sender to an intermediate server and/or account, which
 then transmits a copy of the email to the final recipient.
 % (e.g., when a student configures her university email account to forward all messages to a pre-existing personal email address).
-For simplicity we show a single forwarder in our example, but email can pass through multiple forwarders in common use cases. % (note, while the figure shows a single forwarder, it is possible to have multiple such forwarders in series).
+For simplicity I show a single forwarder in our example, but email can pass through multiple forwarders in common use cases. % (note, while the figure shows a single forwarder, it is possible to have multiple such forwarders in series).
 %While Figure~\ref{fig:email_forwarding_flow}
 %shows a single forwarder it is possible to have multiple forwarders.
 %Additionally, a forwarder may not always have a domain name associated with it.
@@ -346,10 +346,10 @@ Finally, when a recipient receives and opens an email, the receiver's user agent
 %
 %
 % \noindent{\bf MAIL FROM Equals From (MFEF)}. Unlike the three
-% forwarding mechanisms described above, for which we can find some
+% forwarding mechanisms described above, for which I can find some
 % public documentation, MAIL FROM Equals From is a custom forwarding
 % mechanism that appears to only be used by Outlook.\footnote{We are not
-%   entirely clear what function MFEF serves but we hope, as part of our
+%   entirely clear what function MFEF serves but I hope, as part of our
 %   disclosure interactions with Microsoft, to gain a better
 %   understanding of this design's motivation for a future version of
 %   this paper.}  An example of MFEF is shown in
@@ -363,12 +363,12 @@ Finally, when a recipient receives and opens an email, the receiver's user agent
 %
 % %\subsection{Authenticating Email Forwarding}
 % %\gakiwate{Can this be confused with simple email forwarding. fwd:
-% %  kind?}  As we previously discussed, email authentication using SPF,
+% %  kind?}  As I previously discussed, email authentication using SPF,
 % %DKIM and DMARC may lead to email deliverability issues. Thus,
 % %forwarders may modify email headers before forwarding to ensure the
 % %authentication checks still work.  As such, the receiver implicitly
 % %relies on the intermediate forwarders to authenticate the email before
-% %modifying it and sending it along.  However, as we demonstrate
+% %modifying it and sending it along.  However, as I demonstrate
 % %(Section~\ref{sec:vulnerabilities_in_the_wild}) these assumptions may
 % %not always
 %
@@ -406,7 +406,7 @@ Finally, when a recipient receives and opens an email, the receiver's user agent
 % implement ARC~\cite{Senderau57:online} instead of trusting all
 % ARC forwarders. However, any such trust implicitly
 % assumes that those trusted forwarders have good security practices.
-% Unfortunately, as we detail later, this is not always the case, which
+% Unfortunately, as I detail later, this is not always the case, which
 % creates additional opportunities for adversaries
 % (Section~\ref{subsec:attack_zoho_arc}).
 

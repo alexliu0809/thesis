@@ -5,11 +5,11 @@
 
 \section{Attacks}
 \label{sec:attacks}
-In this section, we demonstrate how an adversary can combine and
+In this section, I demonstrate how an adversary can combine and
 exploit the issues
-% we have
+% I have
 described in Section~\ref{sec:assumptions} to create attacks that reliably
-bypass existing anti-spoofing protections.  In particular, we consider an
+bypass existing anti-spoofing protections.  In particular, I consider an
 attack successful if a spoofed email message is delivered to a
 victim's inbox (\ie,  not the spam folder), and yet does not produce a
 warning to the user.
@@ -19,14 +19,14 @@ email purporting to be from \dns{bush@state.gov} is delivered to a
 Gmail user's inbox with no warning indication.
 
 We describe four distinct classes of attacks, summarized in
-Table~\ref{tab:summary_attacks}, each of which we have validated
+Table~\ref{tab:summary_attacks}, each of which I have validated
 empirically using accounts created at the affected providers.  Some of
 these attacks are quite broad --- allowing an attacker to spoof email
 to any email recipient purporting to be from tens of thousands of
 popular and sensitive domains --- while others are more circumscribed
 in their impact.
 %
-For each of the attacks described below, we refer to the domain an
+For each of the attacks described below, I refer to the domain an
 attacker specifies in their \textsc{FROM} header as the
 \textit{spoofed domain}.  We use the terms \textit{spoofed address} to
 refer to the full email address appearing in the \textsc{FROM} header
@@ -59,12 +59,12 @@ forwarder.
 
 
 \paragraph{Threat Models}
-For the first three attacks, we assume an adversary controls the
+For the first three attacks, I assume an adversary controls the
 sender and forwarding accounts: they possess a server capable of
 sending spoofed email messages (sender) and a personal account with a
 specific third-party provider that allows \emph{open forwarding}
 (forwarder). For the attack described in
-Section~\ref{subsec:attack_none_mailing_list}, we make three
+Section~\ref{subsec:attack_none_mailing_list}, I make three
 assumptions: (a) that adversaries control a malicious server that can
 send spoofed email messages and try to spoof email from a domain that
 hosts a mailing list with REM forwarding (e.g., Google Groups,
@@ -75,8 +75,8 @@ sending email address the attacker wishes to impersonate has
 permission to send to the mailing list.
 
 %We validated each of these attacks empirically using
-%accounts we created with each of the affected providers.
-%Additionally, we have disclosed all of these vulnerabilities to the
+%accounts I created with each of the affected providers.
+%Additionally, I have disclosed all of these vulnerabilities to the
 %affected providers (Section~\ref{sec:disclosure}).
 
 %We also demonstrate how an adversary can ``launder'' spoofed email
@@ -87,13 +87,13 @@ permission to send to the mailing list.
 %% include email addressed from: (1) any
 %% domain that incorporates Outlook's SPF information in their SPF
 %% records (\ie, including thousands of high-profile domains such as
-%% \dns{state.gov}, \dns{disneyplus.com}, and \dns{qantas.com}),\alex{do we still want to say any domain} (2) any
+%% \dns{state.gov}, \dns{disneyplus.com}, and \dns{qantas.com}),\alex{do I still want to say any domain} (2) any
 %% domain, if the recipient is a Zoho user, and (3) any domain with a
 %% DMARC policy of none or quarantine (\eg, \dns{alipay.com}), if the
 %% recipient is a Gmail user.
 
 %\grant{I'm not sure how I feel about the caveats about specific email provider. They seem to detract / complicate the impact examples and I wonder if others feel the same or see a way to word them more broadly (e.g., in terms of forwarding approaches, rather than specific providers).}
-%\geoff{since we have even more qualifiers on the attacks than before (e.g., Alex's note about any domain no longer being accurate), how about if we reduce this part to something on the order of ``in some cases impacting ....''}
+%\geoff{since I have even more qualifiers on the attacks than before (e.g., Alex's note about any domain no longer being accurate), how about if I reduce this part to something on the order of ``in some cases impacting ....''}
 
 % For the remainder of this section, we
 % describe each of these attacks in detail and explain what enables each
@@ -101,11 +101,11 @@ permission to send to the mailing list.
 
 %Each attack combines vulnerable forwarding features (\S~\ref{subsec:fwding_vuln}) and/or the header rewriting performed by common forwarding approaches (\S~\ref{sec:background:fwdingflow}) to violate security assumptions made by anti-spoofing defenses (\S~\ref{subsec:assumptions}).
 %While these defenses would have mitigated spoofing in a direct email transmission settings, the use of forwarding enables successful spoofing attacks.
-% For each attack, we describe the steps an attacker performs to successfully spoof an email and explain how forwarding,
+% For each attack, I describe the steps an attacker performs to successfully spoof an email and explain how forwarding,
 % combined with the vulnerabilities from Section~\ref{sec:assumptions} enable the attack to bypass anti-spoofing measures.
  % and will report on their feedback in a final version of this paper.
 
-% In all four attacks, we assume that the adversary controls their own SMTP server for sending spoofed email messages (i.e., the sender is malicious). Additionally, for the first three attacks, we assume that the adversary also controls personal email accounts registered with the forwarder, which is easily done with services like Outlook and Fastmail. For the last attack involving mailing lists, we assume that the adversary knows a target email address within the organization that is allowed to send to the mailing list.
+% In all four attacks, I assume that the adversary controls their own SMTP server for sending spoofed email messages (i.e., the sender is malicious). Additionally, for the first three attacks, I assume that the adversary also controls personal email accounts registered with the forwarder, which is easily done with services like Outlook and Fastmail. For the last attack involving mailing lists, I assume that the adversary knows a target email address within the organization that is allowed to send to the mailing list.
 
 
 \begin{figure*}[t]
@@ -123,7 +123,7 @@ permission to send to the mailing list.
 \label{subsec:attack_open_forwarding}
 
 % \subsubsection*{Attack Overview}
-The first attack we describe exploits five discrete issues:
+The first attack I describe exploits five discrete issues:
 three security assumptions (\S~\ref{subsubsec:spf_incorporation},~\ref{subsubsec:quarantine_instead_of_reject},~\ref{subsubsec:whitelist}),
 the vulnerable \emph{open forwarding} feature that many providers offer (\S~\ref{subsubsec:open_forwarding}),
 and the header rewriting performed as part of the PMF and MFEF forwarding approaches (\S~\ref{sec:measure_forwarding_mechs_and_arc}).
@@ -136,7 +136,7 @@ To ensure reliable delivery, such domains routinely add the server IP addresses 
 Although intuitive, this configuration creates an overly broad trust assumption: by adding the provider IP addresses to their SPF record, such domains (e.g., \dns{state.gov}) implicitly grant permission for any account hosted by their provider, whether individual or corporate, to send email messages that purportedly come from their domain.
 This threat is only prevented because large providers like Outlook do not allow users to arbitrarily set or forge their email's FROM header.
 
-However, we observe that by combining header rewriting from PMF and MFEF and the use of \emph{open forwarding}, attackers can overcome this defense and exploit SPF's violated assumption.
+However, I observe that by combining header rewriting from PMF and MFEF and the use of \emph{open forwarding}, attackers can overcome this defense and exploit SPF's violated assumption.
 Specifically, this attack allows an adversary to spoof email from domains that incorporate a third-party provider's SPF information in their own SPF record to any recipient, regardless of the domain's DMARC policy.
 %absent additional protections.
 
@@ -185,7 +185,7 @@ At the state and local
 level, virtually all primary state government domains (\eg, \dns{mass.gov})
   are vulnerable (including a broad range of congress, judiciary,
   and law enforcement domains in each state) and over 40\% of all \dns{.gov}
-  domains used by cities.\footnote{We have not broadly examined domains representing government offices outside the US, but we note that both \dnsfn{gchq.gov.uk} and \dnsfn{ncsc.gov.uk} are also vulnerable.}
+  domains used by cities.\footnote{We have not broadly examined domains representing government offices outside the US, but I note that both \dnsfn{gchq.gov.uk} and \dnsfn{ncsc.gov.uk} are also vulnerable.}
 
 
 % \footnote{Our estimation suggests that roughly
@@ -207,7 +207,7 @@ level, virtually all primary state government domains (\eg, \dns{mass.gov})
 %% %\label{subsubsec:open_forwarding_attack_mechanism}
 %% %\alex{Updated the text}\grant{Would it work to incorporate this email forging as part of Stage 1,
 %% %perhaps even just as text (Without changing the diagram).
-%% %It's a little weird that we list some actions the attacker needs to do, and then talk about ``Stage 1'' and what the attacker does.}
+%% %It's a little weird that I list some actions the attacker needs to do, and then talk about ``Stage 1'' and what the attacker does.}
 %% An attacker starts by creating a personal account for
 %% forwarding (\dns{attacker@outlook.com}), adding the spoofed address
 %% (\dns{bush@state.gov}) to the account's ``allowlist'' (thereby
@@ -248,13 +248,13 @@ spoofed email from Outlook's servers.
 Moreover, this attack also
 ensures that DMARC's alignment check succeeds because the
 \textsc{MAIL FROM} and \textsc{FROM} domain are both \dns{state.gov}.
-%\stefan{I don't think we need the screenshot.  I think they will believe us}
-%\alex{nope we need this one}
+%\stefan{I don't think I need the screenshot.  I think they will believe us}
+%\alex{nope I need this one}
 We validated this attack in practice, consistently sending
 spoofed email messages such as the example
 shown in Figure~\ref{fig:open_forwarding_attack_screenshot}
 to our own Gmail account, where it was delivered to the inbox without warning.\footnote{
-Note that we did discover some exceptions in our experiments.
+Note that I did discover some exceptions in our experiments.
 For a small set of high-profile domains that have a DMARC policy of Reject
 (\eg, \dnsfn{aa.com}, \dnsfn{foxnews.com} and \dnsfn{ikea.com}), Outlook would
 quarantine spoofed email regardless of whether users have added the
@@ -369,7 +369,7 @@ security of users on another platform (e.g., Zoho).
 %\stefan{
 %\grant{I'm commenting out the list of vulnerable things below because it seems redundant with both the intro paragraph and the attack description.}
 
-% Importantly, several forwarding assumptions and open forwarding are required for this attack to work, in addition to Zoho's buggy ARC implementation. Namely, the attack we demonstrate in this section exploits that Fastmail allows open forwarding (Section~\ref{subsubsec:open_forwarding}), that Fastmail allow users to overwrite DMARC decisions through whitelisting (Section ~\ref{subsubsec:whitelist}), that Fastmail does not reject spoofed email messages addressed from domains with DMARC policy \textsc{REJECT} (Section~\ref{subsubsec:quarantine_instead_of_reject}), and that Zoho (incorrectly) reads ARC headers added by Fastmail (Appendix~\ref{sec:appendix_arc_measurement}). We provide more details in the example below.
+% Importantly, several forwarding assumptions and open forwarding are required for this attack to work, in addition to Zoho's buggy ARC implementation. Namely, the attack I demonstrate in this section exploits that Fastmail allows open forwarding (Section~\ref{subsubsec:open_forwarding}), that Fastmail allow users to overwrite DMARC decisions through whitelisting (Section ~\ref{subsubsec:whitelist}), that Fastmail does not reject spoofed email messages addressed from domains with DMARC policy \textsc{REJECT} (Section~\ref{subsubsec:quarantine_instead_of_reject}), and that Zoho (incorrectly) reads ARC headers added by Fastmail (Appendix~\ref{sec:appendix_arc_measurement}). We provide more details in the example below.
 
 %\paragraph{Impact}
 \paragraph{Scope}
@@ -386,7 +386,7 @@ Our experiments show that this attack can target arbitrary users of Zoho, which 
 %% \vspace*{-0.1in}
 %% \end{figure}
 
-%% (geoff: since we have extra space in the camera ready version, I
+%% (geoff: since I have extra space in the camera ready version, I
 %% resized this figure so that its elements are roughly the same size
 %% as the first three attack figures.  feel free to undo if you don't
 %% like it)
@@ -444,10 +444,10 @@ DMARC and deliver the spoofed message to the victim's inbox. We end by noting th
 
 
 % \subsubsection*{Impact and Mitigation}
-% Among providers that we studied, this attack affects customers with
+% Among providers that I studied, this attack affects customers with
 % Zoho email addresses or using Zoho email services,\footnote{We
 %   speculate that the above attack also works for customers using Zoho
-%   email services, but we are not able to verify this because we are
+%   email services, but I are not able to verify this because I are
 %   not a Zoho customer.} which together compromise more than 10 million
 % potential victims~\cite{Celebrat69:online}.
 
@@ -505,7 +505,7 @@ domains and 5\% of all \dns{.gov} domains are potentially susceptible to this at
 %such as Google Groups, Mailman, and Listserv.
 %For this attack to work, the spoofed domain must have a DMARC policy of None,
 %and the sending email address the attacker wishes to impersonate must have permission to send to the mailing list.
-% This attack assumes that only the sender is malicious --- that the adversary controls a server capable of sending spoofed email messages. Additionally, we assume that the domain the adversary wishes to spoof (\dns{univ.edu}) hosts a mailing list with one of these providers,
+% This attack assumes that only the sender is malicious --- that the adversary controls a server capable of sending spoofed email messages. Additionally, I assume that the domain the adversary wishes to spoof (\dns{univ.edu}) hosts a mailing list with one of these providers,
 % such as \dns{list@univ.edu} if they use Google Groups, or \dns{list@listserv.univ.edu} if they use Listserv.
 % For this attack to work, \dns{univ.edu} must have a DMARC policy of none,
 % and the \dns{univ.edu} email address the attacker wishes to impersonate must have permission to send to the mailing list.
@@ -535,7 +535,7 @@ using the organization's top-level domain, it is also effective for
 any of the organization's subdomains (if the subdomains also have
 DMARC policy \textsc{None}) due to DMARC's inherent relaxed alignment policy.}
 
-During our experiments, we also observed that some mailing list
+During our experiments, I also observed that some mailing list
 services, such as Gaggle, do not enforce DMARC policies at all.
 This lack of enforcement allows the attack to succeed regardless of the spoofed domain's DMARC policy.
 

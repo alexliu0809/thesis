@@ -62,24 +62,24 @@
 \section{Assumptions and Vulnerable Features}
 \label{sec:assumptions}
 
-In this section, we describe a range of email design and
+In this section, I describe a range of email design and
 implementation weaknesses that lead to forwarding vulnerabilities.
 We start by exploring four assumptions made by anti-spoofing mechanisms
 that email forwarding can bypass and violate.  We then examine
 three vulnerable forwarding features in the major forwarding
 approaches.
 
-%Finally, we also identify
+%Finally, I also identify
 %three
 %implementation
 %vulnerabilities that are less fundamental, but can still lead to email
 %spoofing via forwarding.
-In each of these cases, we use active
+In each of these cases, I use active
 measurements --- either of mail services themselves or the DMARC policies
 as stored in DNS --- to document the prevalence of each issue
 among prominent domains and
 providers (summarized in Table~\ref{tab:assumptions_and_prevalence}).
-In the remainder of this section, we discuss the measurement
+In the remainder of this section, I discuss the measurement
 methodology used to investigate and identify these issues and
 describe each vulnerability in turn.  In the next section,
 % (Section~\ref{sec:attacks})
@@ -89,11 +89,11 @@ involving a broad array of popular and sensitive domains.
 
 % header rewriting performed during forwarding and vulnerabilities across these two categories to launch attacks that can successfully spoof email from thousands of prominent domains, such \dns{state.gov} and \dns{hulu.com}.
 
-% Additionally, we discuss three implementation vulnerabilities that enable a few novel attacks in Section~\ref{sec:attacks}, which we uncovered during the course of our experiments.
+% Additionally, I discuss three implementation vulnerabilities that enable a few novel attacks in Section~\ref{sec:attacks}, which I uncovered during the course of our experiments.
 
 
 
-% In this section we examine a set of vulnerable assumptions and implementations across popular email providers and anti-spoofing mechanisms,
+% In this section I examine a set of vulnerable assumptions and implementations across popular email providers and anti-spoofing mechanisms,
 % and preview how an attacker can use email forwarding to violate and exploit these design decisions.
 % Table~\ref{tab:assumptions_and_prevalence} summarizes our findings, as well as the prevalence of each vulnerability across the email ecosystem.
 
@@ -102,49 +102,49 @@ involving a broad array of popular and sensitive domains.
 
 %% \geoff{how much of this part of the methodology overlaps with
 %%   the methodology described in III.B?
-%%   if it is the same, then we can just refer back to III.B}\alex{III.B is rather simple. This seems to be a more detailed version of what's in III.B}
-%%   \grant{The first sentence above has some repetition, but I think the rest might be distinct?}\alex{note from the discussion Geoff and I had: We don't run seperate experiments for section 3 and 4, so it might be less confusing if we describe everything here and forward reference in sec 3. Also todo@Geoff, revisit our experiments details and see if anything needs to be added back}
+%%   if it is the same, then I can just refer back to III.B}\alex{III.B is rather simple. This seems to be a more detailed version of what's in III.B}
+%%   \grant{The first sentence above has some repetition, but I think the rest might be distinct?}\alex{note from the discussion Geoff and I had: We don't run seperate experiments for section 3 and 4, so it might be less confusing if I describe everything here and forward reference in sec 3. Also todo@Geoff, revisit our experiments details and see if anything needs to be added back}
 
-For our experiments we created test \textit{forwarding} accounts on all 20 forwarding services,
+For our experiments I created test \textit{forwarding} accounts on all 20 forwarding services,
 test \textit{recipient} accounts on all 16 major
-email providers, and mail servers for domains we control as
+email providers, and mail servers for domains I control as
 the \textit{sending} accounts.
 %
-%% For the email providers, we created test accounts on each platform and
-%% configured them to forward email to accounts we controlled.
+%% For the email providers, I created test accounts on each platform and
+%% configured them to forward email to accounts I controlled.
 %% We created mailing lists using each of the services and performed a
-%% similar analysis that collected the headers of email we sent to each
+%% similar analysis that collected the headers of email I sent to each
 %% list.
 %
-For Google Groups and Gaggle, we created mailing lists under our
+For Google Groups and Gaggle, I created mailing lists under our
 university's existing service and at \dns{gaggle.email}, respectively.
 The other two mailing list services (Listserv and Mailman) rely upon a
-third-party backend mail server; we used
+third-party backend mail server; I used
 Postfix~\cite{ThePostf34:online} as the backend with DMARC
-enforced. We then created mailing lists under new domains we acquired
+enforced. We then created mailing lists under new domains I acquired
 for testing (\eg, \dns{list@listserv.ourdomain.com}).
 
 %% We recorded the resulting headers at both the forwarder and the final
 %% recipients for analysis.
 
-For each combination of forwarding and recipient accounts, we sent
+For each combination of forwarding and recipient accounts, I sent
 email using three different control domains in the FROM headers, each
 with the same SPF configuration but with distinct DMARC policies:
 \textsc{None}, \textsc{Quarantine}, and \textsc{Reject}.
 %
 Some services (\eg, Gmail and Outlook) will mark email messages sent
 from new domains as spam until there is sufficient user interaction
-with those messages.  To avoid this startup effect, we ``warmed up''
+with those messages.  To avoid this startup effect, I ``warmed up''
 our domains using a series of legitimate exchanges.  In particular,
-from each domain, we sent legitimate (\ie, unspoofed) email that
+from each domain, I sent legitimate (\ie, unspoofed) email that
 passed SPF, DKIM and DMARC to our accounts at each provider.  Any
-message that was delivered to the spam folder we manually marked as
-``not spam''.  After this warm up period, we validated that legitimate
+message that was delivered to the spam folder I manually marked as
+``not spam''.  After this warm up period, I validated that legitimate
 (\ie, unspoofed) email from our domains was properly delivered to
 account inboxes in all cases.
 % for all email providers.
 
-Having primed our accounts, we assessed the prevalence of each vulnerability by
+Having primed our accounts, I assessed the prevalence of each vulnerability by
 % ran a series of experiments that
 sending legitimate and spoofed email messages to all
 pairwise combinations of our forwarding and recipient accounts.\footnote{Our code for automatically sending these messages is available upon request.}  We
@@ -159,9 +159,9 @@ whether any UI warning was shown in the native web-based MUA.
 % email ecosystem.
 
 
-%% \geoff{did we also do
+%% \geoff{did I also do
 %%   some warm up to establish baseline benign conversations?}\alex{we
-%%   did, but I think we removed that part intentionally to avoid any
+%%   did, but I think I removed that part intentionally to avoid any
 %%   confusion. We can add them back}
 
 % We start with a set of three new domains under our control.  We
@@ -182,7 +182,7 @@ whether any UI warning was shown in the native web-based MUA.
 % We then send legitimate and spoofed email messages from our domains to
 % forwarding accounts and record whether a message is forwarded by
 % default.  We consider all nine providers and four mailing lists as
-% forwarders.  We send spoofed email messages from a server we own that
+% forwarders.  We send spoofed email messages from a server I own that
 % is not allowed in the SPF records of our domains.
 
 % We study each receiver's behavior for both legitimate and spoofed
@@ -198,40 +198,40 @@ whether any UI warning was shown in the native web-based MUA.
 % at the forwarder. Whitelisting spoofed email messages could be done at
 % most forwarders with a few exceptions. We are not able to whitelist
 % spoofed email messages at Yahoo in cases where the spoofed FROM domain
-% has DMARC policies quarantine or reject. Additionally, we cannot
+% has DMARC policies quarantine or reject. Additionally, I cannot
 % whitelist spoofed email messages at Google, Mail.ru and Zoho when the spoofed FROM domain has DMARC policy reject.
 
 % We ensure that our measurement results are reliable by repeating the
 % above process with another set of three domains and fresh email
-% accounts. We are also aware that all mail providers we study have
+% accounts. We are also aware that all mail providers I study have
 % implemented anti-spam systems, which could interfere with our
 % measurement results. To minimize the interference from those systems,
-% we only send email messages with legitimate content. In cases where we
+% I only send email messages with legitimate content. In cases where we
 % observe an inconsistency in a provider's behavior between multiple
 % trials (potentially due to triggering the anti-spam system), we
 % perform additional measurements with fresh accounts.
 
 
 
-% Subsequently, in Section~\ref{sec:attacks}, we show how attackers can combine
+% Subsequently, in Section~\ref{sec:attacks}, I show how attackers can combine
 % email forwarding with several vulnerabilities to launch successful attacks, allowing them to reliably spoof email from thousands of prominent domains, such \dns{state.gov} and \dns{hulu.com}.
 % that email providers and security mechanisms make and
 % how forwarding allows an attacker to violate each assumption.
-% Additionally, for each vulnerability, we measured and report which email services are impacted.
-% In Section~\ref{subsec:assumptions}, we examine a list of assumptions and why they can cause security concerns. Further, to understand whether these security concerns are real, we perform controlled experiments that allow us to observe implementation decisions made by each party that are related to these assumptions.
+% Additionally, for each vulnerability, I measured and report which email services are impacted.
+% In Section~\ref{subsec:assumptions}, I examine a list of assumptions and why they can cause security concerns. Further, to understand whether these security concerns are real, I perform controlled experiments that allow us to observe implementation decisions made by each party that are related to these assumptions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% We start by sending legitimate and spoofed email messages from domains we control to all forwarders. We consider all nine providers and four mailing list services as forwarders. Next, we try forwarding email messages from all forwarders to all receivers. We only consider the nine mail providers as receivers, as mailing lists are rarely the destination of an email. We note and record implementation decisions made by each party that are related to the assumptions we listed.
+% We start by sending legitimate and spoofed email messages from domains I control to all forwarders. We consider all nine providers and four mailing list services as forwarders. Next, I try forwarding email messages from all forwarders to all receivers. We only consider the nine mail providers as receivers, as mailing lists are rarely the destination of an email. We note and record implementation decisions made by each party that are related to the assumptions I listed.
 %
-% We ensure that our measurement results are reliable by doing the above measurement twice with two distinct sets of domains that we control. We are also aware that all mail providers we study have
+% We ensure that our measurement results are reliable by doing the above measurement twice with two distinct sets of domains that I control. We are also aware that all mail providers I study have
 % implemented anti-spam systems, which could interfere with our
 % measurement results. To minimize the interference from those systems,
-% we only send email messages with legitimate content. In cases where we
-% observe an inconsistency in a provider's behavior between multiple trials (potentially due to triggering the anti-spam system), we perform additional measurements with fresh accounts.
+% I only send email messages with legitimate content. In cases where we
+% observe an inconsistency in a provider's behavior between multiple trials (potentially due to triggering the anti-spam system), I perform additional measurements with fresh accounts.
 
 
-% Table~\ref{tab:assumptions_and_prevalence} lists our results. \alex{I should elaborate?}. In the process of doing our measurement, we further observe two implementation errors made by Gmail and Zoho, which we detail in Section~\ref{subsec:implementation_errors}.
+% Table~\ref{tab:assumptions_and_prevalence} lists our results. \alex{I should elaborate?}. In the process of doing our measurement, I further observe two implementation errors made by Gmail and Zoho, which I detail in Section~\ref{subsec:implementation_errors}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -253,7 +253,7 @@ whether any UI warning was shown in the native web-based MUA.
 % We then send legitimate and spoofed email messages from our domains to
 % forwarding accounts and record whether a message is forwarded by
 % default.  We consider all nine providers and four mailing lists as
-% forwarders.  We send spoofed email messages from a server we own that
+% forwarders.  We send spoofed email messages from a server I own that
 % is not allowed in the SPF records of our domains.
 
 % We study each receiver's behavior for both legitimate and spoofed
@@ -270,15 +270,15 @@ whether any UI warning was shown in the native web-based MUA.
 % at the forwarder. Whitelisting spoofed email messages could be done at
 % most forwarders with a few exceptions. We are not able to whitelist
 % spoofed email messages at Yahoo in cases where the spoofed FROM domain
-% has DMARC policies quarantine or reject. Additionally, we cannot
+% has DMARC policies quarantine or reject. Additionally, I cannot
 % whitelist spoofed email messages at Google, Mail.ru and Zoho when the spoofed FROM domain has DMARC policy reject.
 
 % We ensure that our measurement results are reliable by repeating the
 % above process with another set of three domains and fresh email
-% accounts. We are also aware that all mail providers we study have
+% accounts. We are also aware that all mail providers I study have
 % implemented anti-spam systems, which could interfere with our
 % measurement results. To minimize the interference from those systems,
-% we only send email messages with legitimate content. In cases where we
+% I only send email messages with legitimate content. In cases where we
 % observe an inconsistency in a provider's behavior between multiple
 % trials (potentially due to triggering the anti-spam system), we
 % perform additional measurements with fresh accounts.
@@ -286,7 +286,7 @@ whether any UI warning was shown in the native web-based MUA.
 
 
 
-% For assumptions made by senders, we use results reported in prior work~\cite{tatang2021evolution}. For assumptions made by forwarders and receivers, we perform our own measurements as detailed in Section~\ref{subsec:measure_assumptions}.
+% For assumptions made by senders, I use results reported in prior work~\cite{tatang2021evolution}. For assumptions made by forwarders and receivers, I perform our own measurements as detailed in Section~\ref{subsec:measure_assumptions}.
 
 
 % \subsection{Assumptions Made in Practice}
@@ -294,7 +294,7 @@ whether any UI warning was shown in the native web-based MUA.
 \label{subsec:assumptions}
 Anti-spoofing mechanisms define a set of validation procedures which
 both explicitly and implicitly rely on assumptions about the behavior
-of domain holders, email providers and users.  Here we identify four
+of domain holders, email providers and users.  Here I identify four
 such assumptions that are crucial to these defenses in the direct
 single-hop delivery context, but do not necessarily hold in the
 presence of email forwarding.
@@ -302,8 +302,8 @@ presence of email forwarding.
 % communication,
 
 
-% In this subsection, we explore different design decisions and assumptions made by email protocols and providers, why forwarding makes them vulnerable to attacks, real-world implementations associated with each vulnerable design.
-% Here, we focus on vulnerabilities that are difficult to fix without altering standard email practices or requiring additional action from users and organizations.
+% In this subsection, I explore different design decisions and assumptions made by email protocols and providers, why forwarding makes them vulnerable to attacks, real-world implementations associated with each vulnerable design.
+% Here, I focus on vulnerabilities that are difficult to fix without altering standard email practices or requiring additional action from users and organizations.
 % cover harder-to-fix assumptions, why they can be problematic, and real-world implementations associated with each assumption.
 
 \subsubsection{Domains Use Actionable DMARC Policies}
@@ -339,19 +339,19 @@ Cognizant of this reality, several major email providers have decided to take tw
 First, as noted in prior work~\cite{hu_end--end_nodate} and confirmed in our own experiments, Outlook quarantines email if it fails DMARC authentication, even when the email's \textsc{FROM} domain has a weak DMARC policy of \textsc{None}.
 Second, although Gmail, Onet, and Zoho deliver email that fails DMARC authentication to user inboxes, they will display a UI warning to users who read such messages.
 
-These defenses provide protection against attackers who directly send spoofed email to their victims.  However, as we will show,
+These defenses provide protection against attackers who directly send spoofed email to their victims.  However, as I will show,
 %~\ref{subsec:attack_relaxed_forwarding_validation} and~\ref{subsec:attack_none_mailing_list},
 email forwarding introduces new complexity that enables attackers to bypass these ad hoc defenses, and thus leverage weak DMARC policies to successfully spoofed email from prominent domains.
 
-% In our experiments we observed two defenses that limit the scope of
+% In our experiments I observed two defenses that limit the scope of
 % this vulnerability for particular providers. First, as also noted by Hu \etal~\cite{hu_end--end_nodate}, if an email message is
 % directly sent to Outlook from our server, Outlook always quarantines it if it fails DMARC,
 % regardless of the DMARC policy of the \textsc{FROM} domain. Second, as with other providers Gmail
 % and Zoho deliver such email messages to the inbox, but also displaying a UI
-% warning to users when they read the message. However, as we detail later in Section~\ref{subsubsec:ui_bug}, deferring this to another component (in this case UI) implicitly assumes the UI warning component functions properly, which is not true for Gmail.
+% warning to users when they read the message. However, as I detail later in Section~\ref{subsubsec:ui_bug}, deferring this to another component (in this case UI) implicitly assumes the UI warning component functions properly, which is not true for Gmail.
 %
 %
-% Sadly, as we detail later, the protection mechanisms mentioned above do not apply to certain forwarded email messages, allowing an
+% Sadly, as I detail later, the protection mechanisms mentioned above do not apply to certain forwarded email messages, allowing an
 % adversary to bypass them and deliver spoofed messages
 % (Section~\ref{subsec:attack_relaxed_forwarding_validation}). We also demonstrate that when combined with certain forwarding mechanism, an adversary can launder their spoofed email messages from domains with DMARC none through mailing lists such that they look no different than legitimate ones after being forwarded (Section~\ref{subsec:attack_none_mailing_list}).
 
@@ -366,9 +366,9 @@ Unfortunately, as documented by Liu \etal~\cite{liu2021s} and Holzbauer \etal~\c
 % Back when SPF was first proposed, third-party providers were not common. SPF assumes each domain maintains its own infrastructure. However, the rise of third-party providers has challenged this assumption. As documented by Liu et al~\cite{liu2021s}, third-party providers now play a dominant role in mail service provisioning. Instead having dedicated infrastructure for each customer, these third-party providers often share the same infrastructure across all customers, business or personal. However, this implementation breaks the assumption made by SPF and introduces the potential issue of email spoofing --- an adversary, who controls a personal account with the provider, can spoof as others who share the same infrastructure.
 
 Concretely, our measurements show that all 16 email providers in our study appear to configure their email infrastructure in this shared fashion.
-%\alex{VERIFY THIS IS TRUE. how do we even measure this?} \geoff{I added hedge wording}.
+%\alex{VERIFY THIS IS TRUE. how do I even measure this?} \geoff{I added hedge wording}.
 Additionally, at least for email messages forwarded in our experiments, all providers but one (Fastmail) use the same set of servers to send both direct email and forwarded email.
-%~\alex{VERIFY}.  \geoff{we can say that it is true to the extent of the messages we sent...do any providers happen to mention this in their SPF instructions?}\alex{Updated the text a bit. I don't recall seeing any provider mentioning IPs used for forwarding.}
+%~\alex{VERIFY}.  \geoff{we can say that it is true to the extent of the messages I sent...do any providers happen to mention this in their SPF instructions?}\alex{Updated the text a bit. I don't recall seeing any provider mentioning IPs used for forwarding.}
 
 Since SPF no longer provides isolation in this model, the email
 providers in our study effectively \emph{simulate} it by preventing users
@@ -379,12 +379,12 @@ advantage of this situation by \emph{internally} restricting the \textsc{FROM} h
 %a given domain which mitigates the ability for an attacker to use
 %these platforms to directly send spoofed email.
 % to users.
-While this defense is effective in the absence of forwarding, we will
+While this defense is effective in the absence of forwarding, I will
 show how open forwarding mechanisms bypass this filtering (by generating spoofed \textsc{FROM} headers from an \emph{external} server controlled by the adversary),
 exposing the latent conflict between SPF's design and modern mail service
 use---ultimately allowing unrestricted email spoofing.
 
-%Unfortunately, as we show later in Section~\ref{subsec:attack_open_forwarding},
+%Unfortunately, as I show later in Section~\ref{subsec:attack_open_forwarding},
 %attackers can overcome these mitigations by employing forwarding to conduct successful spoofing attacks.
 
 
@@ -410,7 +410,7 @@ as ``spam''.
     \end{figure}
 
 %
-% In our experiments, we find that four email providers (Outlook, Fastmail, GMX and Inbox.lv) follow this quarantine-over-reject approach.
+% In our experiments, I find that four email providers (Outlook, Fastmail, GMX and Inbox.lv) follow this quarantine-over-reject approach.
 
 Because these providers quarantine the spoofed email as spam, this
 design does not appear particularly dangerous.\footnote{Some in the
@@ -422,7 +422,7 @@ protection and exploit the quarantine-over-reject implementation to spoof
 email from thousands of popular domains despite their strict
 DMARC \textsc{Reject} policy.
 
-%In our work, we present new attacks that show how forwarding introduces a new avenue for exploiting this design.
+%In our work, I present new attacks that show how forwarding introduces a new avenue for exploiting this design.
 %In particular, when combined with other vulnerable assumptions (e.g., Section~\ref{subsubsec:whitelist}), attackers can use forwarding accounts to override these quarantine protections and exploit the header rewriting changes in different forwarding approaches to spoof email messages from thousands of popular domains.
 %Because of this quarantine-over-reject policy, these attacks are successful even when the spoofed domains have a strict DMARC policy of \textsc{Reject}.
 
@@ -430,13 +430,13 @@ DMARC \textsc{Reject} policy.
 
 % there have been attacks that explotied this implementation decision as reported in prior blog posts~\cite{Microsof7:online,Spearphi83:online}.
 %
-% Even worse, as we detail below in Section~\ref{subsubsec:whitelist}, the quarantine decision can be overridden by a malicious user and thus creates a new threat to the downstream providers, potentially allowing an adversary to forward spoofed email messages even if the spoofed FROM domain has DMARC policy reject, endangering downstream providers. Indeed,
-% we show in Section~\ref{subsec:attack_open_forwarding} that when an adversary combines such policies with email forwarding and other issues described in this section, they can often spoof email messages from a wide range of domains (even if these domains have DMARC policy reject) that correctly pass both SPF and DMARC validation at the recipient's mail server.
+% Even worse, as I detail below in Section~\ref{subsubsec:whitelist}, the quarantine decision can be overridden by a malicious user and thus creates a new threat to the downstream providers, potentially allowing an adversary to forward spoofed email messages even if the spoofed FROM domain has DMARC policy reject, endangering downstream providers. Indeed,
+% I show in Section~\ref{subsec:attack_open_forwarding} that when an adversary combines such policies with email forwarding and other issues described in this section, they can often spoof email messages from a wide range of domains (even if these domains have DMARC policy reject) that correctly pass both SPF and DMARC validation at the recipient's mail server.
 
 \subsubsection{Per-user DMARC Overrides Are Fate-sharing}
 \label{subsubsec:whitelist}
 Many email providers allow users to override DMARC decisions: users can whitelist domains, and as a result they will still deliver or forward email even if it fails DMARC.
-% \geoff{by ``upon a user's request'', do we just mean that users can whitelist domains to override DMARC?}\alex{yes, updated the text.}
+% \geoff{by ``upon a user's request'', do I just mean that users can whitelist domains to override DMARC?}\alex{yes, updated the text.}
 Providers offer this flexibility because it can help mitigate
 errors and improve mail deliverability for the users who need it.
 However, this feature implicitly assumes that this approach is
@@ -456,8 +456,8 @@ mentioned in Section~\ref{subsubsec:quarantine_instead_of_reject}
 allow users to override any DMARC decision for any domains.
 The fifth (Outlook) allows users to override DMARC decisions for most domains, except for a small set of frequently-spoofed domains that have DMARC policy reject (e.g., \dns{aa.com}) where Outlook appears to apply additional, special protection mechanisms.
 
-% We do not try to whitelist spoofed email messages at mailing list services as generally an adversary cannot have access to a mailing list's configuration. Mail2World.com does not enforce DMARC, so there is no need to override the decision. For the four providers mentioned in Section~\ref{subsubsec:quarantine_instead_of_reject} that do not reject any email, we can override DMARC decisions for all domains for three of them (Fastmail, GMX and Inbox.lv). We are able to override DMARC decision for most domains for Outlook, except for a small set of frequently-spoofed domains that have DMARC policy reject (e.g., \dns{aa.com}). We suspect Outlook has special protection mechanism for these domains.
-For Gmail, Hushmail, iCloud, Mail.ru, Onet, and Zoho, users can override DMARC decisions for domains with DMARC policy \textsc{None} or \textsc{Quarantine}, but not \textsc{Reject}.  Finally, for Yahoo, we can only override DMARC decisions for domains with a policy of \textsc{None}.
+% We do not try to whitelist spoofed email messages at mailing list services as generally an adversary cannot have access to a mailing list's configuration. Mail2World.com does not enforce DMARC, so there is no need to override the decision. For the four providers mentioned in Section~\ref{subsubsec:quarantine_instead_of_reject} that do not reject any email, I can override DMARC decisions for all domains for three of them (Fastmail, GMX and Inbox.lv). We are able to override DMARC decision for most domains for Outlook, except for a small set of frequently-spoofed domains that have DMARC policy reject (e.g., \dns{aa.com}). We suspect Outlook has special protection mechanism for these domains.
+For Gmail, Hushmail, iCloud, Mail.ru, Onet, and Zoho, users can override DMARC decisions for domains with DMARC policy \textsc{None} or \textsc{Quarantine}, but not \textsc{Reject}.  Finally, for Yahoo, I can only override DMARC decisions for domains with a policy of \textsc{None}.
 
 % but place them in the spam folder instead of the inbox
 
@@ -488,7 +488,7 @@ protections.
 %adopted by major email services that
 
 %, when combined with the header rewriting during forwarding, enable attackers to violate and exploit the security assumptions discussed above.
-% \grant{If we go with this structure, we'll need to think about how to word Table~\ref{tab:assumptions_and_prevalence}, or how to reword the vulnerable forwarding features/designs in this subsection.}
+% \grant{If I go with this structure, we'll need to think about how to word Table~\ref{tab:assumptions_and_prevalence}, or how to reword the vulnerable forwarding features/designs in this subsection.}
 
 % \subsubsection{Users only forward to accounts they control}
 % \subsubsection{Forwarding occurs benignly between accounts}
@@ -499,7 +499,7 @@ Many email service providers support a mechanism to automatically
 forward a user's messages to another account (\eg, to aggregate mail
 sent to multiple addresses into a single inbox).  Because of the
 prevalence of these common, benign forwarding use cases, many
-platforms follow a design that we call \emph{open forwarding} (also
+platforms follow a design that I call \emph{open forwarding} (also
 referred to as ``unauthorized forwarding'' in previous work~\cite{shen2020weak}).  Services with open forwarding allow users
 to configure their account to forward messages to any destination
 email address, \textit{without} any verification from the destination
@@ -510,7 +510,7 @@ entirely for the purpose of malicious forwarding).
 
 %, which does not hold when adversaries create forwarding accounts for malicious purposes.
 
-% This design decision implicitly assumes that users will only forward email to accounts that they control or have a benign relationship with, leading to an implementation decision which we term \emph{open forwarding} (also referred to as ``unauthorized forwarding'' in prior work~\cite{shen2020weak}) --- that no verification is performed against the destination address.
+% This design decision implicitly assumes that users will only forward email to accounts that they control or have a benign relationship with, leading to an implementation decision which I term \emph{open forwarding} (also referred to as ``unauthorized forwarding'' in prior work~\cite{shen2020weak}) --- that no verification is performed against the destination address.
 
 % Open forwarding implicitly assumes users will only forward email to accounts that they control or have a benign relationship with, which does not hold when adversaries create forwarding accounts for malicious porposes.
 % However, this assumption does not hold reliably in the presence of adversaries. An adversary can create accounts and use it to
@@ -520,7 +520,7 @@ Our measurements show that open forwarding is still prevalent among providers.
 Specifically, ten email providers (Outlook, Fastmail, iCloud, Freemail, GoDaddy, Hushmail,
 Onet, Mail2World, Pobox, and Runbox) allow open
 forwarding.\footnote{Mail2World and Pobox do notify the destination account
-via email about the forwarding setup.}  Moreover, as we demonstrate in three
+via email about the forwarding setup.}  Moreover, as I demonstrate in three
 attacks described in
 Sections~\ref{subsec:attack_open_forwarding}--\ref{subsec:attack_zoho_arc},
 %,~\ref{subsec:attack_relaxed_forwarding_validation},
@@ -574,7 +574,7 @@ disallow open forwarding.
 
 
 
-% \subsubsection{Large email providers' forwarding implementation can break DMARC, to allow forwarding to work, we can treat forwarded emails from them as benign}
+% \subsubsection{Large email providers' forwarding implementation can break DMARC, to allow forwarding to work, I can treat forwarded emails from them as benign}
 \subsubsection{Relaxed Validation}
 \label{subsubsec:relaxed_validation}
 % \subsubsection{Forwarded emails from large providers can receive loosened validation}
@@ -593,7 +593,7 @@ Second, for messages forwarded via
 % other “well-known” providers (e.g., other providers in our experiments),
 the other providers in our experiments,
 Gmail delivers the email if it meets specific conditions.
-% In both scenarios, besides delivering the email, Gmail would normally display a UI indicator to show that the email is forwarded. However, we observe a bug in the UI implementation --- sometimes a UI indicator is not displayed (Section~\ref{subsubsec:ui_bug}).
+% In both scenarios, besides delivering the email, Gmail would normally display a UI indicator to show that the email is forwarded. However, I observe a bug in the UI implementation --- sometimes a UI indicator is not displayed (Section~\ref{subsubsec:ui_bug}).
 
 Similarly, our experiments found that Outlook applies relaxed validation for email messages from domains with a DMARC policy of \textsc{None}
 %, except for a small set of high-profile ones
@@ -602,16 +602,16 @@ Specifically, Outlook accepts email messages forwarded via nine major providers 
 %in our experiments,
 despite failing SPF and DMARC checks.
 Finally, Mail.ru accepts email messages forwarded via Gmail that fail DMARC from domains with a DMARC policy of \textsc{None} or \textsc{Quarantine}.
-%For example, we observe that Gmail employs two versions of relaxed validation for forwarded email messages that (1) fail SPF and DMARC checks, and (2) are from domains with DMARC policy none or quarantine. For email messages forwarded via Gmail and Outlook, Gmail delivers them regardless. For email messages forwarded via other ``well-known'' providers (\eg, the other four providers in our experiments), Gmail delivers them as long as a specific condition is not met (more details in Appendix~\ref{sec:append_change_behavior_details})
+%For example, I observe that Gmail employs two versions of relaxed validation for forwarded email messages that (1) fail SPF and DMARC checks, and (2) are from domains with DMARC policy none or quarantine. For email messages forwarded via Gmail and Outlook, Gmail delivers them regardless. For email messages forwarded via other ``well-known'' providers (\eg, the other four providers in our experiments), Gmail delivers them as long as a specific condition is not met (more details in Appendix~\ref{sec:append_change_behavior_details})
 %In both versions, besides delivering the email, Gmail would normally display a UI indicator to show that the email is forwarded. However, sometimes a UI indicator is not displayed due to a bug (Section~\ref{subsec:vul:ui_bug}).
 
 %Similarly, Outlook uses relaxed validation for email messages from domains with DMARC policy none.  For instance,
 %Outlook accepts email messages forwarded via any of the six email providers in our experiments, despite the fact they fail SPF and DMARC checks.
 
 These relaxed validation policies aim to balance the incompatibility of forwarding approaches with anti-spoofing protocols by implicitly trusting high-profile email services.
-Unfortunately, the complexity introduced by forwarding and its interactions with the diverse set of assumptions we highlight enable attackers to abuse these trust relationships.  This is particularly true because all of these providers offer individual consumer accounts.
+Unfortunately, the complexity introduced by forwarding and its interactions with the diverse set of assumptions I highlight enable attackers to abuse these trust relationships.  This is particularly true because all of these providers offer individual consumer accounts.
 % Such behavior creates an opportunity for an adversary to perform email spoofing attacks when the upstream forwarder supports \emph{open forwarding}, which allows an adversary to redirect spoofed email messages to arbitrary destination.
-For example, in Section~\ref{subsec:attack_relaxed_forwarding_validation} we show that an adversary can deliver spoofed email messages from domains that have a DMARC policy of \textsc{None} or \textsc{Quarantine} to any Gmail user without triggering a warning.
+For example, in Section~\ref{subsec:attack_relaxed_forwarding_validation} I show that an adversary can deliver spoofed email messages from domains that have a DMARC policy of \textsc{None} or \textsc{Quarantine} to any Gmail user without triggering a warning.
 
 \subsubsection{Unsolicited DKIM Signatures for Hosted Domains}
 \label{subsubsec:unsolicited_dkim}
@@ -630,8 +630,8 @@ Alibaba Cloud.
 % Readers are referred to Shen et al.~\cite{shen2020weak} for more details on
 % the DKIM Signature Fraud Attack.
 
-Through our experiments, we identified that three providers' (iCloud, Hushmail, and Runbox) forwarding implementation contained a variant of this vulnerable feature, which would allow an adversary to mount attacks similar to the DKIM Signature Fraud Attack.
-Taking iCloud as an example, we find that iCloud adds unsolicited and valid DKIM signatures to spoofed email messages addressed from domains hosted by them. Additionally,
+Through our experiments, I identified that three providers' (iCloud, Hushmail, and Runbox) forwarding implementation contained a variant of this vulnerable feature, which would allow an adversary to mount attacks similar to the DKIM Signature Fraud Attack.
+Taking iCloud as an example, I find that iCloud adds unsolicited and valid DKIM signatures to spoofed email messages addressed from domains hosted by them. Additionally,
 iCloud signs the DKIM signature using the same domain as the purported sender's domain in the spoofed email. For instance, iCloud will add a valid DKIM signature signed by the domain \texttt{peterborgapps.com} (a domain hosted by iCloud) to spoofed email messages purporting to be from \texttt{peterborgapps.com}, allowing the spoofed email messages to pass subsequent DMARC checks.
 We surmise that providers can add valid DKIM signatures on behalf of hosted domains because they manage DKIM keys for these domains~\cite{Setupane66:online, HushDKIM}.
 
@@ -669,10 +669,10 @@ We surmise that providers can add valid DKIM signatures on behalf of hosted doma
 % \label{subsec:implementation_errors}
 % Finally, in addition to vulnerabilities
 % resulting from the design of forwarding and anti-spoofing mechanisms,
-% during our experiments we also observed three implementation
+% during our experiments I also observed three implementation
 % errors. We focus on Zoho's ARC implementation error, which directly
 % introduces serious security concerns. The other two errors can be
-% abused to help send spoofed email, which we detail in
+% abused to help send spoofed email, which I detail in
 % Appendix~\ref{sec:implementation_errors_additional}.
 
 
@@ -680,7 +680,7 @@ We surmise that providers can add valid DKIM signatures on behalf of hosted doma
 % Namely, Gmail's UI indicator bug and Zoho's ARC implementation bug.
 
 % \subsubsection{Every email is legitimate}
-% \grant{Hmmm... this subsection really strikes me as a broken implementation, and we might consider moving to Section 4.2}
+% \grant{Hmmm... this subsection really strikes me as a broken implementation, and I might consider moving to Section 4.2}
 
 
 % \subsubsection*{Zoho's ARC Implementation Error}
@@ -698,15 +698,15 @@ We surmise that providers can add valid DKIM signatures on behalf of hosted doma
 % Appendix~\ref{sec:appendix_arc_measurement}
 % % and Table~\ref{tab:forwarding_mechs_in_the_wild}
 % reports our measurement results about the adoption of ARC among
-% the providers we evaluated.
+% the providers I evaluated.
 % %\geoff{(will need to be updated if ARC is removed from the table)}
-% Nonetheless, during our experiments, we identified attacks that can exploit incorrect ARC implementations to reliably spoof email.
+% Nonetheless, during our experiments, I identified attacks that can exploit incorrect ARC implementations to reliably spoof email.
 
 % Among these platforms, many providers only accept ARC signatures from custom lists of ``trusted'' forwarders (Table~\ref{tab:trust_of_arc_between_providers}).
-% During our analysis, we discovered that some email providers' implementation of ARC also leads to vulnerabilities, which an attacker can combine with forwarding to spoof malicious emails (\S~\ref{subsec:attack_zoho_arc}).
+% During our analysis, I discovered that some email providers' implementation of ARC also leads to vulnerabilities, which an attacker can combine with forwarding to spoof malicious emails (\S~\ref{subsec:attack_zoho_arc}).
 % Prior work has found that some mail providers, such as Zoho, incorrectly implement ARC~\cite{shen2020weak}.
 % For example, when a spoofed email message is forwarded from Gmail to Zoho, Zoho incorrectly reads the ARC headers attached by Gmail. As a result, it incorrectly displays the email as passing DMARC and delivers the email without warnings.
-% Echoing this prior work, we found that this vulnerability still existed at Zoho.
+% Echoing this prior work, I found that this vulnerability still existed at Zoho.
 % We also found through our experiments that, in addition to Gmail, Zoho also evaluates and trusts ARC headers added by Fastmail (Section~\ref{sec:measure_forwarding_mechs_and_arc}).
 % Moreover, by leveraging Fastmail's open forwarding, this flawed ARC implementation could be exploited to spoof email messages to any Zoho user from \emph{any} domain.\footnote{Our work not only led to a patch of this issue after disclosure to Zoho, but also resulted in Zoho adding additional security enhancements to their ARC implementation (Appendix~\ref{sec:disclosure}).  This patch is confirmed by the parallel work of Wang et al.~\cite{wang2022revisiting} that focused on email forwarding under ARC.}
 
@@ -721,6 +721,6 @@ We surmise that providers can add valid DKIM signatures on behalf of hosted doma
 
 % However, any such trust implicitly
 % assumes that those trusted forwarders have good security practices.
-% Unfortunately, as we detail later, this is not always the case, which
+% Unfortunately, as I detail later, this is not always the case, which
 % creates additional opportunities for adversaries
 % (Section~\ref{subsec:attack_zoho_arc}).
