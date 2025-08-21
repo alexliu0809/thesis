@@ -130,7 +130,7 @@ Transfer event is adjacent to its associated bridge-generated event,
 it is easy to identify and thus establish the number of tokens
 transferred.\footnote{As a sanity check, I also require that the
   sender and recipient addresses in the Transfer event are consistent
-  with the bridge's defined behavior: for withdrawal transactions, we
+  with the bridge's defined behavior: for withdrawal transactions, I
   require that the sender is either a mint address (i.e., all-zero
   address) or a bridge-controlled address, while for deposit
   transactions, I require that the recipient is either a burn address
@@ -145,7 +145,7 @@ on a combination of the intended number and the total token supply.
 For such cases, I either rely on bridge events which capture the
 intended number of tokens transferred or implement token-specific
 logic to recompute the value accordingly.  Finally, native tokens have
-no Transfer event (since they are not ERC-20 tokens), but thus far we
+no Transfer event (since they are not ERC-20 tokens), but thus far I
 have either been able to recover the number of tokens transferred from
 bridge events or so-called ``internal transactions''.
 

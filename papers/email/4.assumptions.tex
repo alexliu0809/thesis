@@ -147,9 +147,9 @@ account inboxes in all cases.
 Having primed our accounts, I assessed the prevalence of each vulnerability by
 % ran a series of experiments that
 sending legitimate and spoofed email messages to all
-pairwise combinations of our forwarding and recipient accounts.\footnote{Our code for automatically sending these messages is available upon request.}  We
+pairwise combinations of our forwarding and recipient accounts.\footnote{Our code for automatically sending these messages is available upon request.}  I
 analyzed the headers and outcomes of these attempts, and recorded
-which parties exhibited vulnerable behavior.  In particular, we
+which parties exhibited vulnerable behavior.  In particular, I
 configured all forwarders to forward email messages to all receivers
 and recorded whether each message was delivered to the inbox, spam
 folder, or rejected without delivery by each receiver.  I also noted
@@ -415,7 +415,7 @@ as ``spam''.
 Because these providers quarantine the spoofed email as spam, this
 design does not appear particularly dangerous.\footnote{Some in the
   mail security industry criticize this weakening of DMARC
-  rules and document attacks that ``rescue'' such email from the spam folder via social engineering~\cite{Microsof7:online,Spearphi83:online}.} However, as we
+  rules and document attacks that ``rescue'' such email from the spam folder via social engineering~\cite{Microsof7:online,Spearphi83:online}.} However, as I
 will show, in combination with email forwarding and another
 vulnerable feature (per-user domain whitelists in Section~\ref{subsubsec:whitelist}), attackers can override this
 protection and exploit the quarantine-over-reject implementation to spoof

@@ -16,7 +16,7 @@
 %  worry about the flow with other parts for now}
 
 In this section I assess how well spyware apps secure the user data they exfiltrate and store.
-For this assessment, in addition to the victim and the abuser, we
+For this assessment, in addition to the victim and the abuser, I
 consider a third actor: an external attacker who seeks to undermine the
 security of the spyware app.  The attacker's goal is to exploit any
 integrity, authorization, and authentication issues with the spyware
@@ -46,7 +46,7 @@ Android phone running Android 10.
 
 To identify apps sending data from the device to the backend servers via unencrypted connections I used \texttt{tcpdump},
 listening on a Windows 10 machine interface configured as a mobile
-hotspot, to capture and inspect app traffic over the network.  We
+hotspot, to capture and inspect app traffic over the network.  I
 configured the Android phone to connect to the PC and recorded all
 traffic exchanged with the app servers, without any proxy in between
 (avoiding any potential TLS handshake failures due to certificate
@@ -76,7 +76,7 @@ Table~\ref{tab:apps_spyware_vuln}.
 
 \subsection{Results}
 
-Table~\ref{tab:apps_spyware_vuln} summarizes the threats we
+Table~\ref{tab:apps_spyware_vuln} summarizes the threats I
 investigated and shows which apps are susceptible to them.
 %
 I describe each of the threats in turn, summarizing its context, its
@@ -191,7 +191,7 @@ the accounts of other spyware users.
 \textbf{Threat Model.} The attacker can register a spyware account and
 log into it. Using a MITM traffic inspector (similar to our proxy
 described in Section~\ref{subsec:experiemental_setup}), an attacker
-can intercept and replay authenticated requests from their account. We
+can intercept and replay authenticated requests from their account. I
 assume the attacker knows the ID of the targeted user's account ---
 either through enumeration, or from the ID being leaked over the
 network or in a public data dump~\cite{mSpybrea38:online,
@@ -302,7 +302,7 @@ revealed using accounts owned by the attacker.  For apps that use the
 device ID in URL path components, I also assume the attacker knows
 the targeted device ID.
 
-\textbf{Experimental Setup.} To discover sensitive data leakage, we
+\textbf{Experimental Setup.} To discover sensitive data leakage, I
 focused primarily on URLs used to store media artifacts (images,
 audio, video, etc.).  I extracted these URLs by examining the
 browser-generated HTML content when accessing the dashboard in the

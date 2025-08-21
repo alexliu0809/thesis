@@ -29,7 +29,7 @@ interesting future work.
 I start by proposing a new model for the workflow of bridge
 transactions.  Then, using Wormhole as an example, I show how to
 modify an existing bridge implementation to prevent malicious transactions from
-being processed with fewer than 30 lines of code changes.  Finally, we
+being processed with fewer than 30 lines of code changes.  Finally, I
 evaluate the correctness and overhead of this initial implementation.
 
 \subsection{The Announce-then-Execute Model}
@@ -118,11 +118,11 @@ vulnerabilities in the bridge to profit.
 %% Wormhole's current withdraw function performs two tasks:
 %% it verifies the signatures that authorize the withdraw transaction and then executes the withdraw transaction. I split the withdraw function into two separate functions: \texttt{announceWithdraw} and \texttt{approveWithdraw}. The \texttt{announceWithdraw} function handles signature verification and announces the withdraw transaction on the destination blockchain, while the \texttt{approveWithdraw} function executes the withdraw transaction. This modification required fewer than 30 lines of code changes.
 
-Continuing our focus on Wormhole from Section~\ref{sec:live-audit}, we
+Continuing our focus on Wormhole from Section~\ref{sec:live-audit}, I
 modified one of Wormhole's open-source contracts to implement the
 announce-then-execute model.  Wormhole's current withdrawal function
 performs two tasks: it verifies the signatures that authorize the
-withdrawal transaction, and then executes it. We
+withdrawal transaction, and then executes it. I
 split the withdrawal function into two separate functions:
 \texttt{announceWithdraw} and \texttt{approveWithdraw}. The
 \texttt{announceWithdraw} function handles signature verification and

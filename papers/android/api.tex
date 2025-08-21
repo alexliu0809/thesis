@@ -10,7 +10,7 @@ and group
 all of the other capabilities that I study into three categories based on their goals: stealthily
 collecting a victim's information (\S~\ref{subsec:data_gathering}), hiding the app's presence on the phone (\S~\ref{subsec:hiding_the_app}), and persistently
 spying over a long period of time (\S~\ref{subsec:persistence}).
-For each category, we
+For each category, I
 describe
 each capability in the category and its associated implementations, and end
 the category by discussing potential mitigations.
@@ -185,8 +185,8 @@ methods).
 related API primitives) I discover, I verified our analysis conclusions
 by developing an app using the same API primitives and
 testing it on a Pixel 4 phone running Android 11. I also installed and ran each spyware app to ensure the capabilities I observed were indeed enabled.
-Since the majority of the apps we
-study have been implemented using Android APIs up to Android 11, we
+Since the majority of the apps I
+study have been implemented using Android APIs up to Android 11, I
 discuss their implementations in that context. However, I also
 discuss the impact changes in Android 12 can have on the spyware apps.
 
@@ -478,7 +478,7 @@ false also reduces the usability of benign apps such as screen readers.
 
 \subsubsection*{Capability \#4: Taking Screenshots}
 \label{subsubsec:screenshot}
-Spyware apps can also extract sensitive information by taking screenshots. We
+Spyware apps can also extract sensitive information by taking screenshots. I
 observe two ways the apps in our data set take screenshots: via
 \texttt{AccessibilityService} and \texttt{MediaProjection}. For MediaProjection
 to work, an activity is required~\cite{androidH20:online}. This approach is
@@ -569,7 +569,7 @@ accesses in the last 24 hours to sensitive information such as location, microph
 While such a dashboard does require users to proactively
 take action, it is a potentially useful tool for users to quickly identify
 suspicious apps based upon the plethora of invasive permissions they have been
-granted. We
+granted. I
 recommend that all actions to access sensitive data should be added to the
 privacy dashboard and users should be periodically notified of the existence of apps with excessive number of permissions.
 
@@ -856,7 +856,7 @@ the flag that hides it from the Recents screen, i.e.,
 
 \subsubsection{Mitigations}
 For apps that seek to hide their icons, our recommendation is that Android should enforce stricter requirements on what apps can hide icons (e.g., the three requirements from Android 10 build r1 to r14 mentioned in footnote~\ref{footnote:hide_icon}).
-Most apps that run on Android phones should be required to have an icon. In the case of exploiting TV app features, while we
+Most apps that run on Android phones should be required to have an icon. In the case of exploiting TV app features, while I
 understand that running apps with only \texttt{LEANBACK\_LAUNCHER} activities on
 Android phones increases compatibility, such a feature leads to abuse as Spy24
 has already demonstrated.
