@@ -55,7 +55,7 @@ into 14 leading consumer spyware apps for Android-based smart
 phones.
 Specifically, I seek to answer two key questions:
 \begin{itemize}
-    \item How do spyware apps achieve their advertised functionalities? We focus on stealthy features that facilitate nonconsensual tracking.
+    \item How do spyware apps achieve their advertised functionalities? I focus on stealthy features that facilitate nonconsensual tracking.
     \item What are the measures taken by spyware apps to protect the data they collect?
 \end{itemize}
 
@@ -72,7 +72,7 @@ Specifically, I seek to answer two key questions:
 \textwidth\hsize
 \textheight\vsize
 
-\caption[List of 14 Spyware Apps We Study]{The 14 spyware apps I study, their website domain and its corresponding Tranco ranking, \\their portal domain and its corresponding Tranco ranking, and their APK's target SDK version and \\package name. Tranco rankings taken on May 5th, 2022. \hspace*{0.05in}\\ $^{*}$iKeyMonitor's full package name is `com.sec.android.internet.im.service.im20190419'.\label{tab:apps_selected}}
+\caption[List of 14 Spyware Apps I Study]{The 14 spyware apps I study, their website domain and its corresponding Tranco ranking, \\their portal domain and its corresponding Tranco ranking, and their APK's target SDK version and \\package name. Tranco rankings taken on May 5th, 2022. \hspace*{0.05in}\\ $^{*}$iKeyMonitor's full package name is `com.sec.android.internet.im.service.im20190419'.\label{tab:apps_selected}}
     
 \begin{tabular}{@{}llrlrll@{\hskip 5pt}l}
   App Name             & \multicolumn{2}{c}{Website Domain \hspace*{0.2in}\hfill\hspace*{0.1in} Ranking}  & \multicolumn{2}{c}{Portal Domain \hspace*{0.25in}\hfill\hspace*{0.1in} Ranking} & Target SDK &Package Name                                    \\
@@ -104,11 +104,11 @@ the most popular consumer spyware apps.
 In analyzing their behavior
 we make three primary contributions:
 \begin{itemize}
-  \item We performed the first comprehensive and in-depth analysis of mechanisms used by consumer spyware apps to bypass or trick system level isolation across a range of different feature categories.
+  \item I performed the first comprehensive and in-depth analysis of mechanisms used by consumer spyware apps to bypass or trick system level isolation across a range of different feature categories.
   \item In addition to confirming the broad use of some techniques identified in the mobile malware literature (e.g., abusing ``accessibility'' APIs), I identified two novel abuses of Android
-    APIs (new techniques of invisible camera access and hiding app icons). We also document that Android's threat model does not include abuses of their APIs that allow apps to conceal their icon.
-  \item We tested spyware apps \emph{in
-  situ} in a carefully monitored environment and analyzed their communications with the cloud service components.  We believe our work is also the first academic effort to document in detail a range of privacy deficiencies (e.g.,
+    APIs (new techniques of invisible camera access and hiding app icons). I also document that Android's threat model does not include abuses of their APIs that allow apps to conceal their icon.
+  \item I tested spyware apps \emph{in
+  situ} in a carefully monitored environment and analyzed their communications with the cloud service components.  I believe our work is also the first academic effort to document in detail a range of privacy deficiencies (e.g.,
   data sent in plaintext and cloud services with insecure direct object references (IDOR~\cite{IDOR62:online, IDORCWE:online}) for the contents of phone data).
 \end{itemize}
 

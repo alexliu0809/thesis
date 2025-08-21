@@ -6,7 +6,7 @@
 \label{sec:discuss}
 % \alex{add more sections. e.g., add-on}
 Our work is a ``first cut'' at identifying, validating and implementing a
-generic mode of theft protection into cross-chain transactions. We show that a
+generic mode of theft protection into cross-chain transactions. I show that a
 simple balance invariant is sufficient to detect and prevent most bridge
 attacks. Our effort also highlights the need for better auditability and
 auditing in the bridge ecosystem, and for new bridge designs.  Indeed, deploying a cross-chain token bridge with an in-line balance invariant
@@ -21,7 +21,7 @@ range of cryptocurrencies in decentralized exchanges). Such extensions will
 require incorporating contemporaneous price oracle data
 into our framework
 and addition reasoning.
-% We leave this to future work.
+% I leave this to future work.
 
 The larger opportunities opened up by this work are
 more architectural.  Today, when a crypto platform declares that their
@@ -49,7 +49,7 @@ constraints independent of transaction details can be extremely
 powerful.  For example, one might extend this work beyond a simple
 cross-chain balance invariant to enforce limits on liquidity losses or
 to place limits on collateralization risk for tokens backed by
-stablecoins.  We hypothesize that by centralizing the specification and
+stablecoins.  I hypothesize that by centralizing the specification and
 enforcement of \emph{overall} financial constraints in one place, they
 will be far easier to audit and reason about.
 
@@ -74,7 +74,7 @@ Chapter~\ref{chap:bridge}, in part, has been submitted for publication of the ma
 % encountered.  Moreover, almost every violation of the balance
 % corresponds to a bridge transaction that deserves further manual
 % scrutiny (i.e., the ``false positive'' overhead is extremely minimal).
-% We show, via proof-of-concept implementations that detection based on
+% I show, via proof-of-concept implementations that detection based on
 % this principal is cheap to implement and can be performed in
 % real-time, either in parallel for the purpose of alerting, or in-line
 % to prevent violating transactions from being completed---an approached
@@ -101,8 +101,8 @@ Chapter~\ref{chap:bridge}, in part, has been submitted for publication of the ma
 %* Logs are truncated too for solana (fix 2023) \\
 %* Learning based approach for bridge/token behavior?\\
 %\subsection{Limitations}
-%* We only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.\\
-%* We only prevent bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.
+%* I only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.\\
+%* I only prevent bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.
 %* Other attack vectors exist.\\
 %\subsection{Counter Measures}
 
@@ -110,7 +110,7 @@ Chapter~\ref{chap:bridge}, in part, has been submitted for publication of the ma
 
 
 
-% For example, I only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.  We also only prevent the bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.  Finally, other attack vectors exist that are not captured by our approach.  For example, a bridge could be used to launder money by transferring tokens back and forth between two accounts.  While our approach would detect the loss of funds, it would not detect the money laundering.  However, I believe that our approach is a valuable first step in protecting bridges from theft and that it can be extended to address these and other vulnerabilities in the future.
-% We only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.\\
-%* We only prevent bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.
+% For example, I only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.  I also only prevent the bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.  Finally, other attack vectors exist that are not captured by our approach.  For example, a bridge could be used to launder money by transferring tokens back and forth between two accounts.  While our approach would detect the loss of funds, it would not detect the money laundering.  However, I believe that our approach is a valuable first step in protecting bridges from theft and that it can be extended to address these and other vulnerabilities in the future.
+% I only consider designated withdraw functions. If you withdraw tokens by directly calling Transfer, I cannot detect it. Similarly, if you repurpose other functions (e.g., deposit) for withdrawal, I cannot detect it.\\
+%* I only prevent bridge from losing money. Future work can consider adopting the user-centric perspective and model the end-to-end flow by taking into consideration bridge- and token-specific logics.
 %* Other attack vectors exist.\\

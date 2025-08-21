@@ -10,7 +10,7 @@ in widely deployed anti-spoofing protocols.  Using large-scale empirical
 measurements of 20 email forwarding services (16 leading email providers and four popular mailing
 list services), I identify a range of security issues rooted in
 forwarding behavior and show how they can be combined to reliably
-evade existing anti-spoofing controls.  We further show how these issues allow
+evade existing anti-spoofing controls.  I further show how these issues allow
 attackers to not only deliver spoofed email messages to prominent email providers (e.g., Gmail, Microsoft Outlook, and Zoho), but also reliably spoof email on behalf of tens of thousands of
 popular domains including sensitive domains used by organizations in
 government (\eg, \dns{state.gov}), finance (\eg, \dns{transunion.com}), law (\eg,
@@ -18,21 +18,21 @@ government (\eg, \dns{state.gov}), finance (\eg, \dns{transunion.com}), law (\eg
 
 %%on the deployment of e-mail forwarding mechanisms and the
 %%treatment of forwarded e-mail messages by studying six prominent
-%%e-mail providers and four popular mailing list software. We first
+%%e-mail providers and four popular mailing list software. I first
 %%document how e-mail forwarding is implemented in the wild and how
-%%forwarded e-mail messages are handled. We identify X security
+%%forwarded e-mail messages are handled. I identify X security
 %%vulnerabilities among parties involved in the forwarding flow. Using a
 %%combination of these vulnerabilities, I show 5 types of evasion
 %%exploits that affect leading e-mail service providers (\eg, Gmail,
 %%Microsoft Outlook and Zoho) and mailing list providers/software (\eg,
-%%Google Groups and Gaggle.email). We demonstrate with a large-scale DNS
+%%Google Groups and Gaggle.email). I demonstrate with a large-scale DNS
 %%measurement to quantify the impact of these exploits.
 
 % E-mail has long been a critical component of daily communication. As with many pieces of key communications infrastructures, increasingly this function has been outsourced to a few major third-party e-mail service providers. Such centralization also buries implicit trust in these provider. On the one hand, these providers are assumed to defend against various spoofing and phishing attacks. Failing to do so can cause serious harms to their users. The prevalence of mailing lists further amplifies this concern, as they make the distribution of malicious e-mail messages easier. On the other hand, certain providers might trust other providers in that others have done their due diligence in combating various attacks, which might not always be the case.
 
 % In this paper, I show that such trust can be violated and abused by an adversary who leverages e-mail forwarding. Our key findings are three fold. First, I document how e-mail forwarding is carried out in the wild by studying six prominent e-mail providers and four popular mailing lists. Second, I characterize implicit trust in each provider and between providers. Finally, I show how such trust can be abused in the presence of an adversary.
 
-% This paper performs the first empirical study that documents e-mail forwarding practices in the wild and security risks that exist. We examine forwarding mechanisms used by six prominent e-mail providers and four popular mailing list software. We also identify X security exploits among those providers and software. Using a combination of these exploits, we
+% This paper performs the first empirical study that documents e-mail forwarding practices in the wild and security risks that exist. I examine forwarding mechanisms used by six prominent e-mail providers and four popular mailing list software. I also identify X security exploits among those providers and software. Using a combination of these exploits, we
 % demonstrate 5 types of evasion exploits that affect leading e-mail service providers such as Google and Microsoft.
 
 % Due to its nature, it break SPF

@@ -14,15 +14,15 @@
 % % all of our messages contained innocuous content and thus was unlikely
 % % to cause harm.
 
-% We have disclosed all of the vulnerabilities and attacks to the
-% affected providers. We have received affirmative feedback from
+% I have disclosed all of the vulnerabilities and attacks to the
+% affected providers. I have received affirmative feedback from
 % all affected providers: Zoho not only patched the issue with their ARC
 % implementation (also confirmed by Wang et al.~\cite{wang2022revisiting}, who conducted their measurements after the patch) and awarded us a bug bounty, but also is further enhancing its security; Microsoft
 % confirmed the vulnerabilities (with severity ``Important'', the highest severity assigned to email spoofing bugs) and awarded us a bug bounty; Gaggle
 % confirmed the issues I flagged and stated that they would start
 % enforcing DMARC; Gmail has triaged our report and is working on a fix.
 % %For the other providers, I have reached out multiple times and are waiting on replies.
-% We will report on the full set of disclosure feedback and outcomes in the final version of this paper.
+% I will report on the full set of disclosure feedback and outcomes in the final version of this paper.
 
 
 % \section{Measurement Details}
@@ -32,48 +32,48 @@
 % Sections~\ref{sec:measure_forwarding_mechs_and_arc}
 % and~\ref{sec:vulnerabilities_in_the_wild}.
 % %
-% We start with a set of three new domains under our control.  We
+% I start with a set of three new domains under our control.  We
 % configure all three with the same SPF configuration, while each of the
 % individual domains have a DMARC policy none, quarantine, and reject,
-% respectively.  We use these domains in the FROM headers in all of our
+% respectively.  I use these domains in the FROM headers in all of our
 % email messages, so that our measurements do not affect users of any
 % other domains.
 
-% We then ``warm up'' our domains so that they are treated like any
-% other domains by the providers.  We send legitimate email messages
+% I then ``warm up'' our domains so that they are treated like any
+% other domains by the providers.  I send legitimate email messages
 % from these domains that pass SPF, DKIM and DMARC to accounts under our
-% control at each email provider.  We also manually mark our email
+% control at each email provider.  I also manually mark our email
 % messages as ``not spam'' if they are delivered to the spam folder in
 % the warm-up stage.  After the warm-up stage, legitimate email messages
 % from our domains are properly delivered to account inboxes for all
 % email providers.
 
-% We then send legitimate and spoofed email messages from our domains to
+% I then send legitimate and spoofed email messages from our domains to
 % forwarding accounts and record whether a message is forwarded by
-% default.  We consider all six providers and four mailing lists as
-% forwarders.  We send spoofed email messages from a server I own that
+% default.  I consider all six providers and four mailing lists as
+% forwarders.  I send spoofed email messages from a server I own that
 % is not allowed in the SPF records of our domains.
 
-% We study each receiver's behavior for both legitimate and spoofed
-% forwarded email messages. We only consider the six mail providers as
+% I study each receiver's behavior for both legitimate and spoofed
+% forwarded email messages. I only consider the six mail providers as
 % receivers, as mailing lists are rarely the destination of email. We
 % configure all forwarders to forward email messages to all receivers
 % and record whether each message is delivered to the inbox, spam
-% folder, or rejected without delivery by each receiver. We also note
+% folder, or rejected without delivery by each receiver. I also note
 % whether any UI warning indicator is displayed in the native web-based
 % MUA.
 
-% We force the forwarding of a spoofed email by manually whitelisting it
+% I force the forwarding of a spoofed email by manually whitelisting it
 % at the forwarder. Whitelisting spoofed email messages could be done at
-% most forwarders with a few exceptions. We are not able to whitelist
+% most forwarders with a few exceptions. I are not able to whitelist
 % spoofed email messages at Yahoo in cases where the spoofed FROM domain
 % has DMARC policies quarantine or reject. Additionally, I cannot
 % whitelist spoofed email messages at Google and Zoho in cases where the
 % spoofed FROM domain has DMARC policy reject.
 
-% We ensure that our measurement results are reliable by repeating the
+% I ensure that our measurement results are reliable by repeating the
 % above process with another set of three domains and fresh email
-% accounts. We are also aware that all mail providers I study have
+% accounts. I are also aware that all mail providers I study have
 % implemented anti-spam systems, which could interfere with our
 % measurement results. To minimize the interference from those systems,
 % I only send email messages with legitimate content. In cases where we
@@ -105,7 +105,7 @@ Pobox    & \checkmark     &               & \checkmark   & \checkmark\\
 
 \label{sec:appendix_arc_measurement}
 Five email providers (Gmail, Outlook, Zoho, Fastmail, and Pobox) and two mailing list services (Google Groups and Mailman) implement ARC validation.
-% We note that when forwarding, Outlook only adds ARC headers to email messages originated from itself.
+% I note that when forwarding, Outlook only adds ARC headers to email messages originated from itself.
 % \grant{Is this last sentence important or referenced later on? If not, I can probably remove it, or move this detail to that later section.}
 Because ARC is still an experimental protocol, many email providers only evaluate ARC headers added by a small set of other providers whom they trust~\cite{Senderau57:online}.
 Based on measurements through test accounts that I created, Table~\ref{tab:trust_of_arc_between_providers} shows the ARC trust relationships among the providers I tested:
@@ -164,7 +164,7 @@ However, previous work~\cite{hu_end--end_nodate,shen2020weak,chen2020composition
 In our experiments, I focus on the native MUAs (web interfaces) provided by the nine email platforms in our study.
 These MUAs not only have widespread usage, as the default MUA for many users,
 but are also maintained by the email providers and tend to have better security practices.
-% We focus on native MUAs because they tend to do their due diligence on the implementing a comprehensive UI warning system.
+% I focus on native MUAs because they tend to do their due diligence on the implementing a comprehensive UI warning system.
 
 Among all native MUAs, only Gmail, Onet and Zoho have implemented warning
 systems that display UI indicators when an email is forwarded or fails

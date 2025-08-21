@@ -28,7 +28,7 @@ in their impact.
 %
 For each of the attacks described below, I refer to the domain an
 attacker specifies in their \textsc{FROM} header as the
-\textit{spoofed domain}.  We use the terms \textit{spoofed address} to
+\textit{spoofed domain}.  I use the terms \textit{spoofed address} to
 refer to the full email address appearing in the \textsc{FROM} header
 and \textit{forwarding domain} to refer to the domain of the
 forwarder.
@@ -334,7 +334,7 @@ incorrectly reads ARC headers and will deliver arbitrary email
 messages with ARC headers added by providers such as Gmail and
 Fastmail to the recipient's inbox without any warning.  However, we
 show that this issue is not limited to interactions between Gmail and
-Zoho customers.  We demonstrate how further issues, including the fact that
+Zoho customers.  I demonstrate how further issues, including the fact that
 Zoho trusts and (incorrectly) reads ARC headers added by Fastmail, open forwarding
 (\S~\ref{subsubsec:open_forwarding}), and several forwarding
 assumptions (\S~\ref{subsubsec:quarantine_instead_of_reject},
@@ -369,7 +369,7 @@ security of users on another platform (e.g., Zoho).
 %\stefan{
 %\grant{I'm commenting out the list of vulnerable things below because it seems redundant with both the intro paragraph and the attack description.}
 
-% Importantly, several forwarding assumptions and open forwarding are required for this attack to work, in addition to Zoho's buggy ARC implementation. Namely, the attack I demonstrate in this section exploits that Fastmail allows open forwarding (Section~\ref{subsubsec:open_forwarding}), that Fastmail allow users to overwrite DMARC decisions through whitelisting (Section ~\ref{subsubsec:whitelist}), that Fastmail does not reject spoofed email messages addressed from domains with DMARC policy \textsc{REJECT} (Section~\ref{subsubsec:quarantine_instead_of_reject}), and that Zoho (incorrectly) reads ARC headers added by Fastmail (Appendix~\ref{sec:appendix_arc_measurement}). We provide more details in the example below.
+% Importantly, several forwarding assumptions and open forwarding are required for this attack to work, in addition to Zoho's buggy ARC implementation. Namely, the attack I demonstrate in this section exploits that Fastmail allows open forwarding (Section~\ref{subsubsec:open_forwarding}), that Fastmail allow users to overwrite DMARC decisions through whitelisting (Section ~\ref{subsubsec:whitelist}), that Fastmail does not reject spoofed email messages addressed from domains with DMARC policy \textsc{REJECT} (Section~\ref{subsubsec:quarantine_instead_of_reject}), and that Zoho (incorrectly) reads ARC headers added by Fastmail (Appendix~\ref{sec:appendix_arc_measurement}). I provide more details in the example below.
 
 %\paragraph{Impact}
 \paragraph{Scope}
@@ -428,7 +428,7 @@ Although the spoofed email will fail SPF and DMARC checks,
 Zoho's vulnerable ARC implementation
 will misinterpret the ARC headers that Fastmail attached.
 As a result, Zoho will treat the email as passing
-DMARC and deliver the spoofed message to the victim's inbox. We end by noting that this attack would not have worked for domains with DMARC policy \textsc{Reject} had Fastmail rejected spoofed email messages addressed from such domains (\S~\ref{subsubsec:quarantine_instead_of_reject}).
+DMARC and deliver the spoofed message to the victim's inbox. I end by noting that this attack would not have worked for domains with DMARC policy \textsc{Reject} had Fastmail rejected spoofed email messages addressed from such domains (\S~\ref{subsubsec:quarantine_instead_of_reject}).
 %Figure~\ref{fig:ss_zoho_arc} in the Appendix illustrates that this attack succeeds without any security warnings, even though the spoofed domain in our experiment, facebook.com, has a DMARC policy of \textsc{reject}. 
 
 % \begin{figure}[t]

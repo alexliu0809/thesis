@@ -14,7 +14,7 @@ bridge implementation to prevent malicious transactions from
 executing.  Our goal is to present a proof-of-concept implementation
 to demonstrate the feasibility of applying the balance invariant in the
 workflow of bridge transactions as an active defense against malicious
-transactions.  We acknowledge that several practical issues remain
+transactions.  I acknowledge that several practical issues remain
 for a complete operational system, presenting an opportunity for
 interesting future work.
 
@@ -22,7 +22,7 @@ interesting future work.
 %% mechanism that stops malicious transactions from execution with
 %% minimal code changes.
 
-% how hard it would be to modify the Wormhole bridge to prevent transactions that violate the invariant from being processed. We propose an improved architecture that treats the bridge relaying infrastructure as a black box and can effective stop any malicious transactions that break the invariant and caused by code bugs.
+% how hard it would be to modify the Wormhole bridge to prevent transactions that violate the invariant from being processed. I propose an improved architecture that treats the bridge relaying infrastructure as a black box and can effective stop any malicious transactions that break the invariant and caused by code bugs.
 
 % Below, I start by answering the question of where to introduce the mechanism. Then, using Wormhole as an example, I show how I can modify the bridge to prevent malicious transactions from being processed with fewer than 30 lines of code changes. Finally, I evaluate the security and performance of the improved architecture.
 
@@ -114,9 +114,9 @@ vulnerabilities in the bridge to profit.
 
 \subsection{Implementation}
 
-%% We took open-sourced Wormhole code written in solidity and modified it to implement the announce-then-execute mechanism.
+%% I took open-sourced Wormhole code written in solidity and modified it to implement the announce-then-execute mechanism.
 %% Wormhole's current withdraw function performs two tasks:
-%% it verifies the signatures that authorize the withdraw transaction and then executes the withdraw transaction. We split the withdraw function into two separate functions: \texttt{announceWithdraw} and \texttt{approveWithdraw}. The \texttt{announceWithdraw} function handles signature verification and announces the withdraw transaction on the destination blockchain, while the \texttt{approveWithdraw} function executes the withdraw transaction. This modification required fewer than 30 lines of code changes.
+%% it verifies the signatures that authorize the withdraw transaction and then executes the withdraw transaction. I split the withdraw function into two separate functions: \texttt{announceWithdraw} and \texttt{approveWithdraw}. The \texttt{announceWithdraw} function handles signature verification and announces the withdraw transaction on the destination blockchain, while the \texttt{approveWithdraw} function executes the withdraw transaction. This modification required fewer than 30 lines of code changes.
 
 Continuing our focus on Wormhole from Section~\ref{sec:live-audit}, we
 modified one of Wormhole's open-source contracts to implement the
@@ -137,7 +137,7 @@ For simplicity, I opted for a single approver with one key in our implementation
 
 As a final step I performed a high-level evaluation of the
 correctness and overhead (in terms of gas usage) of the
-announce-then-execute implementation.  We deployed our bridge
+announce-then-execute implementation.  I deployed our bridge
 implementation on the Binance and Fantom testnets due to the
 availability of free faucets for acquiring testnet tokens for them.
 We then executed a series of benign and malicious transactions using
@@ -148,16 +148,16 @@ Binance as the source chain and Fantom as the destination chain.
 %% (would be fine if this were a long eval, but since it's so short it's
 %% not really needed)
 %%
-%% We demonstrate that the improved architecture
+%% I demonstrate that the improved architecture
 %% can effectively stop all three malicious transactions while allowing
-%% benign transactions to proceed. We also show that the overhead of the
+%% benign transactions to proceed. I also show that the overhead of the
 %% improved architecture incurs only a moderate overhead of 50\% more gas
 %% usage without any optimization.
 
 \textbf{Correctness.}  For evaluating correctness I disabled the
 security checks in the original implementation (e.g., signature
 verification) to allow malicious transactions to flow through the
-contract implementation (e.g., simulating key compromise).  We then
+contract implementation (e.g., simulating key compromise).  I then
 executed 100 pairs of deposit and withdrawal transactions to validate
 that the implementation correctly identifies and protects itself
 against malicious transactions that violate the balance invariant.

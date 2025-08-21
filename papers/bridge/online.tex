@@ -24,7 +24,7 @@ bridges is straightforward.
 %% blockchains, which together account for around 60\% of all withdrawal
 %% transactions on Wormhole. 
 %% %
-%% We first describe the system architecture and implementation, and then
+%% I first describe the system architecture and implementation, and then
 %% its deployment.
 
 %% Below, I start by describing the architecture of our live auditing
@@ -75,7 +75,7 @@ to obtain transactions in block data directly.}
 %% our audit coverage.\footnote{We note that Wormholescan occasionally
 %% returns an error when queried for valid withdrawal transactions, as it
 %% focuses on completeness on deposits since users need deposits
-%% acknowledged to then trigger withdrawals. We have filed a bug report
+%% acknowledged to then trigger withdrawals. I have filed a bug report
 %% with Wormhole.}
 %% \deian{I would make clear if I actually need Wormholescan to be trustwhorthy or
 %% not. I don't think I actually do (but later I bork) so worth clarifying (it
@@ -84,7 +84,7 @@ to obtain transactions in block data directly.}
 %% would end this discusison by saying that in practice you would run your own node
 %% (which will let you query whatever you want however far back you want).}
 
-% We also note that
+% I also note that
 The Monitor only retrieves finalized blocks since unfinalized blocks
 may be reverted or reordered.  Since different blockchains have
 different finality times, I use the timestamp of the latest finalized
@@ -92,7 +92,7 @@ block of Ethereum as the synchronization time since Ethereum has the
 slowest finality time (around 12 minutes)~\cite{Finality:online}.
 %% \footnote{Different systems may have thresholds for
 %% finality, but usually wait for at least a few minutes.}
-% We leave it to future work to explore how to synchronize to real time.
+% I leave it to future work to explore how to synchronize to real time.
 %% \elisa{It not super clear what the difference between the
 %%   synchronization time (15 min) and the refresh time is. So with a
 %%   sync time of 15, every time I audit, I are actually 15+10min
@@ -106,7 +106,7 @@ every 1 minute by default.  As a result, the live auditing system is
 as recent as the polling interval combined with the finality time
 --- a situation similar to bridges due to the polling nature of
 distributed off-chain communication.
-% We leave it to future work to optimize the delay further.
+% I leave it to future work to optimize the delay further.
 
 %% \alex{move wormholescan here.}
 
@@ -120,11 +120,11 @@ distributed off-chain communication.
 
 % In addition, for withdraw transactions whose corresponding deposit transactions are on blockchains not supported by our system, I retrieve their corresponding deposit transactions using Wormholescan, a service that scans deposit and withdraw transactions for Wormhole. This setup allows us to audit any withdraw transaction whose corresponding deposit transaction is either on a supported blockchain or is indexed by Wormholescan. Overall, our system can currently audit over 99\% of the withdraw transactions on 11 blockchains, which collectively account for over 95\% of all withdrawal transactions on Wormhole. \alex{our undergrad is adding a blockchain called SUI, which will bump the number to 98\%. im not entire sure if this is necessary}
 
-% The Blockchain Monitor component then extracts deposit and withdrawal transactions from the retrieved blocks. We use commercial RPC services to synchronize with the blockchains. Our system currently supports 11 blockchains, which together account for over 95\% of all withdrawal transactions on Wormhole. \alex{our undergrad is adding a blockchain called SUI, which will bump the number to 98\%. im not entire sure if this is necessary}
-%One challenge here is that different blockchains have different finality times. Namely, if a block is not finalized, its transactions may be reverted or reordered. To address this, I always synchronize to the latest finalized block of Ethereum, which is the slowest to reach finality (around 15 minutes). We leave it to future work to explore how to synchronize all blockchains to real time. To bootstrap our database, I preload 2-week of transactions.
+% The Blockchain Monitor component then extracts deposit and withdrawal transactions from the retrieved blocks. I use commercial RPC services to synchronize with the blockchains. Our system currently supports 11 blockchains, which together account for over 95\% of all withdrawal transactions on Wormhole. \alex{our undergrad is adding a blockchain called SUI, which will bump the number to 98\%. im not entire sure if this is necessary}
+%One challenge here is that different blockchains have different finality times. Namely, if a block is not finalized, its transactions may be reverted or reordered. To address this, I always synchronize to the latest finalized block of Ethereum, which is the slowest to reach finality (around 15 minutes). I leave it to future work to explore how to synchronize all blockchains to real time. To bootstrap our database, I preload 2-week of transactions.
 
 
-% The Blockchain Monitor component synchronizes all 11 blockchains up to a given time and extracts deposit and withdrawal transactions using commercial RPC services. One challenge here is that different blockchains have different finality times. Namely, if a transaction is not finalized, it may be reverted. To address this, I always synchronize to the latest finalized block of Ethereum, which is the slowest to reach finality (around 15 minutes). We leave it to future work to explore how to synchronize all blockchains to real time. To bootstrap our database, I preload 2-week of transactions.
+% The Blockchain Monitor component synchronizes all 11 blockchains up to a given time and extracts deposit and withdrawal transactions using commercial RPC services. One challenge here is that different blockchains have different finality times. Namely, if a transaction is not finalized, it may be reverted. To address this, I always synchronize to the latest finalized block of Ethereum, which is the slowest to reach finality (around 15 minutes). I leave it to future work to explore how to synchronize all blockchains to real time. To bootstrap our database, I preload 2-week of transactions.
 % \alex{key challenge: sync to the same view}
 
 %\subsection{Auditor}

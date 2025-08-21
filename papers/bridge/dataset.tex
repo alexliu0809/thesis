@@ -173,7 +173,7 @@ unbalanced transactions from being committed.
 
 %For our retrospective analysis, I first describe how I selected the
 %bridges and blockchains for our study, and how I collect bridge
-%transaction data for the blockchains.  We then show that using the
+%transaction data for the blockchains.  I then show that using the
 %invariant correctly identifies all bridge transactions that have been
 %reported for major attacks on the bridges, discuss the nature of other
 %transactions that violate the balance invariant, and overall show that using
@@ -183,7 +183,7 @@ unbalanced transactions from being committed.
 \subsection{Data Set}
 \label{sec:retro-data}
 
-%% We start by discussing our bridge selection, followed by the blockchain selection. We end with an overview of the blockchain data collected and analyzed.
+%% I start by discussing our bridge selection, followed by the blockchain selection. I end with an overview of the blockchain data collected and analyzed.
 
 To perform a retrospective analysis I need data for which (at
 least some) of the ground truth is known.   In this section we
@@ -198,7 +198,7 @@ transaction data.
 %% To identify attacks that violate the invariant discussed in the
 %% previous section,
 We compiled a comprehensive list of attacks on cross-chain
-bridges that occurred between January 2021 and December 2023.  We used both academic papers surveying cross-chain
+bridges that occurred between January 2021 and December 2023.  I used both academic papers surveying cross-chain
 bridge attacks~\cite{lee2023sok, zhang2023sok, zhao2023comprehensive} as well
 as industry blog posts that collect and characterize attacks over time~\cite{GithubBridgeBugTracker, SlowMistHackedBridges:online,
   REKTDB:online, Web3Great:online, GithubBridgeHacks2:online}. 
@@ -210,7 +210,7 @@ major attacks with claimed losses greater than \$1 million USD and
 exclude the remaining (the sum of losses from these excluded attacks are a small fraction of those in our scope).
 % where I discuss scope
 % I exclude  attacks as well as swap bridges.
-%% We then manually categorize each attack, analyzing blog posts that
+%% I then manually categorize each attack, analyzing blog posts that
 %% describe the attack and the transactions involved.
 %
 %% \alex{we should also mention swap bridge out-of-scope likely somewhere
@@ -245,7 +245,7 @@ Ethereum, Binance Smart Chain, and Solana.
 Table~\ref{table:chain_bridge_full} lists the blockchains and the
 bridges in our retrospective study that operate on them.% \alex{cite}
 
-%% We do not support
+%% I do not support
 %% testnets, as any withdrawal transaction on mainnet that is backed by a
 %% deposit on testnet should be flagged. \deian{cut testnet sentence, most people have no clue what that is}
 
@@ -262,7 +262,7 @@ bridges in our retrospective study that operate on them.% \alex{cite}
 %% effort}\alex{How about a footnote}
 
 
-% We then augmented the
+% I then augmented the
 % list of supported blockchains by including those that are popular
 % among multiple bridges, have a large market cap (according to
 % CoinMarketCap), and offer good API support. In total, I support 25

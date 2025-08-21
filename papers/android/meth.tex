@@ -56,7 +56,7 @@ data at risk to a third-party attacker.
 
 For our analysis, I chose 14 distinct leading consumer Android spyware
 apps.\footnote{Often the same spyware app is available under multiple
-  names. We identify and avoid choosing duplicate apps.}  We focus on
+  names. I identify and avoid choosing duplicate apps.}  I focus on
 Android-based spyware because most of the mobile spyware market
 appears to be focused there. Since curated app stores like Google Play do not permit
 the sale of such apps, in practice they must be side-loaded off-store, a process
@@ -64,9 +64,9 @@ that Apple does not support.  As a result, consumer mobile spyware only operates
 technically involved operation (one popular guide to jailbreaking the
 iPhone involves 41 distinct steps \cite{howToJailbreakIphone:online}) and one that can take significant
 time to complete --- both requirements at odds with the broad,
-non-technical customer base such apps are marketed to. We also focus on leading spyware apps as they are the apps that more people are exposed to and they are more likely to be innovative (new features could potentially bring them more customers).
+non-technical customer base such apps are marketed to. I also focus on leading spyware apps as they are the apps that more people are exposed to and they are more likely to be innovative (new features could potentially bring them more customers).
 
-In our selection process, I started with the 18 off-store spyware apps identified by Chatterjee et al.~\cite{chatterjee2018spyware}. We augmented our set of apps by taking the intersection of two major industry reports (\cite{esetandr4:online} and~\cite{Tekstalk86:online}) that listed spyware apps.\footnote{We take the intersection of both reports because (a) the definition of consumer spyware is vague; and (b) the collection process is ad-hoc and differs for each report. Apps in the intersection represent consensus among these disparate classifications.} Next, I sorted all the apps based on the Tranco ranking~\cite{pochat2018tranco} of their website domain (snapshot taken on May 5th, 2022).  We filtered out apps that were distributed via Google Play (since, to appear in
+In our selection process, I started with the 18 off-store spyware apps identified by Chatterjee et al.~\cite{chatterjee2018spyware}. I augmented our set of apps by taking the intersection of two major industry reports (\cite{esetandr4:online} and~\cite{Tekstalk86:online}) that listed spyware apps.\footnote{We take the intersection of both reports because (a) the definition of consumer spyware is vague; and (b) the collection process is ad-hoc and differs for each report. Apps in the intersection represent consensus among these disparate classifications.} Next, I sorted all the apps based on the Tranco ranking~\cite{pochat2018tranco} of their website domain (snapshot taken on May 5th, 2022).  I filtered out apps that were distributed via Google Play (since, to appear in
 the store, they do not have compelling spyware capabilities)
 %% apps distributed via Google Play have very limited capabilities
 or broken (e.g., not reachable or no longer accepting payments).

@@ -65,7 +65,7 @@
 In this section, I describe a range of email design and
 implementation weaknesses that lead to forwarding vulnerabilities.
 We start by exploring four assumptions made by anti-spoofing mechanisms
-that email forwarding can bypass and violate.  We then examine
+that email forwarding can bypass and violate.  I then examine
 three vulnerable forwarding features in the major forwarding
 approaches.
 
@@ -103,7 +103,7 @@ involving a broad array of popular and sensitive domains.
 %% \geoff{how much of this part of the methodology overlaps with
 %%   the methodology described in III.B?
 %%   if it is the same, then I can just refer back to III.B}\alex{III.B is rather simple. This seems to be a more detailed version of what's in III.B}
-%%   \grant{The first sentence above has some repetition, but I think the rest might be distinct?}\alex{note from the discussion Geoff and I had: We don't run seperate experiments for section 3 and 4, so it might be less confusing if I describe everything here and forward reference in sec 3. Also todo@Geoff, revisit our experiments details and see if anything needs to be added back}
+%%   \grant{The first sentence above has some repetition, but I think the rest might be distinct?}\alex{note from the discussion Geoff and I had: I don't run seperate experiments for section 3 and 4, so it might be less confusing if I describe everything here and forward reference in sec 3. Also todo@Geoff, revisit our experiments details and see if anything needs to be added back}
 
 For our experiments I created test \textit{forwarding} accounts on all 20 forwarding services,
 test \textit{recipient} accounts on all 16 major
@@ -112,7 +112,7 @@ the \textit{sending} accounts.
 %
 %% For the email providers, I created test accounts on each platform and
 %% configured them to forward email to accounts I controlled.
-%% We created mailing lists using each of the services and performed a
+%% I created mailing lists using each of the services and performed a
 %% similar analysis that collected the headers of email I sent to each
 %% list.
 %
@@ -121,10 +121,10 @@ university's existing service and at \dns{gaggle.email}, respectively.
 The other two mailing list services (Listserv and Mailman) rely upon a
 third-party backend mail server; I used
 Postfix~\cite{ThePostf34:online} as the backend with DMARC
-enforced. We then created mailing lists under new domains I acquired
+enforced. I then created mailing lists under new domains I acquired
 for testing (\eg, \dns{list@listserv.ourdomain.com}).
 
-%% We recorded the resulting headers at both the forwarder and the final
+%% I recorded the resulting headers at both the forwarder and the final
 %% recipients for analysis.
 
 For each combination of forwarding and recipient accounts, I sent
@@ -152,7 +152,7 @@ analyzed the headers and outcomes of these attempts, and recorded
 which parties exhibited vulnerable behavior.  In particular, we
 configured all forwarders to forward email messages to all receivers
 and recorded whether each message was delivered to the inbox, spam
-folder, or rejected without delivery by each receiver.  We also noted
+folder, or rejected without delivery by each receiver.  I also noted
 whether any UI warning was shown in the native web-based MUA. 
 
 
@@ -162,48 +162,48 @@ whether any UI warning was shown in the native web-based MUA.
 %% \geoff{did I also do
 %%   some warm up to establish baseline benign conversations?}\alex{we
 %%   did, but I think I removed that part intentionally to avoid any
-%%   confusion. We can add them back}
+%%   confusion. I can add them back}
 
-% We start with a set of three new domains under our control.  We
+% I start with a set of three new domains under our control.  We
 % configure all three with the same SPF configuration, while each of the
 % individual domains have a DMARC policy none, quarantine, and reject,
-% respectively.  We use these domains in the FROM headers in all of our
+% respectively.  I use these domains in the FROM headers in all of our
 % email messages, so that our measurements do not affect users of any
 % other domains.
 
-% We then ``warm up'' our domains so that they are treated like any
-% other domains by the providers. This ``warm up'' phase is necessary as some providers (e.g., Gmail) would quarantine email messages from a domain if it has never seen an email from that domain before. We ``warm up'' our domain by sending legitimate email messages
+% I then ``warm up'' our domains so that they are treated like any
+% other domains by the providers. This ``warm up'' phase is necessary as some providers (e.g., Gmail) would quarantine email messages from a domain if it has never seen an email from that domain before. I ``warm up'' our domain by sending legitimate email messages
 % from these domains that pass SPF, DKIM and DMARC to accounts under our
-% control at each email provider.  We also manually mark our email
+% control at each email provider.  I also manually mark our email
 % messages as ``not spam'' if they are delivered to the spam folder in
 % the warm-up stage.  After the warm-up stage, legitimate email messages
 % from our domains are properly delivered to account inboxes for all email providers.
 
-% We then send legitimate and spoofed email messages from our domains to
+% I then send legitimate and spoofed email messages from our domains to
 % forwarding accounts and record whether a message is forwarded by
-% default.  We consider all nine providers and four mailing lists as
-% forwarders.  We send spoofed email messages from a server I own that
+% default.  I consider all nine providers and four mailing lists as
+% forwarders.  I send spoofed email messages from a server I own that
 % is not allowed in the SPF records of our domains.
 
-% We study each receiver's behavior for both legitimate and spoofed
-% forwarded email messages. We only consider the nine mail providers as
+% I study each receiver's behavior for both legitimate and spoofed
+% forwarded email messages. I only consider the nine mail providers as
 % receivers, as mailing lists are rarely the destination of email. We
 % configure all forwarders to forward email messages to all receivers
 % and record whether each message is delivered to the inbox, spam
-% folder, or rejected without delivery by each receiver. We also note
+% folder, or rejected without delivery by each receiver. I also note
 % whether any UI warning indicator is displayed in the native web-based
 % MUA.
 
-% We force the forwarding of a spoofed email by manually whitelisting it
+% I force the forwarding of a spoofed email by manually whitelisting it
 % at the forwarder. Whitelisting spoofed email messages could be done at
-% most forwarders with a few exceptions. We are not able to whitelist
+% most forwarders with a few exceptions. I are not able to whitelist
 % spoofed email messages at Yahoo in cases where the spoofed FROM domain
 % has DMARC policies quarantine or reject. Additionally, I cannot
 % whitelist spoofed email messages at Google, Mail.ru and Zoho when the spoofed FROM domain has DMARC policy reject.
 
-% We ensure that our measurement results are reliable by repeating the
+% I ensure that our measurement results are reliable by repeating the
 % above process with another set of three domains and fresh email
-% accounts. We are also aware that all mail providers I study have
+% accounts. I are also aware that all mail providers I study have
 % implemented anti-spam systems, which could interfere with our
 % measurement results. To minimize the interference from those systems,
 % I only send email messages with legitimate content. In cases where we
@@ -222,9 +222,9 @@ whether any UI warning was shown in the native web-based MUA.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% We start by sending legitimate and spoofed email messages from domains I control to all forwarders. We consider all nine providers and four mailing list services as forwarders. Next, I try forwarding email messages from all forwarders to all receivers. We only consider the nine mail providers as receivers, as mailing lists are rarely the destination of an email. We note and record implementation decisions made by each party that are related to the assumptions I listed.
+% I start by sending legitimate and spoofed email messages from domains I control to all forwarders. I consider all nine providers and four mailing list services as forwarders. Next, I try forwarding email messages from all forwarders to all receivers. I only consider the nine mail providers as receivers, as mailing lists are rarely the destination of an email. I note and record implementation decisions made by each party that are related to the assumptions I listed.
 %
-% We ensure that our measurement results are reliable by doing the above measurement twice with two distinct sets of domains that I control. We are also aware that all mail providers I study have
+% I ensure that our measurement results are reliable by doing the above measurement twice with two distinct sets of domains that I control. I are also aware that all mail providers I study have
 % implemented anti-spam systems, which could interfere with our
 % measurement results. To minimize the interference from those systems,
 % I only send email messages with legitimate content. In cases where we
@@ -235,47 +235,47 @@ whether any UI warning was shown in the native web-based MUA.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% We start with a set of three new domains under our control.  We
+% I start with a set of three new domains under our control.  We
 % configure all three with the same SPF configuration, while each of the
 % individual domains have a DMARC policy none, quarantine, and reject,
-% respectively.  We use these domains in the FROM headers in all of our
+% respectively.  I use these domains in the FROM headers in all of our
 % email messages, so that our measurements do not affect users of any
 % other domains.
 
-% We then ``warm up'' our domains so that they are treated like any
-% other domains by the providers. This ``warm up'' phase is necessary as some providers (e.g., Gmail) would quarantine email messages from a domain if it has never seen an email from that domain before. We ``warm up'' our domain by sending legitimate email messages
+% I then ``warm up'' our domains so that they are treated like any
+% other domains by the providers. This ``warm up'' phase is necessary as some providers (e.g., Gmail) would quarantine email messages from a domain if it has never seen an email from that domain before. I ``warm up'' our domain by sending legitimate email messages
 % from these domains that pass SPF, DKIM and DMARC to accounts under our
-% control at each email provider.  We also manually mark our email
+% control at each email provider.  I also manually mark our email
 % messages as ``not spam'' if they are delivered to the spam folder in
 % the warm-up stage.  After the warm-up stage, legitimate email messages
 % from our domains are properly delivered to account inboxes for all email providers.
 
-% We then send legitimate and spoofed email messages from our domains to
+% I then send legitimate and spoofed email messages from our domains to
 % forwarding accounts and record whether a message is forwarded by
-% default.  We consider all nine providers and four mailing lists as
-% forwarders.  We send spoofed email messages from a server I own that
+% default.  I consider all nine providers and four mailing lists as
+% forwarders.  I send spoofed email messages from a server I own that
 % is not allowed in the SPF records of our domains.
 
-% We study each receiver's behavior for both legitimate and spoofed
-% forwarded email messages. We only consider the nine mail providers as
+% I study each receiver's behavior for both legitimate and spoofed
+% forwarded email messages. I only consider the nine mail providers as
 % receivers, as mailing lists are rarely the destination of email. We
 % configure all forwarders to forward email messages to all receivers
 % and record whether each message is delivered to the inbox, spam
-% folder, or rejected without delivery by each receiver. We also note
+% folder, or rejected without delivery by each receiver. I also note
 % whether any UI warning indicator is displayed in the native web-based
 % MUA.
 
-% We force the forwarding of a spoofed email by manually whitelisting it
+% I force the forwarding of a spoofed email by manually whitelisting it
 
 % at the forwarder. Whitelisting spoofed email messages could be done at
-% most forwarders with a few exceptions. We are not able to whitelist
+% most forwarders with a few exceptions. I are not able to whitelist
 % spoofed email messages at Yahoo in cases where the spoofed FROM domain
 % has DMARC policies quarantine or reject. Additionally, I cannot
 % whitelist spoofed email messages at Google, Mail.ru and Zoho when the spoofed FROM domain has DMARC policy reject.
 
-% We ensure that our measurement results are reliable by repeating the
+% I ensure that our measurement results are reliable by repeating the
 % above process with another set of three domains and fresh email
-% accounts. We are also aware that all mail providers I study have
+% accounts. I are also aware that all mail providers I study have
 % implemented anti-spam systems, which could interfere with our
 % measurement results. To minimize the interference from those systems,
 % I only send email messages with legitimate content. In cases where we
@@ -353,7 +353,7 @@ email forwarding introduces new complexity that enables attackers to bypass thes
 %
 % Sadly, as I detail later, the protection mechanisms mentioned above do not apply to certain forwarded email messages, allowing an
 % adversary to bypass them and deliver spoofed messages
-% (Section~\ref{subsec:attack_relaxed_forwarding_validation}). We also demonstrate that when combined with certain forwarding mechanism, an adversary can launder their spoofed email messages from domains with DMARC none through mailing lists such that they look no different than legitimate ones after being forwarded (Section~\ref{subsec:attack_none_mailing_list}).
+% (Section~\ref{subsec:attack_relaxed_forwarding_validation}). I also demonstrate that when combined with certain forwarding mechanism, an adversary can launder their spoofed email messages from domains with DMARC none through mailing lists such that they look no different than legitimate ones after being forwarded (Section~\ref{subsec:attack_none_mailing_list}).
 
 
 \subsubsection{Each Domain Uses Its Own Infrastructure}
@@ -456,7 +456,7 @@ mentioned in Section~\ref{subsubsec:quarantine_instead_of_reject}
 allow users to override any DMARC decision for any domains.
 The fifth (Outlook) allows users to override DMARC decisions for most domains, except for a small set of frequently-spoofed domains that have DMARC policy reject (e.g., \dns{aa.com}) where Outlook appears to apply additional, special protection mechanisms.
 
-% We do not try to whitelist spoofed email messages at mailing list services as generally an adversary cannot have access to a mailing list's configuration. Mail2World.com does not enforce DMARC, so there is no need to override the decision. For the four providers mentioned in Section~\ref{subsubsec:quarantine_instead_of_reject} that do not reject any email, I can override DMARC decisions for all domains for three of them (Fastmail, GMX and Inbox.lv). We are able to override DMARC decision for most domains for Outlook, except for a small set of frequently-spoofed domains that have DMARC policy reject (e.g., \dns{aa.com}). We suspect Outlook has special protection mechanism for these domains.
+% I do not try to whitelist spoofed email messages at mailing list services as generally an adversary cannot have access to a mailing list's configuration. Mail2World.com does not enforce DMARC, so there is no need to override the decision. For the four providers mentioned in Section~\ref{subsubsec:quarantine_instead_of_reject} that do not reject any email, I can override DMARC decisions for all domains for three of them (Fastmail, GMX and Inbox.lv). I are able to override DMARC decision for most domains for Outlook, except for a small set of frequently-spoofed domains that have DMARC policy reject (e.g., \dns{aa.com}). I suspect Outlook has special protection mechanism for these domains.
 For Gmail, Hushmail, iCloud, Mail.ru, Onet, and Zoho, users can override DMARC decisions for domains with DMARC policy \textsc{None} or \textsc{Quarantine}, but not \textsc{Reject}.  Finally, for Yahoo, I can only override DMARC decisions for domains with a policy of \textsc{None}.
 
 % but place them in the spam folder instead of the inbox
@@ -559,7 +559,7 @@ disallow open forwarding.
   \end{tabular}
 
   \begin{tablenotes}
-  \item[*] We build on the ARC vulnerability
+  \item[*] I build on the ARC vulnerability
     identified by Shen et al.~\cite{shen2020weak}, to demonstrate an
     attack that is practical.
   \end{tablenotes}
@@ -651,7 +651,7 @@ We surmise that providers can add valid DKIM signatures on behalf of hosted doma
 %\label{subsec:measure_assumptions}
 %\alex{The mapping between assumption and implementation is a bit unclear to me}
 
-% To understand what attacks an adversary could perform, one first has to understand what vulnerabilities exist in the email forwarding flow. We measure/explore vulnerabilities that exist in email forwarding flow by testing the system with legitimate emails and emails that have spoofed FROM headers. Table~\ref{tab:summary_indi_vulnerabilities} lists vulnerabilities observed at each party in the forwarding flow.
+% To understand what attacks an adversary could perform, one first has to understand what vulnerabilities exist in the email forwarding flow. I measure/explore vulnerabilities that exist in email forwarding flow by testing the system with legitimate emails and emails that have spoofed FROM headers. Table~\ref{tab:summary_indi_vulnerabilities} lists vulnerabilities observed at each party in the forwarding flow.
 
 % \begin{figure}[htbp]
 % \centerline{\includegraphics[width=\columnwidth]{graphs/summary_indi_vulnerabilities.png}}
@@ -670,7 +670,7 @@ We surmise that providers can add valid DKIM signatures on behalf of hosted doma
 % Finally, in addition to vulnerabilities
 % resulting from the design of forwarding and anti-spoofing mechanisms,
 % during our experiments I also observed three implementation
-% errors. We focus on Zoho's ARC implementation error, which directly
+% errors. I focus on Zoho's ARC implementation error, which directly
 % introduces serious security concerns. The other two errors can be
 % abused to help send spoofed email, which I detail in
 % Appendix~\ref{sec:implementation_errors_additional}.
@@ -707,7 +707,7 @@ We surmise that providers can add valid DKIM signatures on behalf of hosted doma
 % Prior work has found that some mail providers, such as Zoho, incorrectly implement ARC~\cite{shen2020weak}.
 % For example, when a spoofed email message is forwarded from Gmail to Zoho, Zoho incorrectly reads the ARC headers attached by Gmail. As a result, it incorrectly displays the email as passing DMARC and delivers the email without warnings.
 % Echoing this prior work, I found that this vulnerability still existed at Zoho.
-% We also found through our experiments that, in addition to Gmail, Zoho also evaluates and trusts ARC headers added by Fastmail (Section~\ref{sec:measure_forwarding_mechs_and_arc}).
+% I also found through our experiments that, in addition to Gmail, Zoho also evaluates and trusts ARC headers added by Fastmail (Section~\ref{sec:measure_forwarding_mechs_and_arc}).
 % Moreover, by leveraging Fastmail's open forwarding, this flawed ARC implementation could be exploited to spoof email messages to any Zoho user from \emph{any} domain.\footnote{Our work not only led to a patch of this issue after disclosure to Zoho, but also resulted in Zoho adding additional security enhancements to their ARC implementation (Appendix~\ref{sec:disclosure}).  This patch is confirmed by the parallel work of Wang et al.~\cite{wang2022revisiting} that focused on email forwarding under ARC.}
 
 

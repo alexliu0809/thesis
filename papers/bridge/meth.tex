@@ -99,12 +99,12 @@ services.\footnote{For example, when a bridge transaction on the Poly
 
 
 %\textbf{Using Unique ID.} Most of the bridges\alex{how many?} will create a unique id for each deposit transaction (incrementing by 1).
-%A withdraw transaction will contain this unique id. We can then use this unique id to pair the deposit and withdraw transactions.
+%A withdraw transaction will contain this unique id. I can then use this unique id to pair the deposit and withdraw transactions.
 
 
 
 %\textbf{Using the transaction hash of the deposit transaction.}
-%Another way to pair deposit and withdraw transactions is to use the transaction hash of the deposit transaction. A withdraw transaction will include the transaction hash of the corresponding deposit transaction hash. We can then use this information to pair the deposit and withdraw transactions.
+%Another way to pair deposit and withdraw transactions is to use the transaction hash of the deposit transaction. A withdraw transaction will include the transaction hash of the corresponding deposit transaction hash. I can then use this information to pair the deposit and withdraw transactions.
 
 %\textbf{Using the official API.}
 %Some bridges provide APIs to query matching deposit and withdraw transactions. While this feature mostly exist for user convenience, sometimes I have to rely on this API to pair deposit and withdraw transactions, as the pairing information is not directly available as part of the withdraw transaction.\alex{maybe I should hedge here and say its not trivial to get the information.} 
@@ -167,7 +167,7 @@ blockchains is that such reconstruction has always been possible.
 
 %\textbf{Additional Considerations.}
 %We note a few additional considerations. First, while the transfer action usually results in a single event, there are cases where multiple Transfer events are emitted. In such cases, I need to incorporate token-specific logic to capture a series of Transfer events to identify the amount of tokens transferred. For tokens exhibiting this behavior, I manually examine their code and account for their logic in our analysis.
-%Next, for transfers involving native tokens, the value sometimes is included in internal transactions, and no event is emitted. We use the internal transactions to identify the amount of tokens transferred. Lastly, for a special type of tokens called reflection tokens, I need to account for the reflection mechanism. Specifically, reflection tokens have a mechanism where the real amount of tokens transferred is dynamically adjusted based on intended amount and total supply. For some tokens, they emit events that include enough information to recompute the intended amount. We thus use this information to identify the intended amount of tokens transferred. For other tokens, they do not provide such information. However, for those cases, conveniently, the bridge event includes the intended amount of tokens transferred. We thus revert back to use the amount logged by the bridge.\footnote{The delta between the intended amount and the real amount is very small (typically within a factor of 0.01). Thus, even if the initial amount is not logged by the bridge, the intended amount can still be bounded.}
+%Next, for transfers involving native tokens, the value sometimes is included in internal transactions, and no event is emitted. I use the internal transactions to identify the amount of tokens transferred. Lastly, for a special type of tokens called reflection tokens, I need to account for the reflection mechanism. Specifically, reflection tokens have a mechanism where the real amount of tokens transferred is dynamically adjusted based on intended amount and total supply. For some tokens, they emit events that include enough information to recompute the intended amount. I thus use this information to identify the intended amount of tokens transferred. For other tokens, they do not provide such information. However, for those cases, conveniently, the bridge event includes the intended amount of tokens transferred. I thus revert back to use the amount logged by the bridge.\footnote{The delta between the intended amount and the real amount is very small (typically within a factor of 0.01). Thus, even if the initial amount is not logged by the bridge, the intended amount can still be bounded.}
 
 \subsection{Checking the Balance Invariant}
 Once I have identified both sides of the bridge transaction and the
@@ -220,5 +220,5 @@ deposited.
 
 
 
-%We note a few additional considerations here. First, I note that the amount typically includes decimals, and the same token can have different number of decimals on different blockchains. We account for this by using the token's decimal information to normalize the amount of tokens transferred. Next, for some bridges, the amount of tokens transferred is not equal to the amount of tokens received because of the bridge fee. We address this issue by using the fee information provided by the bridge. When the fee information is unclear or specified in real currency (e.g., US dollars), I simply require that the amount of tokens transferred is less than or equal to the amount of tokens received by the bridge. 
+%We note a few additional considerations here. First, I note that the amount typically includes decimals, and the same token can have different number of decimals on different blockchains. I account for this by using the token's decimal information to normalize the amount of tokens transferred. Next, for some bridges, the amount of tokens transferred is not equal to the amount of tokens received because of the bridge fee. I address this issue by using the fee information provided by the bridge. When the fee information is unclear or specified in real currency (e.g., US dollars), I simply require that the amount of tokens transferred is less than or equal to the amount of tokens received by the bridge. 
 

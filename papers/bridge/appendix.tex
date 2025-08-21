@@ -37,7 +37,7 @@ October 7th, 2022. The attacker exploited a bug in Binance Bridge's verification
 
 \pgraph{Results.} \offlinetool~analyzed over 2M bridge transactions between 
 Binance Beacon Chain and Binance Smart Chain. 
-\offlinetool~only alerted on the two attack transactions, citing the discrepancy between the amount given out and the amount received by the bridge. We end by noting that the partner deposit transactions returned by the Binance Token Hub's API for two attack transactions are different than the ones suggested in some blogposts~\cite{binanceproof:online}. However, the attack transactions will be flagged regardless of which partner deposit transactions is used.
+\offlinetool~only alerted on the two attack transactions, citing the discrepancy between the amount given out and the amount received by the bridge. I end by noting that the partner deposit transactions returned by the Binance Token Hub's API for two attack transactions are different than the ones suggested in some blogposts~\cite{binanceproof:online}. However, the attack transactions will be flagged regardless of which partner deposit transactions is used.
 
 
 \subsection{Wormhole}
@@ -53,7 +53,7 @@ In total, \offlinetool~analyzed over 642k transactions across ten blockchains. I
 \subsection{Nomad Bridge}
 \textbf{Background.} Nomad bridge support asset transfers across six blockchains. It was hacked on August 1st, 2022. The attacker exploited a bug in the bridge's verification code, allowing them to verified any payload that had not been verified before. Shortly after the first a few attack transactions, a group of copycats joined the crusade of draining the bridge. In total, the reported loss was around \$190 million.
 
-\pgraph{Results.} \offlinetool~analyzed over 37k transactions, and alerted on 962 transactions that transferred assets to 561 unique addresses. We found one dataset that reported 561 addresses, which matched exactly with the addresses I identified. We also found one Github repository that mentioned identifying 960 transactions~\cite{nomad-groundtruth-github:online}. As mentioned earlier, I identified two more transactions. Upon manually inspection, I confirm that the two transactions were indeed malicious.
+\pgraph{Results.} \offlinetool~analyzed over 37k transactions, and alerted on 962 transactions that transferred assets to 561 unique addresses. I found one dataset that reported 561 addresses, which matched exactly with the addresses I identified. I also found one Github repository that mentioned identifying 960 transactions~\cite{nomad-groundtruth-github:online}. As mentioned earlier, I identified two more transactions. Upon manually inspection, I confirm that the two transactions were indeed malicious.
 
 \subsection{Harmony Bridge}
 \textbf{Background.} Harmony bridge operates between ETH, BSC and Harmony. It was hacked on June 24, 2022. The attacker compromised two of the signing keys of the bridge, allowing them to mint arbitrary amounts of assets. In total, the attacker minted around \$100 million worth of assets on BSC and ETH in 15 transactions.
@@ -72,7 +72,7 @@ In total, \offlinetool~analyzed over 642k transactions across ten blockchains. I
 \pgraph{Results.} \offlinetool~analyzed over 260 transactions and alerted on all 16 transactions. 
 
 % In addition, prior work [1] noted four deposit transactions that shared similar characteristics with the attack transactions. However, \offlinetool~did not alert on any of the four, as all four transactions were deposit transactions and had no corresponding withdrawal transactions. 
-% . \offlinetool~was unable to find the corresponding withdrawal transactions for any of them. Upon manual investigation, three of the four reported transactions happened after the bridge was drained, thus no withdrawal effort was successful. The last transaction occurred before the attack in December 2021, which surprisingly did not have a matching withdrawal transaction. After examining this particular transaction, I note that this transaction had a slightly different payload than those used in the attack transactions. We refrain from drawing any conclusions about the maliciousness of this transaction. Lastly, \offlinetool~also flagged 114 testing transactions by the bridge that withdrew money without backing deposits.
+% . \offlinetool~was unable to find the corresponding withdrawal transactions for any of them. Upon manual investigation, three of the four reported transactions happened after the bridge was drained, thus no withdrawal effort was successful. The last transaction occurred before the attack in December 2021, which surprisingly did not have a matching withdrawal transaction. After examining this particular transaction, I note that this transaction had a slightly different payload than those used in the attack transactions. I refrain from drawing any conclusions about the maliciousness of this transaction. Lastly, \offlinetool~also flagged 114 testing transactions by the bridge that withdrew money without backing deposits.
 
 
 \subsection{Anyswap Bridge}
@@ -85,7 +85,7 @@ In total, \offlinetool~analyzed over 642k transactions across ten blockchains. I
 %% after the bridge was reopened but before the patch was applied,
 %% resulting in an additional \$150k in losses. The remaining two
 %% transactions were withdraw transactions that were not backed by any
-%% deposit transactions (>\$650k worth of tokens). We do not have enough
+%% deposit transactions (>\$650k worth of tokens). I do not have enough
 %% information to determine if these two transactions were malicious or
 %% not.\alex{also searched other blockchains}
 
@@ -130,7 +130,7 @@ balance invariant.
 
 % \alex{maybe errors.} Next, I observe 800 transactions that point to
 % just a few deposits (raising potential double-spending concerns).
-% \geoff{total amount?  clustered in time, or spaced out?}  We are
+% \geoff{total amount?  clustered in time, or spaced out?}  I are
 % unable to systematically investigate these transactions, as they were
 % from blockchains that I do not support (and all of them are from
 % non-EVM blockchains such as XRP). Sampling a few
@@ -166,7 +166,7 @@ All of these transactions occurred on Aug 22, 2023 and withdrew funds from the b
 was hacked on July 10, 2021. The attacker exploited a bug in the bridge's verification code, allowing them to verify any malicious payload. The attacker stole \$4.4 million worth of assets on Ethereum and BSC using one address. Of particular note, unlike other bridges, Chainswap did not publicly disclose the list of bridge contract addresses. 
 As such, I programmatically identified all potential bridge contract addresses by searching for the specific event signatures that known Chainswap bridge contracts emit.
 
-\pgraph{Results.} \offlinetool~analyzed over 53k transactions. \offlinetool~alerted on 1136 transactions, all of which were executed by the single malicious address. We note that I are unable to find any public information on the list of transactions that were part of the attack, preventing us from verifying individual transactions.
+\pgraph{Results.} \offlinetool~analyzed over 53k transactions. \offlinetool~alerted on 1136 transactions, all of which were executed by the single malicious address. I note that I are unable to find any public information on the list of transactions that were part of the attack, preventing us from verifying individual transactions.
 
 \subsection{Meter Bridge}
 \textbf{Background.} Meter bridge allows users to transfer between Meter's own chain and a few EVM-based chains. It was hacked on February 5, 2022. The attacker exploited a bug in the bridge's deposit function, where the attacker tricked the bridge into believing that a deposit had been made. In total, the attacker carried out 5 transactions, stealing around \$4.3 million worth of assets.

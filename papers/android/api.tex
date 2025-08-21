@@ -148,7 +148,7 @@ Table~\ref{tab:feature_summary} summarizes the capabilities I study
 and shows which spyware apps implement them.
 To understand how the spyware apps implement their nefarious capabilities, I reverse engineered and analyzed each app. Our approach consists of three steps.
 
-\textbf{Preparation.} We acquire the latest APKs of spyware apps by directly downloading them from their websites. We use \texttt{APKTOOL}~\cite{ApktoolA72:online} to disassemble the APKs and obtain the corresponding manifest and smali code.\footnote{Smali is a human-readable represenation of the Dalvik bytecode used by Android apps.} We also decompile the APK to Java source using \texttt{JADX}~\cite{skylotja9:online}.
+\textbf{Preparation.} I acquire the latest APKs of spyware apps by directly downloading them from their websites. I use \texttt{APKTOOL}~\cite{ApktoolA72:online} to disassemble the APKs and obtain the corresponding manifest and smali code.\footnote{Smali is a human-readable represenation of the Dalvik bytecode used by Android apps.} I also decompile the APK to Java source using \texttt{JADX}~\cite{skylotja9:online}.
 
 \textbf{Manual Investigation.}
 For each capability, I manually analyzed the app manifest and the decompiled Java code to determine how
@@ -184,7 +184,7 @@ methods).
 \textbf{Confirmation.} For each implementation of a capability (and
 related API primitives) I discover, I verified our analysis conclusions
 by developing an app using the same API primitives and
-testing it on a Pixel 4 phone running Android 11. We also installed and ran each spyware app to ensure the capabilities I observed were indeed enabled.
+testing it on a Pixel 4 phone running Android 11. I also installed and ran each spyware app to ensure the capabilities I observed were indeed enabled.
 Since the majority of the apps we
 study have been implemented using Android APIs up to Android 11, we
 discuss their implementations in that context. However, I also
@@ -199,7 +199,7 @@ discuss the impact changes in Android 12 can have on the spyware apps.
 % potential copyright infringement risks, I do not provide the
 % decompiled and annotated source code itself.
 
-%% We focus our discussion on Android 11 and earlier, and discuss the
+%% I focus our discussion on Android 11 and earlier, and discuss the
 %% impact of Android 12 when relevant. \alex{We need a machine that runs
 %%   Android 12? Big enhancements include a persistent indicator and
 %%   privacy dashboard}
@@ -216,7 +216,7 @@ discuss the impact changes in Android 12 can have on the spyware apps.
 
 % \subsection{Results}
 % \label{subsec:api_abuse_results}
-% We start by briefly discussing a set of features that are enabled after
+% I start by briefly discussing a set of features that are enabled after
 % acquiring certain permissions. These features are only protected by
 % permissions and many are not noticeable by users. Next, I detail how spyware
 % apps implement features that allow them to exfiltrate data covertly, stay
@@ -251,7 +251,7 @@ abusing the Android API to implement their capabilities.
 
 % (unique to Spy24);
 
-% We start by briefly explaining how camera works. Readers who are interested in
+% I start by briefly explaining how camera works. Readers who are interested in
 % the details should refer to Android's developer
 % guide~\cite{Cameraca74:online}. Android apps can capture images or videos by
 % creating a camera capture session. To create a camera session, apps need to
@@ -506,7 +506,7 @@ Android has used a variety of approaches to mitigate some of the issues mentione
 The first approach is to pose additional restrictions on apps that seek to access certain information. One type of restriction is to require apps to be in a certain state: Android~10 restricted access to the clipboard information
 to apps that are either the default input
 method editor or is the app that currently has focus~\cite{Privacyc52:online}. As a result of this
-patch, none of the spyware apps were able to acquire clipboard information\footnote{We are aware of a workaround~\cite{SolvedCl34:online} that can circumvent this restriction. However, it requires extensive user interaction and is not adopted by any of the spyware apps. We also note
+patch, none of the spyware apps were able to acquire clipboard information\footnote{We are aware of a workaround~\cite{SolvedCl34:online} that can circumvent this restriction. However, it requires extensive user interaction and is not adopted by any of the spyware apps. I also note
 that iKeyMonitor
 attempted to evade this restriction by trying to acquire focus with an
 invisible \texttt{EditText} of size 1x1. However, this attempt appears to be
@@ -685,7 +685,7 @@ as the abuser will have physical access to the phone and can grant the consent. 
 %MediaProjection to take screenshots (instead of live streaming the screen).
 %Since taking a screenshot is a sub-second operation, it is unlikely that users
 %will notice the indicator. Instead, I recommend that Android display the
-%indicator for a few seconds regardless of the duration of the action. We also
+%indicator for a few seconds regardless of the duration of the action. I also
 %recommend adding the screen capture permission to the new privacy
 %dashboard\alex{i dont know what is in there}.
 
@@ -704,7 +704,7 @@ These tactics include hiding the app icon from the app launcher, launching a
 hidden app, and hiding from the Recent screen.
 %% \damon{We probably need to explain
 %% some of this terminology since people might not know what the app launcher or
-%% app list are conceptually. We might want to include a figure with examples of
+%% app list are conceptually. I might want to include a figure with examples of
 %% these terms?} \grant{I made a slight tweak to the wording here, because I was
 %% initially confused by why I have a separate stealthiness section when all of
 %% the features in the previous section discuss how they steathily capture user
@@ -743,7 +743,7 @@ indicates that it should be displayed in the app
 launcher~\cite{IntentAn33:online}, and disabling the launcher activity
 removes the app icon from the app launcher.  Since the app is no
 longer displayed in the app launcher, though, spyware apps need a
-different way to launch themselves. We detail different ways to launch
+different way to launch themselves. I detail different ways to launch
 apps that are not present in the app launcher in Capability \#6 below.
 
 Since Android~10, an app's icon will appear in the app launcher even
@@ -793,7 +793,7 @@ When spyware apps hide by excluding themselves from the launcher
 (Capability \#5), they need an additional mechanism to launch.\footnote{We note that two apps, mSPY and Clevguard, do not provide ways to unhide icons even though they can hide icons.
 These two apps do not interact with users after hiding their icons upon installation, and configuring them post-installation is done remotely through the web portal. Additionally, while mSPY has implemented functions to unhide its icon via a remote command, it does not offer such an option on its web portal.}  One
 mechanism is to provide a way for the abuser to unhide the app icon on
-demand.  We observed two ways apps unhide their app icon: by sending a
+demand.  I observed two ways apps unhide their app icon: by sending a
 command from the web portal or an SMS text from a phone. Apps can
 monitor SMS text messages by acquiring the \texttt{RECEIVE\_SMS}
 permission, and can receive commands using third-party libraries such
@@ -805,7 +805,7 @@ launch themselves based on an external trigger,
 keeping the app icon hidden.
 This mechanism is generally achieved by
 receiving a predetermined signal from another app in the system via the Intents
-abstraction. We observed two main ways to do this signalling: (1) entering a hidden code via
+abstraction. I observed two main ways to do this signalling: (1) entering a hidden code via
 Android's dial pad, which is the predominant approach; and (2) entering a URL in
 the browser.
 
@@ -928,12 +928,12 @@ by the abuser to proceed.
 %\alex{a new title?}
 %
 Spyware apps strive to always be executing on the target device so
-that they can collect as much information as possible.  We focus on
+that they can collect as much information as possible.  I focus on
 the ``diehard'' mechanisms that apps use to automatically restart
 themselves after being stopped by the Android system (e.g., due to low memory) or after device
 reboots. Echoing the diehard implementations discovered in prior
 work~\cite{shao2019lightweight,zhou2020demystifying}, I observe two
-main ways used by spyware apps to create diehard services. We also note
+main ways used by spyware apps to create diehard services. I also note
 a third approach that appears to originate from the spyware ecosystem
 and be a byproduct of other capabilities.
 
@@ -946,7 +946,7 @@ themselves to be restarted shortly after they are terminated, they override the
 \texttt{onDestory} function, which is called before the app is terminated by the
 system.
 
-\textbf{Monitoring System Broadcasts.} Monitoring system broadcasts offers another way to wake up apps if they are not running already. Android sends broadcasts when various system events occur~\cite{Broadcas25:online}, and apps that monitor these system broadcasts will be woken up if they are not running already. Table~\ref{tab:monitor_broadcast} lists various systems broadcasts and the number of apps that monitor them.\footnote{Only a small number system broadcasts can be used to wake up apps after the restrictions introduced in Android 8~\cite{Implicit72:online}. We only consider these system broadcasts.} The spyware apps in our study predominantly use the \texttt{BOOT\_COMPLETED} broadcast. Monitoring
+\textbf{Monitoring System Broadcasts.} Monitoring system broadcasts offers another way to wake up apps if they are not running already. Android sends broadcasts when various system events occur~\cite{Broadcas25:online}, and apps that monitor these system broadcasts will be woken up if they are not running already. Table~\ref{tab:monitor_broadcast} lists various systems broadcasts and the number of apps that monitor them.\footnote{Only a small number system broadcasts can be used to wake up apps after the restrictions introduced in Android 8~\cite{Implicit72:online}. I only consider these system broadcasts.} The spyware apps in our study predominantly use the \texttt{BOOT\_COMPLETED} broadcast. Monitoring
 \texttt{BOOT\_COMPLETED} allows spyware apps to restart themselves
 after the device reboots: the Android system will send a
 \texttt{BOOT\_COMPLETED} system broadcast upon reboot, and spyware apps that listen

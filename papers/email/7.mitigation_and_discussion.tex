@@ -2,7 +2,7 @@
 We end by summarizing the root causes of the issues I discovered, and discuss potential mitigation strategies.
 
 \subsection{Discussion}
-In this work, I examine the complexities introduced by email forwarding to email security. We identify a diverse set of email forwarding mechanisms, assumptions, and features, and demonstrate how they can be combined together to perform evasion attacks. These attacks highlight four fundamental issues.
+In this work, I examine the complexities introduced by email forwarding to email security. I identify a diverse set of email forwarding mechanisms, assumptions, and features, and demonstrate how they can be combined together to perform evasion attacks. These attacks highlight four fundamental issues.
 
 First, as already demonstrated in prior work and further highlighted in this chapter, email security involves distributed, optional, and independently-configured components implemented by different parties. In such an architecture, the
 ``authenticity'' of an email is commonly determined by the party with the weakest security settings. While traditionally email is sent directly from sender to receiver, forwarding involves three parties instead of two and introduces an extra layer of complexity. As I have shown, a vulnerable forwarder can jeopardize the security of downstream recipients that do not have problematic configurations or implementations. This inversion of
@@ -27,14 +27,14 @@ implementing email forwarding.
 A third issue is that email is a large, slowly-evolving ecosystem with a wide range of legacy systems and protocols that need to be accommodated.
 One example I highlight is the ``outdated'' assumption made by SPF (\S~\ref{subsubsec:spf_incorporation}). When SPF was first designed in the early 2000s, it was common practice for each domain owner to maintain their own mail infrastructure. However, this assumption is obsolete in the modern era, as many domains outsource their email services to third-party providers such as Outlook and Google~\cite{liu2021s}. These large providers often share the same email infrastructure across all customers (both business and personal accounts), violating the assumptions made by SPF. 
 To mitigate the risks this reality poses to SPF, providers 
-usually prevent users from setting arbitrary values in their FROM header. However, past literature has shown that this defense is not always implemented correctly~\cite{chen2020composition}. We build on top of this prior work by identifying a new attack that can circumvent existing defenses through forwarding (\S~\ref{subsec:attack_open_forwarding}).
+usually prevent users from setting arbitrary values in their FROM header. However, past literature has shown that this defense is not always implemented correctly~\cite{chen2020composition}. I build on top of this prior work by identifying a new attack that can circumvent existing defenses through forwarding (\S~\ref{subsec:attack_open_forwarding}).
 
 Last but not least, the intrinsic nature of email forwarding is to transparently send an existing message to a new address ``on behalf'' of its original recipient --- a goal very much at odds with the anti-spoofing function of protocols such as SPF and DMARC. As such, a range of ad-hoc decisions have been made to increase the deliverability of forwarded email messages, such as using the REM+MOD forwarding mechanism (\S~\ref{sec:measure_forwarding_mechs_and_arc}), treating forwarded messages specially (\S~\ref{subsubsec:relaxed_validation}), and adding DKIM signatures to forwarded messages (\S~\ref{subsubsec:unsolicited_dkim}). As I have demonstrated, 
 these decisions can fail to foresee unexpected interactions that lead to vulnerabilities, even with a lot of deliberation.
 
 \subsection{Mitigation}
 The attacks I demonstrate highlight the complicated interactions
-between email forwarding and existing anti-spoofing mechanisms. We start by reviewing short-term mitigations that could reduce some of the most significant risks I have uncovered. We then discuss challenges in developing more comprehensive solutions, which would require significant changes in either
+between email forwarding and existing anti-spoofing mechanisms. I start by reviewing short-term mitigations that could reduce some of the most significant risks I have uncovered. I then discuss challenges in developing more comprehensive solutions, which would require significant changes in either
 protocol or operational practices.
 
 A core issue I highlight in this chapter is the ability to forward spoofed email messages to arbitrary recipients, a critical element in each
@@ -43,7 +43,7 @@ the online domain validation used by modern certificate authorities). However, I
 
 
 
-% allows users to forward spoofed email messages to arbitrary recipients, while Outlook blocks such forwarding~\cite{hotmailreject}.  We also note that while blocking spoofed email messages from being forwarded would protect downstream recipients, it would also break benign forwarding.  For example, a user forwarding a message from a friend to a colleague would be blocked by such a defense. 
+% allows users to forward spoofed email messages to arbitrary recipients, while Outlook blocks such forwarding~\cite{hotmailreject}.  I also note that while blocking spoofed email messages from being forwarded would protect downstream recipients, it would also break benign forwarding.  For example, a user forwarding a message from a friend to a colleague would be blocked by such a defense. 
 
 
 % First, I recommend that all mail service providers disable \emph{open
@@ -61,7 +61,7 @@ than substituting a weaker policy.  If Outlook rejected spoofed
 email messages from such domains, the impact of the first attack
 exploiting SPF incorporation
 would
-narrow substantially. We understand that Outlook has plans to take such action in the future~\cite{hotmailreject}.
+narrow substantially. I understand that Outlook has plans to take such action in the future~\cite{hotmailreject}.
 
 
 Unfortunately, all the defenses described above reflect a
