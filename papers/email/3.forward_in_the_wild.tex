@@ -174,7 +174,7 @@ As shown in Figure~\ref{fig:forwarding_mechs_combined}d, with REM + MOD the forw
 Additionally, the forwarder rewrites the \textsc{FROM} header to match its account or an email address within its domain (e.g., \dns{list@univ.edu}).
 
 Although this forwarding approach produces email messages compatible with DMARC,
-we found that it also introduces a new set of security concerns and spoofing attacks (\S~\ref{subsec:attack_none_mailing_list}).
+I found that it also introduces a new set of security concerns and spoofing attacks (\S~\ref{subsec:attack_none_mailing_list}).
 At a high-level, because REM + MOD rewrites a forwarded email's headers to always pass SPF and DMARC checks, it enables an attacker to launder a spoofed email through a vulnerable forwarder such that it appears like a legitimate email message to the recipient.
 
 % To resolve these compatibility issues with security protocols,
