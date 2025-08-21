@@ -20,18 +20,18 @@ email headers to identify the forwarding mechanism employed.
 (Section~\ref{sec:methodology} has a more detailed description of our
 methodology.)
 
-We constructed a comprehensive and representative set of forwarding services by building on top of prior literature.
+I constructed a comprehensive and representative set of forwarding services by building on top of prior literature.
 In total, I studied 20 distinct, leading email forwarding services.
-We started by collecting all email providers studied in prior literature~\cite{chen2020composition,shen2020weak,hu_end--end_nodate,wang2022revisiting}.
-We considered an email provider \emph{out of scope} if it meets any of these four criteria: (a) it is no longer active (e.g., excite.com); (b) it does not accept US customers (e.g., all Chinese providers studied in prior work);  (c) it is not open to public registration (e.g., cock.li); or (d) it does not support forwarding (e.g., Protonmail).
+I started by collecting all email providers studied in prior literature~\cite{chen2020composition,shen2020weak,hu_end--end_nodate,wang2022revisiting}.
+I considered an email provider \emph{out of scope} if it meets any of these four criteria: (a) it is no longer active (e.g., excite.com); (b) it does not accept US customers (e.g., all Chinese providers studied in prior work);  (c) it is not open to public registration (e.g., cock.li); or (d) it does not support forwarding (e.g., Protonmail).
 Using these criteria, I identified 23 email providers.
 Next, I excluded five email providers that prohibited bulk registration (which prevents us from running large-scale measurements), leaving us with 18 email providers.
-We then identified and removed duplicate providers that are operated by the same vendor under different names, leading to a total of 14 distinct email providers.
+I then identified and removed duplicate providers that are operated by the same vendor under different names, leading to a total of 14 distinct email providers.
 Finally, I augmented this set of forwarding services by searching for popular email providers that supported forwarding and widely-used mailing list services (a common use case overlooked in prior literature), adding two additional email providers (Mail2World and GoDaddy) and four mailing lists.
 
 Our selection of email forwarding services covers a diverse set of countries and real-world use cases (personal and business email), and represents services used by the general public (used by over 46\% of popular Alexa domains and government domains according to Liu et al.~\cite{liu2021s} ignoring email filtering services).
 %\alex{42.7\% considering email filtering}. 
-We list all email providers and mailing lists in Table~\ref{tab:forwarding_mechs_in_the_wild}.
+I list all email providers and mailing lists in Table~\ref{tab:forwarding_mechs_in_the_wild}.
 
 
 Through our measurements, I confirmed the use of three common
@@ -49,7 +49,7 @@ recipient.
 % By analyzing public documentation and empirically testing popular email services (\S~\ref{sec:fwd_adoption_measurement}), I identified four major approaches to implementing email forwarding.
 % \geoff{is this a ``result'' because Microsoft's implementation has to be experimentally discovered?}\alex{it is technically discovered through experiments}
 
-We now describe each of these approaches in detail using two running
+I now describe each of these approaches in detail using two running
 examples of common email forwarding use cases.  In the first case,
 Alice has configured her university account (\dns{alice@univ.edu}) to
 forward to her primary personal account (\dns{alice@gmail.com}).  When

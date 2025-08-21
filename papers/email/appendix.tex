@@ -111,7 +111,7 @@ Because ARC is still an experimental protocol, many email providers only evaluat
 Based on measurements through test accounts that I created, Table~\ref{tab:trust_of_arc_between_providers} shows the ARC trust relationships among the providers I tested:
 Gmail trusts ARC headers added by Fastmail, Pobox and itself; Outlook trusts ARC headers added by Gmail; Zoho trusts ARC headers added by Gmail, Fastmail, Pobox and itself;  Fastmail trusts ARC headers added by Gmail, Zoho, Pobox and itself; and Pobox trusts ARC headers added by Gmail, Fastmail and itself.
 
-We also note two details.
+I also note two details.
 First, I cannot test whether other providers trust ARC headers added by Outlook. ARC headers are only evaluated when a forwarded email fails DMARC authentication checks.
 However, in our experiments, Outlook only adds ARC headers to certain email messages that will pass DMARC authentication checks after forwarding.
 This design prevents us from testing which providers trust Outlook's ARC headers.
@@ -120,7 +120,7 @@ Second, our results suggest that Zoho does not add ARC headers when forwarding m
 
 \section{Additional Implementation Errors}
 \label{sec:implementation_errors_additional}
-We detail two other implementation errors identified during our measurement. These two errors play minor roles in the attacks I discover.
+I detail two other implementation errors identified during our measurement. These two errors play minor roles in the attacks I discover.
 \subsection{Ignoring Security Protocols}
 \label{subsec:no_dmarc}
 Systems that assume every email is legitimate tend not to enforce DMARC. Instead, they will permissively accept
@@ -222,7 +222,7 @@ different than legitimate messages (Section~\ref{subsec:attack_relaxed_forwardin
 
 \section{Additional Attack Screenshots}
 % \paragraph{Additional Screenshots}
-We ran a small set of experiments that spoofed email impersonating real domains to validate the attacks described in Section~\ref{sec:attacks}.
+I ran a small set of experiments that spoofed email impersonating real domains to validate the attacks described in Section~\ref{sec:attacks}.
 Our experiments confirmed that these attacks succeed.
 Below, I present the screenshots of spoofed email messages successfully delivered to users' inboxes.
 
@@ -253,7 +253,7 @@ human-readable name portion of the email's \textsc{TO} header to
 Second, adversaries need to leverage popular mail providers as forwarders in this attack; they cannot exploit relaxed forwarding validation by using their own servers as forwarders.
 In our experiments, I tested using both a personal Outlook account as well as a mail server I controlled as forwarders.
 The first version results in successful attacks delivered to user inboxes, but the latter did not.
-We suspect this outcome is because our mail server domain has lower reputation than Outlook's mail servers.
+I suspect this outcome is because our mail server domain has lower reputation than Outlook's mail servers.
 
 Finally, in Section~\ref{subsec:attack_relaxed_forwarding_validation}, I demonstrate the attack against a recipient using Gmail. A similar attack can be mounted against Outlook recipients by
 forwarding via a personal Fastmail account. This attack allows an

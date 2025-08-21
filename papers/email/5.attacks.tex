@@ -18,7 +18,7 @@ an example of a successful attack, where a spoofed
 email purporting to be from \dns{bush@state.gov} is delivered to a
 Gmail user's inbox with no warning indication.
 
-We describe four distinct classes of attacks, summarized in
+I describe four distinct classes of attacks, summarized in
 Table~\ref{tab:summary_attacks}, each of which I have validated
 empirically using accounts created at the affected providers.  Some of
 these attacks are quite broad --- allowing an attacker to spoof email
@@ -250,7 +250,7 @@ ensures that DMARC's alignment check succeeds because the
 \textsc{MAIL FROM} and \textsc{FROM} domain are both \dns{state.gov}.
 %\stefan{I don't think I need the screenshot.  I think they will believe us}
 %\alex{nope I need this one}
-We validated this attack in practice, consistently sending
+I validated this attack in practice, consistently sending
 spoofed email messages such as the example
 shown in Figure~\ref{fig:open_forwarding_attack_screenshot}
 to our own Gmail account, where it was delivered to the inbox without warning.\footnote{
@@ -259,7 +259,7 @@ For a small set of high-profile domains that have a DMARC policy of Reject
 (\eg, \dnsfn{aa.com}, \dnsfn{foxnews.com} and \dnsfn{ikea.com}), Outlook would
 quarantine spoofed email regardless of whether users have added the
 spoofed address to their account's allowlist (Section~\ref{subsubsec:quarantine_instead_of_reject}).
-We surmise that Outlook applies special protections for a set of high-profile or frequently spoofed domains.
+I surmise that Outlook applies special protections for a set of high-profile or frequently spoofed domains.
 } 
 In addition to Outlook, this attack also succeeds with
 % five other large email providers:
@@ -291,7 +291,7 @@ vulnerable ARC implementation and  open forwarding to
 %\paragraph{Impact}
 \paragraph{Scope}
 As described earlier in Section~\ref{subsubsec:relaxed_validation}, Gmail and Outlook use relaxed validation checks for forwarded email.
-We find that an adversary can mount this attack against users with
+I find that an adversary can mount this attack against users with
 Gmail/Outlook email accounts as well as users who use GSuite and Outlook 365 for email services.\footnote{Mail.ru also uses relaxed validation, but since it is only applied to email forwarded via Gmail, which does not allow open forwarding, this attack does not work for Mail.ru.}
 %As a result, this attack impacts
 % who together have

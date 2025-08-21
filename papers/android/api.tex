@@ -4,8 +4,8 @@
 In this section, I explain how spyware apps implement various privacy invasive
 capabilities using existing APIs supported by the Android OS.
 %These different capabilities enable attackers to achieve various goals: monitor a user's online activities (e.g., the messages they send, the photos they take, etc.), abuse the device to spy on the user's activity in the physical world (e.g., using the victim's phone to silently record audio and video or track their location), stealthily spy on their victim without their knowledge or consent, and persistently conduct their spying over a long period of time.
-We start by discussing our methodology for identifying these capabilities and uncovering their associated implementations.
-We then summarize the set of basic capabilities (\S~\ref{subsec:features_enabled_by_permission}) that either do not require any permissions or are enabled just by acquiring permissions,
+I start by discussing our methodology for identifying these capabilities and uncovering their associated implementations.
+I then summarize the set of basic capabilities (\S~\ref{subsec:features_enabled_by_permission}) that either do not require any permissions or are enabled just by acquiring permissions,
 and group
 all of the other capabilities that I study into three categories based on their goals: stealthily
 collecting a victim's information (\S~\ref{subsec:data_gathering}), hiding the app's presence on the phone (\S~\ref{subsec:hiding_the_app}), and persistently
@@ -140,7 +140,7 @@ the category by discussing potential mitigations.
 % Transfiguring of an Android App Using Reverse Engineering
 % Reverse engineering of mobile applications
 % https://www.uit.edu.mm/storage/2020/09/No.-5.pdf
-We gather a list of privacy invasive capabilities from two sources: (1)
+I gather a list of privacy invasive capabilities from two sources: (1)
 capabilities advertised and offered by spyware apps; and (2) prior
 academic papers and industry reports described in Section~\ref{sec:related_work} that look at how the Android API
 can be used to achieve such unintended functionality.
@@ -163,7 +163,7 @@ reviewed the results to remove false positives. If this API similarity
 approach did not yield results, I reverted back to manually
 inspecting the code.
 
-We use two heuristics to guide our manual investigation process.
+I use two heuristics to guide our manual investigation process.
 First, many apps can receive remote commands (e.g., using third-party
 libraries such as Firebase~\cite{Firebase21:online}).  The method
 responsible for dispatching remote commands is a useful top-down
@@ -772,7 +772,7 @@ containing the \texttt{ACTION\_MAIN} action and the
 requirement and hide their app icons by specifying no launcher
 activity.\footnote{We note that, for a short period of time (Android 10 builds r1 to r14~\cite{Launcher48:online}), the third requirement was ``the app does not have any components'', which should stop the abuse described in this section (as spyware apps cannot operate without components). Unfortunately, this requirement was changed to the current form since Android 10 build r15.\label{footnote:hide_icon}}
 
-We observe two spyware apps (Spy24 and Meuspy) that implement this
+I observe two spyware apps (Spy24 and Meuspy) that implement this
 technique: Spy24 only has an activity with an intent containing action
 \texttt{ACTION\_MAIN} and \texttt{LEANBACK\_LAUNCHER} (used by TV
 apps); Meuspy only has an activity with an intent containing
@@ -783,7 +783,7 @@ Since both apps do not have an icon displayed in the app launcher,
 they cannot easily be started by a normal user.  As a result, both
 Spy24 and Meuspy use a loader to start the app.
 
-We have disclosed the abuse of the \texttt{LEANBACK\_LAUNCHER} intent
+I have disclosed the abuse of the \texttt{LEANBACK\_LAUNCHER} intent
 on phone apps to Google, and Google determined that
 this abuse was not a security vulnerability.\footnote{They note that such ``icon hiding'' is against Google Play \emph{policy}, but since none of the apps I studied are deployed via Google Play this restriction has no impact.}
 
@@ -1064,7 +1064,7 @@ making it difficult for users to stop the spyware apps (unless they uninstall
 it).
 However, even if apps prevent a force stop, users can still uninstall
 them.
-We also recommend adding a dashboard for monitoring apps that will automatically
+I also recommend adding a dashboard for monitoring apps that will automatically
 start themselves.\footnote{We note that some Android phones (e.g., Xiaomi) have a
 built-in dashboard for managing apps that can automatically start
 themselves~\cite{HowtoDis42:online}.}

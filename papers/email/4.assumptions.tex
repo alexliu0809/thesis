@@ -64,7 +64,7 @@
 
 In this section, I describe a range of email design and
 implementation weaknesses that lead to forwarding vulnerabilities.
-We start by exploring four assumptions made by anti-spoofing mechanisms
+I start by exploring four assumptions made by anti-spoofing mechanisms
 that email forwarding can bypass and violate.  I then examine
 three vulnerable forwarding features in the major forwarding
 approaches.
@@ -587,7 +587,7 @@ prevent spoofed email messages from being forwarded.\footnote{Shen et al.~\cite{
 %emails are sent from a well-known email forwarding MTA,
 %the receiver's MTA generally accepts such emails. '}}}
 
-We infer that three providers, Gmail, Outlook and Mail.ru, apply some form of relaxed validation. Gmail employs two versions of relaxed validation for forwarded email messages that both (1) fail SPF and DMARC checks and (2) are from domains with a DMARC policy of \textsc{None} or \textsc{Quarantine}.
+I infer that three providers, Gmail, Outlook and Mail.ru, apply some form of relaxed validation. Gmail employs two versions of relaxed validation for forwarded email messages that both (1) fail SPF and DMARC checks and (2) are from domains with a DMARC policy of \textsc{None} or \textsc{Quarantine}.
 First, for email messages forwarded via Gmail or Outlook, Gmail delivers them regardless.
 Second, for messages forwarded via
 % other “well-known” providers (e.g., other providers in our experiments),
@@ -633,7 +633,7 @@ Alibaba Cloud.
 Through our experiments, I identified that three providers' (iCloud, Hushmail, and Runbox) forwarding implementation contained a variant of this vulnerable feature, which would allow an adversary to mount attacks similar to the DKIM Signature Fraud Attack.
 Taking iCloud as an example, I find that iCloud adds unsolicited and valid DKIM signatures to spoofed email messages addressed from domains hosted by them. Additionally,
 iCloud signs the DKIM signature using the same domain as the purported sender's domain in the spoofed email. For instance, iCloud will add a valid DKIM signature signed by the domain \texttt{peterborgapps.com} (a domain hosted by iCloud) to spoofed email messages purporting to be from \texttt{peterborgapps.com}, allowing the spoofed email messages to pass subsequent DMARC checks.
-We surmise that providers can add valid DKIM signatures on behalf of hosted domains because they manage DKIM keys for these domains~\cite{Setupane66:online, HushDKIM}.
+I surmise that providers can add valid DKIM signatures on behalf of hosted domains because they manage DKIM keys for these domains~\cite{Setupane66:online, HushDKIM}.
 
 
 

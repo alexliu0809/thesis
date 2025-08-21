@@ -6,7 +6,7 @@
 %% invariant to identify cross-chain attacks by performing a
 %% retrospective analysis of known significant cross-chain attacks.
 
-We developed a tool called \offlinetool that pairs deposit and
+I developed a tool called \offlinetool that pairs deposit and
 withdrawal transactions from blockchains into bridge transactions, and
 applies the balance invariant and consistency checks on them.  Using
 the transactions I collected for the 12 attacks across 11 bridges and
@@ -41,7 +41,7 @@ weeks.
 For each of the 12 significant cross-chain attacks,
 Section~\ref{sec:retro-data} describes how I gathered the historical
 transactions that correspond to the attacks using external sources.
-We use these identified transactions as ground truth for evaluating
+I use these identified transactions as ground truth for evaluating
 the ability of \offlinetool to identify attack transactions.  As shown
 in Table~\ref{table:bridges-and-txns-flagged}, when processing the
 transaction histories of the chains involved, \offlinetool
@@ -94,7 +94,7 @@ reconcile a bridge transaction, I consider it benign
 % do not consider it an invariant violation
 and do not consider it further.
 
-We group the remaining bridge transactions that violate the invariant
+I group the remaining bridge transactions that violate the invariant
 into four categories, which I describe below.  For reference, I also
 list some of these bridge transactions in
 Table~\ref{tab:xaction-hashes} to provide specific

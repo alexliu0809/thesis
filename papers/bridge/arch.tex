@@ -26,7 +26,7 @@ interesting future work.
 
 % Below, I start by answering the question of where to introduce the mechanism. Then, using Wormhole as an example, I show how I can modify the bridge to prevent malicious transactions from being processed with fewer than 30 lines of code changes. Finally, I evaluate the security and performance of the improved architecture.
 
-We start by proposing a new model for the workflow of bridge
+I start by proposing a new model for the workflow of bridge
 transactions.  Then, using Wormhole as an example, I show how to
 modify an existing bridge implementation to prevent malicious transactions from
 being processed with fewer than 30 lines of code changes.  Finally, we
@@ -76,7 +76,7 @@ transaction to prevent it from being executed.
 
 
 \subsection{Threat Model, Assumptions, and Trade-offs}
-We assume that the approver is able to independently verify the relayed transaction and the correct amount of tokens to be transferred. Under this assumption, the announce-then-execute model prevents any implementation bug in any existing bridge components, from step 2 (e.g., the bridge fails to compute the correct deposit amount) to step 8 (e.g., the bridge fails to verify the signature of a relayed transaction). Further, if the 
+I assume that the approver is able to independently verify the relayed transaction and the correct amount of tokens to be transferred. Under this assumption, the announce-then-execute model prevents any implementation bug in any existing bridge components, from step 2 (e.g., the bridge fails to compute the correct deposit amount) to step 8 (e.g., the bridge fails to verify the signature of a relayed transaction). Further, if the 
 approver uses secure hardware (namely, HSMs) or a decentralized third-parties
 (e.g., with multisig), the model can provide additional protection against
 insider threats and key theft (e.g., up to the multisig threshold). Of course,
@@ -140,7 +140,7 @@ correctness and overhead (in terms of gas usage) of the
 announce-then-execute implementation.  I deployed our bridge
 implementation on the Binance and Fantom testnets due to the
 availability of free faucets for acquiring testnet tokens for them.
-We then executed a series of benign and malicious transactions using
+I then executed a series of benign and malicious transactions using
 Binance as the source chain and Fantom as the destination chain.
 
 % , and tracked their gas usage during execution.
@@ -190,7 +190,7 @@ executing the benign transactions, which translates to a
 roughly \$1 increase for a typical withdrawal on Ethereum.
 % a 50\% increase in gas usage.
 
-We note that our implementation is not optimized for gas usage, and
+I note that our implementation is not optimized for gas usage, and
 these results indicate that an
 % real
 operational deployment

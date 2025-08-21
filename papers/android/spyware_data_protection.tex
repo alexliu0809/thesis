@@ -30,7 +30,7 @@ app to access victim data as a third party.
 %% Table~\ref{tab:apps_spyware_vuln} summarizes the threats we
 %% investigated and shows which apps are susceptible to them.
 
-We start by describing our
+I start by describing our
 methodology for investigating the data protection practices of the
 spyware apps, and then discuss each of the vulnerabilities I uncovered (summarized in Table~\ref{tab:apps_spyware_vuln}).
 
@@ -79,7 +79,7 @@ Table~\ref{tab:apps_spyware_vuln}.
 Table~\ref{tab:apps_spyware_vuln} summarizes the threats we
 investigated and shows which apps are susceptible to them.
 %
-We describe each of the threats in turn, summarizing its context, its
+I describe each of the threats in turn, summarizing its context, its
 associated threat model, any additional methods I employed, and the
 specific results I discovered for the vulnerable apps.
 
@@ -123,7 +123,7 @@ network is not using link-layer encryption).
 %% To uncover sensitive data flows, I utilized the spyware's
 %% functionality and observed the outgoing network traffic from the
 %% target device.
-We filtered the captured traffic to observe network activity from each app over
+I filtered the captured traffic to observe network activity from each app over
 insecure channels like HTTP, and used a combination of search and
 manual inspection to analyze the recorded traffic for sensitive data
 such as leaked credentials (user names, email addresses, passwords),
@@ -623,6 +623,6 @@ returns device location information in an SMS response).
 \subsection{Disclosure}
 \label{sec:disclosure}
 
-We disclosed the findings in this section to all the affected
+I disclosed the findings in this section to all the affected
 vendors on June 14th, 2022. No vendor has replied to our disclosures as of the date of
 publication (three months after our disclosure).
