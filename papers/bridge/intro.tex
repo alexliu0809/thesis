@@ -1,6 +1,9 @@
 
 In this chapter, I examine cross-chain bridges in the context of blockchain technology. I identify assumptions made by individual services, all developed by one party (the bridge operator), that make up cross-chain bridges.
-I demonstrate how these assumptions can fail, leading to attacks that steal funds from the bridge. I further design a simple yet effective mechanism that accounts for these assumptions and mitigates a broad range of attacks.
+I demonstrate that for a bridge to operate safely, a variety of assumptions must hold true, including the integrity of the bridge's smart contracts and the security of the cryptographic keys used to manage assets.
+However, these assumptions often fail to hold, as writing secure smart contracts is notoriously difficult and keeping infrastructure secure is an ongoing challenge. Indeed, 
+a variety of attacks have exploited these failed assumptions to steal billions of dollars' worth of assets from bridges.
+I study these attacks and design a simple yet effective mechanism that accounts for vulnerable assumptions and mitigates a broad range of attacks.
 
 
 \section{Introduction}
