@@ -261,7 +261,7 @@ withdraw(uint256 id, address token, address to,
 }
 \end{lstlisting}
 This contract function first charges the caller a fee, then verifies the
-deposit details against receipt---both that the deposit was not already
+deposit details against receipt details---both that the deposit was not already
 withdrawn and that the receipt signatures are valid---and finally transfers the
 tokens to the intended recipient.  I consider a cross-chain transaction
 complete when the asset is released to the recipient (step~9).

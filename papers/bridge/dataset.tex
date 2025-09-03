@@ -86,31 +86,6 @@
 %% \end{table*}
 \begin{table*}[t]
 \scriptsize
-\centering
-\begin{tabular}{p{2.7cm}rS[table-format=4.2]rrcrrr}
-  \toprule
-%  \textbf{Name} & \textbf{Date} & \makecell{\textbf{Amount} \\ (millions)} & \makecell{\textbf{TXNs}\\ \textbf{Analyzed}} & \makecell{\textbf{Reported Malilicious} \\ \textbf{TXNs Flagged}} & \makecell{\textbf{Unreported Malilicious} \\ \textbf{TXNs Flagged}} & \makecell{\textbf{Other TXNs} \\ \textbf{Flagged}} \\
-  \textbf{Name} & \multicolumn{1}{c}{\textbf{Date}} & {\textbf{Loss (USD)}} & \textbf{Analyzed} & \textbf{Reported} & \textbf{New} & \textbf{Test} & \textbf{Error} & \textbf{Suspicious} \\
-  \midrule
-    Ronin & Mar 2022 & \num{624.0}M\xspace & 3.0 & 2                 & - &  -  & - & - \\ % 0
-    PolyNetwork/2021 & Aug 2021 & \num{611.0}M\xspace & 292\thou & 18    & - &  -  & 1 & - \\ % 1
-    BSC Token Hub & Oct 2022 & \num{587.0}M\xspace & 2.0\mil & 2         & - &  -  & - & - \\ % 0
-    Wormhole & Jan 2022 & \num{360.0}M\xspace & 642\thou & 1             & - &  -  & 2 & - \\ % 2
-    Nomad & Aug 2022 & \num{152.0}M\xspace & 37\thou & $^\dagger$962      & - &  -  & - & - \\ % 0
-    Harmony & Jun 2022 & \num{100.0}M\xspace & 336\thou & 15             & - &  -  & - & 43 \\ % 43
-    HECO & Nov 2023 & \num{86.0}M\xspace & 23\thou & 8                   & - &  -  & - & 73 \\ % 73
-    Qubit & Jan 2022 & \num{80.0}M\xspace & 260 & 16                     & - & 114 & - & - \\ % 114
-    Anyswap & Jul 2021 & \num{7.9}M\xspace & 3.4\mil & 4                & 24 &  -  & 806 & 7 \\ % 2
-    PolyNetwork/2023 & Jun 2023 & \num{4.4}M\xspace & 290\thou & 136     & - &  -  & 1 & 27 \\ %28
-    Chainswap & Jul 2021 & \num{4.4}M\xspace & 53\thou & $^*$1136        & - &  15 & 4 & - \\ % 17
-    Meter & Feb 2022 & \num{4.3}M\xspace & 14\thou & $^\dagger$5          & - &  -  & - & - \\ \midrule % 0
-    Total  &          & \num{2.6}B\xspace & 10.1\mil & 2,305             & 24 &  129 & 814 & 150 \\
-% 43+73+7+27=150
-    \bottomrule
-    % Chainswap (07-02) & 2021-07 & 4.4 & & & & \\ \hline (worth noting. still from bridge's user)
-    % Omni\alex{will be removed} & 2022-09 & 0.5 & & & Many & \\ \hline
-\end{tabular}
-% 3000+292+2000+647+35+336+23+2300+240+53+14=8940
 \caption[List of Top Attacks on Cross-chain Bridges in the Retrospective
   Analysis]{List of top attacks on cross-chain bridges in the retrospective
   analysis, ordered by amount stolen.  \offlinetool analyzed over
@@ -138,6 +113,32 @@
   %% transaction than mentioned in online posts~\cite{}, perhaps because
   %% it involved Meter's own chain rather than \geoff{...}.
 }
+\centering
+\begin{tabular}{p{2.7cm}rS[table-format=4.2]rrcrrr}
+  \toprule
+%  \textbf{Name} & \textbf{Date} & \makecell{\textbf{Amount} \\ (millions)} & \makecell{\textbf{TXNs}\\ \textbf{Analyzed}} & \makecell{\textbf{Reported Malilicious} \\ \textbf{TXNs Flagged}} & \makecell{\textbf{Unreported Malilicious} \\ \textbf{TXNs Flagged}} & \makecell{\textbf{Other TXNs} \\ \textbf{Flagged}} \\
+  \textbf{Name} & \multicolumn{1}{c}{\textbf{Date}} & {\textbf{Loss (USD)}} & \textbf{Analyzed} & \textbf{Reported} & \textbf{New} & \textbf{Test} & \textbf{Error} & \textbf{Suspicious} \\
+  \midrule
+    Ronin & Mar 2022 & \num{624.0}M\xspace & 3.0 & 2                 & - &  -  & - & - \\ % 0
+    PolyNetwork/2021 & Aug 2021 & \num{611.0}M\xspace & 292\thou & 18    & - &  -  & 1 & - \\ % 1
+    BSC Token Hub & Oct 2022 & \num{587.0}M\xspace & 2.0\mil & 2         & - &  -  & - & - \\ % 0
+    Wormhole & Jan 2022 & \num{360.0}M\xspace & 642\thou & 1             & - &  -  & 2 & - \\ % 2
+    Nomad & Aug 2022 & \num{152.0}M\xspace & 37\thou & $^\dagger$962      & - &  -  & - & - \\ % 0
+    Harmony & Jun 2022 & \num{100.0}M\xspace & 336\thou & 15             & - &  -  & - & 43 \\ % 43
+    HECO & Nov 2023 & \num{86.0}M\xspace & 23\thou & 8                   & - &  -  & - & 73 \\ % 73
+    Qubit & Jan 2022 & \num{80.0}M\xspace & 260 & 16                     & - & 114 & - & - \\ % 114
+    Anyswap & Jul 2021 & \num{7.9}M\xspace & 3.4\mil & 4                & 24 &  -  & 806 & 7 \\ % 2
+    PolyNetwork/2023 & Jun 2023 & \num{4.4}M\xspace & 290\thou & 136     & - &  -  & 1 & 27 \\ %28
+    Chainswap & Jul 2021 & \num{4.4}M\xspace & 53\thou & $^*$1136        & - &  15 & 4 & - \\ % 17
+    Meter & Feb 2022 & \num{4.3}M\xspace & 14\thou & $^\dagger$5          & - &  -  & - & - \\ \midrule % 0
+    Total  &          & \num{2.6}B\xspace & 10.1\mil & 2,305             & 24 &  129 & 814 & 150 \\
+% 43+73+7+27=150
+    \bottomrule
+    % Chainswap (07-02) & 2021-07 & 4.4 & & & & \\ \hline (worth noting. still from bridge's user)
+    % Omni\alex{will be removed} & 2022-09 & 0.5 & & & Many & \\ \hline
+\end{tabular}
+% 3000+292+2000+647+35+336+23+2300+240+53+14=8940
+
 \label{table:bridges-and-txns-flagged}
 \end{table*}
 
@@ -322,7 +323,7 @@ what each contract did---across many chains constitutes the most
 time-intensive aspect of performing a retrospective analysis.
 
 For each bridge, I collected deposit and withdrawal transactions for
-each of the blockchains it operates on (for the 21 chains I
+each of the blockchain it operates on (for the 21 chains I
 support) using commercial RPC services which charge for queries.  I
 primarily used five commercial services,\footnote{% These five RPC services are:
 GetBlock, QuickNode, ChainStack, GoldRush, and Ankr.} 
